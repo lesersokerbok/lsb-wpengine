@@ -1,0 +1,21 @@
+/*
+ Theme Name:   LSB Boksøk Theme
+ Description:  lsb-base-theme child theme for Boksøk
+ Template:     lsb-base-theme
+ Version:      0.0.1
+ Author:       Lilly Labs
+ Author URI:   http://lillylabs.no
+*/
+
+/*
+For older themes, and themes that do not use wp_enqueue_style() to enqueue their stylesheet, use the following line where twentyfourteen is the name of the directory where the theme resides:
+
+Make sure you uncomment out this import line below if you want to include the parent CSS and the wp_enqueue_style() is not working. If you do not then you will not have any styling in your child theme from the parent theme.
+*/
+
+/*
+@import url("../lsb-base-theme/style.css");
+*/
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
