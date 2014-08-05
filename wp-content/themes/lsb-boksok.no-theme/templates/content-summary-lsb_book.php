@@ -1,4 +1,3 @@
-tull
 <article <?php post_class('summary'); ?>>
   <div class="entry-image">
     <a href="<?php the_permalink(); ?>">
