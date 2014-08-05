@@ -94,20 +94,6 @@ module.exports = function(grunt) {
         src: 'assets/css/main.min.css'
       }
     },
-    modernizr: {
-      build: {
-        devFile: 'assets/vendor/modernizr/modernizr.js',
-        outputFile: 'assets/js/vendor/modernizr.min.js',
-        files: {
-          'src': [
-            ['assets/js/scripts.min.js'],
-            ['assets/css/main.min.css']
-          ]
-        },
-        uglify: true,
-        parseFiles: true
-      }
-    },
     version: {
       default: {
         options: {
@@ -170,8 +156,7 @@ module.exports = function(grunt) {
     'jshint',
     'less:build',
     'autoprefixer:build',
-    'uglify',
-    'modernizr',
-    'version'
+    'uglify'
+    // 'version'
   ]);
 };
