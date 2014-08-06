@@ -25,14 +25,14 @@
  * @return void Value is echoed if 'echo' is set to true.
  */
 
-function enollo_pagination( $args = array() ) {
+function roots_pagination( $args = array() ) {
 	$defaults = array(
 		'echo' => true,
 		'query' => $GLOBALS['wp_query'],
 		'show_all' => false,
 		'prev_next' => true,
-		'prev_text' => __('Previous Page', 'enollo'),
-		'next_text' => __('Next Page', 'enollo'),
+		'prev_text' => __('Previous Page', 'roots'),
+		'next_text' => __('Next Page', 'roots'),
 	);
 
 	$args = wp_parse_args( $args, $defaults );
