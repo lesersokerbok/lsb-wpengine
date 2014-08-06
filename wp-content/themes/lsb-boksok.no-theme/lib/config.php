@@ -56,6 +56,7 @@ function roots_display_sidebar() {
       'is_404',
       'is_front_page',
       'is_search',
+      'is_archive',
       array('is_singular', array('lsb_book')),
       array('is_tax', array(
           'lsb_tax_author',
