@@ -3,6 +3,7 @@
 
 node_modules
 .htaccess
+*.log
 wp-content/plugins
 wp-content/languages/plugins
 wp-content/languages/*.*
