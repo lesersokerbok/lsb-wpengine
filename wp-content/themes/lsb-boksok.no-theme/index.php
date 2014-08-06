@@ -19,7 +19,7 @@
 
 <?php if ($wp_query->max_num_pages > 1) : ?>
   <nav class="post-nav">
-    <?php enollo_pagination(); ?>
+    <?php roots_pagination(); ?>
   </nav>
 
 <?php endif; ?>
