@@ -1,13 +1,13 @@
 {
-  "dest": "assets/manifest.json",
+  "dest": "wp-content/themes/lsb-base-theme/assets/manifest.json",
   "querystring": true,
-  "assets/css/main.min.css": {
-    "path": "assets/css/main.min.css",
+  "wp-content/themes/lsb-base-theme/assets/css/main.min.css": {
+    "path": "wp-content/themes/lsb-base-theme/assets/css/main.min.css",
     "hash": "4a9148a163fc0eb44ad8a5e0987673df",
     "handle": "roots_css"
   },
-  "assets/js/scripts.min.js": {
-    "path": "assets/js/scripts.min.js",
+  "wp-content/themes/lsb-base-theme/assets/js/scripts.min.js": {
+    "path": "wp-content/themes/lsb-base-theme/assets/js/scripts.min.js",
     "hash": "23718ac47d4f54ec764544f882874712",
     "handle": "roots_js"
   }
