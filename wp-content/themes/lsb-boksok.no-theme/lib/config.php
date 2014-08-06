@@ -56,7 +56,18 @@ function roots_display_sidebar() {
       'is_404',
       'is_front_page',
       'is_search',
-      array('is_singular', array('lsb_book'))
+      array('is_singular', array('lsb_book')),
+      array('is_tax', array(
+          'lsb_tax_author',
+          'lsb_tax_publisher',
+          'lsb_tax_age',
+          'lsb_tax_illustrator',
+          'lsb_tax_translator',
+          'lsb_tax_genre',
+          'lsb_tax_customization',
+          'lsb_tax_topic',
+          'lsb_tax_language'
+          ))
     ),
     /**
      * Page template checks (via is_page_template())
