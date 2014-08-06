@@ -6,14 +6,9 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
   var basePrefix = 'wp-content/themes/lsb-base-theme/';
-  var baseDevFilesCSSOutput = basePrefix + 'assets/css/main.css';
-  var baseBuildFilesCSSOutput = basePrefix + 'assets/css/main.min.css';
-  var baseDevFilesJSOutput = basePrefix + 'assets/js/scripts.js';
-  var baseBuildFilesJSOutput = basePrefix + 'assets/js/scripts.min.js';
-  var baseVersionDefaultFilesKey = basePrefix + 'lib/scripts.php';
+  var boksokPrefix = 'wp-content/themes/lsb-boksok.no-theme/';
 
-
-  var jsFileList = [
+  var jsBaseFileList = [
     basePrefix + 'assets/vendor/bootstrap/js/transition.js',
     basePrefix + 'assets/vendor/bootstrap/js/alert.js',
     basePrefix + 'assets/vendor/bootstrap/js/button.js',
@@ -30,6 +25,23 @@ module.exports = function(grunt) {
     basePrefix + 'assets/js/_*.js'
   ];
 
+  var jsBoksokFileList = jsBaseFileList.slice(0);
+  jsBoksokFileList.push(boksokPrefix + 'assets/js/_*.js');
+
+  var lessDevBaseFiles = {};
+  lessDevBaseFiles[basePrefix + 'assets/css/main.css'] = [ basePrefix + 'assets/less/main.less'];
+
+  var lessDevBoksokFiles = {};
+  lessDevBoksokFiles[boksokPrefix + 'assets/css/main.css'] = [ boksokPrefix + 'assets/less/main.less'];
+
+  var lessBuildFiles = {};
+  lessBuildFiles[basePrefix + 'assets/css/main.min.css'] = [ basePrefix + 'assets/less/main.less'];
+  lessBuildFiles[boksokPrefix + 'assets/css/main.min.css'] = [ boksokPrefix + 'assets/less/main.less'];
+
+  var uglifyFiles = {};
+  uglifyFiles[basePrefix + 'assets/js/scripts.min.js'] = [jsBaseFileList];
+  uglifyFiles[boksokPrefix + 'assets/js/scripts.min.js'] = [jsBoksokFileList];
+
   grunt.initConfig({
     jshint: {
       options: {
@@ -43,53 +55,71 @@ module.exports = function(grunt) {
       ]
     },
     less: {
-      dev: {
-        files: {
-          'wp-content/themes/lsb-base-theme/assets/css/main.css': [
-            basePrefix + 'assets/less/main.less'
-          ]
-        },
+      devBase: {
+        files: lessDevBaseFiles,
         options: {
           compress: false,
           // LESS source map
           // To enable, set sourceMap to true and update sourceMapRootpath based on your install
           sourceMap: true,
-          sourceMapFilename: 'main.css.map',
-          sourceMapRootpath: basePrefix + 'assets/css/'
+          sourceMapFilename: basePrefix + 'assets/css/main.css.map'
+          //sourceMapRootpath: basePrefix + 'assets/css/'
         }
       },
-      build: {
-        files: {
-          'wp-content/themes/lsb-base-theme/assets/css/main.min.css': [
-            basePrefix + 'assets/less/main.less'
-          ]
-        },
+      devBoksok: {
+        files: lessDevBoksokFiles,
+        options: {
+          compress: false,
+          // LESS source map
+          // To enable, set sourceMap to true and update sourceMapRootpath based on your install
+          sourceMap: true,
+          sourceMapFilename: boksokPrefix + 'assets/css/main.css.map'
+          //sourceMapRootpath: boksokPrefix + 'assets/css/'
+        }
+      },
+      buildBase: {
+        files: lessBuildFiles,
+        options: {
+          compress: true
+        }
+      },
+      buildBoksok: {
+        files: lessBuildFiles,
         options: {
           compress: true
         }
       }
     },
     concat: {
-      options: {
-        separator: ';',
+      base: {
+        options: {
+          separator: ';',
+        },
+        dist: {
+          src: [jsBaseFileList],
+          dest: basePrefix + 'assets/js/scripts.js',
+        }
       },
-      dist: {
-        src: [jsFileList],
-        dest: basePrefix + 'assets/js/scripts.js',
-      },
+      boksok: {
+        options: {
+          separator: ';',
+        },
+        dist: {
+          src: [jsBoksokFileList],
+          dest: boksokPrefix + 'assets/js/scripts.js',
+        }
+      }
     },
     uglify: {
       dist: {
-        files: {
-          'wp-content/themes/lsb-base-theme/assets/js/scripts.min.js': [jsFileList]
-        }
+        files: uglifyFiles
       }
     },
     autoprefixer: {
       options: {
         browsers: ['last 2 versions', 'ie 8', 'ie 9', 'android 2.3', 'android 4', 'opera 12']
       },
-      dev: {
+      devBase: {
         options: {
           map: {
             prev: basePrefix + 'assets/css/'
@@ -97,12 +127,23 @@ module.exports = function(grunt) {
         },
         src: basePrefix + 'assets/css/main.css'
       },
-      build: {
+      devBoksok: {
+        options: {
+          map: {
+            prev: boksokPrefix + 'assets/css/'
+          }
+        },
+        src: boksokPrefix + 'assets/css/main.css'
+      },
+      buildBase: {
         src: basePrefix + 'assets/css/main.min.css'
+      },
+      buildBoksok: {
+        src: boksokPrefix + 'assets/css/main.min.css'
       }
     },
     modernizr: {
-      build: {
+      base: {
         devFile: basePrefix + 'assets/vendor/modernizr/modernizr.js',
         outputFile: basePrefix + 'assets/js/vendor/modernizr.min.js',
         files: {
@@ -113,10 +154,23 @@ module.exports = function(grunt) {
         },
         uglify: true,
         parseFiles: true
+      },
+      boksok: {
+        devFile: basePrefix + 'assets/vendor/modernizr/modernizr.js',
+        outputFile: boksokPrefix + 'assets/js/vendor/modernizr.min.js',
+        files: {
+          'src': [
+            [boksokPrefix + 'assets/js/scripts.min.js'],
+            [boksokPrefix + 'assets/css/main.min.css']
+          ]
+        },
+        uglify: true,
+        parseFiles: true
       }
+
     },
     version: {
-      default: {
+      base: {
         options: {
           format: true,
           length: 32,
@@ -128,6 +182,20 @@ module.exports = function(grunt) {
         },
         files: {
          'wp-content/themes/lsb-base-theme/lib/scripts.php': basePrefix + 'assets/{css,js}/{main,scripts}.min.{css,js}'
+        }
+      },
+      boksok: {
+        options: {
+          format: true,
+          length: 32,
+          manifest: basePrefix + 'assets/manifest.json',
+          querystring: {
+            style: 'roots_child_css',
+            script: 'roots_child_js'
+          }
+        },
+        files: {
+         'wp-content/themes/lsb-base-theme/lib/scripts.php': boksokPrefix + 'assets/{css,js}/{main,scripts}.min.{css,js}'
         }
       }
     },
@@ -141,7 +209,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: [
-          jsFileList,
+          jsBaseFileList,
           '<%= jshint.all %>'
         ],
         tasks: ['jshint', 'concat']
@@ -168,16 +236,22 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('dev', [
     'jshint',
-    'less:dev',
-    'autoprefixer:dev',
-    'concat'
+    'less:devBase',
+    'less:devBoksok',
+    'autoprefixer:devBase',
+    'autoprefixer:devBoksok',
+    'concat:base',
+    'concat:boksok'
   ]);
   grunt.registerTask('build', [
     'jshint',
-    'less:build',
-    'autoprefixer:build',
+    'less:buildBase',
+    'less:buildBoksok',
+    'autoprefixer:buildBase',
+    'autoprefixer:buildBoksok',
     'uglify',
-    'modernizr',
+    'modernizr:base',
+    'modernizr:boksok',
     'version'
   ]);
 };
