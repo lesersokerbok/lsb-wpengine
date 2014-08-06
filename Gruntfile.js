@@ -203,9 +203,11 @@ module.exports = function(grunt) {
       less: {
         files: [
           basePrefix + 'assets/less/*.less',
-          basePrefix + 'assets/less/**/*.less'
+          basePrefix + 'assets/less/**/*.less',
+          boksokPrefix + 'assets/less/*.less',
+          boksokPrefix + 'assets/less/**/*.less'
         ],
-        tasks: ['less:dev', 'autoprefixer:dev']
+        tasks: ['less:devBase', 'less:devBoksok', 'autoprefixer:devBase', 'autoprefixer:devBoksok']
       },
       js: {
         files: [
@@ -224,7 +226,11 @@ module.exports = function(grunt) {
           basePrefix + 'assets/css/main.css',
           basePrefix + 'assets/js/scripts.js',
           basePrefix + 'templates/*.php',
-          basePrefix + '*.php'
+          basePrefix + '*.php',
+          boksokPrefix + 'assets/css/main.css',
+          boksokPrefix + 'assets/js/scripts.js',
+          boksokPrefix + 'templates/*.php',
+          boksokPrefix + '*.php'
         ]
       }
     }
