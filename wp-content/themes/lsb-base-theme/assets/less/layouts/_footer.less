@@ -1,1 +1,10 @@
-.content-info { }
+footer.content-info {
+  margin-top: @line-height-computed*2;
+  border: 1px solid @navbar-default-border;
+  background-color: @navbar-default-bg;
+  padding: (@line-height-computed * 2) 0 @line-height-computed/2;
+
+  .widget:first-child {
+    margin-top: 0;
+  }
+}
