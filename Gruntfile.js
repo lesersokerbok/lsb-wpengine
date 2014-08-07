@@ -51,7 +51,10 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         basePrefix + 'assets/js/*.js',
         '!' + basePrefix + 'assets/js/scripts.js',
-        '!' + basePrefix + 'assets/**/*.min.*'
+        '!' + basePrefix + 'assets/**/*.min.*',
+        boksokPrefix + 'assets/js/*.js',
+        '!' + boksokPrefix + 'assets/js/scripts.js',
+        '!' + boksokPrefix + 'assets/**/*.min.*'
       ]
     },
     less: {
