@@ -10,10 +10,8 @@ function roots_title() {
       return __('Latest Posts', 'roots');
     }
   } elseif (is_archive()) {
-    $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
-    if ($term) {
-      return apply_filters('single_term_title', $term->name);
-    } elseif (is_post_type_archive()) {
+
+    if (is_post_type_archive()) {
       return apply_filters('the_title', get_queried_object()->labels->name);
     } elseif (is_day()) {
       return sprintf(__('Daily Archives: %s', 'roots'), get_the_date());
@@ -25,8 +23,9 @@ function roots_title() {
       $author = get_queried_object();
       return sprintf(__('Author Archives: %s', 'roots'), apply_filters('the_author', is_object($author) ? $author->display_name : null));
     } else {
-      return single_cat_title('', false);
+      return ucfirst(single_cat_title('', false));
     }
+
   } elseif (is_search()) {
     return sprintf(__('Search Results for %s', 'roots'), get_search_query());
   } elseif (is_404()) {
