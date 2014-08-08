@@ -245,6 +245,18 @@ module.exports = function(grunt) {
     'concat:base',
     'concat:boksok'
   ]);
+  grunt.registerTask('dev-base', [
+    'jshint',
+    'less:devBase',
+    'autoprefixer:devBase',
+    'concat:base',
+  ]);
+  grunt.registerTask('dev-bok', [
+    'jshint',
+    'less:devBoksok',
+    'autoprefixer:devBoksok',
+    'concat:boksok'
+  ]);
   grunt.registerTask('build', [
     'jshint',
     'less:buildBase',
