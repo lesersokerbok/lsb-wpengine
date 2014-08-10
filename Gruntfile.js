@@ -94,23 +94,16 @@ module.exports = function(grunt) {
       }
     },
     concat: {
+      options: {
+        separator: ';',
+      },
       base: {
-        options: {
-          separator: ';',
-        },
-        dist: {
-          src: [jsBaseFileList],
-          dest: basePrefix + 'assets/js/scripts.js',
-        }
+        src: jsBaseFileList,
+        dest: basePrefix + 'assets/js/scripts.js',
       },
       boksok: {
-        options: {
-          separator: ';',
-        },
-        dist: {
-          src: [jsBoksokFileList],
-          dest: boksokPrefix + 'assets/js/scripts.js',
-        }
+        src: jsBoksokFileList,
+        dest: boksokPrefix + 'assets/js/scripts.js',
       }
     },
     uglify: {
