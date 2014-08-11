@@ -86,19 +86,14 @@ article.lsb_book {
   }
 }
 
+/* ==========================================================================
+   Archives
+   ========================================================================== */
+
 article.summary.lsb_book {
   width: 20%;
-  float: left;
-  margin-right: 15px;
+  padding: 0 @line-height-computed @line-height-computed 0;
   text-align: center;
-
-  &:nth-of-type(5n) {
-    clear: right;
-  }
-
-  &:nth-of-type(5n+1) {
-    clear: left;
-  }
 
   h2 {
     font-size: @font-size-base;
@@ -121,21 +116,47 @@ article.summary.lsb_book {
   }
 }
 
+.archive, .search {
+  .loop {
+    margin-right: -@line-height-computed;
+
+    article.summary.lsb_book {
+      float: left;
+      padding-bottom: @line-height-computed*2;
+
+      &:nth-of-type(5n) {
+        clear: right;
+      }
+
+      &:nth-of-type(5n+1) {
+        clear: left;
+      }
+    }
+  }
+}
+
 /* ==========================================================================
    Frontpage list horizontal scrolling
    ========================================================================== */
 
-.main > .book-list {
-  overflow-x: scroll;
-  overflow-y: hidden;
+.book-list {
   white-space: nowrap;
-}
 
-.main > .book-list > article {
-  float:none;
-  display: inline-block;
-  white-space: normal;
-  vertical-align: top;
+  .book-list-header {
+    .page-header;
+  }
+
+  .book-list-body {
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    article.summary.lsb_book {
+      display: inline-block;
+      white-space: normal;
+      vertical-align: top;
+    }
+
+  }
 }
 
 /* ==========================================================================
