@@ -103,9 +103,12 @@ Template Name: Boksøk Frontpage Template
                     <small>| <?php the_sub_field('list-sub-header'); ?></small>
                   <?php endif; ?>
                   <?php if ( get_sub_field('description') ) : ?>
-                    <button type="button" class="btn btn-link">
-                      <span class="glyphicon glyphicon-info-sign"></span>
-                    </button>
+                    <small>
+                      | <button type="button" class="btn-link">
+                          <span class="glyphicon glyphicon-info-sign"></span>
+                        </button>
+                    </small>
+
                   <?php endif; ?>
                 </h1>
                 <?php if ( get_sub_field('description') ) : ?>
