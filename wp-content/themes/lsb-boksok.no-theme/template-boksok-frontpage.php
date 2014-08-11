@@ -95,8 +95,10 @@ Template Name: Boksøk Frontpage Template
           ?>
 
           <?php if ( $wp_query->have_posts() ) : ?>
-            <div class="row book-list">
-              <h2><?php the_sub_field('list-header'); ?></h2>
+            <div class="book-list">
+              <div class="page-header">
+                <h1><?php the_sub_field('list-header'); ?></h1>
+              </div>
               <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
                 <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
               <?php endwhile; ?>
