@@ -97,6 +97,7 @@ Template Name: Boksøk Frontpage Template
           <?php if ( $wp_query->have_posts() ) : ?>
             <div class="book-list">
               <div class="book-list-header">
+
                 <h1>
                   <?php the_sub_field('list-header'); ?>
                   <?php if ( get_sub_field('list-sub-header') ) : ?>
@@ -111,30 +112,31 @@ Template Name: Boksøk Frontpage Template
 
                   <?php endif; ?>
                 </h1>
+
                 <?php if ( get_sub_field('description') ) : ?>
                   <p class="alert alert-info book-list-description sr-only">
                     <button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <?php the_sub_field('description'); ?>
                   </p>
                 <?php endif; ?>
+
               </div>
-              <div class="row">
-                <div class="book-list-scroll-button-wrapper col-md-1">
-                  <button type="button" class="book-list-left-scroll btn btn-link btn-lg btn-block">
-                    <span class="glyphicon glyphicon-circle-arrow-left"></span>
-                  </button>
-                </div>
-                <div class="book-list-body col-md-10">
+
+              <div class="book-list-body">
+
+                <span class="book-list-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
+                <span class="book-list-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
+
+                <div class="book-list-scroll">
+
                   <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
                     <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
                   <?php endwhile; ?>
+
                 </div>
-                <div class="book-list-scroll-button-wrapper col-md-1">
-                  <button type="button" class="book-list-right-scroll btn btn-link btn-lg btn-block">
-                    <span class="glyphicon glyphicon-circle-arrow-right"></span>
-                  </button>
-                </div>
+
               </div>
+
             </div>
           <?php endif; ?>
 

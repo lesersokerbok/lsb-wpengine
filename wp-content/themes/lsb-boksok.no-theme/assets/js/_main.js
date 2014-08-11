@@ -38,14 +38,14 @@ var Roots = {
 
       // Respond to left scroll button click
       $('.book-list .book-list-left-scroll').click(function () {
-        $(this).parent().next().animate({
+        $(this).siblings('.book-list-scroll').animate({
           scrollLeft: "-=500px"
         }, 500);
       });
 
       // Respond to right scroll button click
       $('.book-list .book-list-right-scroll').click(function () {
-        $(this).parent().prev().animate({
+        $(this).siblings('.book-list-scroll').animate({
           scrollLeft: "+=500px"
         }, 500);
       });
