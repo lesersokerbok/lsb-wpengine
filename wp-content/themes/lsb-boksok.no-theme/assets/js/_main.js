@@ -33,7 +33,7 @@ var Roots = {
       // Toggle list description visibility
       $('.book-list .book-list-header button').click(function () {
         $(this).closest('.book-list-header').find('.book-list-description')
-          .toggleClass('hidden');
+          .toggleClass('sr-only');
       });
 
       // Respond to left scroll button click
