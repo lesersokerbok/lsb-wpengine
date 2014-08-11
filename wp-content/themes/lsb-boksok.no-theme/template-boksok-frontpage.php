@@ -97,7 +97,19 @@ Template Name: Boksøk Frontpage Template
           <?php if ( $wp_query->have_posts() ) : ?>
             <div class="book-list">
               <div class="book-list-header">
-                <h1><?php the_sub_field('list-header'); ?></h1>
+                <h1>
+                  <?php the_sub_field('list-header'); ?>
+                  <?php if ( get_sub_field('description') ) : ?>
+                    <button type="button" class="btn btn-link btn-sm">
+                      <span class="glyphicon glyphicon-info-sign"></span>
+                    </button>
+                  <?php endif; ?>
+                </h1>
+                <?php if ( get_sub_field('description') ) : ?>
+                  <p class="book-list-description bg-info hidden">
+                    <?php the_sub_field('description'); ?>
+                  </p>
+                <?php endif; ?>
               </div>
               <div class="book-list-body">
                 <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
