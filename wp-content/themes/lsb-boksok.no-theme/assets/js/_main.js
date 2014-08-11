@@ -36,6 +36,35 @@ var Roots = {
           .toggleClass('sr-only');
       });
 
+      // Hide scroll arrows when not needed
+      var toggleScrollButtons = function($bookListScroll) {
+
+        var scrollLeftPos = $bookListScroll.scrollLeft(),
+            scrollWidth = $bookListScroll.get(0).scrollWidth,
+            width = $bookListScroll.width();
+
+        if(scrollLeftPos > 0) {
+          $bookListScroll.siblings('.book-list-left-scroll').show();
+        } else {
+          $bookListScroll.siblings('.book-list-left-scroll').hide();
+        }
+
+        if(scrollWidth - scrollLeftPos > width) {
+          $bookListScroll.siblings('.book-list-right-scroll').show();
+        } else {
+          $bookListScroll.siblings('.book-list-right-scroll').hide();
+        }
+
+      };
+
+      $('.book-list-scroll').each(function() {
+        toggleScrollButtons($(this));
+      });
+
+      $('.book-list-scroll').scroll(function() {
+        toggleScrollButtons($(this));
+      });
+
       // Respond to left scroll button click
       $('.book-list .book-list-left-scroll').click(function () {
         $(this).siblings('.book-list-scroll').animate({
