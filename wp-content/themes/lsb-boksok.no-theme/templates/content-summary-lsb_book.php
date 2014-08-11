@@ -1,11 +1,12 @@
 <article <?php post_class('summary'); ?>>
   <div class="entry-image">
-    <a href="<?php the_permalink(); ?>">
+    <a class="thumbnail" href="<?php the_permalink(); ?>">
       <?php if ( has_post_thumbnail()) : ?>
         <?php the_post_thumbnail('medium'); ?></img></a>
       <?php else : ?>
         <img src="http://dummyimage.com/220x300/eeeeee/eeeeee.jpg"></img>
       <?php endif; ?>
+    </a>
   </div>
   <header>
     <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
