@@ -35,6 +35,20 @@ var Roots = {
         $(this).closest('.book-list-header').find('.book-list-description')
           .toggleClass('hidden');
       });
+
+      // Respond to left scroll button click
+      $('.book-list .book-list-left-scroll').click(function () {
+        $(this).parent().next().animate({
+          scrollLeft: "-=500px"
+        }, 500);
+      });
+
+      // Respond to right scroll button click
+      $('.book-list .book-list-right-scroll').click(function () {
+        $(this).parent().prev().animate({
+          scrollLeft: "+=500px"
+        }, 500);
+      });
     }
   },
   // About us page, note the change from about-us to about_us.

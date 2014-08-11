@@ -114,10 +114,22 @@ Template Name: Boksøk Frontpage Template
                   </p>
                 <?php endif; ?>
               </div>
-              <div class="book-list-body">
-                <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
-                  <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
-                <?php endwhile; ?>
+              <div class="row">
+                <div class="book-list-scroll-button-wrapper col-md-1">
+                  <button type="button" class="book-list-left-scroll btn btn-link btn-lg btn-block">
+                    <span class="glyphicon glyphicon-circle-arrow-left"></span>
+                  </button>
+                </div>
+                <div class="book-list-body col-md-10">
+                  <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
+                    <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
+                  <?php endwhile; ?>
+                </div>
+                <div class="book-list-scroll-button-wrapper col-md-1">
+                  <button type="button" class="book-list-right-scroll btn btn-link btn-lg btn-block">
+                    <span class="glyphicon glyphicon-circle-arrow-right"></span>
+                  </button>
+                </div>
               </div>
             </div>
           <?php endif; ?>
