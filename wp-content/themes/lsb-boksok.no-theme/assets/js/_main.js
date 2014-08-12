@@ -31,44 +31,44 @@ var Roots = {
       // JavaScript to be fired on the home page
 
       // Hide scroll arrows when not needed
-      var toggleScrollButtons = function($bookListScroll) {
+      var toggleScrollButtons = function($bookSectionScroll) {
 
-        var scrollLeftPos = $bookListScroll.scrollLeft(),
-            scrollWidth = $bookListScroll.get(0).scrollWidth,
-            width = $bookListScroll.width();
+        var scrollLeftPos = $bookSectionScroll.scrollLeft(),
+            scrollWidth = $bookSectionScroll.get(0).scrollWidth,
+            width = $bookSectionScroll.width();
 
         if(scrollLeftPos > 0) {
-          $bookListScroll.siblings('.book-list-left-scroll').show();
+          $bookSectionScroll.siblings('.book-section-left-scroll').show();
         } else {
-          $bookListScroll.siblings('.book-list-left-scroll').hide();
+          $bookSectionScroll.siblings('.book-section-left-scroll').hide();
         }
 
         if(scrollWidth - scrollLeftPos > width) {
-          $bookListScroll.siblings('.book-list-right-scroll').show();
+          $bookSectionScroll.siblings('.book-section-right-scroll').show();
         } else {
-          $bookListScroll.siblings('.book-list-right-scroll').hide();
+          $bookSectionScroll.siblings('.book-section-right-scroll').hide();
         }
 
       };
 
-      $('.book-list-scroll').each(function() {
+      $('.book-section-scroll').each(function() {
         toggleScrollButtons($(this));
       });
 
-      $('.book-list-scroll').scroll(function() {
+      $('.book-section-scroll').scroll(function() {
         toggleScrollButtons($(this));
       });
 
       // Respond to left scroll button click
-      $('.book-list .book-list-left-scroll').click(function () {
-        $(this).siblings('.book-list-scroll').animate({
+      $('.book-section .book-section-left-scroll').click(function () {
+        $(this).siblings('.book-section-scroll').animate({
           scrollLeft: "-=500px"
         }, 500);
       });
 
       // Respond to right scroll button click
-      $('.book-list .book-list-right-scroll').click(function () {
-        $(this).siblings('.book-list-scroll').animate({
+      $('.book-section .book-section-right-scroll').click(function () {
+        $(this).siblings('.book-section-scroll').animate({
           scrollLeft: "+=500px"
         }, 500);
       });
