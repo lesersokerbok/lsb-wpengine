@@ -71,6 +71,16 @@ if ($publisher) {
   );
 }
 
+$series = null;
+$series = get_sub_field('section_series');
+if ($series) {
+  $taxQuery[] = array(
+    'taxonomy' => 'lsb_tax_series',
+    'field' => 'id',
+    'terms' => $series
+  );
+}
+
 $args = array(
     'post_type' => 'lsb_book',
     'tax_query' => $taxQuery

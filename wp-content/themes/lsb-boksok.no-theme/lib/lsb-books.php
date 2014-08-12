@@ -915,6 +915,31 @@ class LsbBooks {
       					'multiple' => 0,
       				),
       				array (
+      					'key' => 'field_53ea27e5b8a7b',
+      					'label' => 'Serie',
+      					'name' => 'section_series',
+      					'prefix' => '',
+      					'type' => 'taxonomy',
+      					'instructions' => '',
+      					'required' => 0,
+      					'conditional_logic' => array (
+      						array (
+      							'rule_0' => array (
+      								'field' => 'field_53ea181ee2483',
+      								'operator' => '==',
+      								'value' => 'advanced',
+      							),
+      						),
+      					),
+      					'column_width' => '',
+      					'taxonomy' => 'lsb_tax_series',
+      					'field_type' => 'checkbox',
+      					'allow_null' => 1,
+      					'load_save_terms' => 0,
+      					'return_format' => 'id',
+      					'multiple' => 0,
+      				),
+      				array (
       					'key' => 'field_53ea21dc631b0',
       					'label' => 'Sorteringskriterium',
       					'name' => 'orderby',
