@@ -140,23 +140,19 @@ article.summary.lsb_book {
    Frontpage list horizontal scrolling
    ========================================================================== */
 
-.book-list {
+.book-section {
   white-space: nowrap;
 
-  .book-list-header {
+  .book-section-header {
     white-space: normal;
-
-    .book-list-description {
-      padding:15px;
-    }
   }
 
-  .book-list-body {
+  .book-section-body {
     position: relative;
     transform-style: preserve-3d;
 
-    .book-list-left-scroll,
-    .book-list-right-scroll  {
+    .book-section-left-scroll,
+    .book-section-right-scroll  {
       color: @link-color;
       position: absolute;
       top: 30%;
@@ -171,17 +167,17 @@ article.summary.lsb_book {
       }
     }
 
-    .book-list-left-scroll {
+    .book-section-left-scroll {
       transform: translateX(-110%);
       left: 0;
     }
 
-    .book-list-right-scroll {
+    .book-section-right-scroll {
       transform: translateX(110%);
       right: 0;
     }
 
-    .book-list-scroll {
+    .book-section-scroll {
       overflow-x: scroll;
       overflow-y: hidden;
 
