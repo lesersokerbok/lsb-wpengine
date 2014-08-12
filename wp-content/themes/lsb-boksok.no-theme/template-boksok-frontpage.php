@@ -104,7 +104,7 @@ Template Name: Boksøk Frontpage Template
                     <small>| <?php the_sub_field('list-sub-header'); ?></small>
                   <?php endif; ?>
                   <?php if ( get_sub_field('description') ) : ?>
-                    <small>
+                    <small aria-hidden="true">
                       | <button type="button" class="btn-link">
                           <span class="glyphicon glyphicon-info-sign"></span>
                         </button>
@@ -124,8 +124,8 @@ Template Name: Boksøk Frontpage Template
 
               <div class="book-list-body">
 
-                <span class="book-list-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
-                <span class="book-list-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
+                <span aria-hidden="true" class="book-list-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
+                <span aria-hidden="true" class="book-list-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
 
                 <div class="book-list-scroll">
 
