@@ -29,7 +29,7 @@ $wp_query = new WP_Query( $args );
           </small>
         <?php endif; ?>
         <small>
-          <a href="/liste/<?php echo $list->slug?>">Hele lista</a>
+          <a href="/liste/<?php echo $list->slug?>">Se alle bøker i <?php echo $list->name ?></a>
         </small>
       </h1>
 

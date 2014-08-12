@@ -13,6 +13,7 @@ class LsbBooks {
     add_action('init', array($this, 'register_tax_lsb_topic'));
     add_action('init', array($this, 'register_tax_lsb_language'));
     add_action('init', array($this, 'register_lsb_tax_list'));
+    add_action('init', array($this, 'register_lsb_tax_series'));
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
     add_action('init', array($this, 'register_lsb_acf_content'));
     add_action('init', array($this, 'register_field_group_frontpage_section'));
@@ -344,7 +345,7 @@ class LsbBooks {
     );
   }
 
-  public function register_lsb_tax_list() {
+  public function register_lsb_tax_series() {
     register_taxonomy( 'lsb_tax_series',
       array(
         0 => 'lsb_book'
