@@ -96,7 +96,7 @@ Template Name: Boksøk Frontpage Template
 
           <?php if ( $wp_query->have_posts() ) : ?>
             <div class="book-list">
-              <div class="book-list-header">
+              <div class="book-list-header page-header">
 
                 <h1>
                   <?php the_sub_field('list-header'); ?>
@@ -114,8 +114,11 @@ Template Name: Boksøk Frontpage Template
                 </h1>
 
                 <?php if ( get_sub_field('description') ) : ?>
-                  <p class="alert alert-info book-list-description sr-only">
-                    <button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <p class="alert alert-info description sr-only">
+                    <button type="button" class="close">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">Close</span>
+                    </button>
                     <?php the_sub_field('description'); ?>
                   </p>
                 <?php endif; ?>

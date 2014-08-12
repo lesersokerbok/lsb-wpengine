@@ -30,12 +30,6 @@ var Roots = {
     init: function() {
       // JavaScript to be fired on the home page
 
-      // Toggle list description visibility
-      $('.book-list .book-list-header button').click(function () {
-        $(this).closest('.book-list-header').find('.book-list-description')
-          .toggleClass('sr-only');
-      });
-
       // Hide scroll arrows when not needed
       var toggleScrollButtons = function($bookListScroll) {
 
