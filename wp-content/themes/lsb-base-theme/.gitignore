@@ -3,5 +3,6 @@
 node_modules
 assets/vendor/*
 assets/css/main.css
+assets/css/main.css.map
 assets/js/scripts.js
 assets/manifest.json
