@@ -12,6 +12,7 @@ class LsbBooks {
     add_action('init', array($this, 'register_tax_lsb_customization'));
     add_action('init', array($this, 'register_tax_lsb_topic'));
     add_action('init', array($this, 'register_tax_lsb_language'));
+    add_action('init', array($this, 'register_lsb_tax_list'));
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
     add_action('init', array($this, 'register_lsb_acf_content'));
     add_action('init', array($this, 'register_field_group_frontpage_section'));
@@ -309,6 +310,35 @@ class LsbBooks {
           'separate_items_with_commas' => '',
           'add_or_remove_items' => '',
           'choose_from_most_used' => '',
+        )
+      )
+    );
+  }
+
+  public function register_lsb_tax_list() {
+    register_taxonomy( 'lsb_tax_list',
+      array(
+        0 => 'lsb_book'
+      ),
+      array('hierarchical' => false,
+        'label' => 'Liste',
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => array( 'slug' => 'liste' ),
+        'show_admin_column' => false,
+        'labels' => array (
+          'search_items' => 'Liste',
+          'popular_items' => 'Populære',
+          'all_items' => 'Alle',
+          'parent_item' => '',
+          'parent_item_colon' => '',
+          'edit_item' => 'Rediger',
+          'update_item' => 'Oppdater',
+          'add_new_item' => 'Legg til',
+          'new_item_name' => 'Navn',
+          'separate_items_with_commas' => 'Skill med komma',
+          'add_or_remove_items' => 'Legg til eller ta vekk',
+          'choose_from_most_used' => 'Velg fra mest brukte',
         )
       )
     );
