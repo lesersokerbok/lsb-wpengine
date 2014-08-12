@@ -16,7 +16,7 @@ class LsbBooks {
     add_action('init', array($this, 'register_lsb_tax_series'));
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
     add_action('init', array($this, 'register_lsb_acf_content'));
-    add_action('init', array($this, 'register_field_group_frontpage_section'));
+    add_action('init', array($this, 'register_field_group_book_section_field_group'));
   }
 
   public function register_post_type_lsb_book() {
@@ -545,7 +545,7 @@ class LsbBooks {
       ));
     }
   }
-  public function register_field_group_frontpage_section()
+  public function register_field_group_book_section_field_group()
   {
     if( function_exists('register_field_group') )
     {
