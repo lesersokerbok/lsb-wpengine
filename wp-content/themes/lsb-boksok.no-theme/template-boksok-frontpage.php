@@ -90,6 +90,34 @@ Template Name: Boksøk Frontpage Template
               'tax_query' => $taxQuery
           );
 
+          $orderby = null;
+          $orderby = get_sub_field('orderby');
+          if ($orderby) {
+              switch($orderby) {
+                case 'random':
+                  $args['orderby'] = 'rand';
+                  break;
+                case 'added':
+                  $args['orderby'] = 'date';
+                  $args['order'] = get_sub_field('order');
+                  break;
+                case 'published':
+                  $args['meta_key'] = 'lsb_published_year';
+                  $args['orderby'] = 'meta_value_num';
+                  $args['order'] = get_sub_field('order');
+                  $args['meta_query'] = array(
+                    array(
+                      'key' => 'lsb_published_year'
+                    )
+                  );
+                  break;
+                default:
+                  $args['orderby'] = 'date';
+                  $args['order'] = 'DESC';
+                  break;
+              }
+          }
+
           $wp_query = new WP_Query( $args );
 
           ?>
