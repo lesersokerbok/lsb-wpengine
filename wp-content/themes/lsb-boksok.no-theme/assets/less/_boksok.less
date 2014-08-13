@@ -7,6 +7,7 @@
    ========================================================================== */
 
 @brand-primary: #305b86;
+
 a {
   text-decoration: underline;
 }
@@ -23,6 +24,18 @@ body {
    Base
    ========================================================================== */
 
+.panel {
+
+  p:last-child {
+    margin-bottom: 0
+  }
+
+}
+
+.page-header {
+  margin-bottom: @line-height-computed*1.5
+}
+
 
 /* ==========================================================================
    Header
@@ -30,15 +43,6 @@ body {
 
 .banner {
   a {
-    text-decoration: none;
-  }
-}
-
-.page-header {
-  text-align: center;
-
-  a {
-    color: inherit;
     text-decoration: none;
   }
 }
@@ -64,56 +68,32 @@ body {
 
 }
 
-section.loop {
-  margin: 0 -15px;
-}
+article.lsb_book {
 
-article.full {
-
-  padding: 0 15px;
-  max-width: 690;
-  margin: 0 auto;
-
-  .entry-content {
-    width: 50%;
-    float: left;
-    padding-right: 15px;
-  }
-
-  .entry-image {
-    float: right;
-    width: 50%;
-    padding-left: 15px;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
+  img {
+    width: 100%;
+    height: auto;
   }
 
   p, blockquote {
-    margin: 15px auto;
+    // margin: 15px auto;
   }
 
   blockquote {
+    font-size: @font-size-base;
     border-color: @brand-primary;
     border-width: 2px;
   }
 }
 
-article.summary {
-  width: 20%;
-  float: left;
-  padding: 15px;
+/* ==========================================================================
+   Archives
+   ========================================================================== */
+
+article.summary.lsb_book {
+
+  padding: 0 @line-height-computed @line-height-computed 0;
   text-align: center;
-
-  &:nth-of-type(5n) {
-    clear: right;
-  }
-
-  &:nth-of-type(5n+1) {
-    clear: left;
-  }
 
   h2 {
     font-size: @font-size-base;
@@ -133,6 +113,85 @@ article.summary {
   img {
     width: 100%;
     height: auto;
+  }
+}
+
+.archive, .search {
+  .loop {
+    margin-right: -@line-height-computed;
+
+    article.summary.lsb_book {
+      width: 20%;
+      float: left;
+      padding-bottom: @line-height-computed*2;
+
+      &:nth-of-type(5n) {
+        clear: right;
+      }
+
+      &:nth-of-type(5n+1) {
+        clear: left;
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   Frontpage list horizontal scrolling
+   ========================================================================== */
+
+.book-section {
+  white-space: nowrap;
+
+  .book-section-header {
+    white-space: normal;
+  }
+
+  .book-section-body {
+    position: relative;
+    transform-style: preserve-3d;
+
+    .book-section-left-scroll,
+    .book-section-right-scroll  {
+      color: @link-color;
+      position: absolute;
+      top: 30%;
+      font-size: @font-size-h1;
+      opacity: 0.5;
+      cursor: pointer;
+
+      display: none;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .book-section-left-scroll {
+      transform: translateX(-110%);
+      left: 0;
+    }
+
+    .book-section-right-scroll {
+      transform: translateX(110%);
+      right: 0;
+    }
+
+    .book-section-scroll {
+      overflow-x: scroll;
+      overflow-y: hidden;
+
+      article.summary.lsb_book {
+        display: inline-block;
+        white-space: normal;
+        vertical-align: top;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+
   }
 }
 
@@ -182,11 +241,6 @@ footer.page-footer {
    ========================================================================== */
 
 @media (max-width: @screen-sm-max) {
-
-  .page-header {
-    text-align: left;
-    padding: 0 15px;
-  }
 
   .archive article {
     width: auto;
