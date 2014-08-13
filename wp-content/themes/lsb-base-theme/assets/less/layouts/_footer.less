@@ -1,11 +1,24 @@
-footer.widget-area {
-  margin-top: @line-height-computed*2;
-  border: 1px solid @navbar-default-border;
-  background-color: @navbar-default-bg;
-  padding-bottom: @line-height-computed/2;
-}
+footer {
 
-.content-info {
-  text-align: center;
-  padding: @line-height-computed 0;
+  .widget-area {
+    margin-top: @line-height-computed*2;
+    border: 1px solid @navbar-default-border;
+    background-color: @navbar-default-bg;
+    padding-bottom: @line-height-computed/2;
+  }
+
+  .content-info {
+    text-align: center;
+    padding: @line-height-computed;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .navbar {
+    margin-top: -1px;
+    margin-bottom: 0;
+  }
+
 }
