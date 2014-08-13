@@ -31,7 +31,7 @@
       <nav id="menu-social-links-menu" role="navigation">
       <?php
         if (has_nav_menu('social_links_menu')) :
-          wp_nav_menu(array('theme_location' => 'social_links_menu', 'menu_class' => 'nav nav-centered', 'link_before' => '<span>', 'link_after' => '</span>'));
+          wp_nav_menu(array('theme_location' => 'social_links_menu', 'menu_class' => 'nav navbar-nav nav-centered', 'link_before' => '<span>', 'link_after' => '</span>'));
         endif;
       ?>
       </nav>
@@ -39,7 +39,7 @@
   </div>
 
   <div class="content-info container" role="contentinfo">
-    <p><?php if (get_bloginfo('description')): ?><?php echo get_bloginfo('description') ?> |<?php endif; ?> © <?php echo date("Y"); ?> <a href="http://lesersøkerbok.no">Leser søker bok</a></p>
+    <p><?php if (get_bloginfo('description')): ?><?php echo get_bloginfo('description') ?><br/><?php endif; ?> © <?php echo date("Y"); ?> <a href="http://lesersøkerbok.no">Leser søker bok</a></p>
   </div>
 
 </footer>
