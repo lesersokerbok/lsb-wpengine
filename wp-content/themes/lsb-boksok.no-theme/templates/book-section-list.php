@@ -20,7 +20,7 @@ $wp_query = new WP_Query( $args );
     <div class="book-section-header page-header">
 
       <h1>
-        <?php echo $list->name ?>
+        <a href="<?php echo get_term_link( $list, 'lsb_tax_list' ); ?> "><?php echo $list->name ?></a>
         <?php if ( $list->description ) : ?>
           <small aria-hidden="true">
             | <button type="button" class="btn-link">
@@ -28,19 +28,21 @@ $wp_query = new WP_Query( $args );
               </button>
           </small>
         <?php endif; ?>
-        <small>
-          <a href="/liste/<?php echo $list->slug?>">Se alle bøker i <?php echo $list->name ?></a>
-        </small>
       </h1>
 
       <?php if ( $list->description ) : ?>
-        <p class="alert alert-info description sr-only">
+        <div class="alert alert-info description sr-only">
           <button type="button" class="close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
           </button>
-          <?php echo $list->description; ?>
-        </p>
+          <p><?php echo $list->description; ?></p>
+          <p>
+            <a href="<?php echo get_term_link( $list, 'lsb_tax_list' ); ?> ">
+              Gå til alle bøker i <?php echo $list->name ?>.
+            </a>
+          </p>
+        </div>
       <?php endif; ?>
 
     </div>

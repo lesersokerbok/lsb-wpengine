@@ -545,6 +545,7 @@ class LsbBooks {
       ));
     }
   }
+
   public function register_field_group_book_section_field_group()
   {
     if( function_exists('register_field_group') )
@@ -942,7 +943,7 @@ class LsbBooks {
       				array (
       					'key' => 'field_53ea21dc631b0',
       					'label' => 'Sorteringskriterium',
-      					'name' => 'orderby',
+      					'name' => 'section_orderby',
       					'prefix' => '',
       					'type' => 'radio',
       					'instructions' => '',
@@ -959,7 +960,7 @@ class LsbBooks {
       					'column_width' => '',
       					'choices' => array (
       						'none' => 'Ingen',
-      						'rand' => 'Tilfeldig',
+      						'random' => 'Tilfeldig',
       						'published' => 'Publisert',
       						'added' => 'Lagt til',
       					),
@@ -971,7 +972,7 @@ class LsbBooks {
       				array (
       					'key' => 'field_53ea2219631b1',
       					'label' => 'Sorteringsrekkefølge',
-      					'name' => 'order',
+      					'name' => 'section_order',
       					'prefix' => '',
       					'type' => 'radio',
       					'instructions' => '',
