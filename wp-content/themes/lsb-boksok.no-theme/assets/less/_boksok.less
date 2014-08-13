@@ -140,23 +140,56 @@ article.summary.lsb_book {
    Frontpage list horizontal scrolling
    ========================================================================== */
 
-.book-list {
+.book-section {
   white-space: nowrap;
-  overflow: hidden;
 
-  .book-list-header {
+  .book-section-header {
     white-space: normal;
-    .page-header;
   }
 
-  .book-list-body {
-    overflow-x: scroll;
-    overflow-y: hidden;
+  .book-section-body {
+    position: relative;
+    transform-style: preserve-3d;
 
-    article.summary.lsb_book {
-      display: inline-block;
-      white-space: normal;
-      vertical-align: top;
+    .book-section-left-scroll,
+    .book-section-right-scroll  {
+      color: @link-color;
+      position: absolute;
+      top: 30%;
+      font-size: @font-size-h1;
+      opacity: 0.5;
+      cursor: pointer;
+
+      display: none;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .book-section-left-scroll {
+      transform: translateX(-110%);
+      left: 0;
+    }
+
+    .book-section-right-scroll {
+      transform: translateX(110%);
+      right: 0;
+    }
+
+    .book-section-scroll {
+      overflow-x: scroll;
+      overflow-y: hidden;
+
+      article.summary.lsb_book {
+        display: inline-block;
+        white-space: normal;
+        vertical-align: top;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
     }
 
   }
