@@ -89,8 +89,6 @@ $args = array(
 $orderby = null;
 $orderby = get_sub_field('section_orderby');
 $order = get_sub_field('section_order');
-var_dump($orderby);
-var_dump($order);
 
 if ($orderby) {
     switch($orderby) {
