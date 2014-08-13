@@ -1,4 +1,43 @@
+.secondary-menu-item() {
+  span {
+    .sr-only;
+  }
+
+  font-size: 140%;
+
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.social-menu-item() {
+  .secondary-menu-item;
+  .social;
+}
+
 #menu-secondary-menu {
+
+  a[href^="http://twitter"] {
+    .social-menu-item;
+    .social.twitter;
+  }
+
+  a[href^="http://facebook"] {
+    .social-menu-item;
+    .social.facebook;
+  }
+
+  a[href^="http://instagram"] {
+    .social-menu-item;
+    .social.instagram;
+  }
+
+  .info a {
+    .secondary-menu-item;
+
+    .glyphicon;
+    .glyphicon-info-sign;
+  }
+
   @media (min-width: @grid-float-breakpoint) {
     .pull-right;
   }

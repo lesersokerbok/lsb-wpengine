@@ -20,7 +20,7 @@
 
       <?php
         if (has_nav_menu('secondary_navigation')) :
-          wp_nav_menu(array('theme_location' => 'secondary_navigation', 'menu_class' => 'nav navbar-nav'));
+          wp_nav_menu(array('theme_location' => 'secondary_navigation', 'menu_class' => 'nav navbar-nav', 'link_before' => '<span>', 'link_after' => '</span>'));
         endif;
       ?>
     </nav>
