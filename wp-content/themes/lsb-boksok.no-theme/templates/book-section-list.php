@@ -34,12 +34,13 @@ $wp_query = new WP_Query( $args );
         <div class="alert alert-info description sr-only">
           <button type="button" class="close">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <span class="sr-only"><?php echo __('Close', 'lsb_boksok'); ?></span>
           </button>
           <p><?php echo $list->description; ?></p>
           <p>
             <a href="<?php echo get_term_link( $list, 'lsb_tax_list' ); ?> ">
-              Gå til alle bøker i <?php echo $list->name ?>.
+              <?php echo __('Gå til alle bøker i ', 'lsb_boksok'); ?>
+              <?php echo $list->name ?>.
             </a>
           </p>
         </div>
