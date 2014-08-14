@@ -1,14 +1,15 @@
 {
-  "name": "roots",
-  "version": "7.0.0",
-  "author": "Ben Word <ben@benword.com>",
-  "homepage": "http://roots.io",
+  "name": "lsb-wordpress-themes",
+  "version": "0.1.1",
+  "author": "Lilly Labs <info@lillylabs.no",
+  "homepage": "http://lillylabs.no",
+  "description": "Wordpress themes for Leser søker bok",
   "repository": {
     "type": "git",
-    "url": "git://github.com/roots/roots.git"
+    "url": "git@github.com:lesersokerbok/lsb-wordpress-themes.git"
   },
   "bugs": {
-    "url": "https://github.com/roots/roots/issues"
+    "url": "https://github.com/lesersokerbok/lsb-wordpress-themes/issues"
   },
   "licenses": [
     {
