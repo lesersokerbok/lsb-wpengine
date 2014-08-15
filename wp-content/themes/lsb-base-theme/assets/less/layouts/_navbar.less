@@ -1,7 +1,8 @@
-.secondary-menu-item() {
+.icon-menu-item() {
 
   font-size: 140%;
   float: left;
+  text-decoration: none;
 
   @media (min-width: @grid-float-breakpoint) {
     padding-left: 5px;
@@ -15,12 +16,11 @@
 }
 
 .social-menu-item() {
-  .secondary-menu-item;
+  .icon-menu-item;
   .social;
 }
 
-#menu-secondary-menu,
-#menu-social-links-menu {
+.icon-nav {
 
   a[href*="twitter"] {
     .social-menu-item;
@@ -53,27 +53,9 @@
   }
 
   .info a {
-    .secondary-menu-item;
+    .icon-menu-item;
 
     .glyphicon;
     .glyphicon-info-sign;
-  }
-}
-
-#menu-secondary-menu {
-  @media (min-width: @grid-float-breakpoint) {
-    .pull-right;
-  }
-}
-
-#menu-social-links-menu {
-  .nav-centered {
-    width: 100%;
-    text-align: center;
-
-    li {
-      display: inline-block;
-      float: none;
-    }
   }
 }

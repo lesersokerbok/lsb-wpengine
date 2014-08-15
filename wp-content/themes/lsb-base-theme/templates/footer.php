@@ -26,12 +26,12 @@
     </div>
   </div>
 
-  <div class="banner navbar navbar-default navbar-static-top">
+  <div class="navbar navbar-default navbar-static-top">
     <div class="container">
-      <nav id="menu-social-links-menu" role="navigation">
+      <nav role="navigation">
       <?php
         if (has_nav_menu('social_links_menu')) :
-          wp_nav_menu(array('theme_location' => 'social_links_menu', 'menu_class' => 'nav navbar-nav nav-centered', 'link_before' => '<span>', 'link_after' => '</span>'));
+          wp_nav_menu(array('theme_location' => 'social_links_menu', 'menu_class' => 'icon-nav nav navbar-nav nav-centered', 'link_before' => '<span>', 'link_after' => '</span>'));
         endif;
       ?>
       </nav>
