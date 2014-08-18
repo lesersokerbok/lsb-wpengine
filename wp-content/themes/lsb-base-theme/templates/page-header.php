@@ -17,7 +17,7 @@
       <div class="alert alert-info description sr-only">
         <button type="button" class="close">
           <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
+          <span class="sr-only"><?php _e('Lukk', 'lsb') ?></span>
         </button>
         <?php echo category_description(); ?>
       </div>
