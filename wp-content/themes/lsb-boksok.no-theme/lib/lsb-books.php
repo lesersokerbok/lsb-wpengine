@@ -93,7 +93,7 @@ class LsbBooks {
       	'label' => __('Illustratører', 'lsb_boksok'),
       	'show_ui' => true,
       	'query_var' => true,
-      	'rewrite' => array( 'slug' => _x('illustrator', 'lsb_tax_illustrator slug', 'lsb_boksok'),
+      	'rewrite' => array( 'slug' => _x('illustrator', 'lsb_tax_illustrator slug', 'lsb_boksok') ),
       	'show_admin_column' => false,
       	'labels' => array (
           'search_items' => __('Illustratører', 'lsb_boksok'),
@@ -122,7 +122,7 @@ class LsbBooks {
         'label' => __('Oversetter', 'lsb_books'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('oversetter', 'lsb_tax_translator', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('oversetter', 'lsb_tax_translator', 'lsb_boksok') ),
         'show_admin_column' => false,
         'labels' => array (
           'search_items' => __('Oversettere', 'lsb_boksok'),
@@ -151,7 +151,7 @@ class LsbBooks {
         'label' => __('Forlag', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('forlag', 'lsb_tax_publisher slug', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('forlag', 'lsb_tax_publisher slug', 'lsb_boksok') ),
         'show_admin_column' => false,
         'labels' => array (
           'search_items' => __('Forlag', 'lsb_boksok'),
@@ -180,7 +180,7 @@ class LsbBooks {
         'label' => __('Sjanger', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('sjanger', 'lsb_tax_genre slug', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('sjanger', 'lsb_tax_genre slug', 'lsb_boksok') ),
         'show_admin_column' => true,
         'labels' => array (
           'search_items' => __('Sjangre', 'lsb_boksok'),
@@ -209,7 +209,7 @@ class LsbBooks {
         'label' => __('Alder', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('alder', 'lsb_tax_age slug', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('alder', 'lsb_tax_age slug', 'lsb_boksok') ),
         'show_admin_column' => true,
         'labels' => array (
           'search_items' => __('Aldre', 'lsb_boksok'),
@@ -238,7 +238,7 @@ class LsbBooks {
         'label' => __('Tilpasning', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('tilpasning', 'lsb_tax_customization slug', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('tilpasning', 'lsb_tax_customization slug', 'lsb_boksok') ),
         'show_admin_column' => false,
         'labels' => array (
           'search_items' => __('Tilpasninger', 'lsb_boksok'),
@@ -267,7 +267,7 @@ class LsbBooks {
       	'label' => __('Emne', 'lsb_book'),
       	'show_ui' => true,
       	'query_var' => true,
-      	'rewrite' => array( 'slug' => _x('emne', 'lsb_tax_topic slug', 'lsb_boksok'),
+      	'rewrite' => array( 'slug' => _x('emne', 'lsb_tax_topic slug', 'lsb_boksok') ),
       	'show_admin_column' => false,
       	'labels' => array (
           'search_items' => __('Emner', 'lsb_boksok'),
@@ -296,7 +296,7 @@ class LsbBooks {
         'label' => __('Språk', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('språk', 'lsb_tax_language', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('språk', 'lsb_tax_language slug', 'lsb_boksok') ),
         'show_admin_column' => false,
         'labels' => array (
           'search_items' => __('Språk', 'lsb_boksok'),
@@ -312,7 +312,6 @@ class LsbBooks {
           'add_or_remove_items' => __('Legg til eller fjern', 'lsb_boksok'),
           'choose_from_most_used' => __('Velg fra mest brukte', 'lsb_boksok'),
         )
-        )
       )
     );
   }
@@ -326,7 +325,7 @@ class LsbBooks {
         'label' => __('Liste', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('liste', 'lsb_tax_list slug', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('liste', 'lsb_tax_list slug', 'lsb_boksok') ),
         'show_admin_column' => false,
         'labels' => array (
           'search_items' => __('Lister', 'lsb_boksok'),
@@ -355,7 +354,7 @@ class LsbBooks {
         'label' => __('Serie', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('serie', 'lsb_tax_series slug', 'lsb_boksok'),
+        'rewrite' => array( 'slug' => _x('serie', 'lsb_tax_series slug', 'lsb_boksok') ),
         'show_admin_column' => false,
         'labels' => array (
           'search_items' => __('Serier', 'lsb_boksok'),
@@ -590,7 +589,7 @@ class LsbBooks {
       				),
       				array (
       					'key' => 'field_53ea1856e2484',
-      					'label' => _x('Liste', 'boksok section type list', 'lsb_boksok'),,
+      					'label' => _x('Liste', 'boksok section type list', 'lsb_boksok'),
       					'name' => 'section_list',
       					'prefix' => '',
       					'type' => 'taxonomy',
