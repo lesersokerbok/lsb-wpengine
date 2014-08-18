@@ -143,7 +143,7 @@ $wp_query = new WP_Query( $args );
         <div class="alert alert-info description sr-only">
           <button type="button" class="close">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only"><?php echo __('Close', 'lsb_boksok'); ?></span>
+            <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
           </button>
           <?php the_sub_field('section_description'); ?>
         </div>
