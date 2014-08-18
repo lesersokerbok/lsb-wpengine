@@ -126,8 +126,8 @@ $wp_query = new WP_Query( $args );
 
       <h1>
         <?php the_sub_field('section_header'); ?>
-        <?php if ( get_sub_field('section_sub-header') ) : ?>
-          <small>| <?php the_sub_field('section_sub-header'); ?></small>
+        <?php if ( get_sub_field('section_sub_header') ) : ?>
+          <small>| <?php the_sub_field('section_sub_header'); ?></small>
         <?php endif; ?>
         <?php if ( get_sub_field('section_description') ) : ?>
           <small aria-hidden="true">

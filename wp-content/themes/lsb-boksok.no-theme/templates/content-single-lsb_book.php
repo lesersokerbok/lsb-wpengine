@@ -47,7 +47,7 @@
             <?php elseif (has_post_thumbnail()): ?>
               <div class="thumbnail"><?php the_post_thumbnail('large'); ?></div>
             <?php else: ?>
-              <img src="http://dummyimage.com/300x450/eeeeee/eeeeee.jpg"></img>
+              <div class="thumbnail"><img src="http://dummyimage.com/600x900/eeeeee/eeeeee.jpg"></img></div>
             <?php endif; ?>
           </div>
         </div>
