@@ -11,11 +11,18 @@ $args = array(
       )
     )
 );
-$wp_query = new WP_Query( $args );
+
+$hashed = 'section_list_' . $list->term_id;
+$hashed = hash('md5', $hashed);
+
+if ( false == ( $books = get_transient( $hashed ) ) ) {
+  $books = new WP_Query ($args);
+  set_transient($hashed, $books, 3600);
+}
 
 ?>
 
-<?php if ( $wp_query->have_posts() ) : ?>
+<?php if ( $books->have_posts() ) : ?>
   <div class="book-section">
     <div class="book-section-header page-header">
 
@@ -55,7 +62,7 @@ $wp_query = new WP_Query( $args );
 
       <div class="book-section-scroll">
 
-        <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
+        <?php while ( $books->have_posts() ) : $books->the_post(); ?>
           <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
         <?php endwhile; ?>
 

@@ -1,4 +1,7 @@
 <?php
+
+$hashed = '';
+
 $taxQuery = null;
 
 $age = null;
@@ -9,6 +12,8 @@ if ($age) {
     'field' => 'id',
     'terms' => $age
   );
+
+  $hashed .= 'lsb_tax_age_' . implode($age);
 }
 
 $customization = null;
@@ -19,6 +24,7 @@ if ($customization) {
     'field' => 'id',
     'terms' => $customization
   );
+  $hashed .= 'lsb_tax_customization_' . implode($customization);
 }
 
 $author = null;
@@ -29,6 +35,7 @@ if ($author) {
     'field' => 'id',
     'terms' => $author
   );
+  $hashed .= 'lsb_tax_author_' . implode($author);
 }
 
 $genre = null;
@@ -39,6 +46,7 @@ if ($genre) {
     'field' => 'id',
     'terms' => $genre
   );
+  $hashed .= 'lsb_tax_genre_' . implode($genre);
 }
 
 $topic = null;
@@ -49,6 +57,7 @@ if ($topic) {
     'field' => 'id',
     'terms' => $topic
   );
+  $hashed .= 'lsb_tax_topic_' . implode($topic);
 }
 
 $language = null;
@@ -59,6 +68,7 @@ if ($language) {
     'field' => 'id',
     'terms' => $language
   );
+  $hashed .= 'lsb_tax_language_' . implode($language);
 }
 
 $publisher = null;
@@ -69,6 +79,7 @@ if ($publisher) {
     'field' => 'id',
     'terms' => $publisher
   );
+  $hashed .= 'lsb_tax_publisher_' . implode($publisher);
 }
 
 $series = null;
@@ -79,6 +90,7 @@ if ($series) {
     'field' => 'id',
     'terms' => $series
   );
+  $hashed .= 'lsb_tax_series_' . implode($series);
 }
 
 $args = array(
@@ -94,10 +106,12 @@ if ($orderby) {
     switch($orderby) {
       case 'random':
         $args['orderby'] = 'rand';
+        $hashed .= '_orderby_rand';
         break;
       case 'added':
         $args['orderby'] = 'date';
         $args['order'] = $order;
+        $hashed .= '_orderby_date_order_' . $order;
         break;
       case 'published':
         $args['meta_key'] = 'lsb_published_year';
@@ -108,19 +122,26 @@ if ($orderby) {
             'key' => 'lsb_published_year'
           )
         );
+        $hashed .= '_orderby_lsb_published_year_order_' . $order;
         break;
       default:
         $args['orderby'] = 'date';
         $args['order'] = 'DESC';
+        $hashed .= '_orderby_date_order_DESC';
         break;
     }
 }
 
-$wp_query = new WP_Query( $args );
+$hashed = hash('md5', $hashed);
+
+if ( false == ( $books = get_transient( $hashed ) ) ) {
+  $books = new WP_Query( $args );
+  set_transient( $hashed, $books, 3600 );
+}
 
 ?>
 
-<?php if ( $wp_query->have_posts() ) : ?>
+<?php if ( $books->have_posts() ) : ?>
   <div class="book-section">
     <div class="book-section-header page-header">
 
@@ -157,7 +178,7 @@ $wp_query = new WP_Query( $args );
       <span aria-hidden="true" class="book-section-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
 
       <div class="book-section-scroll">
-        <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
+        <?php while ( $books->have_posts() ) : $books->the_post(); ?>
           <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
         <?php endwhile; ?>
       </div>
