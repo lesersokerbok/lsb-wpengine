@@ -27,7 +27,7 @@ function roots_title() {
     }
 
   } elseif (is_search()) {
-    return sprintf(__('Resultater for søk etter %s', 'lsb'), get_search_query());
+    return sprintf(__('Søkeresultat for: "%s"', 'lsb'), get_search_query());
   } elseif (is_404()) {
     return __('Fant ikke det du lette etter', 'lsb');
   } else {
