@@ -414,7 +414,7 @@ class LsbBooks {
             'name' => 'lsb_pages',
             'type' => 'text',
             'instructions' => __('Antall sider', 'lsb_boksok'),
-            'required' => 1,
+            'required' => 0,
             'default_value' => '',
             'placeholder' => '',
             'prepend' => '',
