@@ -8,14 +8,6 @@ function get_id($object) {
   }
 }
 
-function get_slug($object) {
-  if ( is_object($object) && isset($object->slug) ) {
-    return $object->slug;
-  } else {
-    return null;
-  }
-}
-
 function get_name($object) {
   if ( is_object($object) && isset($object->name) ) {
     return $object->name;
@@ -30,17 +22,12 @@ $terms = [];
 
 $age = null;
 $age = get_sub_field('section_age');
-
-_log($age);
-
 if ( is_array($age) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_age',
     'field' => 'id',
     'terms' => array_map('get_id', $age),
   );
-
-  $hashed .= 'lsb_tax_age_' . implode( array_map('get_slug', $age) );
   $terms = array_merge($terms, array_map('get_name', $age));
 }
 
@@ -52,7 +39,6 @@ if ( is_array($customization) ) {
     'field' => 'id',
     'terms' => array_map('get_id', $customization),
   );
-  $hashed .= 'lsb_tax_customization_' . implode( array_map('get_slug', $customization) );
   $terms = array_merge($terms, array_map('get_name', $customization));
 }
 
@@ -64,7 +50,6 @@ if ( is_array($author) ) {
     'field' => 'id',
     'terms' => array_map('get_id', $author),
   );
-  $hashed .= 'lsb_tax_author_' . implode( array_map('get_slug', $author) );
   $terms = array_merge( $terms, array_map('get_name', $author) );
 }
 
@@ -76,7 +61,6 @@ if ( is_array($genre) ) {
     'field' => 'id',
     'terms' => array_map('get_id', $genre),
   );
-  $hashed .= 'lsb_tax_genre_' . implode( array_map('get_slug', $genre) );
   $terms = array_merge( $terms, array_map('get_name', $genre) );
 }
 
@@ -88,7 +72,6 @@ if ( is_array($topic) ) {
     'field' => 'id',
     'terms' => array_map('get_id', $topic),
   );
-  $hashed .= 'lsb_tax_topic_' . implode( array_map('get_slug', $topic) );
   $terms = array_merge( $terms, array_map('get_name', $topic) );
 }
 
@@ -100,7 +83,6 @@ if ( is_array($language) ) {
     'field' => 'id',
     'terms' => array_map('get_id', $language),
   );
-  $hashed .= 'lsb_tax_language_' . implode( array_map('get_slug', $language) );
   $terms = array_merge( $terms, array_map('get_name', $language) );
 }
 
@@ -112,7 +94,6 @@ if ( is_array($publisher) ) {
     'field' => 'id',
     'terms' => array_map('get_id', $publisher),
   );
-  $hashed .= 'lsb_tax_publisher_' . implode( array_map('get_slug', $publisher) );
   $terms = array_merge( $terms, array_map('get_name', $publisher) );
 }
 
@@ -124,7 +105,6 @@ if ( is_array($series) ) {
     'field' => 'id',
     'terms' => array_map('get_id', $series),
   );
-  $hashed .= 'lsb_tax_series_' . implode( array_map('get_slug', $series) );
   $terms = array_merge( $terms, array_map('get_name', $series) );
 }
 
@@ -141,12 +121,10 @@ if ($orderby) {
     switch($orderby) {
       case 'random':
         $args['orderby'] = 'rand';
-        $hashed .= '_orderby_rand';
         break;
       case 'added':
         $args['orderby'] = 'date';
         $args['order'] = $order;
-        $hashed .= '_orderby_date_order_' . $order;
         break;
       case 'published':
         $args['meta_key'] = 'lsb_published_year';
@@ -157,17 +135,15 @@ if ($orderby) {
             'key' => 'lsb_published_year'
           )
         );
-        $hashed .= '_orderby_lsb_published_year_order_' . $order;
         break;
       default:
         $args['orderby'] = 'date';
         $args['order'] = 'DESC';
-        $hashed .= '_orderby_date_order_DESC';
         break;
     }
 }
 
-$hashed = hash('md5', $hashed);
+$hashed = hash('md5', implode( $terms ) . ' ' . $orderby . ' ' . $order);
 if ( false == ( $books = get_transient( $hashed ) ) ) {
   $books = new WP_Query( $args );
   set_transient( $hashed, $books, 3600 );
