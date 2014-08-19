@@ -4,7 +4,7 @@
       <?php if ( has_post_thumbnail()) : ?>
         <?php the_post_thumbnail('medium'); ?></img></a>
       <?php else : ?>
-        <img src="http://dummyimage.com/220x300/eeeeee/eeeeee.jpg"></img>
+        <div class="missing-cover"></div>
       <?php endif; ?>
     </a>
   </div>
