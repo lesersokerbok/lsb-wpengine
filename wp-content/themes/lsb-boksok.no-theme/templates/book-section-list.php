@@ -27,7 +27,7 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
     <div class="book-section-header page-header">
 
       <h1>
-        <a href="<?php echo get_term_link( $list, 'lsb_tax_list' ); ?> "><?php echo $list->name ?></a>
+        <a href="<?php echo get_term_link( $list, 'lsb_tax_list' ); ?> "><?php echo ucfirst($list->name) ?></a>
         <?php if ( $list->description ) : ?>
           <small aria-hidden="true">
             | <button type="button" class="btn-link">
