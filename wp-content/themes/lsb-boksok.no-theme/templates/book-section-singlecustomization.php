@@ -1,18 +1,18 @@
 <?php
 
-$list = get_sub_field('section_list');
+$customization = get_sub_field('section_singlecustomization');
 $args = array(
     'post_type' => 'lsb_book',
     'tax_query' => array(
       array(
-        'taxonomy' => 'lsb_tax_list',
+        'taxonomy' => 'lsb_tax_customization',
         'field' => 'id',
-        'terms' => array($list->term_id)
+        'terms' => array($customization->term_id)
       )
     )
 );
 
-$hashed = 'section_list_' . $list->term_id;
+$hashed = 'section_customization_' . $customization->term_id;
 $hashed = hash('md5', $hashed);
 
 if ( false == ( $books = get_transient( $hashed ) ) ) {
@@ -27,8 +27,8 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
     <div class="book-section-header page-header">
 
       <h1>
-        <a href="<?php echo get_term_link( $list, 'lsb_tax_list' ); ?> "><?php echo ucfirst($list->name) ?></a>
-        <?php if ( $list->description ) : ?>
+        <a href="<?php echo get_term_link( $customization, $customization->taxonomy ); ?> "><?php echo ucfirst($customization->name) ?></a>
+        <?php if ( $customization->description ) : ?>
           <small aria-hidden="true">
             | <button type="button" class="btn-link">
                 <span class="glyphicon glyphicon-info-sign"></span>
@@ -37,17 +37,17 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
         <?php endif; ?>
       </h1>
 
-      <?php if ( $list->description ) : ?>
+      <?php if ( $customization->description ) : ?>
         <div class="alert alert-info description sr-only">
           <button type="button" class="close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
           </button>
-          <p><?php echo $list->description; ?></p>
+          <p><?php echo $customization->description; ?></p>
           <p>
-            <a href="<?php echo get_term_link( $list, 'lsb_tax_list' ); ?> ">
+            <a href="<?php echo get_term_link( $customization, $customization->taxonomy ); ?> ">
               <?php echo __('Gå til alle bøker i ', 'lsb_boksok'); ?>
-              <?php echo $list->name ?>.
+              <?php echo $customization->name ?>.
             </a>
           </p>
         </div>
@@ -72,5 +72,6 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
 
   </div>
 <?php endif; ?>
+
 
 <?php wp_reset_query(); ?>

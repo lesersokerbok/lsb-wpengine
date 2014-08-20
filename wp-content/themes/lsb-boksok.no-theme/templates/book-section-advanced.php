@@ -1,96 +1,96 @@
 <?php
 
+$util = new TaxonomyUtil();
 $hashed = '';
-
 $taxQuery = null;
+$terms = array();
 
 $age = null;
 $age = get_sub_field('section_age');
-if ($age) {
+if ( is_array($age) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_age',
     'field' => 'id',
-    'terms' => $age
+    'terms' => array_map(array($util, 'get_id'), $age),
   );
-
-  $hashed .= 'lsb_tax_age_' . implode($age);
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $age));
 }
 
 $customization = null;
 $customization = get_sub_field('section_customization');
-if ($customization) {
+if ( is_array($customization) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_customization',
     'field' => 'id',
-    'terms' => $customization
+    'terms' => array_map(array($util, 'get_id'), $customization),
   );
-  $hashed .= 'lsb_tax_customization_' . implode($customization);
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $customization));
 }
 
 $author = null;
 $author = get_sub_field('section_author');
-if ($author) {
+if ( is_array($author) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_author',
     'field' => 'id',
-    'terms' => $author
+    'terms' => array_map(array($util, 'get_id'), $author),
   );
-  $hashed .= 'lsb_tax_author_' . implode($author);
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $author) );
 }
 
 $genre = null;
 $genre = get_sub_field('section_genre');
-if ($genre) {
+if ( is_array($genre) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_genre',
     'field' => 'id',
-    'terms' => $genre
+    'terms' => array_map(array($util, 'get_id'), $genre),
   );
-  $hashed .= 'lsb_tax_genre_' . implode($genre);
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $genre) );
 }
 
 $topic = null;
 $topic = get_sub_field('section_topic');
-if ($topic) {
+if ( is_array($topic) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_topic',
     'field' => 'id',
-    'terms' => $topic
+    'terms' => array_map(array($util, 'get_id'), $topic),
   );
-  $hashed .= 'lsb_tax_topic_' . implode($topic);
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $topic) );
 }
 
 $language = null;
 $language = get_sub_field('section_language');
-if ($language) {
+if ( is_array($language) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_language',
     'field' => 'id',
-    'terms' => $language
+    'terms' => array_map(array($util, 'get_id'), $language),
   );
-  $hashed .= 'lsb_tax_language_' . implode($language);
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $language) );
 }
 
 $publisher = null;
 $publisher = get_sub_field('section_publisher');
-if ($publisher) {
+if ( is_array($publisher) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_publisher',
     'field' => 'id',
-    'terms' => $publisher
+    'terms' => array_map(array($util, 'get_id'), $publisher),
   );
-  $hashed .= 'lsb_tax_publisher_' . implode($publisher);
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $publisher) );
 }
 
 $series = null;
 $series = get_sub_field('section_series');
-if ($series) {
+if ( is_array($series) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_series',
     'field' => 'id',
-    'terms' => $series
+    'terms' => array_map(array($util, 'get_id'), $series),
   );
-  $hashed .= 'lsb_tax_series_' . implode($series);
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $series) );
 }
 
 $args = array(
@@ -106,12 +106,10 @@ if ($orderby) {
     switch($orderby) {
       case 'random':
         $args['orderby'] = 'rand';
-        $hashed .= '_orderby_rand';
         break;
       case 'added':
         $args['orderby'] = 'date';
         $args['order'] = $order;
-        $hashed .= '_orderby_date_order_' . $order;
         break;
       case 'published':
         $args['meta_key'] = 'lsb_published_year';
@@ -122,18 +120,15 @@ if ($orderby) {
             'key' => 'lsb_published_year'
           )
         );
-        $hashed .= '_orderby_lsb_published_year_order_' . $order;
         break;
       default:
         $args['orderby'] = 'date';
         $args['order'] = 'DESC';
-        $hashed .= '_orderby_date_order_DESC';
         break;
     }
 }
 
-$hashed = hash('md5', $hashed);
-
+$hashed = hash('md5', implode( $terms ) . ' ' . $orderby . ' ' . $order);
 if ( false == ( $books = get_transient( $hashed ) ) ) {
   $books = new WP_Query( $args );
   set_transient( $hashed, $books, 3600 );
@@ -167,6 +162,12 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
             <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
           </button>
           <?php the_sub_field('section_description'); ?>
+          <p>
+            <a href="<?php echo get_search_link( implode( ' ', $terms ) ); ?> ">
+              <?php echo __('Søk etter bøker i seksjonen', 'lsb_boksok'); ?>
+              <?php the_sub_field('section_header') ?>.
+            </a>
+          </p>
         </div>
       <?php endif; ?>
 
