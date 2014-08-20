@@ -12,6 +12,7 @@
 $roots_includes = array(
   'lib/lsb-book.php',
   'lib/lsb-book-section.php',
+  'lib/taxonomy-util.php',
 );
 
 foreach ($roots_includes as $file) {

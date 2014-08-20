@@ -1,24 +1,9 @@
 <?php
 
-function get_id($object) {
-  if ( is_object($object) && isset($object->term_id) ) {
-    return $object->term_id;
-  } else {
-    return null;
-  }
-}
-
-function get_name($object) {
-  if ( is_object($object) && isset($object->name) ) {
-    return $object->name;
-  } else {
-    return null;
-  }
-}
-
+$util = new TaxonomyUtil();
 $hashed = '';
 $taxQuery = null;
-$terms = [];
+$terms = array();
 
 $age = null;
 $age = get_sub_field('section_age');
@@ -26,9 +11,9 @@ if ( is_array($age) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_age',
     'field' => 'id',
-    'terms' => array_map('get_id', $age),
+    'terms' => array_map(array($util, 'get_id'), $age),
   );
-  $terms = array_merge($terms, array_map('get_name', $age));
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $age));
 }
 
 $customization = null;
@@ -37,9 +22,9 @@ if ( is_array($customization) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_customization',
     'field' => 'id',
-    'terms' => array_map('get_id', $customization),
+    'terms' => array_map(array($util, 'get_id'), $customization),
   );
-  $terms = array_merge($terms, array_map('get_name', $customization));
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $customization));
 }
 
 $author = null;
@@ -48,9 +33,9 @@ if ( is_array($author) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_author',
     'field' => 'id',
-    'terms' => array_map('get_id', $author),
+    'terms' => array_map(array($util, 'get_id'), $author),
   );
-  $terms = array_merge( $terms, array_map('get_name', $author) );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $author) );
 }
 
 $genre = null;
@@ -59,9 +44,9 @@ if ( is_array($genre) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_genre',
     'field' => 'id',
-    'terms' => array_map('get_id', $genre),
+    'terms' => array_map(array($util, 'get_id'), $genre),
   );
-  $terms = array_merge( $terms, array_map('get_name', $genre) );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $genre) );
 }
 
 $topic = null;
@@ -70,9 +55,9 @@ if ( is_array($topic) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_topic',
     'field' => 'id',
-    'terms' => array_map('get_id', $topic),
+    'terms' => array_map(array($util, 'get_id'), $topic),
   );
-  $terms = array_merge( $terms, array_map('get_name', $topic) );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $topic) );
 }
 
 $language = null;
@@ -81,9 +66,9 @@ if ( is_array($language) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_language',
     'field' => 'id',
-    'terms' => array_map('get_id', $language),
+    'terms' => array_map(array($util, 'get_id'), $language),
   );
-  $terms = array_merge( $terms, array_map('get_name', $language) );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $language) );
 }
 
 $publisher = null;
@@ -92,9 +77,9 @@ if ( is_array($publisher) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_publisher',
     'field' => 'id',
-    'terms' => array_map('get_id', $publisher),
+    'terms' => array_map(array($util, 'get_id'), $publisher),
   );
-  $terms = array_merge( $terms, array_map('get_name', $publisher) );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $publisher) );
 }
 
 $series = null;
@@ -103,9 +88,9 @@ if ( is_array($series) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_series',
     'field' => 'id',
-    'terms' => array_map('get_id', $series),
+    'terms' => array_map(array($util, 'get_id'), $series),
   );
-  $terms = array_merge( $terms, array_map('get_name', $series) );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $series) );
 }
 
 $args = array(
