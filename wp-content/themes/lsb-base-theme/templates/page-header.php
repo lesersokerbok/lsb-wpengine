@@ -12,6 +12,10 @@
     <?php endif; ?>
   </h1>
 
+  <?php if(is_singular('post')) : ?>
+    <?php get_template_part('templates/entry-meta'); ?>
+  <?php endif; ?>
+
   <?php if ( is_tax() || is_category() || is_tag() ) : ?>
     <?php if ( category_description() !== '') : ?>
       <div class="alert alert-info description sr-only">
