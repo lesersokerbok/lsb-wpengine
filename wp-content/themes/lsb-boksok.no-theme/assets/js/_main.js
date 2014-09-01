@@ -87,7 +87,7 @@ var Roots = {
         toggleScrollButtons($(this));
       });
 
-      $('.book-section-scroll').scroll(function(event) {
+      $('.book-section-scroll').scroll(function() {
         toggleScrollButtons($(this));
       });
 
