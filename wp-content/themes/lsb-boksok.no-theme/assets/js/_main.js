@@ -24,8 +24,36 @@ var Roots = {
     init: function() {
       // JavaScript to be fired on all pages
 
-      $('.book-section-header a').click(function () {
-        alert('hello');
+      // Google Analytics Events
+
+      // Book section header link click
+      $('.book-section-header a').click(function (event) {
+        ga('send', 'event', 'book section header', 'click', event.target.href);
+      });
+
+      // Book section book cover image click
+      $('.book-section-scroll article .entry-image a').click(function (event) {
+        ga('send', 'event', 'book section entry image', 'click', event.target.href);
+      });
+
+      // Book section book title click
+      $('.book-section-scroll article header .entry-title a').click(function (event) {
+        ga('send', 'event', 'book section header entry title', 'click', event.target.href);
+      });
+
+      // Book section book meta click
+      $('.book-section-scroll article header .meta a').click(function (event) {
+        ga('send', 'event', 'book section entry meta', 'click', event.target.href);
+      });
+
+      // Book section scroll
+      $('.book-section-scroll').scroll(function () {
+        ga('send', 'event', 'book section scroll', 'scroll', $(this).parent().siblings().first().children("a").first().html());
+      });
+
+      // Single book meta click
+      $('.single-lsb_book article a[rel="tag"]').click(function (event) {
+        ga('send', 'event', 'single book meta', 'click', event.target.href);
       });
     }
   },
@@ -59,7 +87,7 @@ var Roots = {
         toggleScrollButtons($(this));
       });
 
-      $('.book-section-scroll').scroll(function() {
+      $('.book-section-scroll').scroll(function(event) {
         toggleScrollButtons($(this));
       });
 
