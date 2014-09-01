@@ -23,6 +23,10 @@ var Roots = {
   common: {
     init: function() {
       // JavaScript to be fired on all pages
+
+      $('.book-section-header a').click(function () {
+        alert('hello');
+      });
     }
   },
   // Home page
