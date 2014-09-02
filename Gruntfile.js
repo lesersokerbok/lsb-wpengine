@@ -36,7 +36,7 @@ module.exports = function(grunt) {
   lessDevBaseFiles[basePrefix + 'assets/css/main.css'] = [ basePrefix + 'assets/less/main.less'];
 
   var lessDevMainFiles = {};
-  lessDevMainFiles[boksokPrefix + 'assets/css/main.css'] = [ boksokPrefix + 'assets/less/main.less'];
+  lessDevMainFiles[mainPrefix + 'assets/css/main.css'] = [ mainPrefix + 'assets/less/main.less'];
 
   var lessDevBoksokFiles = {};
   lessDevBoksokFiles[boksokPrefix + 'assets/css/main.css'] = [ boksokPrefix + 'assets/less/main.less'];
