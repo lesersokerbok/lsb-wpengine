@@ -2,10 +2,10 @@
 
   class LsbFrontpageSection {
     public function __construct() {
-      add_action('init', array($this, 'register_field_group_book_section_field_group'));
+      add_action('init', array($this, 'register_field_group_frontpage_section_field_group'));
     }
 
-    public function register_field_group_book_section_field_group()
+    public function register_field_group_frontpage_section_field_group()
     {
       if( function_exists('register_field_group') ):
 
