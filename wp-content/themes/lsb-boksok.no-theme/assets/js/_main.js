@@ -60,6 +60,11 @@ var Roots = {
       $('.tax-lsb_tax_list .pagination a').click(function (event) {
         ga('send', 'event', 'book archive pagination', 'click', event.target.href);
       });
+
+      // Pagination clicks on book search results pages
+      $('.search-results .pagination a').click(function (event) {
+        ga('send', 'event', 'book search results pagination', 'click', event.target.href);
+      });
     }
   },
   // Home page
@@ -111,6 +116,7 @@ var Roots = {
       });
     }
   },
+  
   // About us page, note the change from about-us to about_us.
   about_us: {
     init: function() {
