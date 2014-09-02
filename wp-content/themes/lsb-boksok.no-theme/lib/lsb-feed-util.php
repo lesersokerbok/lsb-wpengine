@@ -8,11 +8,15 @@ class LsbFeedUtil {
 
   public function add_book_cover_image_to_feed_content($content) {
     if  ( is_feed() ) {
+
       global $post;
-      if ( has_post_thumbnail( $post->ID ) ) {
+
+      if ( $post->post_type === 'lsb_book' && has_post_thumbnail( $post->ID ) ) {
         $content = '' . get_the_post_thumbnail( $post->ID, 'large' ) . '' . $content;
       }
+
     }
+
     return $content;
   }
 }
