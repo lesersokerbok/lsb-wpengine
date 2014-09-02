@@ -13,6 +13,7 @@ $roots_includes = array(
   'lib/lsb-book.php',
   'lib/lsb-book-section.php',
   'lib/taxonomy-util.php',
+  'lib/lsb-feed-util.php',
 );
 
 foreach ($roots_includes as $file) {
@@ -27,3 +28,4 @@ unset($file, $filepath);
 // Initialize custom functionality
 new LsbBook();
 new LsbBookSection();
+new LsbFeedUtil();
