@@ -55,6 +55,11 @@ var Roots = {
       $('.single-lsb_book article a[rel="tag"]').click(function (event) {
         ga('send', 'event', 'single book meta', 'click', event.target.href);
       });
+
+      // Pagination clicks on book archive pages
+      $('.tax-lsb_tax_list .pagination a').click(function (event) {
+        ga('send', 'event', 'book archive pagination', 'click', event.target.href);
+      });
     }
   },
   // Home page
