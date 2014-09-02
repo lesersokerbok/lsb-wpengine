@@ -47,7 +47,7 @@ var Roots = {
       });
 
       // Book section scroll
-      $('.book-section-scroll').scroll(function () {
+      $('.book-section-scroll').one("scroll", function () {
         ga('send', 'event', 'book section scroll', 'scroll', $(this).parent().siblings().first().children("a").first().html());
       });
 
