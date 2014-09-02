@@ -11,9 +11,8 @@ add_theme_support('jquery-cdn');            // Enable to load jQuery from the Go
 /**
  * Configuration values
  */
-
-define('GOOGLE_ANALYTICS_ID', LSB_GOOGLE_ANALYTICS_ID);
-define('BLOG_ARCHIVE_TITLE', 'Kunngjøringer'); // The title of the main blog archive, default "siste innlegg"
+define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
+define('BLOG_ARCHIVE_TITLE', ''); // The title of the main blog archive, default "siste innlegg"
 
 /**
  * .main classes
@@ -21,7 +20,7 @@ define('BLOG_ARCHIVE_TITLE', 'Kunngjøringer'); // The title of the main blog ar
 function roots_main_class() {
   if (roots_display_sidebar()) {
     // Classes on pages with the sidebar
-    $class = 'col-sm-8 has-sidebar';
+    $class = 'col-sm-8';
   } else {
     // Classes on full width pages
     $class = 'col-sm-12';
