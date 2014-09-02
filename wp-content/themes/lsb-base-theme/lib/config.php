@@ -12,11 +12,8 @@ add_theme_support('jquery-cdn');            // Enable to load jQuery from the Go
  * Configuration values
  */
 
-if (WP_ENV === 'development') {
-  define('GOOGLE_ANALYTICS_ID', 'UA-35719933-8'); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
-} else {
-  define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
-}
+define('GOOGLE_ANALYTICS_ID', LSB_GOOGLE_ANALYTICS_ID);
+
 /**
  * .main classes
  */
