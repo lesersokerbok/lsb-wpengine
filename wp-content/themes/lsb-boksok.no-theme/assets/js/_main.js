@@ -23,6 +23,48 @@ var Roots = {
   common: {
     init: function() {
       // JavaScript to be fired on all pages
+
+      // Google Analytics Events
+
+      // Book section header link click
+      $('.book-section-header a').click(function (event) {
+        ga('send', 'event', 'BookSectionHeader', 'click', event.target.href);
+      });
+
+      // Book section book cover image click
+      $('.book-section-scroll article .entry-image a').click(function (event) {
+        ga('send', 'event', 'BookSectionBookImage', 'click', event.target.href);
+      });
+
+      // Book section book title click
+      $('.book-section-scroll article header .entry-title a').click(function (event) {
+        ga('send', 'event', 'BookSectionBookTitle', 'click', event.target.href);
+      });
+
+      // Book section book meta click
+      $('.book-section-scroll article header .meta a').click(function (event) {
+        ga('send', 'event', 'BookSectionBookMeta', 'click', event.target.href);
+      });
+
+      // Book section scroll
+      $('.book-section-scroll').one("scroll", function () {
+        ga('send', 'event', 'BookSection', 'scroll', $(this).parent().siblings().first().children("a").first().html());
+      });
+
+      // Single book meta click
+      $('.single-lsb_book article a[rel="tag"]').click(function (event) {
+        ga('send', 'event', 'SingleBookMeta', 'click', event.target.href);
+      });
+
+      // Pagination clicks on book archive pages
+      $('.tax-lsb_tax_list .pagination a').click(function (event) {
+        ga('send', 'event', 'BookArchivePagination', 'click', event.target.href);
+      });
+
+      // Pagination clicks on book search results pages
+      $('.search-results .pagination a').click(function (event) {
+        ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
+      });
     }
   },
   // Home page
@@ -74,6 +116,7 @@ var Roots = {
       });
     }
   },
+
   // About us page, note the change from about-us to about_us.
   about_us: {
     init: function() {
