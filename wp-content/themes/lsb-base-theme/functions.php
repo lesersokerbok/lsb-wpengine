@@ -23,7 +23,6 @@ $roots_includes = array(
   'lib/scripts.php',        // Scripts and stylesheets
   'lib/extras.php',         // Custom functions
   'lib/pagination.php',     // Boostrap pagination
-  'lib/lsb-frontpage-section.php'
 );
 
 foreach ($roots_includes as $file) {
@@ -46,6 +45,3 @@ if(!function_exists('_log')){
     }
   }
 }
-
-// Initialize custom functionality
-new LsbFrontpageSection();
