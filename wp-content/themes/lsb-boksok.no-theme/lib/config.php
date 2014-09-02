@@ -13,6 +13,7 @@ add_theme_support('jquery-cdn');            // Enable to load jQuery from the Go
  */
 
 define('GOOGLE_ANALYTICS_ID', BOKSOK_GOOGLE_ANALYTICS_ID);
+define('BLOG_ARCHIVE_TITLE', ''); // The title of the main blog archive, default "siste innlegg"
 
 /**
  * .main classes
