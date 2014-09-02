@@ -30,8 +30,8 @@
     ga(
       'send',
       'event',
-      'Search',
-      'Results for',
+      'BookSearchResults',
+      'Pageview',
       '<?php echo $search_query ?>',
       <?php echo $total_results ?>
     );
