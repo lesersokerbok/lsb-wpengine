@@ -66,19 +66,14 @@
       }
     }
 
-    $image = '';
+    $image = 'http://placehold.it/350x150';
     if ( $show_image ) {
-
       foreach ($item->get_enclosures() as $enclosure) {
         if (strpos($enclosure->link, 'gravatar') === false) {
           $image = $enclosure->link;
           break;
         }
       }
-    }
-
-    if ($image === '') {
-      $image = 'http://placehold.it/350x150';
     }
 
     echo "<div class='col-md-4'>";
