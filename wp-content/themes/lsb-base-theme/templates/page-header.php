@@ -3,11 +3,9 @@
     <?php echo roots_title(); ?>
     <?php if ( is_tax() || is_category() || is_tag() ) : ?>
       <?php if ( category_description() !== '') : ?>
-        <small aria-hidden="true">
-          | <button type="button" class="btn-link">
-              <span class="glyphicon glyphicon-info-sign"></span>
-            </button>
-        </small>
+        <button type="button" class="btn-link" aria-hidden="true">
+          <span class="glyphicon glyphicon-info-sign"></span>
+        </button>
       <?php endif; ?>
     <?php endif; ?>
   </h1>

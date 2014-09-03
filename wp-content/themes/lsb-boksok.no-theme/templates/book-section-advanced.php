@@ -142,17 +142,17 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
 
       <h1>
         <?php the_sub_field('section_header'); ?>
+
         <?php if ( get_sub_field('section_sub_header') ) : ?>
           <small>| <?php the_sub_field('section_sub_header'); ?></small>
         <?php endif; ?>
-        <?php if ( get_sub_field('section_description') ) : ?>
-          <small aria-hidden="true">
-            | <button type="button" class="btn-link">
-                <span class="glyphicon glyphicon-info-sign"></span>
-              </button>
-          </small>
 
+        <?php if ( get_sub_field('section_description') ) : ?>
+          <button type="button" class="btn-link" aria-hidden="true">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </button>
         <?php endif; ?>
+
       </h1>
 
       <?php if ( get_sub_field('section_description') ) : ?>

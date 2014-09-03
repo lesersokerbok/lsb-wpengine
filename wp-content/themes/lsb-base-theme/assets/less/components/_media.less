@@ -1,3 +1,7 @@
+iframe, img, figure {
+  max-width: 100%;
+}
+
 // Captions
 .wp-caption {
   &:extend(.thumbnail all);
@@ -5,6 +9,9 @@
 
 .wp-caption-text {
     &:extend(.thumbnail .caption);
+    font-size: @font-size-small;
+    text-align: center;
+    padding-bottom: @thumbnail-caption-padding/3;
 }
 
 // Gallery shortcode
