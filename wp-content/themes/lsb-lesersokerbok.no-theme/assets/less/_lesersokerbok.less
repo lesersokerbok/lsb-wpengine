@@ -10,16 +10,34 @@
    Frontpage Section
    ========================================================================== */
 
-.page-template-template-frontpage-php {
-  .jumbotron {
-    text-align: center;
+.page-template-template-frontpage-php .frontpage-section {
 
-    :last-child {
-      margin-bottom: 0;
+  text-align: center;
+
+  margin-top: @jumbotron-padding;
+  margin-bottom: @jumbotron-padding*3;
+
+  .section-header {
+
+    .page-header;
+
+    margin-bottom: @jumbotron-padding/2;
+
+    p {
+      font-size: @jumbotron-font-size;
     }
   }
 
-  .services {
+  &.text {
+    .jumbotron {
+
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.services {
 
     a {
       color: @text-color;
@@ -38,6 +56,18 @@
       text-align: center;
       padding: 0 @panel-body-padding;
       h1 {
+        font-size: ceil((@font-size-base * 1.125));
+      }
+    }
+  }
+
+  &.rss {
+
+    .rss-post {
+
+      margin-bottom: @jumbotron-padding;
+
+      h2 {
         font-size: ceil((@font-size-base * 1.125));
       }
     }

@@ -5,7 +5,7 @@
   // These options could be managed from section if we want
   $show_summary = true;
   $show_date = true;
-  $show_image = true;
+  $show_image = false;
   $items = 3;
 
   if ( is_wp_error($rss) ) {
@@ -25,8 +25,10 @@
     return;
   }
 
-  echo '<h1>' . get_sub_field("section_feed_header") . '</h1>';
-  echo '<div class="row">';
+  echo '<div class="frontpage-section rss">';
+  echo '<div class="section-header">';
+  echo get_sub_field('section_text');
+  echo '</div>';
 
   foreach ( $rss->get_items(0, $items) as $item ) {
     $link = $item->get_link();
@@ -54,7 +56,7 @@
         $summary .= ' [&hellip;]';
       }
 
-      $summary = '<div class="rssSummary">' . esc_html( $summary ) . '</div>';
+      $summary = '<div class="rss-summary">' . esc_html( $summary ) . '</div>';
     } else {
       $show_summary = false;
     }
@@ -68,7 +70,7 @@
       }
     }
 
-    $image = 'http://placehold.it/350x150';
+    $image = '';
     if ( $show_image && get_sub_field('section_type') === 'normal_feed') {
       foreach ($item->get_enclosures() as $enclosure) {
         if ($enclosure->link != '' && strpos($enclosure->link, 'gravatar') === false) {
@@ -83,12 +85,13 @@
       $image = $xpath->evaluate("string(//img/@src)");
     }
 
-    echo "<div class='col-md-4'>";
+    echo '<div class="row rss-post">';
+    echo '<div class="col-md-8 col-md-offset-2">';
 
     if ( $link == '' ) {
       echo "<h2>$title</h2>";
     } else {
-      echo "<h2><a class='rsswidget' href='$link'>$title</a></h2>";
+      echo "<h2><a href='$link'>$title</a></h2>";
     }
 
     if ( $show_date ) {
@@ -96,13 +99,14 @@
     }
 
     if ( $show_image ) {
-      echo "<p><img src='{$image}'/></p>";
+      echo "<a href='$link'><img src='{$image}'/></a>";
     }
 
     if ( $show_summary ) {
       echo "<p>{$summary}</p>";
     }
 
+    echo '</div>';
     echo '</div>';
   }
 

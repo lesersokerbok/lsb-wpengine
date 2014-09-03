@@ -7,13 +7,13 @@
     }
 
     public function add_filter_for_allowing_unsafe_urls_in_development() {
-      // Allow for parsing localhost URLs when testing feeds
-      if ( WP_ENV === 'development') {
-        add_filter( 'http_request_args', function( $args ) {
-         $args['reject_unsafe_urls'] = false;
-         return $args;
-        } );
-      }
+      // // Allow for parsing localhost URLs when testing feeds
+      // if ( WP_ENV === 'development') {
+      //   add_filter( 'http_request_args', function( $args ) {
+      //    $args['reject_unsafe_urls'] = false;
+      //    return $args;
+      //   } );
+      // }
     }
 
     public function register_field_group_frontpage_section_field_group()
@@ -60,37 +60,18 @@
         					'layout' => 'horizontal',
         				),
                 array (
-                  'key' => 'field_5406c8eeaa18d',
-                  'label' => 'Overskrift',
-                  'name' => 'section_feed_header',
+                  'key' => 'field_53fefc5d98de6',
+                  'label' => 'Tekst',
+                  'name' => 'section_text',
                   'prefix' => '',
-                  'type' => 'text',
+                  'type' => 'wysiwyg',
                   'instructions' => '',
                   'required' => 0,
-                  'conditional_logic' => array (
-                    array (
-                      'rule_0' => array (
-                        'field' => 'field_53fefb90e5858',
-                        'operator' => '==',
-                        'value' => 'normal_feed',
-                      ),
-                    ),
-                    array (
-                      'rule_0' => array (
-                        'field' => 'field_53fefb90e5858',
-                        'operator' => '==',
-                        'value' => 'lsb_book_feed',
-                      ),
-                    ),
-                  ),
+                  'conditional_logic' => 0,
                   'column_width' => '',
                   'default_value' => '',
-                  'placeholder' => '',
-                  'prepend' => '',
-                  'append' => '',
-                  'maxlength' => '',
-                  'readonly' => 0,
-                  'disabled' => 0,
+                  'toolbar' => 'full',
+                  'media_upload' => 0,
                 ),
                 array (
                   'key' => 'field_5406c918aa18f',
@@ -125,28 +106,6 @@
                   'readonly' => 0,
                   'disabled' => 0,
                 ),
-        				array (
-        					'key' => 'field_53fefc5d98de6',
-        					'label' => 'Tekst',
-        					'name' => 'section_text',
-        					'prefix' => '',
-        					'type' => 'wysiwyg',
-        					'instructions' => '',
-        					'required' => 0,
-        					'conditional_logic' => array (
-        						array (
-        							array (
-        								'field' => 'field_53fefb90e5858',
-        								'operator' => '==',
-        								'value' => 'textarea',
-        							),
-        						),
-        					),
-        					'column_width' => '',
-        					'default_value' => '',
-        					'toolbar' => 'basic',
-        					'media_upload' => 0,
-        				),
         				array (
         					'key' => 'field_53ff0ed34ee21',
         					'label' => 'Tjeneste',
