@@ -1,9 +1,10 @@
 <?php
 
   $rss = fetch_feed( get_sub_field('section_feed_url') );
-  $show_summary = false;
+
+  // These options could be managed from section if we want
+  $show_summary = true;
   $show_date = true;
-  $show_author = false;
   $show_image = true;
   $items = 3;
 
@@ -43,8 +44,7 @@
     $desc = trim( str_replace( "Les videre →", '', $desc) );
 
     $summary = '';
-    if ( !empty($desc) ) {
-      $show_summary = true;
+    if ( $show_summary && !empty($desc) ) {
       $summary = $desc;
 
       // Append ellipsis. Change existing [...] to [&hellip;].
@@ -55,6 +55,8 @@
       }
 
       $summary = '<div class="rssSummary">' . esc_html( $summary ) . '</div>';
+    } else {
+      $show_summary = false;
     }
 
     $date = '';
@@ -79,19 +81,21 @@
     echo "<div class='col-md-4'>";
 
     if ( $link == '' ) {
-      echo "<h2>$title</h2>
-            <p>{$date}</p>
-            <p><img src='{$image}'/></p>
-            <p>{$summary}</p>";
-    } elseif ( $show_summary ) {
-      echo "<h2><a class='rsswidget' href='$link'>$title</a></h2>
-            <p>{$date}</p>
-            <p><img src='{$image}'/></p>
-            <p>{$summary}</p>";
+      echo "<h2>$title</h2>";
     } else {
-      echo "<h2><a class='rsswidget' href='$link' title='$desc'>$title</a></h2>
-            <p>{$date}</p>
-            <p><img src='{$image}'/></p>";
+      echo "<h2><a class='rsswidget' href='$link'>$title</a></h2>";
+    }
+
+    if ( $show_date ) {
+      echo "<p>{$date}</p>";
+    }
+
+    if ( $show_image ) {
+      echo "<p><img src='{$image}'/></p>";
+    }
+
+    if ( $show_summary ) {
+      echo "<p>{$summary}</p>";
     }
 
     echo '</div>';
