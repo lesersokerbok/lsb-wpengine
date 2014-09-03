@@ -63,6 +63,35 @@ article.lsb_book {
     background: #f8f8f8;
     height: 500px;
   }
+
+  .lsb-supported {
+    background: @panel-body-padding 50% no-repeat;
+    padding-left: @panel-body-padding*2+30px;
+
+    &.litt-a-lese {
+      background-image: url('../img/logo_trans_purple.png');
+    }
+
+    &.enkelt-innhold {
+      background-image: url('../img/logo_trans_green.png');
+    }
+
+    &.bliss-piktogram {
+      background-image: url('../img/logo_trans_blue.png');
+    }
+
+    &.punktskrift-folebilder {
+      background-image: url('../img/logo_trans_orange.png');
+    }
+
+    &.tegnsprak-nmt {
+      background-image: url('../img/logo_trans_red.png');
+    }
+
+    &.storskrift {
+      background-image: url('../img/logo_trans_yellow.png');
+    }
+  }
 }
 
 /* ==========================================================================
@@ -82,9 +111,23 @@ article.summary.lsb_book {
   .entry-image {
     text-align: center;
     width: 100%;
+    position: relative;
 
     .missing-cover {
       height: 250px;
+      min-width: 200px;
+    }
+
+    .lsb-supported {
+      background-color: white;
+      background-position: 50% 50%;
+      padding: 0;
+      height: 40px;
+      width: 40px;
+      border-top-left-radius: @thumbnail-border-radius;
+      position: absolute;
+      right: @thumbnail-padding/2;
+      bottom: @thumbnail-padding/2;
     }
   }
 
