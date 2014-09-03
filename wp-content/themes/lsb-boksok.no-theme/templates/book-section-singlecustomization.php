@@ -28,13 +28,13 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
 
       <h1>
         <a href="<?php echo get_term_link( $customization, $customization->taxonomy ); ?> "><?php echo ucfirst($customization->name) ?></a>
+
         <?php if ( $customization->description ) : ?>
-          <small aria-hidden="true">
-            | <button type="button" class="btn-link">
-                <span class="glyphicon glyphicon-info-sign"></span>
-              </button>
-          </small>
+          <button type="button" class="btn-link" aria-hidden="true">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </button>
         <?php endif; ?>
+        
       </h1>
 
       <?php if ( $customization->description ) : ?>

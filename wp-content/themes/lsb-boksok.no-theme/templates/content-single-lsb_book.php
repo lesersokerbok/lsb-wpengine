@@ -1,3 +1,4 @@
+
 <article <?php post_class('full'); ?>>
 
   <header class="page-header">
@@ -53,6 +54,14 @@
         </div>
       </div>
       <div class="col-lg-4 col-sm-6">
+
+        <?php if ( get_field('lsb_supported')): ?>
+          <div class="panel panel-default">
+            <div class="panel-body lsb-supported <?php TaxonomyUtil::the_terms_slug($post->ID, 'lsb_tax_customization'); ?>">
+              <?php echo __('Boken er støttet av Leser søker bok', 'lsb_boksok'); ?>
+            </div>
+          </div>
+        <?php endif; ?>
 
         <div class="panel panel-default">
           <div class="panel-body">
