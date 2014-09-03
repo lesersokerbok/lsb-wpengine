@@ -111,9 +111,22 @@ article.summary.lsb_book {
   .entry-image {
     text-align: center;
     width: 100%;
+    position: relative;
 
     .missing-cover {
       height: 250px;
+    }
+
+    .lsb-supported {
+      background-color: white;
+      background-position: 50% 50%;
+      padding: 0;
+      height: 40px;
+      width: 40px;
+      border-top-left-radius: @thumbnail-border-radius;
+      position: absolute;
+      right: @thumbnail-padding/2;
+      bottom: @thumbnail-padding/2;
     }
   }
 

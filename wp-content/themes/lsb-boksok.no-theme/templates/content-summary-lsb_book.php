@@ -1,6 +1,12 @@
 <article <?php post_class('summary'); ?>>
   <div class="entry-image">
     <a class="thumbnail" href="<?php the_permalink(); ?>">
+
+      <?php if ( get_field('lsb_supported')): ?>
+        <div class="lsb-supported <?php TaxonomyUtil::the_terms_slug($post->ID, 'lsb_tax_customization'); ?>">
+        </div>
+      <?php endif; ?>
+
       <?php if ( has_post_thumbnail()) : ?>
         <?php the_post_thumbnail('medium'); ?></img></a>
       <?php else : ?>
