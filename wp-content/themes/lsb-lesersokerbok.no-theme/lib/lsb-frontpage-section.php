@@ -3,6 +3,17 @@
   class LsbFrontpageSection {
     public function __construct() {
       add_action('init', array($this, 'register_field_group_frontpage_section_field_group'));
+      add_action('init', array($this, 'add_filter_for_allowing_unsafe_urls_in_development'));
+    }
+
+    public function add_filter_for_allowing_unsafe_urls_in_development() {
+      // Allow for parsing localhost URLs when testing feeds
+      if ( WP_ENV === 'development') {
+        add_filter( 'http_request_args', function( $args ) {
+         $args['reject_unsafe_urls'] = false;
+         return $args;
+        } );
+      }
     }
 
     public function register_field_group_frontpage_section_field_group()
@@ -23,7 +34,7 @@
         			'required' => 0,
         			'conditional_logic' => 0,
         			'min' => '',
-        			'max' => 2,
+        			'max' => '',
         			'layout' => 'row',
         			'button_label' => 'Legg til seksjon',
         			'sub_fields' => array (
