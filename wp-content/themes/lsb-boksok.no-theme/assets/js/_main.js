@@ -71,49 +71,6 @@ var Roots = {
   home: {
     init: function() {
       // JavaScript to be fired on the home page
-
-      // Hide scroll arrows when not needed
-      var toggleScrollButtons = function($bookSectionScroll) {
-
-        var scrollLeftPos = $bookSectionScroll.scrollLeft(),
-            scrollWidth = $bookSectionScroll.get(0).scrollWidth,
-            width = $bookSectionScroll.width();
-
-        if(scrollLeftPos > 0) {
-          $bookSectionScroll.siblings('.book-section-left-scroll').show();
-        } else {
-          $bookSectionScroll.siblings('.book-section-left-scroll').hide();
-        }
-
-        if(scrollWidth - scrollLeftPos > width) {
-          $bookSectionScroll.siblings('.book-section-right-scroll').show();
-        } else {
-          $bookSectionScroll.siblings('.book-section-right-scroll').hide();
-        }
-
-      };
-
-      $('.book-section-scroll').each(function() {
-        toggleScrollButtons($(this));
-      });
-
-      $('.book-section-scroll').scroll(function() {
-        toggleScrollButtons($(this));
-      });
-
-      // Respond to left scroll button click
-      $('.book-section .book-section-left-scroll').click(function () {
-        $(this).siblings('.book-section-scroll').animate({
-          scrollLeft: "-=500px"
-        }, 500);
-      });
-
-      // Respond to right scroll button click
-      $('.book-section .book-section-right-scroll').click(function () {
-        $(this).siblings('.book-section-scroll').animate({
-          scrollLeft: "+=500px"
-        }, 500);
-      });
     }
   },
 

@@ -6,16 +6,6 @@
       add_action('init', array($this, 'add_filter_for_allowing_unsafe_urls_in_development'));
     }
 
-    public function add_filter_for_allowing_unsafe_urls_in_development() {
-      // // Allow for parsing localhost URLs when testing feeds
-      // if ( WP_ENV === 'development') {
-      //   add_filter( 'http_request_args', function( $args ) {
-      //    $args['reject_unsafe_urls'] = false;
-      //    return $args;
-      //   } );
-      // }
-    }
-
     public function register_field_group_frontpage_section_field_group()
     {
       if( function_exists('register_field_group') ):
@@ -99,6 +89,35 @@
                   ),
                   'column_width' => '',
                   'default_value' => '',
+                  'placeholder' => '',
+                  'prepend' => '',
+                  'append' => '',
+                  'maxlength' => '',
+                  'readonly' => 0,
+                  'disabled' => 0,
+                ),
+                array (
+                  'key' => 'lsb_frontpage_section_feed_max_items',
+                  'label' => 'Maks innlegg',
+                  'name' => 'section_feed_max_items',
+                  'prefix' => '',
+                  'type' => 'number',
+                  'instructions' => '',
+                  'required' => 0,
+                  'conditional_logic' => array (
+                    array (
+                      'rule_0' => array (
+                        'field' => 'field_53fefb90e5858',
+                        'operator' => '==',
+                        'value' => 'normal_feed',
+                      ),
+                    ),
+                  ),
+                  'column_width' => '',
+                  'default_value' => 3,
+                  'min' => 1,
+                  'max' => '',
+                  'step' => 1,
                   'placeholder' => '',
                   'prepend' => '',
                   'append' => '',
@@ -257,6 +276,18 @@
         ));
 
       endif;
+    }
+
+    public function add_filter_for_allowing_unsafe_urls_in_development() {
+      // Allow for parsing localhost URLs when testing feeds
+      if ( WP_ENV === 'development') {
+        add_filter( 'http_request_args', array($this, 'set_reject_unsafe_urls_to_false'));
+      }
+    }
+
+    private function set_reject_unsafe_urls_to_false( $args ) {
+      $args['reject_unsafe_urls'] = false;
+      return $args;
     }
 
   }
