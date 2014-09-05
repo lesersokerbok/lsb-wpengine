@@ -134,6 +134,7 @@ if ($orderby) {
 
 $hashed = hash('md5', implode( $terms ) . ' ' . $orderby . ' ' . $order);
 if ( false == ( $books = get_transient( $hashed ) ) ) {
+  $books = new WP_Query ($args);
   set_transient( $hashed, $books, 3600 );
 }
 
