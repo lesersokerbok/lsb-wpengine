@@ -3,6 +3,10 @@
 $customization = get_sub_field('section_singlecustomization');
 $args = array(
     'post_type' => 'lsb_book',
+    'update_post_term_cache' => false,
+    'update_post_meta_cache' => false,
+    'no_found_rows' => true,
+    'post_status'=>'publish',
     'tax_query' => array(
       array(
         'taxonomy' => 'lsb_tax_customization',
@@ -34,7 +38,7 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
             <span class="glyphicon glyphicon-info-sign"></span>
           </button>
         <?php endif; ?>
-        
+
       </h1>
 
       <?php if ( $customization->description ) : ?>

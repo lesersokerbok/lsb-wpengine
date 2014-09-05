@@ -3,6 +3,10 @@
 $list = get_sub_field('section_list');
 $args = array(
     'post_type' => 'lsb_book',
+    'update_post_term_cache' => false,
+    'update_post_meta_cache' => false,
+    'no_found_rows' => true,
+    'post_status'=>'publish',
     'tax_query' => array(
       array(
         'taxonomy' => 'lsb_tax_list',
