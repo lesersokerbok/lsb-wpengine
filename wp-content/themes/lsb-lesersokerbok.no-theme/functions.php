@@ -11,6 +11,7 @@
  */
 $roots_includes = array(
   'lib/lsb-frontpage-section.php',
+  'lib/lsb-column-util.php',
 );
 
 foreach ($roots_includes as $file) {

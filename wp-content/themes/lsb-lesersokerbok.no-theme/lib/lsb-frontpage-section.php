@@ -3,6 +3,7 @@
   class LsbFrontpageSection {
     public function __construct() {
       add_action('init', array($this, 'register_field_group_frontpage_section_field_group'));
+      add_action('init', array($this, 'add_filter_for_allowing_unsafe_urls_in_development'));
     }
 
     public function register_field_group_frontpage_section_field_group()
@@ -10,11 +11,11 @@
       if( function_exists('register_field_group') ):
 
         register_field_group(array (
-        	'key' => 'group_53fefb126eb1b',
+        	'key' => 'lsb_frontpage_sections',
         	'title' => 'Forsideseksjoner',
         	'fields' => array (
         		array (
-        			'key' => 'field_53fefb2ae5856',
+        			'key' => 'lsb_frontpage_section',
         			'label' => 'Seksjon',
         			'name' => 'section',
         			'prefix' => '',
@@ -23,12 +24,12 @@
         			'required' => 0,
         			'conditional_logic' => 0,
         			'min' => '',
-        			'max' => 2,
+        			'max' => '',
         			'layout' => 'row',
         			'button_label' => 'Legg til seksjon',
         			'sub_fields' => array (
         				array (
-        					'key' => 'field_53fefb90e5858',
+        					'key' => 'lsb_frontpage_section_type',
         					'label' => 'Seksjonstype',
         					'name' => 'section_type',
         					'prefix' => '',
@@ -39,39 +40,95 @@
         					'column_width' => '',
         					'choices' => array (
         						'textarea' => 'Tekstområde',
-        						'services' => 'Tjenester',
+        						'boxes' => 'Bokser',
+                    'normal_feed' => 'Vanlig feed',
+                    'lsb_book_feed' => 'Bok-feed',
         					),
         					'other_choice' => 0,
         					'save_other_choice' => 0,
         					'default_value' => '',
         					'layout' => 'horizontal',
         				),
+                array (
+                  'key' => 'lsb_frontpage_section_text',
+                  'label' => 'Tekst',
+                  'name' => 'section_text',
+                  'prefix' => '',
+                  'type' => 'wysiwyg',
+                  'instructions' => '',
+                  'required' => 0,
+                  'conditional_logic' => 0,
+                  'column_width' => '',
+                  'default_value' => '',
+                  'toolbar' => 'full',
+                  'media_upload' => 0,
+                ),
+                array (
+                  'key' => 'lsb_frontpage_section_feed_url',
+                  'label' => 'Feed URL',
+                  'name' => 'section_feed_url',
+                  'prefix' => '',
+                  'type' => 'text',
+                  'instructions' => '',
+                  'required' => 0,
+                  'conditional_logic' => array (
+                    array (
+                      'rule_0' => array (
+                        'field' => 'lsb_frontpage_section_type',
+                        'operator' => '==',
+                        'value' => 'normal_feed',
+                      ),
+                    ),
+                    array (
+                      'rule_0' => array (
+                        'field' => 'lsb_frontpage_section_type',
+                        'operator' => '==',
+                        'value' => 'lsb_book_feed',
+                      ),
+                    ),
+                  ),
+                  'column_width' => '',
+                  'default_value' => '',
+                  'placeholder' => '',
+                  'prepend' => '',
+                  'append' => '',
+                  'maxlength' => '',
+                  'readonly' => 0,
+                  'disabled' => 0,
+                ),
+                array (
+                  'key' => 'lsb_frontpage_section_feed_max_items',
+                  'label' => 'Maks innlegg',
+                  'name' => 'section_feed_max_items',
+                  'prefix' => '',
+                  'type' => 'number',
+                  'instructions' => '',
+                  'required' => 0,
+                  'conditional_logic' => array (
+                    array (
+                      'rule_0' => array (
+                        'field' => 'lsb_frontpage_section_type',
+                        'operator' => '==',
+                        'value' => 'normal_feed',
+                      ),
+                    ),
+                  ),
+                  'column_width' => '',
+                  'default_value' => 3,
+                  'min' => 1,
+                  'max' => '',
+                  'step' => 1,
+                  'placeholder' => '',
+                  'prepend' => '',
+                  'append' => '',
+                  'maxlength' => '',
+                  'readonly' => 0,
+                  'disabled' => 0,
+                ),
         				array (
-        					'key' => 'field_53fefc5d98de6',
-        					'label' => 'Tekst',
-        					'name' => 'section_text',
-        					'prefix' => '',
-        					'type' => 'wysiwyg',
-        					'instructions' => '',
-        					'required' => 0,
-        					'conditional_logic' => array (
-        						array (
-        							array (
-        								'field' => 'field_53fefb90e5858',
-        								'operator' => '==',
-        								'value' => 'textarea',
-        							),
-        						),
-        					),
-        					'column_width' => '',
-        					'default_value' => '',
-        					'toolbar' => 'basic',
-        					'media_upload' => 0,
-        				),
-        				array (
-        					'key' => 'field_53ff0ed34ee21',
-        					'label' => 'Tjeneste',
-        					'name' => 'section_service',
+        					'key' => 'lsb_frontpage_section_box',
+        					'label' => 'Bokser',
+        					'name' => 'section_box',
         					'prefix' => '',
         					'type' => 'repeater',
         					'instructions' => '',
@@ -79,22 +136,22 @@
         					'conditional_logic' => array (
         						array (
         							array (
-        								'field' => 'field_53fefb90e5858',
+        								'field' => 'lsb_frontpage_section_type',
         								'operator' => '==',
-        								'value' => 'services',
+        								'value' => 'boxes',
         							),
         						),
         					),
         					'column_width' => '',
         					'min' => '',
-        					'max' => '',
+        					'max' => '4',
         					'layout' => 'row',
-        					'button_label' => 'Add Row',
+        					'button_label' => 'Legg til boks',
         					'sub_fields' => array (
         						array (
-        							'key' => 'field_53ff0eec4ee22',
+        							'key' => 'lsb_frontpage_section_box_heading',
         							'label' => 'Overskrift',
-        							'name' => 'section_service_heading',
+        							'name' => 'section_box_heading',
         							'prefix' => '',
         							'type' => 'text',
         							'instructions' => '',
@@ -110,9 +167,9 @@
         							'disabled' => 0,
         						),
         						array (
-        							'key' => 'field_53ff0f0a4ee23',
+        							'key' => 'lsb_frontpage_section_box_text',
         							'label' => 'Tekst',
-        							'name' => 'section_service_text',
+        							'name' => 'section_box_text',
         							'prefix' => '',
         							'type' => 'wysiwyg',
         							'instructions' => '',
@@ -124,9 +181,9 @@
         							'media_upload' => 0,
         						),
         						array (
-        							'key' => 'field_5405af887ace5',
+        							'key' => 'lsb_frontpage_section_box_link_type',
         							'label' => 'Lenketype',
-        							'name' => 'section_service_link_type',
+        							'name' => 'section_box_link_type',
         							'prefix' => '',
         							'type' => 'radio',
         							'instructions' => '',
@@ -143,9 +200,9 @@
         							'layout' => 'horizontal',
         						),
         						array (
-        							'key' => 'field_5405afd97ace6',
+        							'key' => 'lsb_frontpage_section_box_link_internal',
         							'label' => 'Lenke til innhold',
-        							'name' => 'section_service_link_internal',
+        							'name' => 'section_box_link_internal',
         							'prefix' => '',
         							'type' => 'page_link',
         							'instructions' => '',
@@ -153,7 +210,7 @@
         							'conditional_logic' => array (
         								array (
         									array (
-        										'field' => 'field_5405af887ace5',
+        										'field' => 'lsb_frontpage_section_box_link_type',
         										'operator' => '==',
         										'value' => 'internal',
         									),
@@ -169,9 +226,9 @@
         							'multiple' => 0,
         						),
         						array (
-        							'key' => 'field_5405b0107ace7',
+        							'key' => 'lsb_frontpage_section_box_link_external',
         							'label' => 'Ekstern lenke',
-        							'name' => 'section_service_link_external',
+        							'name' => 'section_box_link_external',
         							'prefix' => '',
         							'type' => 'text',
         							'instructions' => '',
@@ -179,7 +236,7 @@
         							'conditional_logic' => array (
         								array (
         									array (
-        										'field' => 'field_5405af887ace5',
+        										'field' => 'lsb_frontpage_section_box_link_type',
         										'operator' => '==',
         										'value' => 'external',
         									),
@@ -219,6 +276,18 @@
         ));
 
       endif;
+    }
+
+    public function add_filter_for_allowing_unsafe_urls_in_development() {
+      // Allow for parsing localhost URLs when testing feeds
+      if ( WP_ENV === 'development') {
+        add_filter( 'http_request_args', array($this, 'set_reject_unsafe_urls_to_false'));
+      }
+    }
+
+    public function set_reject_unsafe_urls_to_false( $args ) {
+      $args['reject_unsafe_urls'] = false;
+      return $args;
     }
 
   }

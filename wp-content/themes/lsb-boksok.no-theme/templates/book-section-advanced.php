@@ -95,6 +95,10 @@ if ( is_array($series) ) {
 
 $args = array(
     'post_type' => 'lsb_book',
+    'update_post_term_cache' => false,
+    'update_post_meta_cache' => false,
+    'no_found_rows' => true,
+    'post_status'=>'publish',
     'tax_query' => $taxQuery
 );
 
@@ -130,29 +134,30 @@ if ($orderby) {
 
 $hashed = hash('md5', implode( $terms ) . ' ' . $orderby . ' ' . $order);
 if ( false == ( $books = get_transient( $hashed ) ) ) {
-  $books = new WP_Query( $args );
+  $books = new WP_Query ($args);
   set_transient( $hashed, $books, 3600 );
 }
 
 ?>
 
 <?php if ( $books->have_posts() ) : ?>
+
   <div class="book-section">
     <div class="book-section-header page-header">
 
       <h1>
         <?php the_sub_field('section_header'); ?>
+
         <?php if ( get_sub_field('section_sub_header') ) : ?>
           <small>| <?php the_sub_field('section_sub_header'); ?></small>
         <?php endif; ?>
-        <?php if ( get_sub_field('section_description') ) : ?>
-          <small aria-hidden="true">
-            | <button type="button" class="btn-link">
-                <span class="glyphicon glyphicon-info-sign"></span>
-              </button>
-          </small>
 
+        <?php if ( get_sub_field('section_description') ) : ?>
+          <button type="button" class="btn-link" aria-hidden="true">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </button>
         <?php endif; ?>
+
       </h1>
 
       <?php if ( get_sub_field('section_description') ) : ?>
