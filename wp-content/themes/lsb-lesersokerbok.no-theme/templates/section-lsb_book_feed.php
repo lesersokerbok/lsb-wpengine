@@ -18,9 +18,11 @@
   ?>
 
   <div class="frontpage-section rss">
-    <div class="section-header">
-      <?php the_sub_field('section_text'); ?>
-    </div>
+    <?php if(get_sub_field('section_text')): ?>
+      <div class="section-header">
+        <?php the_sub_field('section_text'); ?>
+      </div>
+    <?php endif; ?>
 
     <div class="book-section">
 

@@ -21,9 +21,11 @@
   }
 
   echo '<div class="frontpage-section rss">';
-  echo '<div class="section-header">';
-  echo get_sub_field('section_text');
-  echo '</div>';
+  if(get_sub_field('section_text')) {
+    echo '<div class="section-header">';
+    echo get_sub_field('section_text');
+    echo '</div>';
+  }
 
   foreach ( $rss->get_items(0, $items) as $item ) {
     $link = $item->get_link();
