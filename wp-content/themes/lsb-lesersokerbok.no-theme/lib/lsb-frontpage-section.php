@@ -281,7 +281,7 @@
     public function add_filter_for_allowing_unsafe_urls_in_development() {
       // Allow for parsing localhost URLs when testing feeds
       if ( WP_ENV === 'development') {
-        // add_filter( 'http_request_args', array($this, 'set_reject_unsafe_urls_to_false'));
+        add_filter( 'http_request_args', array($this, 'set_reject_unsafe_urls_to_false'));
       }
     }
 
