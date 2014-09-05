@@ -285,7 +285,7 @@
       }
     }
 
-    private function set_reject_unsafe_urls_to_false( $args ) {
+    public function set_reject_unsafe_urls_to_false( $args ) {
       $args['reject_unsafe_urls'] = false;
       return $args;
     }
