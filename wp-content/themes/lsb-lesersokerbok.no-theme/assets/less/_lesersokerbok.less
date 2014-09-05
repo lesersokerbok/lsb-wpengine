@@ -1,0 +1,125 @@
+/*!
+ * Roots 6.5.2
+ */
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+/* ==========================================================================
+   Frontpage Section
+   ========================================================================== */
+
+.page-template-template-frontpage-php .frontpage-section {
+
+  text-align: center;
+
+  margin-top: @jumbotron-padding;
+  margin-bottom: @jumbotron-padding*3;
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-header {
+
+    .page-header;
+
+    margin-bottom: @jumbotron-padding/2;
+
+    p {
+      font-size: @jumbotron-font-size;
+    }
+  }
+
+  &.text {
+    .jumbotron {
+
+      .entry-content-asset {
+        max-width: 750px;
+        margin: 0 auto;
+      }
+
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.boxes {
+
+    a {
+      color: @text-color;
+
+      h1 {
+        color: @link-color;
+        text-decoration: underline;
+      }
+
+      &:hover h1 {
+        color: @text-color;
+      }
+    }
+
+    .box {
+      text-align: center;
+      padding: 0 @panel-body-padding;
+      h1 {
+        font-size: ceil((@font-size-base * 1.125));
+      }
+    }
+  }
+
+  &.rss {
+
+    .rss-post {
+
+      margin-bottom: @jumbotron-padding;
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      h2 {
+        font-size: ceil((@font-size-base * 1.125));
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/* ==========================================================================
+   Content
+   ========================================================================== */
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+/* ==========================================================================
+   Posts
+   ========================================================================== */
+
+.hentry header { }
+.hentry time { }
+.hentry .byline { }
+.hentry .entry-content { }
+.hentry footer { }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.content-info { }
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media (max-width: @screen-sm-max) { }
+
+@media (min-width: @screen-md-min) { }
+
+@media (min-width: @screen-lg-min) { }

@@ -1,88 +1,104 @@
 <?php
+
+$util = new TaxonomyUtil();
+$hashed = '';
 $taxQuery = null;
+$terms = array();
 
 $age = null;
 $age = get_sub_field('section_age');
-if ($age) {
+if ( is_array($age) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_age',
     'field' => 'id',
-    'terms' => $age
+    'terms' => array_map(array($util, 'get_id'), $age),
   );
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $age));
 }
 
 $customization = null;
 $customization = get_sub_field('section_customization');
-if ($customization) {
+if ( is_array($customization) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_customization',
     'field' => 'id',
-    'terms' => $customization
+    'terms' => array_map(array($util, 'get_id'), $customization),
   );
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $customization));
 }
 
 $author = null;
 $author = get_sub_field('section_author');
-if ($author) {
+if ( is_array($author) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_author',
     'field' => 'id',
-    'terms' => $author
+    'terms' => array_map(array($util, 'get_id'), $author),
   );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $author) );
 }
 
 $genre = null;
 $genre = get_sub_field('section_genre');
-if ($genre) {
+if ( is_array($genre) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_genre',
     'field' => 'id',
-    'terms' => $genre
+    'terms' => array_map(array($util, 'get_id'), $genre),
   );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $genre) );
 }
 
 $topic = null;
 $topic = get_sub_field('section_topic');
-if ($topic) {
+if ( is_array($topic) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_topic',
     'field' => 'id',
-    'terms' => $topic
+    'terms' => array_map(array($util, 'get_id'), $topic),
   );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $topic) );
 }
 
 $language = null;
 $language = get_sub_field('section_language');
-if ($language) {
+if ( is_array($language) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_language',
     'field' => 'id',
-    'terms' => $language
+    'terms' => array_map(array($util, 'get_id'), $language),
   );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $language) );
 }
 
 $publisher = null;
 $publisher = get_sub_field('section_publisher');
-if ($publisher) {
+if ( is_array($publisher) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_publisher',
     'field' => 'id',
-    'terms' => $publisher
+    'terms' => array_map(array($util, 'get_id'), $publisher),
   );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $publisher) );
 }
 
 $series = null;
 $series = get_sub_field('section_series');
-if ($series) {
+if ( is_array($series) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_series',
     'field' => 'id',
-    'terms' => $series
+    'terms' => array_map(array($util, 'get_id'), $series),
   );
+  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $series) );
 }
 
 $args = array(
     'post_type' => 'lsb_book',
+    'update_post_term_cache' => false,
+    'update_post_meta_cache' => false,
+    'no_found_rows' => true,
+    'post_status'=>'publish',
     'tax_query' => $taxQuery
 );
 
@@ -116,36 +132,47 @@ if ($orderby) {
     }
 }
 
-$wp_query = new WP_Query( $args );
+$hashed = hash('md5', implode( $terms ) . ' ' . $orderby . ' ' . $order);
+if ( false == ( $books = get_transient( $hashed ) ) ) {
+  $books = new WP_Query ($args);
+  set_transient( $hashed, $books, 3600 );
+}
 
 ?>
 
-<?php if ( $wp_query->have_posts() ) : ?>
+<?php if ( $books->have_posts() ) : ?>
+
   <div class="book-section">
     <div class="book-section-header page-header">
 
       <h1>
         <?php the_sub_field('section_header'); ?>
+
         <?php if ( get_sub_field('section_sub_header') ) : ?>
           <small>| <?php the_sub_field('section_sub_header'); ?></small>
         <?php endif; ?>
-        <?php if ( get_sub_field('section_description') ) : ?>
-          <small aria-hidden="true">
-            | <button type="button" class="btn-link">
-                <span class="glyphicon glyphicon-info-sign"></span>
-              </button>
-          </small>
 
+        <?php if ( get_sub_field('section_description') ) : ?>
+          <button type="button" class="btn-link" aria-hidden="true">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </button>
         <?php endif; ?>
+
       </h1>
 
       <?php if ( get_sub_field('section_description') ) : ?>
         <div class="alert alert-info description sr-only">
           <button type="button" class="close">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
           </button>
           <?php the_sub_field('section_description'); ?>
+          <p>
+            <a href="<?php echo get_search_link( implode( ' ', $terms ) ); ?> ">
+              <?php echo __('Søk etter bøker i seksjonen', 'lsb_boksok'); ?>
+              <?php the_sub_field('section_header') ?>.
+            </a>
+          </p>
         </div>
       <?php endif; ?>
 
@@ -157,7 +184,7 @@ $wp_query = new WP_Query( $args );
       <span aria-hidden="true" class="book-section-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
 
       <div class="book-section-scroll">
-        <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
+        <?php while ( $books->have_posts() ) : $books->the_post(); ?>
           <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
         <?php endwhile; ?>
       </div>

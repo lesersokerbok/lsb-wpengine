@@ -10,7 +10,10 @@
  * @link https://github.com/roots/roots/pull/1042
  */
 $roots_includes = array(
-  'lib/lsb-books.php'
+  'lib/lsb-book.php',
+  'lib/lsb-book-section.php',
+  'lib/taxonomy-util.php',
+  'lib/lsb-feed-util.php',
 );
 
 foreach ($roots_includes as $file) {
@@ -22,5 +25,7 @@ foreach ($roots_includes as $file) {
 }
 unset($file, $filepath);
 
-// Initialize books
-new LsbBooks();
+// Initialize custom functionality
+new LsbBook();
+new LsbBookSection();
+new LsbFeedUtil();

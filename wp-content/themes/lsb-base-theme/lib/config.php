@@ -11,7 +11,9 @@ add_theme_support('jquery-cdn');            // Enable to load jQuery from the Go
 /**
  * Configuration values
  */
-define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y (Note: Universal Analytics only, not Classic Analytics)
+
+define('GOOGLE_ANALYTICS_ID', LSB_GOOGLE_ANALYTICS_ID);
+define('BLOG_ARCHIVE_TITLE', 'Kunngjøringer'); // The title of the main blog archive, default "siste innlegg"
 
 /**
  * .main classes
@@ -61,7 +63,7 @@ function roots_display_sidebar() {
      * Any of these page templates that return true won't show the sidebar
      */
     array(
-      'template-custom.php'
+      'template-frontpage.php'
     )
   );
 

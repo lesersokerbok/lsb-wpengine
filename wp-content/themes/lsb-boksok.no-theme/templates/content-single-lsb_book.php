@@ -1,3 +1,4 @@
+
 <article <?php post_class('full'); ?>>
 
   <header class="page-header">
@@ -9,16 +10,18 @@
       </small>
     </h1>
     <p>
-      <?php the_terms($post->ID, 'lsb_tax_illustrator', 'Illustratør: ', ', ', ' | ') ?>
-      <?php the_terms($post->ID, 'lsb_tax_translator', 'Oversetter: ', ', ', ' | ') ?>
-      <?php the_terms($post->ID, 'lsb_tax_publisher', 'Forlag: ', ', ', ' | ') ?>
+      <?php the_terms($post->ID, 'lsb_tax_illustrator', __('Illustratør: ', 'lsb_boksok'), ', ', ' | ') ?>
+      <?php the_terms($post->ID, 'lsb_tax_translator', __('Oversetter: ', 'lsb_boksok'), ', ', ' | ') ?>
+      <?php the_terms($post->ID, 'lsb_tax_publisher', __('Forlag: ', 'lsb_boksok'), ', ', ' | ') ?>
 
       <?php if( get_field( "lsb_isbn" ) ): ?>
-        ISBN: <?php the_field( "lsb_isbn" ); ?> |
+        <?php echo __('ISBN: ', 'lsb_boksok'); ?>
+        <?php the_field( "lsb_isbn" ); ?> |
       <?php endif; ?>
 
       <?php if( get_field( "lsb_published_year" ) ): ?>
-        Utgitt: <?php the_field( "lsb_published_year" ); ?>
+        <?php echo __('Utgitt: ', 'lsb_boksok');?>
+        <?php the_field( "lsb_published_year" ); ?>
       <?php endif; ?>
     </p>
 
@@ -32,7 +35,7 @@
           <div class="col-lg-6">
 
             <div class="panel panel-default">
-              <div class="panel-heading">Anmeldelse</div>
+              <div class="panel-heading"><?php echo __('Anmeldelse', 'lsb_boksok'); ?></div>
               <div class="panel-body">
                 <?php the_field('lsb_review'); ?>
               </div>
@@ -45,30 +48,41 @@
             <?php elseif (has_post_thumbnail()): ?>
               <div class="thumbnail"><?php the_post_thumbnail('large'); ?></div>
             <?php else: ?>
-              <div class="thumbnail"><img src="http://dummyimage.com/600x900/eeeeee/eeeeee.jpg"></img></div>
+              <div class="thumbnail"><div class="missing-cover"></div></div>
             <?php endif; ?>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-sm-6">
 
+        <?php if ( get_field('lsb_supported')): ?>
+          <div class="panel panel-default">
+            <div class="panel-body lsb-supported <?php TaxonomyUtil::the_terms_slug($post->ID, 'lsb_tax_customization'); ?>">
+              <?php echo __('Boken er støttet av Leser søker bok', 'lsb_boksok'); ?>
+            </div>
+          </div>
+        <?php endif; ?>
+
         <div class="panel panel-default">
           <div class="panel-body">
-            <?php the_terms($post->ID, 'lsb_tax_genre', 'Sjanger: ', ', ', '<br/>') ?>
-            <?php the_terms($post->ID, 'tax_lsb_language', 'Språk: ', ', ', '<br/>') ?>
-            <?php the_terms($post->ID, 'lsb_tax_age', 'Passer for: ', ', ', '<br/>') ?>
-            <?php the_terms($post->ID, 'lsb_tax_customization', 'Tilpassning: ', ', ', '<br/>') ?>
-            <?php the_terms($post->ID, 'lsb_tax_topic', 'Tema: ', ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_genre', __('Sjanger: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'tax_lsb_language', __('Språk: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_age', __('Passer for: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_customization', __('Tilpasning: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_topic', __('Tema: ', 'lsb_boksok'), ', ', '<br/>') ?>
 
             <?php if( get_field( "lsb_pages" ) ): ?>
-              Antall sider: <?php the_field( "lsb_pages" ); ?><br/>
+              <?php echo __('Antall sider: ', 'lsb_boksok'); ?>
+              <?php the_field( "lsb_pages" ); ?><br/>
             <?php endif; ?>
           </div>
         </div>
 
         <?php if(get_field('lsb_quote')): ?>
         <div class="panel panel-default">
-          <div class="panel-heading">Utdrag fra boka</div>
+          <div class="panel-heading">
+            <?php echo __('Utdrag fra boka', 'lsb_boksok'); ?>
+          </div>
           <div class="panel-body">
             <?php the_field('lsb_quote'); ?>
           </div>

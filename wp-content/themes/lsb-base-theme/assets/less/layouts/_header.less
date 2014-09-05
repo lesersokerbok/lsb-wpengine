@@ -1,4 +1,20 @@
 .banner {
+
+  .navbar-brand {
+    background-image: url('../img/logo.svg');
+    background-size: 40px 40px;
+    background-position: center left;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+
+    color: @brand-primary;
+    font-weight: bold;
+
+    &:hover {
+      color: @link-hover-color
+    }
+  }
+
   .icon-nav {
     @media (min-width: @grid-float-breakpoint) {
       .pull-right;

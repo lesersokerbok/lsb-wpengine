@@ -7,9 +7,6 @@
   </div>
   <footer>
     <?php wp_link_pages(array('before' => '<nav class="page-nav"><p>' . __('Pages:', 'roots'), 'after' => '</p></nav>')); ?>
-    <?php if(is_single()) : ?>
-      <?php get_template_part('templates/entry-meta'); ?>
-    <?php endif; ?>
   </footer>
   <?php comments_template('/templates/comments.php'); ?>
 </article>

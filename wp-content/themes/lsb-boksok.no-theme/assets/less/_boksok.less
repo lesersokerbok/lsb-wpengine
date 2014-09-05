@@ -3,16 +3,6 @@
  */
 
 /* ==========================================================================
-   Brand
-   ========================================================================== */
-
-@brand-primary: #305b86;
-
-a {
-  text-decoration: underline;
-}
-
-/* ==========================================================================
    Layout
    ========================================================================== */
 
@@ -36,17 +26,6 @@ body {
   margin-bottom: @line-height-computed*1.5
 }
 
-
-/* ==========================================================================
-   Header
-   ========================================================================== */
-
-.banner {
-  a {
-    text-decoration: none;
-  }
-}
-
 /* ==========================================================================
    Content
    ========================================================================== */
@@ -68,133 +47,9 @@ body {
 
 }
 
-article.lsb_book {
-
-  p, blockquote {
-    // margin: 15px auto;
-  }
-
-  blockquote {
-    font-size: @font-size-base;
-    border-color: @brand-primary;
-    border-width: 2px;
-  }
-}
-
-/* ==========================================================================
-   Archives
-   ========================================================================== */
-
-article.summary.lsb_book {
-
-  padding: 0 @line-height-computed @line-height-computed 0;
-  text-align: center;
-
-  h2 {
-    font-size: @font-size-base;
-    margin: 12px 0 6px;
-  }
-
-  .entry-image {
-    text-align: center;
-    width: 100%;
-  }
-
-  .meta, h2 {
-    font-size: @font-size-small;
-    text-align: left;
-  }
-}
-
-.archive, .search {
-  .loop {
-    margin-right: -@line-height-computed;
-
-    article.summary.lsb_book {
-      width: 20%;
-      float: left;
-      padding-bottom: @line-height-computed*2;
-
-      &:nth-of-type(5n) {
-        clear: right;
-      }
-
-      &:nth-of-type(5n+1) {
-        clear: left;
-      }
-    }
-  }
-}
-
-/* ==========================================================================
-   Frontpage list horizontal scrolling
-   ========================================================================== */
-
-.book-section {
-  white-space: nowrap;
-
-  .book-section-header {
-    white-space: normal;
-  }
-
-  .book-section-body {
-    position: relative;
-    transform-style: preserve-3d;
-
-    .book-section-left-scroll,
-    .book-section-right-scroll  {
-      color: @link-color;
-      position: absolute;
-      top: 30%;
-      font-size: @font-size-h1;
-      opacity: 0.5;
-      cursor: pointer;
-
-      display: none;
-
-      &:hover {
-        opacity: 0.9;
-      }
-    }
-
-    .book-section-left-scroll {
-      transform: translateX(-110%);
-      left: 0;
-    }
-
-    .book-section-right-scroll {
-      transform: translateX(110%);
-      right: 0;
-    }
-
-    .book-section-scroll {
-      overflow-x: scroll;
-      overflow-y: hidden;
-
-      article.summary.lsb_book {
-        display: inline-block;
-        white-space: normal;
-        vertical-align: top;
-
-        &:last-child {
-          padding-right: 0;
-        }
-      }
-    }
-
-  }
-}
-
 /* ==========================================================================
    Footer
    ========================================================================== */
-
-nav.post-nav {
-  clear: both;
-  a {
-    text-decoration: none;
-  }
-}
 
 footer.page-footer {
   clear: both;

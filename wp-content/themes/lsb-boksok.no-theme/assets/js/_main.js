@@ -23,57 +23,57 @@ var Roots = {
   common: {
     init: function() {
       // JavaScript to be fired on all pages
+
+      // Google Analytics Events
+
+      // Book section header link click
+      $('.book-section-header a').click(function (event) {
+        ga('send', 'event', 'BookSectionHeader', 'click', event.target.href);
+      });
+
+      // Book section book cover image click
+      $('.book-section-scroll article .entry-image a').click(function (event) {
+        ga('send', 'event', 'BookSectionBookImage', 'click', event.target.href);
+      });
+
+      // Book section book title click
+      $('.book-section-scroll article header .entry-title a').click(function (event) {
+        ga('send', 'event', 'BookSectionBookTitle', 'click', event.target.href);
+      });
+
+      // Book section book meta click
+      $('.book-section-scroll article header .meta a').click(function (event) {
+        ga('send', 'event', 'BookSectionBookMeta', 'click', event.target.href);
+      });
+
+      // Book section scroll
+      $('.book-section-scroll').one("scroll", function () {
+        ga('send', 'event', 'BookSection', 'scroll', $(this).parent().siblings().first().children("a").first().html());
+      });
+
+      // Single book meta click
+      $('.single-lsb_book article a[rel="tag"]').click(function (event) {
+        ga('send', 'event', 'SingleBookMeta', 'click', event.target.href);
+      });
+
+      // Pagination clicks on book archive pages
+      $('.tax-lsb_tax_list .pagination a').click(function (event) {
+        ga('send', 'event', 'BookArchivePagination', 'click', event.target.href);
+      });
+
+      // Pagination clicks on book search results pages
+      $('.search-results .pagination a').click(function (event) {
+        ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
+      });
     }
   },
   // Home page
   home: {
     init: function() {
       // JavaScript to be fired on the home page
-
-      // Hide scroll arrows when not needed
-      var toggleScrollButtons = function($bookSectionScroll) {
-
-        var scrollLeftPos = $bookSectionScroll.scrollLeft(),
-            scrollWidth = $bookSectionScroll.get(0).scrollWidth,
-            width = $bookSectionScroll.width();
-
-        if(scrollLeftPos > 0) {
-          $bookSectionScroll.siblings('.book-section-left-scroll').show();
-        } else {
-          $bookSectionScroll.siblings('.book-section-left-scroll').hide();
-        }
-
-        if(scrollWidth - scrollLeftPos > width) {
-          $bookSectionScroll.siblings('.book-section-right-scroll').show();
-        } else {
-          $bookSectionScroll.siblings('.book-section-right-scroll').hide();
-        }
-
-      };
-
-      $('.book-section-scroll').each(function() {
-        toggleScrollButtons($(this));
-      });
-
-      $('.book-section-scroll').scroll(function() {
-        toggleScrollButtons($(this));
-      });
-
-      // Respond to left scroll button click
-      $('.book-section .book-section-left-scroll').click(function () {
-        $(this).siblings('.book-section-scroll').animate({
-          scrollLeft: "-=500px"
-        }, 500);
-      });
-
-      // Respond to right scroll button click
-      $('.book-section .book-section-right-scroll').click(function () {
-        $(this).siblings('.book-section-scroll').animate({
-          scrollLeft: "+=500px"
-        }, 500);
-      });
     }
   },
+
   // About us page, note the change from about-us to about_us.
   about_us: {
     init: function() {
