@@ -23,6 +23,7 @@ $roots_includes = array(
   'lib/scripts.php',        // Scripts and stylesheets
   'lib/extras.php',         // Custom functions
   'lib/pagination.php',     // Boostrap pagination
+  'lib/lsb-mime-types.php', // Custom upload mime types
 );
 
 foreach ($roots_includes as $file) {
@@ -45,3 +46,5 @@ if(!function_exists('_log')){
     }
   }
 }
+
+new LsbMimeTypes();
