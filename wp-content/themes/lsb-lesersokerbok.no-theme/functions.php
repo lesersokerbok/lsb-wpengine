@@ -12,6 +12,7 @@
 $roots_includes = array(
   'lib/lsb-frontpage-section.php',
   'lib/lsb-column-util.php',
+  'lib/lsb-persons.php'
 );
 
 foreach ($roots_includes as $file) {
@@ -24,4 +25,8 @@ foreach ($roots_includes as $file) {
 unset($file, $filepath);
 
 // Initialize custom functionality
-new LsbFrontpageSection();
+function lsb_init() {
+  new LsbFrontpageSection();
+  new LsbPersons();
+}
+add_action('init', 'lsb_init', 0);
