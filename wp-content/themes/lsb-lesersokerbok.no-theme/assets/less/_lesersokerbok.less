@@ -115,12 +115,48 @@
 .person {
 
     img {
-        width: 150px;
-        float:left;
+      display: none;
     }
 
-    h2, h3, p, ul {
-        margin-left: 165px;
+    h2 {
+      margin-top: @line-height-computed/2;
+      font-size: @font-size-h3
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: @font-size-h4
+    }
+
+    .contact-info {
+      font-weight: @headings-font-weight;
+    }
+
+    @media (min-width: @screen-md-min) {
+
+      img.above {
+        display: block;
+        width: 35%;
+        float:left;
+      }
+
+      h2, h3, p, ul {
+          margin-left: 35%;
+          padding-left: @panel-body-padding*1.5;
+      }
+
+      ul {
+        padding-left: @panel-body-padding*2.5;
+      }
+    }
+
+    @media (max-width: @screen-sm-max) {
+
+      img.below {
+        display: block;
+        margin-top: @line-height-computed;
+      }
+
     }
 }
 
