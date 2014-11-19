@@ -1,11 +1,13 @@
 .banner {
 
+  @logo-size: 40px;
+
   .navbar-brand {
     background-image: url('../img/logo.svg');
-    background-size: 40px 40px;
-    background-position: center left;
+    background-size: @logo-size;
+    background-position: @navbar-padding-horizontal center;
     background-repeat: no-repeat;
-    padding-left: 50px;
+    padding-left: @logo-size+@navbar-padding-horizontal+10px;
 
     color: @brand-primary;
     font-weight: bold;
