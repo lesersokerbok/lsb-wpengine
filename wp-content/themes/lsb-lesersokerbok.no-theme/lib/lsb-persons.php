@@ -95,6 +95,31 @@ class LsbPersons {
       			'disabled' => 0,
       		),
           array (
+            'key' => 'lsb_custom_field_person_company_url',
+            'label' => 'Selskapslenke',
+            'name' => 'company_url',
+            'prefix' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array (
+              array (
+                'rule_rule_0' => array (
+                  'field' => 'lsb_custom_field_person_role',
+                  'operator' => '==',
+                  'value' => 'boardMember',
+                ),
+              ),
+            ),
+            'default_value' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+            'maxlength' => '',
+            'readonly' => 0,
+            'disabled' => 0,
+          ),
+          array (
             'key' => 'lsb_custom_field_person_photo',
             'label' => __('Foto', 'lsb_main'),
             'name' => 'photo',

@@ -8,7 +8,13 @@
     </h2>
     <?php if ( get_field( "lsb_custom_field_person_company" ) ): ?>
       <h3>
+        <?php if ( get_field( "lsb_custom_field_person_company_url" ) ): ?>
+          <a href="<?php the_field( 'lsb_custom_field_person_company_url' ) ?>">
+        <?php endif; ?>
         <?php the_field( "lsb_custom_field_person_company" ); ?>
+        <?php if ( get_field( "lsb_custom_field_person_company_url" ) ): ?>
+          </a>
+        <?php endif; ?>
       </h3>
     <?php endif; ?>
     <p class="contact-info">
