@@ -35,7 +35,7 @@
           <div class="col-lg-6">
 
             <div class="panel panel-default">
-              <div class="panel-heading"><?php echo __('Anmeldelse', 'lsb_boksok'); ?></div>
+              <div class="panel-heading"><?php echo __('Om boka', 'lsb_boksok'); ?></div>
               <div class="panel-body">
                 <?php the_field('lsb_review'); ?>
               </div>
