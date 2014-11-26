@@ -4,6 +4,7 @@ class LsbPersons {
   public function __construct() {
     $this->register_post_type_lsb_person();
     $this->register_lsb_person_custom_fields();
+    $this->register_lsb_person_relationship();
   }
 
   public function register_post_type_lsb_person() {
@@ -302,5 +303,68 @@ class LsbPersons {
       	),
       ));
     }
+  }
+
+  public function register_lsb_person_relationship() {
+
+    if( function_exists('register_field_group') ):
+
+    register_field_group(array (
+    	'key' => 'lsb_custom_field_group_people',
+    	'title' => __('Personer', 'lsb_main'),
+    	'fields' => array (
+    		array (
+    			'key' => 'lsb_custom_field_person_relationship',
+    			'label' => 'Legg til personer',
+    			'name' => 'person_relationship',
+    			'prefix' => '',
+    			'type' => 'relationship',
+    			'instructions' => '',
+    			'required' => 0,
+    			'conditional_logic' => 0,
+    			'post_type' => array (
+    				0 => 'lsb-person',
+    			),
+    			'taxonomy' => '',
+    			'filters' => array (
+    				0 => 'search',
+    			),
+    			'elements' => '',
+    			'max' => '',
+    			'return_format' => 'object',
+    		),
+    	),
+    	'location' => array (
+    		array (
+    			array (
+    				'param' => 'page_template',
+    				'operator' => '==',
+    				'value' => 'template-people.php',
+    			),
+    		),
+    	),
+    	'menu_order' => 0,
+    	'position' => 'normal',
+    	'style' => 'default',
+    	'label_placement' => 'top',
+    	'instruction_placement' => 'label',
+    	'hide_on_screen' => array (
+    		0 => 'excerpt',
+    		1 => 'custom_fields',
+    		2 => 'discussion',
+    		3 => 'comments',
+    		4 => 'revisions',
+    		5 => 'slug',
+    		6 => 'author',
+    		7 => 'format',
+    		8 => 'page_attributes',
+    		9 => 'featured_image',
+    		10 => 'categories',
+    		11 => 'tags',
+    		12 => 'send-trackbacks',
+    	),
+    ));
+
+    endif;
   }
 }
