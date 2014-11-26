@@ -502,11 +502,11 @@ class LsbBook {
     {
       register_field_group(array (
         'id' => 'lsb_acf_content',
-        'title' => __('Anmeldelse', 'lsb_boksok'),
+        'title' => __('Om boka', 'lsb_boksok'),
         'fields' => array (
           array (
             'key' => 'lsb_acf_review',
-            'label' => __('Anmeldelse', 'lsb_boksok'),
+            'label' => __('Om boka', 'lsb_boksok'),
             'name' => 'lsb_review',
             'type' => 'wysiwyg',
             'default_value' => '',
