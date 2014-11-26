@@ -4,13 +4,7 @@
       <img class="above" src="<?php the_field('lsb_custom_field_person_photo') ?>" />
     <?php endif; ?>
     <h2>
-      <?php if ( is_archive() ): ?>
-        <a href="<?php the_permalink(); ?>">
-          <?php the_title(); ?>
-        </a>
-      <?php else: ?>
-        <?php echo roots_title(); ?>
-      <?php endif; ?>
+      <?php the_title(); ?>
     </h2>
     <?php if ( get_field( "lsb_custom_field_person_company" ) ): ?>
       <h3>
