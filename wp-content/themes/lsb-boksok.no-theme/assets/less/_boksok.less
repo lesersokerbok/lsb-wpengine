@@ -100,6 +100,38 @@ footer.page-footer {
 }
 
 /* ==========================================================================
+   Book thumbnail curled corner
+   ========================================================================== */
+
+.lsb_book .thumbnail.look-inside {
+  position: relative;
+  .glyphicon;
+  .glyphicon-eye-open;
+}
+
+.lsb_book .thumbnail.look-inside:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  color:#000;
+  border-width: 0 44px 44px 0;
+  border-style: solid;
+  border-color: #f5f5f5 #fff;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.lsb_book .thumbnail.look-inside:before {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size:larger;
+  z-index:1000;
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 

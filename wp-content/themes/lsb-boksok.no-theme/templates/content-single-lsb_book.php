@@ -44,11 +44,16 @@
           </div>
           <div class="col-lg-6">
             <?php if ( has_post_thumbnail() && get_field('lsb_look_inside')): ?>
-              <a class="thumbnail" href="<?php the_field('lsb_look_inside'); ?>" target="_blank"><?php the_post_thumbnail('large', array('class' => 'look-inside')); ?></a>
+              <a class="thumbnail look-inside" href="<?php the_field('lsb_look_inside'); ?>" target="_blank"><?php the_post_thumbnail('large', array('class' => 'look-inside')); ?></a>
             <?php elseif (has_post_thumbnail()): ?>
               <div class="thumbnail"><?php the_post_thumbnail('large'); ?></div>
             <?php else: ?>
               <div class="thumbnail"><div class="missing-cover"></div></div>
+            <?php endif; ?>
+            <?php if ( get_field('lsb_look_inside')): ?>
+              <a href="<?php the_field('lsb_look_inside'); ?>" class="btn btn-primary btn-block" role="button">
+                <?php echo __('Bla i boken', 'lsb_boksok'); ?>
+              </a>
             <?php endif; ?>
           </div>
         </div>
