@@ -12,6 +12,7 @@ class LsbBook {
     add_action('init', array($this, 'register_tax_lsb_customization'));
     add_action('init', array($this, 'register_tax_lsb_topic'));
     add_action('init', array($this, 'register_tax_lsb_language'));
+    add_action('init', array($this, 'register_tax_lsb_cat'));
     add_action('init', array($this, 'register_lsb_tax_list'));
     add_action('init', array($this, 'register_lsb_tax_series'));
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
@@ -307,6 +308,36 @@ class LsbBook {
           'update_item' => __('Oppdater språk', 'lsb_boksok'),
           'add_new_item' => __('Legg til språk', 'lsb_boksok'),
           'new_item_name' => _x('Forfatter', 'Ny-språk-tittel', 'lsb_boksok'),
+          'separate_items_with_commas' => __('Separer med komma', 'lsb_boksok'),
+          'add_or_remove_items' => __('Legg til eller fjern', 'lsb_boksok'),
+          'choose_from_most_used' => __('Velg fra mest brukte', 'lsb_boksok'),
+        )
+      )
+    );
+  }
+
+  public function register_tax_lsb_cat() {
+    register_taxonomy( 'lsb_tax_lsb_cat',
+      array(
+        0 => 'lsb_book'
+      ),
+      array(
+        'hierarchical' => true,
+        'label' => __('LSB kategori', 'lsb_boksok'),
+        'show_ui' => true,
+        'query_var' => true,
+        'rewrite' => array( 'slug' => _x('lsb-kategori', 'lsb_tax_lsb_cat slug', 'lsb_boksok') ),
+        'show_admin_column' => false,
+        'labels' => array (
+          'search_items' => __('LSB kategori', 'lsb_boksok'),
+          'popular_items' => __('Populære', 'lsb_boksok'),
+          'all_items' => __('Alle', 'lsb_boksok'),
+          'parent_item' => __('LSB kategori', 'lsb_boksok'),
+          'parent_item_colon' => __('LSB kategori: ', 'lsb_boksok'),
+          'edit_item' => __('Rediger LSB kategori', 'lsb_boksok'),
+          'update_item' => __('Oppdater LSB kategori', 'lsb_boksok'),
+          'add_new_item' => __('Legg til LSB kategori', 'lsb_boksok'),
+          'new_item_name' => _x('LSB kategori', 'Ny-lsb-cat-tittel', 'lsb_boksok'),
           'separate_items_with_commas' => __('Separer med komma', 'lsb_boksok'),
           'add_or_remove_items' => __('Legg til eller fjern', 'lsb_boksok'),
           'choose_from_most_used' => __('Velg fra mest brukte', 'lsb_boksok'),
