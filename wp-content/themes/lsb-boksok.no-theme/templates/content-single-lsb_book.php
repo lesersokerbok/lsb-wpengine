@@ -60,6 +60,11 @@
                 <?php _e('Lån boken', 'lsb_boksok'); ?>
               </a>
             <?php endif; ?>
+            <?php if ( get_field('lsb_boksok_option_page_for_buying_book', 'option')): ?>
+              <a href="<?php the_field('lsb_boksok_option_page_for_buying_book', 'option'); ?>" class="btn btn-default btn-block" role="button">
+                <?php _e('Kjøp boken', 'lsb_boksok'); ?>
+              </a>
+            <?php endif; ?>
           </div>
         </div>
       </div>

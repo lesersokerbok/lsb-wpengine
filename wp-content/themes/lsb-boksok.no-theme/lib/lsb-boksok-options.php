@@ -21,7 +21,7 @@ class LsbBoksokOptions {
       	'fields' => array (
       		array (
       			'key' => 'lsb_boksok_options_field_library_loan_link',
-      			'label' => 'Lenke til side for Lån boken på biblioteket',
+      			'label' => __('Lenke til side for Lån boken på biblioteket', 'lsb_boksok'),
       			'name' => 'lsb_boksok_option_page_for_library_loan',
       			'prefix' => '',
       			'type' => 'page_link',
@@ -35,6 +35,22 @@ class LsbBoksokOptions {
       			'allow_null' => 0,
       			'multiple' => 0,
       		),
+          array(
+            'key' => 'lsb_boksok_option_page_for_buying_book',
+            'label' => __('Lenke til side for Kjøp boken', 'lsb_boksok'),
+            'name' => 'lsb_boksok_option_page_for_buying_book',
+            'prefix' => '',
+            'type' => 'page_link',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'post_type' => array (
+              0 => 'page',
+            ),
+            'taxonomy' => '',
+            'allow_null' => 0,
+            'multiple' => 0,
+          )
       	),
       	'location' => array (
       		array (
