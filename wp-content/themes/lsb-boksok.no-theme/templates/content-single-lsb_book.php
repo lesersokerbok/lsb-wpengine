@@ -57,7 +57,7 @@
             <?php endif; ?>
             <?php if ( get_field('lsb_boksok_option_page_for_library_loan', 'option')): ?>
               <a href="<?php the_field('lsb_boksok_option_page_for_library_loan', 'option'); ?>" class="btn btn-default btn-block" role="button">
-                <?php _e('Lån boken på biblioteket', 'lsb_boksok'); ?>
+                <?php _e('Lån boken', 'lsb_boksok'); ?>
               </a>
             <?php endif; ?>
           </div>
