@@ -104,9 +104,14 @@ footer.page-footer {
    ========================================================================== */
 
 .lsb_book .thumbnail.look-inside {
+  color: @navbar-default-link-color;
   position: relative;
   .glyphicon;
   .glyphicon-eye-open;
+
+  &:hover {
+    color: @brand-primary;
+  }
 }
 
 .lsb_book .thumbnail.look-inside:after {
