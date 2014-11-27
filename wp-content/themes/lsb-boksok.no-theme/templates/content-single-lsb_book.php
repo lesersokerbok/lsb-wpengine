@@ -52,7 +52,12 @@
             <?php endif; ?>
             <?php if ( get_field('lsb_look_inside')): ?>
               <a href="<?php the_field('lsb_look_inside'); ?>" class="btn btn-primary btn-block" role="button">
-                <?php echo __('Bla i boken', 'lsb_boksok'); ?>
+                <?php _e('Bla i boken', 'lsb_boksok'); ?>
+              </a>
+            <?php endif; ?>
+            <?php if ( get_field('lsb_boksok_option_page_for_library_loan', 'option')): ?>
+              <a href="<?php the_field('lsb_boksok_option_page_for_library_loan', 'option'); ?>" class="btn btn-default btn-block" role="button">
+                <?php _e('Lån boken på biblioteket', 'lsb_boksok'); ?>
               </a>
             <?php endif; ?>
           </div>
