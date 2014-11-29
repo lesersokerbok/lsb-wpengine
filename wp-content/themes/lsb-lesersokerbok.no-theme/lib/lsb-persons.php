@@ -348,21 +348,7 @@ class LsbPersons {
     	'style' => 'default',
     	'label_placement' => 'top',
     	'instruction_placement' => 'label',
-    	'hide_on_screen' => array (
-    		0 => 'excerpt',
-    		1 => 'custom_fields',
-    		2 => 'discussion',
-    		3 => 'comments',
-    		4 => 'revisions',
-    		5 => 'slug',
-    		6 => 'author',
-    		7 => 'format',
-    		8 => 'page_attributes',
-    		9 => 'featured_image',
-    		10 => 'categories',
-    		11 => 'tags',
-    		12 => 'send-trackbacks',
-    	),
+      'hide_on_screen' => '',
     ));
 
     endif;
