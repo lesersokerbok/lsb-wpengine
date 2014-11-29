@@ -68,7 +68,7 @@
                   'label' => 'Feed URL',
                   'name' => 'section_feed_url',
                   'prefix' => '',
-                  'type' => 'text',
+                  'type' => 'url',
                   'instructions' => '',
                   'required' => 0,
                   'conditional_logic' => array (
@@ -230,7 +230,7 @@
         							'label' => 'Ekstern lenke',
         							'name' => 'section_box_link_external',
         							'prefix' => '',
-        							'type' => 'text',
+        							'type' => 'url',
         							'instructions' => '',
         							'required' => 0,
         							'conditional_logic' => array (
