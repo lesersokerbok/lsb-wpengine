@@ -5,6 +5,7 @@ class LsbPersons {
     $this->register_post_type_lsb_person();
     $this->register_lsb_person_custom_fields();
     $this->register_lsb_person_relationship();
+    $this->register_lsb_person_image_size();
   }
 
   public function register_post_type_lsb_person() {
@@ -129,7 +130,7 @@ class LsbPersons {
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => 0,
-            'return_format' => 'url',
+            'return_format' => 'object',
             'preview_size' => 'thumbnail',
             'library' => 'all',
           ),
@@ -352,5 +353,9 @@ class LsbPersons {
     ));
 
     endif;
+  }
+
+  public function register_lsb_person_image_size() {
+    add_image_size( "lsb_person_image_size", 350);
   }
 }
