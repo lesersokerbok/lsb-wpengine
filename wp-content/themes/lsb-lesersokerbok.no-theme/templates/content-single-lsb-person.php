@@ -1,7 +1,30 @@
+<?php
+
+$image = get_field('lsb_custom_field_person_photo');
+
+if( !empty($image) ):
+
+  // vars
+  $url = $image['url'];
+  $title = $image['title'];
+  $alt = $image['alt'];
+
+  if ( empty($alt) ):
+    $alt = $title;
+  endif;
+
+  // get the correct thumb size
+  $size = 'lsb_person_image_size';
+  $thumb = $image['sizes'][ $size ];
+
+endif;
+
+?>
+
 <div class="person panel panel-default">
   <div class="panel-body">
-    <?php if ( get_field( "lsb_custom_field_person_photo" ) ): ?>
-      <img class="above" src="<?php the_field('lsb_custom_field_person_photo') ?>" />
+    <?php if ( !empty($image) ): ?>
+      <img class="above" src="<?php echo $thumb; ?>" alt="<?php echo $alt; ?>" />
     <?php endif; ?>
     <h2>
       <?php the_title(); ?>
@@ -47,8 +70,8 @@
       </ul>
     <?php endif; ?>
 
-    <?php if ( get_field( "lsb_custom_field_person_photo" ) ): ?>
-      <img class="below" src="<?php the_field('lsb_custom_field_person_photo') ?>" />
+    <?php if ( !empty($image) ): ?>
+      <img class="below" src="<?php echo $thumb; ?>" alt="<?php echo $alt; ?>" />
     <?php endif; ?>
   </div>
 </div>
