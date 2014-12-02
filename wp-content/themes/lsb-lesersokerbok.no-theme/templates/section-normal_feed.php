@@ -91,7 +91,7 @@
     }
 
     if ( $show_date ) {
-      echo "{$date}";
+      echo "<p class='rss-meta'>{$date}</p>";
     }
 
     echo '</header>';
