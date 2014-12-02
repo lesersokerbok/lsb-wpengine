@@ -85,9 +85,9 @@
     echo '<header>';
 
     if ( $link == '' ) {
-      echo "<h2>$title</h2>";
+      echo "<h3>$title</h3>";
     } else {
-      echo "<h2><a href='$link'>$title</a></h2>";
+      echo "<h3><a href='$link'>$title</a></h3>";
     }
 
     if ( $show_date ) {
