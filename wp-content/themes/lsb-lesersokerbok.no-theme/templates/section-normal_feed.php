@@ -4,7 +4,7 @@
 
   $show_summary = true;
   $show_date = true;
-  $show_image = false;
+  $show_image = true;
   $items = get_sub_field('section_feed_max_items');
 
   if ( is_wp_error($rss) ) {
@@ -80,8 +80,9 @@
       }
     }
 
-    echo '<div class="row">';
-    echo '<div class="rss-post col-md-8 col-md-offset-2">';
+    echo '<article class="row rss-post ">';
+    echo '<div class="col-md-8">';
+    echo '<header>';
 
     if ( $link == '' ) {
       echo "<h2>$title</h2>";
@@ -90,19 +91,30 @@
     }
 
     if ( $show_date ) {
-      echo "<p>{$date}</p>";
+      echo "{$date}";
     }
 
-    if ( $show_image ) {
-      echo "<a href='$link'><img src='{$image}'/></a>";
-    }
+    echo '</header>';
 
     if ( $show_summary ) {
       echo "<p>{$summary}</p>";
     }
 
     echo '</div>';
+
+    echo '<div class="col-md-4">';
+    if ( $show_image && $image) {
+      echo '<div class="rss-image">';
+      if ( $link == '' ) {
+        echo "<img src='{$image}'/>";
+      } else {
+        echo "<a href='$link'><img src='{$image}'/></a>";
+      }
+      echo '</div>';
+    }
     echo '</div>';
+
+    echo '</article>';
 
   }
 
