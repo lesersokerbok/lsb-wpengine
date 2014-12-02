@@ -456,7 +456,7 @@ class LsbBook {
             'key' => 'lsb_acf_look_inside',
             'label' => __('Bla i boka', 'lsb_boksok'),
             'name' => 'lsb_look_inside',
-            'type' => 'text',
+            'type' => 'url',
             'instructions' => __('Bla i boka url', 'lsb_boksok'),
             'required' => 0,
             'default_value' => '',

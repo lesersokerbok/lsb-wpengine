@@ -100,7 +100,7 @@ class LsbPersons {
             'label' => 'Selskapslenke',
             'name' => 'company_url',
             'prefix' => '',
-            'type' => 'text',
+            'type' => 'url',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => array (
