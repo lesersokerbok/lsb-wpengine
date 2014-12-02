@@ -97,7 +97,7 @@
     echo '</header>';
 
     if ( $show_summary ) {
-      echo "<p>{$summary}</p>";
+      echo "<p class='rss-summary'>{$summary}</p>";
     }
 
     echo '</div>';
