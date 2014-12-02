@@ -32,9 +32,11 @@
   &.text {
     .jumbotron {
 
+      text-align: center;
+
       .entry-content-asset {
         max-width: 750px;
-        margin: 0 auto;
+        margin: 2em auto 0 auto;
       }
 
       :last-child {
@@ -85,13 +87,16 @@
 
       .rss-image {
         width: 100%;
-        text-align: center;
         height: 200px;
         overflow: hidden;
 
         img {
           max-width: 100%;
           .lsb-vertical-align;
+        }
+
+        @media (min-width: @screen-md-min) {
+          text-align: center;
         }
       }
     }
