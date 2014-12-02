@@ -14,12 +14,14 @@ $numberOfBoxes = count(get_sub_field('section_box'));
     <?php if ( have_rows('section_box') ): ?>
       <?php $i = 0; ?>
       <?php while ( have_rows('section_box') ) : the_row(); ?>
-        <a href="<?php the_sub_field('section_box_link_'.get_sub_field('section_box_link_type')); ?> ">
+
           <div class="<?php ColumnUtil::the_column_class($numberOfBoxes, $i); ?> box">
-            <h1><?php the_sub_field('section_box_heading'); ?></h1>
+            <a href="<?php the_sub_field('section_box_link_'.get_sub_field('section_box_link_type')); ?> ">
+              <h3><?php the_sub_field('section_box_heading'); ?></h3>
+            </a>
             <?php the_sub_field('section_box_text'); ?>
           </div>
-        </a>
+
       <?php $i++; ?>
       <?php endwhile; ?>
     <?php endif; ?>

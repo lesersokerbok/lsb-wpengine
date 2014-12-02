@@ -4,7 +4,7 @@
 
   $show_summary = true;
   $show_date = true;
-  $show_image = false;
+  $show_image = true;
   $items = get_sub_field('section_feed_max_items');
 
   if ( is_wp_error($rss) ) {
@@ -80,29 +80,41 @@
       }
     }
 
-    echo '<div class="row">';
-    echo '<div class="rss-post col-md-8 col-md-offset-2">';
+    echo '<article class="row rss-post ">';
+    echo '<div class="col-md-8">';
+    echo '<header>';
 
     if ( $link == '' ) {
-      echo "<h2>$title</h2>";
+      echo "<h3>$title</h3>";
     } else {
-      echo "<h2><a href='$link'>$title</a></h2>";
+      echo "<h3><a href='$link'>$title</a></h3>";
     }
 
     if ( $show_date ) {
-      echo "<p>{$date}</p>";
+      echo "<p class='rss-meta'>{$date}</p>";
     }
 
-    if ( $show_image ) {
-      echo "<a href='$link'><img src='{$image}'/></a>";
-    }
+    echo '</header>';
 
     if ( $show_summary ) {
       echo "<p>{$summary}</p>";
     }
 
     echo '</div>';
+
+    echo '<div class="col-md-4">';
+    if ( $show_image && $image) {
+      echo '<div class="rss-image">';
+      if ( $link == '' ) {
+        echo "<img src='{$image}'/>";
+      } else {
+        echo "<a href='$link'><img src='{$image}'/></a>";
+      }
+      echo '</div>';
+    }
     echo '</div>';
+
+    echo '</article>';
 
   }
 
