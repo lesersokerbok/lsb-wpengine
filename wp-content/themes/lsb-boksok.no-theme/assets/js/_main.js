@@ -66,12 +66,21 @@ var Roots = {
         ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
       });
 
+      // Book navigation top level clicks
       $('.book-navigation-navbar-toplevel a').click(function (event) {
         ga('send', 'event', 'BookNavigation', 'click', event.target.innerText);
       });
 
+      // Book navigation sub level clicks
       $('.book-navigation-navbar-sublevel a').click(function (event) {
         ga('send', 'event', 'BookNavigation', 'click', event.target.innerText);
+      });
+
+      // Facet interaction
+      $(document).on('facetwp-loaded', function() {
+        if (FWP.loaded) {
+          ga('send', 'pageview', window.location.pathname + window.location.hash);
+        }
       });
     }
   },
