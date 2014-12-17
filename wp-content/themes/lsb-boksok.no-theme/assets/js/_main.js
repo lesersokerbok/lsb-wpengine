@@ -65,6 +65,14 @@ var Roots = {
       $('.search-results .pagination a').click(function (event) {
         ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
       });
+
+      $('.book-navigation-navbar-toplevel a').click(function (event) {
+        ga('send', 'event', 'BookNavigation', 'click', event.target.innerText);
+      });
+
+      $('.book-navigation-navbar-sublevel a').click(function (event) {
+        ga('send', 'event', 'BookNavigation', 'click', event.target.innerText);
+      });
     }
   },
   // Home page

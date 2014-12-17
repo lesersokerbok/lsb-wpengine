@@ -4,7 +4,7 @@
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <div class="navbar-header book-navigation-navbar-toplevel">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#book-navigation-navbar-collapse-<?php echo $count; ?>">
             <span class="sr-only"><?php _e('Veksle meny', 'lsb_boksok'); ?></span>
             <span class="icon-bar"></span>
@@ -15,7 +15,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="book-navigation-navbar-collapse-<?php echo $count; ?>">
+        <div class="collapse navbar-collapse book-navigation-navbar-sublevel" id="book-navigation-navbar-collapse-<?php echo $count; ?>">
           <ul class="nav navbar-nav">
             <?php if ( have_rows( 'lsb_show_book_navigation_sublevel_field' ) ): ?>
               <?php while ( have_rows( 'lsb_show_book_navigation_sublevel_field') ): the_row(); ?>
