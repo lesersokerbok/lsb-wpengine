@@ -72,7 +72,7 @@
 
         <?php if ( get_field('lsb_supported')): ?>
           <div class="panel panel-default">
-            <div class="panel-body lsb-supported <?php TaxonomyUtil::the_terms_slug($post->ID, 'lsb_tax_customization'); ?>">
+            <div class="panel-body lsb-supported <?php the_field('lsb_support_cat') ?>">
               <?php echo __('Boken er støttet av Leser søker bok', 'lsb_boksok'); ?>
             </div>
           </div>
