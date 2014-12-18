@@ -510,9 +510,9 @@ class LsbBookSection {
             ),
           ),
         ),
-        'menu_order' => 0,
+        'menu_order' => 10,
         'position' => 'acf_after_title',
-        'style' => 'seamless',
+        'style' => 'default',
         'label_placement' => 'top',
         'instruction_placement' => 'label',
         'hide_on_screen' => array (
