@@ -25,19 +25,19 @@ class TaxonomyUtil {
     }
   }
 
-  public static function get_slug($id, $taxonomy) {
-    if ($id && $taxonomy) {
-      return get_term($id, $taxonomy)->slug;
+  public static function get_slug($term, $taxonomy) {
+    if ($term && $taxonomy) {
+      return get_term($term, $taxonomy)->slug;
     } else {
       return null;
     }
   }
 
-  public static function get_slugs($ids, $taxonomy) {
-    if ($ids && $taxonomy && is_array($ids)) {
+  public static function get_slugs($terms, $taxonomy) {
+    if ($terms && $taxonomy && is_array($terms)) {
       $slugs;
-      foreach ($ids as $id) {
-        $slugs[] = get_term($id, $taxonomy)->slug;
+      foreach ($terms as $term) {
+        $slugs[] = get_term($term, $taxonomy)->slug;
       }
       return implode(',', $slugs);
     } else {

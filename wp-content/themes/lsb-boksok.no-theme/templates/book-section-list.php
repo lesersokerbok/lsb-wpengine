@@ -1,22 +1,41 @@
 <?php
 
+$util = new TaxonomyUtil();
+$hashed = '';
+$taxQuery = null;
+$terms = array();
+
+$age = null;
+if ( get_field('lsb_frontpage_filter_age') ) {
+  $age = get_field('lsb_frontpage_filter_age');
+}
+if ( is_array($age) ) {
+  $taxQuery[] = array(
+    'taxonomy' => 'lsb_tax_age',
+    'field' => 'id',
+    'terms' => array_map(array($util, 'get_id'), $age),
+  );
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $age));
+}
+
 $list = get_sub_field('section_list');
+$taxQuery[] = array(
+  'taxonomy' => 'lsb_tax_list',
+  'field' => 'id',
+  'terms' => array($list->term_id)
+);
+$terms[] = $list->name;
+
 $args = array(
     'post_type' => 'lsb_book',
     'update_post_term_cache' => false,
     'update_post_meta_cache' => false,
     'no_found_rows' => true,
     'post_status'=>'publish',
-    'tax_query' => array(
-      array(
-        'taxonomy' => 'lsb_tax_list',
-        'field' => 'id',
-        'terms' => array($list->term_id)
-      )
-    )
+    'tax_query' => $taxQuery
 );
 
-$hashed = 'section_list_' . $list->term_id;
+$hashed = 'section_list_' . $terms;
 $hashed = hash('md5', $hashed);
 
 if ( false == ( $books = get_transient( $hashed ) ) ) {

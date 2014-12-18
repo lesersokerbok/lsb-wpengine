@@ -6,7 +6,12 @@ $taxQuery = null;
 $terms = array();
 
 $age = null;
-$age = get_sub_field('section_age');
+
+if ( get_field('lsb_frontpage_filter_age') ) {
+  $age = get_field('lsb_frontpage_filter_age');
+} else {
+  $age = get_sub_field('section_age');
+}
 if ( is_array($age) ) {
   $taxQuery[] = array(
     'taxonomy' => 'lsb_tax_age',
