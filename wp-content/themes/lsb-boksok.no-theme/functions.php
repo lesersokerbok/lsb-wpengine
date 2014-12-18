@@ -14,8 +14,7 @@ $roots_includes = array(
   'lib/lsb-book-section.php',
   'lib/taxonomy-util.php',
   'lib/lsb-feed-util.php',
-  'lib/lsb-boksok-options.php',
-  'lib/lsb-book-navigation.php'
+  'lib/lsb-boksok-options.php'
 );
 
 foreach ($roots_includes as $file) {
@@ -32,4 +31,3 @@ new LsbBook();
 new LsbBookSection();
 new LsbFeedUtil();
 new LsbBoksokOptions();
-new LsbBookNavigation();
