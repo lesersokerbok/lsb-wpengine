@@ -511,7 +511,7 @@ class LsbBookSection {
           ),
         ),
         'menu_order' => 10,
-        'position' => 'acf_after_title',
+        'position' => 'normal',
         'style' => 'default',
         'label_placement' => 'top',
         'instruction_placement' => 'label',
