@@ -348,7 +348,7 @@ class LsbBook {
   }
   
   public function register_tax_lsb_audience() {
-    register_taxonomy( 'lsb_tax_lsb_audience',
+    register_taxonomy( 'lsb_tax_audience',
       array(
         0 => 'lsb_book'
       ),
