@@ -33,3 +33,8 @@ new LsbBookSection();
 new LsbFeedUtil();
 new LsbBoksokOptions();
 new LsbFrontpageFilters();
+
+add_filter( 'query_vars', function ($query_vars) {
+  $query_vars[] = 'lsb_tax_lsb_cat';
+  return $query_vars;
+});

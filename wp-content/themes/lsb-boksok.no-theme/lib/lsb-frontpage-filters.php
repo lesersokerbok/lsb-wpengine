@@ -31,7 +31,7 @@ class LsbFrontpageFilters {
                   'field_type' => 'radio',
                   'allow_null' => 1,
                   'load_save_terms' => 0,
-                  'return_format' => 'object',
+                  'return_format' => 'id',
                   'multiple' => 0,
               ),
               array (
@@ -52,7 +52,7 @@ class LsbFrontpageFilters {
                   'field_type' => 'checkbox',
                   'allow_null' => 1,
                   'load_save_terms' => 0,
-                  'return_format' => 'object',
+                  'return_format' => 'id',
                   'multiple' => 0,
               ),
               array (

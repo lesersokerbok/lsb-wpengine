@@ -4,7 +4,11 @@
 node_modules
 .htaccess
 *.log
-wp-content/plugins
+
+!wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/soil/
+
 wp-content/languages/plugins
 wp-content/languages/*.*
 

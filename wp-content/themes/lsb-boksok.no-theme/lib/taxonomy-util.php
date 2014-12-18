@@ -24,6 +24,27 @@ class TaxonomyUtil {
       echo implode( ' ', $terms );
     }
   }
+
+  public static function get_slug($id, $taxonomy) {
+    if ($id && $taxonomy) {
+      return get_term($id, $taxonomy)->slug;
+    } else {
+      return null;
+    }
+  }
+
+  public static function get_slugs($ids, $taxonomy) {
+    if ($ids && $taxonomy && is_array($ids)) {
+      $slugs;
+      foreach ($ids as $id) {
+        $slugs[] = get_term($id, $taxonomy)->slug;
+      }
+      return implode(',', $slugs);
+    } else {
+      return null;
+    }
+  }
+
 }
 
 ?>
