@@ -12,6 +12,7 @@
 $roots_includes = array(
   'lib/lsb-book.php',
   'lib/lsb-book-section.php',
+  'lib/lsb-frontpage-filters.php',
   'lib/taxonomy-util.php',
   'lib/lsb-feed-util.php',
   'lib/lsb-boksok-options.php'
@@ -31,3 +32,4 @@ new LsbBook();
 new LsbBookSection();
 new LsbFeedUtil();
 new LsbBoksokOptions();
+new LsbFrontpageFilters();

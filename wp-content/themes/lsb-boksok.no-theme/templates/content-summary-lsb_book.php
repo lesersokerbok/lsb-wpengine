@@ -3,7 +3,7 @@
     <a class="thumbnail" href="<?php the_permalink(); ?>">
 
       <?php if ( get_field('lsb_supported')): ?>
-        <div class="lsb-supported <?php TaxonomyUtil::the_terms_slug($post->ID, 'lsb_tax_customization'); ?>">
+        <div class="lsb-supported <?php the_field('lsb_support_cat') ?>">
         </div>
       <?php endif; ?>
 
