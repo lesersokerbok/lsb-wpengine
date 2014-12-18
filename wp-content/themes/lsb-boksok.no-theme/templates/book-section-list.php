@@ -18,6 +18,32 @@ if ( is_array($age) ) {
   $terms = array_merge($terms, array_map(array($util, 'get_name'), $age));
 }
 
+$lsb_cat = null;
+if ( get_field('lsb_frontpage_filter_lsb_cat') ) {
+  $lsb_cat = get_field('lsb_frontpage_filter_lsb_cat');
+}
+if ( $lsb_cat ) {
+  $taxQuery[] = array(
+    'taxonomy' => 'lsb_tax_lsb_cat',
+    'field' => 'id',
+    'terms' => array( $lsb_cat->term_id )
+  );
+  $terms[] = $lsb_cat->name;
+}
+
+$audience = null;
+if ( get_field('lsb_frontpage_filter_audience') ) {
+  $audience = get_field('lsb_frontpage_filter_audience');
+}
+if ( is_array($audience) ) {
+  $taxQuery[] = array(
+    'taxonomy' => 'lsb_tax_audience',
+    'field' => 'id',
+    'terms' => array_map(array($util, 'get_id'), $audience),
+  );
+  $terms = array_merge($terms, array_map(array($util, 'get_name'), $audience));
+}
+
 $list = get_sub_field('section_list');
 $taxQuery[] = array(
   'taxonomy' => 'lsb_tax_list',
