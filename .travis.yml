@@ -15,7 +15,9 @@ after_success:
 - chmod 600 .travis/deploy_key
 - eval `ssh-agent -s`
 - ssh-add .travis/deploy_key
+- git config user.name "Automated deploy by Travis-CI"
+- git config user.email "deploy@travis-ci.org"
 - git checkout -b deploy-branch
 - git commit -a -m 'build assets'
 - git remote add deploy git@git.wpengine.com:production/lsbtest.git
-- git push deploy deploybranch:master
+- git push deploy deploy-branch:master
