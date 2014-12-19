@@ -5,6 +5,8 @@ node_modules
 .htaccess
 *.log
 
+.travis/deploy_key.pem
+
 !wp-content/plugins/
 wp-content/plugins/*
 !wp-content/plugins/soil
