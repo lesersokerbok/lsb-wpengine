@@ -1,7 +1,7 @@
 sudo: false
 branches:
   only:
-  - travis
+  - develop
 language: node_js
 node_js:
 - '0.10'
