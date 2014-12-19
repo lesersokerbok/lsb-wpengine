@@ -30,10 +30,16 @@
           </button>
           <?php the_sub_field('section_description'); ?>
           <p>
-            <a href="<?php echo get_search_link( implode( ' ', $terms ) ); ?> ">
-              <?php echo __('Søk etter bøker i seksjonen', 'lsb_boksok'); ?>
-              <?php the_sub_field('section_header') ?>.
-            </a>
+            <?php if ( get_sub_field('section_target_page') ): ?>
+              <a href="<?php the_sub_field('section_target_page'); ?>">
+                <?php echo __('Se flere bøker i seksjonen', 'lsb_boksok'); ?>
+              </a>
+            <?php else: ?>
+              <a href="<?php echo get_search_link( implode( ' ', $terms ) ); ?> ">
+                <?php echo __('Søk etter bøker i seksjonen', 'lsb_boksok'); ?>
+                <?php the_sub_field('section_header') ?>.
+              </a>
+            <?php endif; ?>
           </p>
         </div>
       <?php endif; ?>

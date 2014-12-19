@@ -176,6 +176,32 @@ class LsbBookSection {
                 'disabled' => 0,
               ),
               array (
+                'key' => 'lsb_book_section_field_target_page',
+                'label' => __('Lenke til side', 'lsb_boksok'),
+                'name' => 'section_target_page',
+                'prefix' => '',
+                'type' => 'page_link',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => array (
+                    array (
+                      'rule_0' => array (
+                        'field' => 'field_53ea181ee2483',
+                        'operator' => '==',
+                        'value' => 'advanced',
+                      ),
+                    ),
+                ),
+                'column_width' => '',
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'new_lines' => 'wpautop',
+                'readonly' => 0,
+                'disabled' => 0,
+              ),
+              array (
                 'key' => 'field_53ea1c5616a46',
                 'label' => __('Forfatter', 'lsb_boksok'),
                 'name' => 'section_author',
