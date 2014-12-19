@@ -13,9 +13,10 @@ $roots_includes = array(
   'lib/lsb-book.php',
   'lib/lsb-book-section.php',
   'lib/lsb-frontpage-filters.php',
-  'lib/taxonomy-util.php',
   'lib/lsb-feed-util.php',
-  'lib/lsb-boksok-options.php'
+  'lib/lsb-boksok-options.php',
+  'lib/taxonomy-util.php',
+  'lib/lsb-query-util.php',
 );
 
 foreach ($roots_includes as $file) {
