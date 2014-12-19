@@ -1,5 +1,10 @@
-after_success:
-  - grunt build
+anguage: node_js
+node_js:
+  - "0.10"
+before_install: npm install -g grunt-cli
+install: npm install
+before_script: grunt build
+#after_success:
 #  - chmod 600 .travis/deploy_key.pem # this key should have push access
 #  - ssh-add .travis/deploy_key.pem
 #  - git remote add deploy DEPLOY_REPO_URI_GOES_HERE
