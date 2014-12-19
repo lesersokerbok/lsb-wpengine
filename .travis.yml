@@ -11,6 +11,7 @@ before_install:
 install: npm install
 before_script: grunt build
 after_success:
+- echo -e "Host git.wpengine.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - chmod 600 .travis/deploy_key.pem
 - ssh-add .travis/deploy_key.pem
 - git remote add deploy git@git.wpengine.com:production/lsbtest.git
