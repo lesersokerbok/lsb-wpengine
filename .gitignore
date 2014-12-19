@@ -5,7 +5,8 @@ node_modules
 .htaccess
 *.log
 
-.travis/deploy_key.pem
+.travis/deploy_key
+.travis/deploy_key.pub
 
 !wp-content/plugins/
 wp-content/plugins/*
