@@ -1,29 +1,5 @@
 <?php
-
-$list = get_sub_field('section_list');
-$args = array(
-    'post_type' => 'lsb_book',
-    'update_post_term_cache' => false,
-    'update_post_meta_cache' => false,
-    'no_found_rows' => true,
-    'post_status'=>'publish',
-    'tax_query' => array(
-      array(
-        'taxonomy' => 'lsb_tax_list',
-        'field' => 'id',
-        'terms' => array($list->term_id)
-      )
-    )
-);
-
-$hashed = 'section_list_' . $list->term_id;
-$hashed = hash('md5', $hashed);
-
-if ( false == ( $books = get_transient( $hashed ) ) ) {
-  $books = new WP_Query ($args);
-  set_transient($hashed, $books, 3600);
-}
-
+  list($books, $list) = LsbQueryUtil::boksok_frontpage_list_section_query();
 ?>
 
 <?php if ( $books->have_posts() ) : ?>

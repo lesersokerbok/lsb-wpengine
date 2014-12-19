@@ -73,7 +73,7 @@ class LsbFrontpageFilters {
                   'field_type' => 'checkbox',
                   'allow_null' => 1,
                   'load_save_terms' => 0,
-                  'return_format' => 'id',
+                  'return_format' => 'object',
                   'multiple' => 0,
               ),
           ),

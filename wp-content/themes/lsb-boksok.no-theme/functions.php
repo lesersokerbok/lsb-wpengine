@@ -13,9 +13,10 @@ $roots_includes = array(
   'lib/lsb-book.php',
   'lib/lsb-book-section.php',
   'lib/lsb-frontpage-filters.php',
-  'lib/taxonomy-util.php',
   'lib/lsb-feed-util.php',
-  'lib/lsb-boksok-options.php'
+  'lib/lsb-boksok-options.php',
+  'lib/taxonomy-util.php',
+  'lib/lsb-query-util.php',
 );
 
 foreach ($roots_includes as $file) {
@@ -33,3 +34,8 @@ new LsbBookSection();
 new LsbFeedUtil();
 new LsbBoksokOptions();
 new LsbFrontpageFilters();
+
+add_filter( 'query_vars', function ($query_vars) {
+  $query_vars[] = 'lsb_tax_lsb_cat';
+  return $query_vars;
+});

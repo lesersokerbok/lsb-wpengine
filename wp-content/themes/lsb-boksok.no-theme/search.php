@@ -5,9 +5,25 @@
     <?php _e('Beklager, ingen søkeresultater.', 'lsb'); ?>
   </div>
   <?php get_search_form(); ?>
+<?php else : ?>
+  <div class="panel panel-default">
+    <div class="row">
+      <div class="col-md-3">
+        <?php echo facetwp_display( 'facet', 'lsb_facet_lsb_cat' ); ?>
+      </div>
+      <div class="col-md-3">
+        <?php echo facetwp_display( 'facet', 'lsb_facet_age' ); ?>
+      </div>
+      <div class="col-md-3">
+        <?php echo facetwp_display( 'facet', 'lsb_facet_audience' ); ?>
+      </div>
+    </div>
+  </div>
+
+
 <?php endif; ?>
 
-<section class="loop">
+<section class="loop facetwp-template">
 <?php while (have_posts()) : the_post(); ?>
   <?php get_template_part('templates/content-summary', get_post_type()); ?>
 <?php endwhile; ?>
@@ -26,7 +42,7 @@
 ?>
 
 <script type="text/javascript">
-  $(function() {
+  /*$(function() {
     ga(
       'send',
       'event',
@@ -35,5 +51,5 @@
       '<?php echo $search_query ?>',
       <?php echo $total_results ?>
     );
-  });
+  });*/
 </script>

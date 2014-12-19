@@ -1,143 +1,5 @@
 <?php
-
-$util = new TaxonomyUtil();
-$hashed = '';
-$taxQuery = null;
-$terms = array();
-
-$age = null;
-$age = get_sub_field('section_age');
-if ( is_array($age) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_age',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $age),
-  );
-  $terms = array_merge($terms, array_map(array($util, 'get_name'), $age));
-}
-
-$customization = null;
-$customization = get_sub_field('section_customization');
-if ( is_array($customization) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_customization',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $customization),
-  );
-  $terms = array_merge($terms, array_map(array($util, 'get_name'), $customization));
-}
-
-$author = null;
-$author = get_sub_field('section_author');
-if ( is_array($author) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_author',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $author),
-  );
-  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $author) );
-}
-
-$genre = null;
-$genre = get_sub_field('section_genre');
-if ( is_array($genre) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_genre',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $genre),
-  );
-  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $genre) );
-}
-
-$topic = null;
-$topic = get_sub_field('section_topic');
-if ( is_array($topic) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_topic',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $topic),
-  );
-  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $topic) );
-}
-
-$language = null;
-$language = get_sub_field('section_language');
-if ( is_array($language) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_language',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $language),
-  );
-  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $language) );
-}
-
-$publisher = null;
-$publisher = get_sub_field('section_publisher');
-if ( is_array($publisher) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_publisher',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $publisher),
-  );
-  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $publisher) );
-}
-
-$series = null;
-$series = get_sub_field('section_series');
-if ( is_array($series) ) {
-  $taxQuery[] = array(
-    'taxonomy' => 'lsb_tax_series',
-    'field' => 'id',
-    'terms' => array_map(array($util, 'get_id'), $series),
-  );
-  $terms = array_merge( $terms, array_map(array($util, 'get_name'), $series) );
-}
-
-$args = array(
-    'post_type' => 'lsb_book',
-    'update_post_term_cache' => false,
-    'update_post_meta_cache' => false,
-    'no_found_rows' => true,
-    'post_status'=>'publish',
-    'tax_query' => $taxQuery
-);
-
-$orderby = null;
-$orderby = get_sub_field('section_orderby');
-$order = get_sub_field('section_order');
-
-if ($orderby) {
-    switch($orderby) {
-      case 'random':
-        $args['orderby'] = 'rand';
-        break;
-      case 'added':
-        $args['orderby'] = 'date';
-        $args['order'] = $order;
-        break;
-      case 'published':
-        $args['meta_key'] = 'lsb_published_year';
-        $args['orderby'] = 'meta_value_num';
-        $args['order'] = $order;
-        $args['meta_query'] = array(
-          array(
-            'key' => 'lsb_published_year'
-          )
-        );
-        break;
-      default:
-        $args['orderby'] = 'date';
-        $args['order'] = 'DESC';
-        break;
-    }
-}
-
-$hashed = hash('md5', implode( $terms ) . ' ' . $orderby . ' ' . $order);
-if ( false == ( $books = get_transient( $hashed ) ) ) {
-  $books = new WP_Query ($args);
-  set_transient( $hashed, $books, 3600 );
-}
-
+  list($books, $terms) = LsbQueryUtil::boksok_frontpage_advanced_section_query();
 ?>
 
 <?php if ( $books->have_posts() ) : ?>
@@ -168,10 +30,16 @@ if ( false == ( $books = get_transient( $hashed ) ) ) {
           </button>
           <?php the_sub_field('section_description'); ?>
           <p>
-            <a href="<?php echo get_search_link( implode( ' ', $terms ) ); ?> ">
-              <?php echo __('Søk etter bøker i seksjonen', 'lsb_boksok'); ?>
-              <?php the_sub_field('section_header') ?>.
-            </a>
+            <?php if ( get_sub_field('section_target_page') ): ?>
+              <a href="<?php the_sub_field('section_target_page'); ?>">
+                <?php echo __('Se flere bøker i seksjonen', 'lsb_boksok'); ?>
+              </a>
+            <?php else: ?>
+              <a href="<?php echo get_search_link( implode( ' ', $terms ) ); ?> ">
+                <?php echo __('Søk etter bøker i seksjonen', 'lsb_boksok'); ?>
+                <?php the_sub_field('section_header') ?>.
+              </a>
+            <?php endif; ?>
           </p>
         </div>
       <?php endif; ?>
