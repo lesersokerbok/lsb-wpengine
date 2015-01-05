@@ -44,6 +44,17 @@ class TaxonomyUtil {
       return null;
     }
   }
+  
+  public static function get_facet_name_for_taxonomy($taxonomy) {
+    switch ($taxonomy) {
+    case 'lsb_tax_lsb_cat':
+      return "hovedkategori";
+    case 'lsb_tax_age':
+      return "alder";
+    case 'lsb_tax_audience':
+      return "malgruppe";
+    }
+  }
 
 }
 

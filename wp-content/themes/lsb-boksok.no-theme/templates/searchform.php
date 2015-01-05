@@ -16,19 +16,19 @@
       <?php if ( get_field('lsb_frontpage_filter_lsb_cat') ): ?>
         <input type="hidden"
           value="<?php echo TaxonomyUtil::get_slug(get_field('lsb_frontpage_filter_lsb_cat'), 'lsb_tax_lsb_cat'); ?>"
-          name="<?php echo 'lsb_tax_lsb_cat' ?>"
+          name="<?php echo TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_lsb_cat'); ?>"
         />
       <?php endif; ?>
       <?php if ( get_field('lsb_frontpage_filter_age') ): ?>
         <input type="hidden"
         value="<?php echo TaxonomyUtil::get_slugs(get_field('lsb_frontpage_filter_age'), 'lsb_tax_age'); ?>"
-        name="<?php echo 'lsb_tax_age' ?>"
+        name="<?php echo TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_age'); ?>"
         />
       <?php endif; ?>
       <?php if ( get_field('lsb_frontpage_filter_audience') ): ?>
         <input type="hidden"
         value="<?php echo TaxonomyUtil::get_slugs(get_field('lsb_frontpage_filter_audience'), 'lsb_tax_audience'); ?>"
-        name="<?php echo 'lsb_tax_audience' ?>"
+        name="<?php echo TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_audience'); ?>"
         />
       <?php endif; ?>
 

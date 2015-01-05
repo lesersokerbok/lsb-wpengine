@@ -36,6 +36,8 @@ new LsbBoksokOptions();
 new LsbFrontpageFilters();
 
 add_filter( 'query_vars', function ($query_vars) {
-  $query_vars[] = 'lsb_tax_lsb_cat';
+  $query_vars[] = TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_lsb_cat');
+  $query_vars[] = TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_age');
+  $query_vars[] = TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_audience');
   return $query_vars;
 });

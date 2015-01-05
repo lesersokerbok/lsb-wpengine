@@ -9,18 +9,16 @@
   <div class="panel panel-default">
     <div class="row">
       <div class="col-md-3">
-        <?php echo facetwp_display( 'facet', 'lsb_facet_lsb_cat' ); ?>
+        <?php echo facetwp_display( 'facet', TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_lsb_cat') ); ?>
       </div>
       <div class="col-md-3">
-        <?php echo facetwp_display( 'facet', 'lsb_facet_age' ); ?>
+        <?php echo facetwp_display( 'facet', TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_age') ); ?>
       </div>
       <div class="col-md-3">
-        <?php echo facetwp_display( 'facet', 'lsb_facet_audience' ); ?>
+        <?php echo facetwp_display( 'facet', TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_audience') ); ?>
       </div>
     </div>
   </div>
-
-
 <?php endif; ?>
 
 <section class="loop facetwp-template">
