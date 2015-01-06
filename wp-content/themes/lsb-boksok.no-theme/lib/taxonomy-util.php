@@ -24,10 +24,39 @@ class TaxonomyUtil {
       echo implode( ' ', $terms );
     }
   }
+  
+  public static function get_names_from_slugs($term_slugs, $taxonomy) {
+    $names = "";
+    $term_count = count($term_slugs);
+      
+    for ($i = 0; $i < $term_count; $i++) {
+      $name = ucfirst(TaxonomyUtil::get_name_from_slug($term_slugs[$i], $taxonomy));
+      if($i == $term_count-1)
+        $names = $names.$name;
+      elseif ($i == $term_count-2)
+        $names = $names.$name." og ";
+      else
+        $names = $names.$name.", ";
+    }
+    
+    return $names;
+  }
+  
 
-  public static function get_slug($term, $taxonomy) {
-    if ($term && $taxonomy) {
-      return get_term($term, $taxonomy)->slug;
+  public static function get_name_from_slug($term_slug, $taxonomy) {
+    if ($term_slug && $taxonomy) {
+      if(get_term_by('slug', $term_slug, $taxonomy))
+        return get_term_by('slug', $term_slug, $taxonomy)->name;
+      else
+        return null;
+    } else {
+      return null;
+    }
+  }
+  
+  public static function get_slug($term_object, $taxonomy) {
+    if ($term_object && $taxonomy) {
+      return get_term($term_object, $taxonomy)->slug;
     } else {
       return null;
     }
