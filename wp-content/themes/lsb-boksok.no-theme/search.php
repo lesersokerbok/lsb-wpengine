@@ -5,23 +5,18 @@
     <?php _e('Beklager, ingen søkeresultater.', 'lsb'); ?>
   </div>
   <?php get_search_form(); ?>
-<?php else : ?>
-  <div class="panel panel-default">
-    <div class="row">
-      <div class="col-md-3">
-        <?php echo facetwp_display( 'facet', TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_lsb_cat') ); ?>
-      </div>
-      <div class="col-md-3">
-        <?php echo facetwp_display( 'facet', TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_age') ); ?>
-      </div>
-      <div class="col-md-3">
-        <?php echo facetwp_display( 'facet', TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_audience') ); ?>
-      </div>
-    </div>
-  </div>
+<?php elseif(get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat'))) : ?>
+  <p class="alert alert-info">
+    Viser kun resultater i 
+    <?php echo get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat')) ?>.
+    Søk etter "<?php echo get_search_query()?>"
+    <a href="/?s=<?php echo get_search_query()?>">
+       i alle bøker.
+    </a>
+  </p>
 <?php endif; ?>
 
-<section class="loop facetwp-template">
+<section class="loop">
 <?php while (have_posts()) : the_post(); ?>
   <?php get_template_part('templates/content-summary', get_post_type()); ?>
 <?php endwhile; ?>
@@ -38,16 +33,3 @@
   $total_results = $wp_query->found_posts;
   $search_query = $wp_query->query_vars['s'];
 ?>
-
-<script type="text/javascript">
-  /*$(function() {
-    ga(
-      'send',
-      'event',
-      'BookSearchResults',
-      'Pageview',
-      '<?php echo $search_query ?>',
-      <?php echo $total_results ?>
-    );
-  });*/
-</script>

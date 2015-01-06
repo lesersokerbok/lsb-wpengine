@@ -36,8 +36,33 @@ new LsbBoksokOptions();
 new LsbFrontpageFilters();
 
 add_filter( 'query_vars', function ($query_vars) {
-  $query_vars[] = TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_lsb_cat');
-  $query_vars[] = TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_age');
-  $query_vars[] = TaxonomyUtil::get_facet_name_for_taxonomy('lsb_tax_audience');
+  $query_vars[] = TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat');
+  $query_vars[] = TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_age');
+  $query_vars[] = TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_audience');
   return $query_vars;
 });
+
+function searchwp_include_only_search_vars( $ids, $engine, $terms ) {
+  
+  $lsb_cat_query_var = get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat'));
+  
+  // get the IDs of all the posts in this category
+  $args = array( 
+    'post_type' => 'lsb_book',
+    'tax_query' => array( 
+      array(
+        'taxonomy' => 'lsb_tax_lsb_cat', 
+        'field' => 'slug', 
+        'terms' => explode(",", $lsb_cat_query_var)
+      )
+    ),
+    'fields' => 'ids',
+    'nopaging' => true
+    
+  );
+  
+  $ids = get_posts( $args );
+  return $ids;
+}
+ 
+add_filter( 'searchwp_include', 'searchwp_include_only_search_vars', 10, 3 );
