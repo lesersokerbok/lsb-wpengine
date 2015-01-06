@@ -42,20 +42,36 @@ add_filter( 'query_vars', function ($query_vars) {
   return $query_vars;
 });
 
+
+function tax_query_for_slugs($slugs, $taxonomy) {
+  return array(
+    'taxonomy' => $taxonomy,
+    'field'    => 'slug',
+    'terms'    => explode(",", $slugs)
+  );
+}
+
 function searchwp_include_only_search_vars( $ids, $engine, $terms ) {
   
   $lsb_cat_query_var = get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat'));
+  $age_query_var = get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_age'));
+  $audience_query_var = get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_audience'));
+  
+  $tax_query = array();
+  if($lsb_cat_query_var)
+    $tax_query[] = tax_query_for_slugs($lsb_cat_query_var, 'lsb_tax_lsb_cat');
+  if($age_query_var)
+    $tax_query[] = tax_query_for_slugs($age_query_var, 'lsb_tax_age');
+  if($audience_query_var)
+    $tax_query[] = tax_query_for_slugs($audience_query_var, 'lsb_tax_audience');
+  
+  if(count($tax_query) > 1)
+    $tax_query['relation'] = 'AND';
   
   // get the IDs of all the posts in this category
   $args = array( 
     'post_type' => 'lsb_book',
-    'tax_query' => array( 
-      array(
-        'taxonomy' => 'lsb_tax_lsb_cat', 
-        'field' => 'slug', 
-        'terms' => explode(",", $lsb_cat_query_var)
-      )
-    ),
+    'tax_query' => $tax_query,
     'fields' => 'ids',
     'nopaging' => true
     

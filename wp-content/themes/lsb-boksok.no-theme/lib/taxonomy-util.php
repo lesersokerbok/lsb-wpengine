@@ -26,19 +26,12 @@ class TaxonomyUtil {
   }
   
   public static function get_names_from_slugs($term_slugs, $taxonomy) {
-    $names = "";
-    $term_count = count($term_slugs);
+    $names = array();
       
-    for ($i = 0; $i < $term_count; $i++) {
-      $name = ucfirst(TaxonomyUtil::get_name_from_slug($term_slugs[$i], $taxonomy));
-      if($i == $term_count-1)
-        $names = $names.$name;
-      elseif ($i == $term_count-2)
-        $names = $names.$name." og ";
-      else
-        $names = $names.$name.", ";
+    foreach ($term_slugs as &$term_slug) {
+      $names[] = TaxonomyUtil::get_name_from_slug($term_slug, $taxonomy);
     }
-    
+  
     return $names;
   }
   
