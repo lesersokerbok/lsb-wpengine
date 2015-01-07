@@ -298,7 +298,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1c5616a46',
                 'label' => __('Forfatter', 'lsb_boksok'),
-                'name' => 'section_author',
+                'name' => 'section_tax_author',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -323,7 +323,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1cbc16a47',
                 'label' => __('Illustratør', 'lsb_boksok'),
-                'name' => 'section_illustrator',
+                'name' => 'section_tax_illustrator',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -348,7 +348,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1cec0dcca',
                 'label' => __('Oversetter', 'lsb_boksok'),
-                'name' => 'section_translator',
+                'name' => 'section_tax_translator',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -373,7 +373,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1d100dccb',
                 'label' => __('Forlag', 'lsb_boksok'),
-                'name' => 'section_publisher',
+                'name' => 'section_tax_publisher',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -398,7 +398,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1d3c0dccc',
                 'label' => __('Sjanger', 'lsb_boksok'),
-                'name' => 'section_genre',
+                'name' => 'section_tax_genre',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -423,7 +423,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1d5d0dccd',
                 'label' => __('Alder', 'lsb_boksok'),
-                'name' => 'section_age',
+                'name' => 'section_tax_age',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -498,7 +498,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1d847e637',
                 'label' => __('Tilpasning', 'lsb_boksok'),
-                'name' => 'section_customization',
+                'name' => 'section_tax_customization',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -523,7 +523,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1dad7e638',
                 'label' => __('Emne', 'lsb_boksok'),
-                'name' => 'section_topic',
+                'name' => 'section_tax_topic',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -548,7 +548,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea1dce7e639',
                 'label' => __('Språk', 'lsb_boksok'),
-                'name' => 'section_language',
+                'name' => 'section_tax_language',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',
@@ -573,7 +573,7 @@ class LsbFrontpage {
               array (
                 'key' => 'field_53ea27e5b8a7b',
                 'label' => __('Serie', 'lsb_boksok'),
-                'name' => 'section_series',
+                'name' => 'section_tax_series',
                 'prefix' => '',
                 'type' => 'taxonomy',
                 'instructions' => '',

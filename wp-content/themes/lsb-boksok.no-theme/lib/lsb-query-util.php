@@ -19,9 +19,19 @@ class LsbQueryUtil {
     $taxQuery = null;
     $terms = array();
 
-    if ( get_sub_field('section_age') ) {
+    if ( get_sub_field('section_tax_lsb_cat') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_age', get_sub_field('section_age'), $taxQuery, $terms
+        'lsb_tax_lsb_cat', get_sub_field('section_tax_lsb_cat'), $taxQuery, $terms
+      );
+    } else if ( get_field('lsb_frontpage_filter_lsb_cat') ) {
+      self::construct_taxonomy_query_partial(
+        'lsb_tax_lsb_cat', get_field('lsb_frontpage_filter_lsb_cat'), $taxQuery, $terms
+      );
+    }
+    
+    if ( get_sub_field('section_tax_age') ) {
+      self::construct_taxonomy_query_partial(
+        'lsb_tax_age', get_sub_field('section_tax_age'), $taxQuery, $terms
       );
     } else if ( get_field('lsb_frontpage_filter_age') ) {
       self::construct_taxonomy_query_partial(
@@ -29,65 +39,55 @@ class LsbQueryUtil {
       );
     }
 
-    if ( get_field('section_lsb_cat') ) {
+    if ( get_sub_field('section_tax_audience') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_lsb_cat', get_field('section_lsb_cat'), $taxQuery, $terms
+        'lsb_tax_audience', get_sub_field('section_tax_audience'), $taxQuery, $terms
       );
-    } else if ( get_sub_field('lsb_frontpage_filter_lsb_cat') ) {
+    } else if ( get_field('lsb_frontpage_filter_audience') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_lsb_cat', get_sub_field('lsb_frontpage_filter_lsb_cat'), $taxQuery, $terms
-      );
-    }
-
-    if ( get_field('section_audience') ) {
-      self::construct_taxonomy_query_partial(
-        'lsb_tax_audience', get_field('section_audience'), $taxQuery, $terms
-      );
-    } else if ( get_sub_field('lsb_frontpage_filter_audience') ) {
-      self::construct_taxonomy_query_partial(
-        'lsb_tax_audience', get_sub_field('lsb_frontpage_filter_audience'), $taxQuery, $terms
+        'lsb_tax_audience', get_field('lsb_frontpage_filter_audience'), $taxQuery, $terms
       );
     }
 
-    if ( get_sub_field('section_customization') ) {
+    if ( get_sub_field('section_tax_customization') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_customization', get_sub_field('section_customization'), $taxQuery, $terms
+        'lsb_tax_customization', get_sub_field('section_tax_customization'), $taxQuery, $terms
       );
     }
 
-    if ( get_sub_field('section_author') ) {
+    if ( get_sub_field('section_tax_author') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_author', get_sub_field('section_author'), $taxQuery, $terms
+        'lsb_tax_author', get_sub_field('section_tax_author'), $taxQuery, $terms
       );
     }
 
-    if ( get_sub_field('section_genre') ) {
+    if ( get_sub_field('section_tax_genre') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_genre', get_sub_field('section_genre'), $taxQuery, $terms
+        'lsb_tax_genre', get_sub_field('section_tax_genre'), $taxQuery, $terms
       );
     }
 
-    if ( get_sub_field('section_topic') ) {
+    if ( get_sub_field('section_tax_topic') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_topic', get_sub_field('section_topic'), $taxQuery, $terms
+        'lsb_tax_topic', get_sub_field('section_tax_topic'), $taxQuery, $terms
       );
     }
 
-    if ( get_sub_field('section_language') ) {
+    if ( get_sub_field('section_tax_language') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_language', get_sub_field('section_language'), $taxQuery, $terms
+        'lsb_tax_language', get_sub_field('section_tax_language'), $taxQuery, $terms
       );
     }
 
-    if ( get_sub_field('section_publisher') ) {
+    if ( get_sub_field('section_tax_publisher') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_publisher', get_sub_field('section_publisher'), $taxQuery, $terms
+        'lsb_tax_publisher', get_sub_field('section_tax_publisher'), $taxQuery, $terms
       );
     }
 
-    if ( get_sub_field('section_series') ) {
+    if ( get_sub_field('section_tax_series') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_series', get_sub_field('section_series'), $taxQuery, $terms
+        'lsb_tax_series', get_sub_field('section_tax_series'), $taxQuery, $terms
       );
     }
 
