@@ -19,33 +19,33 @@ class LsbQueryUtil {
     $taxQuery = null;
     $terms = array();
 
-    if ( get_field('lsb_frontpage_filter_age') ) {
-      self::construct_taxonomy_query_partial(
-        'lsb_tax_age', get_field('lsb_frontpage_filter_age'), $taxQuery, $terms
-      );
-    } else if ( get_sub_field('section_age') ) {
+    if ( get_sub_field('section_age') ) {
       self::construct_taxonomy_query_partial(
         'lsb_tax_age', get_sub_field('section_age'), $taxQuery, $terms
       );
-    }
-
-    if ( get_field('lsb_frontpage_filter_lsb_cat') ) {
+    } else if ( get_field('lsb_frontpage_filter_age') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_lsb_cat', get_field('lsb_frontpage_filter_lsb_cat'), $taxQuery, $terms
-      );
-    } else if ( get_sub_field('section_lsb_cat') ) {
-      self::construct_taxonomy_query_partial(
-        'lsb_tax_lsb_cat', get_sub_field('section_lsb_cat'), $taxQuery, $terms
+        'lsb_tax_age', get_field('lsb_frontpage_filter_age'), $taxQuery, $terms
       );
     }
 
-    if ( get_field('lsb_frontpage_filter_audience') ) {
+    if ( get_field('section_lsb_cat') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_audience', get_field('lsb_frontpage_filter_audience'), $taxQuery, $terms
+        'lsb_tax_lsb_cat', get_field('section_lsb_cat'), $taxQuery, $terms
       );
-    } else if ( get_sub_field('section_audience') ) {
+    } else if ( get_sub_field('lsb_frontpage_filter_lsb_cat') ) {
       self::construct_taxonomy_query_partial(
-        'lsb_tax_audience', get_sub_field('section_audience'), $taxQuery, $terms
+        'lsb_tax_lsb_cat', get_sub_field('lsb_frontpage_filter_lsb_cat'), $taxQuery, $terms
+      );
+    }
+
+    if ( get_field('section_audience') ) {
+      self::construct_taxonomy_query_partial(
+        'lsb_tax_audience', get_field('section_audience'), $taxQuery, $terms
+      );
+    } else if ( get_sub_field('lsb_frontpage_filter_audience') ) {
+      self::construct_taxonomy_query_partial(
+        'lsb_tax_audience', get_sub_field('lsb_frontpage_filter_audience'), $taxQuery, $terms
       );
     }
 
@@ -117,8 +117,7 @@ class LsbQueryUtil {
         );
         break;
         default:
-        $args['orderby'] = 'date';
-        $args['order'] = 'DESC';
+        $args['orderby'] = 'rand';
         break;
       }
     }
