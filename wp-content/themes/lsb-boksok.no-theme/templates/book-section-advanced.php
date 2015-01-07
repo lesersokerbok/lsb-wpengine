@@ -8,7 +8,13 @@
     <div class="book-section-header page-header">
 
       <h1>
-        <?php the_sub_field('section_header'); ?>
+        <?php if(get_sub_field('section_target_page')) : ?>
+          <a href="<?php the_sub_field('section_target_page') ?>">
+            <?php the_sub_field('section_header'); ?>
+          </a>
+        <?php else : ?>
+          <?php the_sub_field('section_header'); ?>
+        <?php endif; ?>
 
         <?php if ( get_sub_field('section_sub_header') ) : ?>
           <small>| <?php the_sub_field('section_sub_header'); ?></small>

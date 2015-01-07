@@ -4,6 +4,8 @@ Template Name: Boksøk Frontpage Template
 */
 ?>
 
+<?php get_template_part('templates/page', 'header'); ?>
+
 <section class="book-search">
   <?php get_search_form(); ?>
 </section>
