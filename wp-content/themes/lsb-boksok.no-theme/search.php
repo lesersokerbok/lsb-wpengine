@@ -54,7 +54,7 @@ function format_names($names, $binding_word, $capitalize) {
     <?php elseif($lsb_cat_query_var) : ?>
       Viser kun resultater i <?php echo format_names($lsb_cat_names, "og", true) ?>.
     
-    <?php elseif($age_query_var || audience_query_var) : ?>
+    <?php elseif($age_query_var || $audience_query_var) : ?>
       Viser kun resultater som passer for <?php echo format_names(array_merge($age_names, $audience_names), "eller", false) ?>.
     
     <?php endif; ?>
