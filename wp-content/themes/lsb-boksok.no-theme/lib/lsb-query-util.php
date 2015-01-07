@@ -6,7 +6,7 @@
  *
  */
 class LsbQueryUtil {
-
+  
   /**
    * Query for books for advanced frontpage section
    * - Frontpage book filters always outrank section fields
@@ -14,7 +14,13 @@ class LsbQueryUtil {
    * @return $books query
    *
    */
-  public static function boksok_frontpage_advanced_section_query() {
+  public static function boksok_frontpage_advanced_section_query($args = array()) {
+    
+    $defaults = array(
+		'paged' => 0
+	);
+
+	$args = wp_parse_args( $args, $defaults );
 
     $taxQuery = null;
     $terms = array();
@@ -91,7 +97,7 @@ class LsbQueryUtil {
       );
     }
 
-    $args = self::query_args_with_tax_query($taxQuery);
+    $queryArgs = self::query_args_with_tax_query($taxQuery);
 
     $orderby = null;
     $orderby = get_sub_field('section_orderby');
@@ -100,32 +106,35 @@ class LsbQueryUtil {
     if ($orderby) {
       switch($orderby) {
         case 'random':
-        $args['orderby'] = 'rand';
+        $queryArgs['orderby'] = 'rand';
         break;
         case 'added':
-        $args['orderby'] = 'date';
-        $args['order'] = $order;
+        $queryArgs['orderby'] = 'date';
+        $queryArgs['order'] = $order;
         break;
         case 'published':
-        $args['meta_key'] = 'lsb_published_year';
-        $args['orderby'] = 'meta_value_num';
-        $args['order'] = $order;
-        $args['meta_query'] = array(
+        $queryArgs['meta_key'] = 'lsb_published_year';
+        $queryArgs['orderby'] = 'meta_value_num';
+        $queryArgs['order'] = $order;
+        $queryArgs['meta_query'] = array(
         array(
         'key' => 'lsb_published_year'
         )
         );
         break;
         default:
-        $args['orderby'] = 'rand';
+        $queryArgs['orderby'] = 'rand';
         break;
       }
     }
     $terms[] = $orderby;
     $terms[] = $order;
+    
+    $queryArgs['paged'] = $args['paged'];
+    $terms[] = $args['paged'];
 
-    $books = self::get_books('section_advanced', $terms, $args);
-
+    $books = self::get_books('section_advanced', $terms, $queryArgs);
+    
     // Remove non-queryable terms
     $terms = array_filter($terms, function ($term) {
       return $term !== "none"
@@ -281,7 +290,7 @@ class LsbQueryUtil {
       'post_type' => 'lsb_book',
       'update_post_term_cache' => false,
       'update_post_meta_cache' => false,
-      'no_found_rows' => true,
+//      'no_found_rows' => true,
       'post_status'=>'publish',
       'tax_query' => $tax_query
     );
