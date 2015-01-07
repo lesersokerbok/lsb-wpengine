@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Collection of book queries for frontpage sections
- * - All queries respect frontpage book filters
- *
- */
 class LsbSearchUtil {
     
   public static function tax_query_for_taxonomy($term_slugs, $taxonomy) {

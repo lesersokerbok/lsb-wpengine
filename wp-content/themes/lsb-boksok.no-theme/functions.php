@@ -11,8 +11,7 @@
  */
 $roots_includes = array(
   'lib/lsb-book.php',
-  'lib/lsb-book-section.php',
-  'lib/lsb-frontpage-filters.php',
+  'lib/lsb-frontpage.php',
   'lib/lsb-feed-util.php',
   'lib/lsb-boksok-options.php',
   'lib/taxonomy-util.php',
@@ -30,11 +29,10 @@ foreach ($roots_includes as $file) {
 unset($file, $filepath);
 
 // Initialize custom functionality
-new LsbBook();
-new LsbBookSection();
+new LsbBook();  
 new LsbFeedUtil();
 new LsbBoksokOptions();
-new LsbFrontpageFilters();
+new LsbFrontpage();
 
 add_filter( 'query_vars', function ($query_vars) {
   $query_vars[] = TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat');
