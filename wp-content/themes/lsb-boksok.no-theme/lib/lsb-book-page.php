@@ -73,8 +73,15 @@ class LsbBookPage {
       'page' => $paged
     );
     
-    $books = new WP_Query($args);
     
+//    $hashed = $section . '_' . implode($terms);
+//    $hashed = hash('md5', $hashed);
+
+//    if ( false == ( $books = get_transient( $hashed ) ) ) {
+      $books = new WP_Query($args);
+//      set_transient($hashed, $books, 3600);
+//    }
+
     return $books;
   }
 }

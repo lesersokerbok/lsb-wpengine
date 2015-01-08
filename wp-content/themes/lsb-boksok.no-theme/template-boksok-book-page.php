@@ -24,7 +24,7 @@ Template Name: Boksside Template
 <?php if($child_pages_query->have_posts()) : ?>
 
   <?php while ( $child_pages_query->have_posts() ) : $child_pages_query->the_post(); ?>
-    <?php get_template_part('templates/book-section', 'frontpage'); ?>
+    <?php get_template_part('templates/book-shelf'); ?>
   <?php endwhile; ?>
 
 <?php else : ?>
