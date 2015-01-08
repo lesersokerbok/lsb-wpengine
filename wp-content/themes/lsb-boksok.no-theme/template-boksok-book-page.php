@@ -7,15 +7,15 @@ Template Name: Boksside Template
 <?php 
 
   $args = array(
-    'sort_order' => 'ASC',
-    'sort_column' => 'menu_order',
-    'post_parent' => $post->ID,
+    'order' => 'ASC',
+    'orderby' => 'menu_order',
+    'post_parent' => get_the_ID(),
     'post_type' => 'page'
   ); 
   $child_pages_query = new WP_Query($args);
 ?>
 
-<?php get_template_part('templates/page', 'header'); ?>
+<?php get_template_part('templates/book-page-header'); ?>
 
 <section class="book-search">
   <?php get_search_form(); ?>
