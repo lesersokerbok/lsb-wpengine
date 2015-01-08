@@ -12,10 +12,12 @@
 $roots_includes = array(
   'lib/lsb-book.php',
   'lib/lsb-frontpage.php',
+  'lib/lsb-book-page.php',
   'lib/lsb-feed-util.php',
   'lib/lsb-boksok-options.php',
   'lib/taxonomy-util.php',
   'lib/lsb-query-util.php',
+  'lib/lsb-filter-query-util.php',
   'lib/lsb-search-util.php'
 );
 
@@ -33,6 +35,7 @@ new LsbBook();
 new LsbFeedUtil();
 new LsbBoksokOptions();
 new LsbFrontpage();
+new LsbBookPage();
 
 add_filter( 'query_vars', function ($query_vars) {
   $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
