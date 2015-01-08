@@ -263,8 +263,6 @@ class LsbQueryUtil {
    */
   private static function construct_taxonomy_query_partial($taxonomy, $objects, &$tax_query, &$hashable_terms) {
 
-    $util = new TaxonomyUtil();
-
     if ( !is_array($objects) ) {
       $objects = array( $objects );
     }
@@ -272,9 +270,9 @@ class LsbQueryUtil {
     $tax_query[] = array(
       'taxonomy' => $taxonomy,
       'field' => 'id',
-      'terms' => array_map(array($util, 'get_id'), $objects)
+      'terms' => TaxonomyUtil::get_terms_id_array($objects)
     );
-    $hashable_terms = array_merge( $hashable_terms, array_map(array($util, 'get_name'), $objects) );
+    $hashable_terms = array_merge( $hashable_terms, TaxonomyUtil::get_terms_slug_array($objects));
   }
 
   /**

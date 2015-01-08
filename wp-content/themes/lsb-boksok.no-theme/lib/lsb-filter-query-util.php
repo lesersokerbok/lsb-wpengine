@@ -15,15 +15,13 @@ class LsbFilterQueryUtil {
   
   public static function tax_query_for_term_objects($term_objects, $taxonomy) {
     
-    $tax_util = new TaxonomyUtil();
-    
     if(!$term_objects)
       return null;
     
     return array(
       'taxonomy' => $taxonomy,
       'field' => 'id',
-      'terms' => array_map(array($tax_util, 'get_id'), $term_objects)
+      'terms' => TaxonomyUtil::get_terms_id_array($term_objects)
     );
   }
   

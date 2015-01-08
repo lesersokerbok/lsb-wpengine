@@ -4,33 +4,30 @@
     <input type="search" value="<?php if (is_search()) { echo get_search_query(); } ?>" name="s" class="search-field form-control" placeholder="<?php echo __('Søk etter en forfatter, en tittel eller et tema!', 'lsb_boksok'); ?>">
     <label class="hide"><?php echo __('Søk etter', 'lsb_boksok'); ?></label>
 
-    <?php if ( is_tax('lsb_tax_lsb_cat') ): ?>
+    <?php if ( is_tax() ): ?>
+    
       <?php
-        global $wp_query;
-        $term_slug = $wp_query->get_queried_object()->slug;
+        $queried_object = get_queried_object(); 
+        $taxonomy = $queried_object->taxonomy;
+        $term_slug = $queried_object->slug;
+        $taxonomy_rewrite_slug = TaxonomyUtil::get_rewrite_slug_for_taxonomy($taxonomy);
       ?>
-      <input type="hidden" value="<?php echo $term_slug; ?>" name="<?php echo TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat'); ?>" />
+      <input type="hidden" value="<?= $term_slug; ?>" name="<?= $taxonomy_rewrite_slug ?>" />
+    
     <?php endif; ?>
 
-    <?php if ( is_page_template( 'template-boksok-frontpage.php' ) ): ?>
-      <?php if ( get_field('lsb_frontpage_filter_lsb_cat') ): ?>
+    <?php if ( is_page_template( 'template-boksok-book-page.php' ) ): ?>
+    
+      <?php $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' ); ?>
+      <?php foreach ($lsb_book_tax_objects as $tax_object) : ?>
+        <?php $term_objects = get_field('lsb_book_page_filter_'.$tax_object->name) ?>
+        <?php if ($term_objects) : ?>
         <input type="hidden"
-          value="<?php echo TaxonomyUtil::get_slug(get_field('lsb_frontpage_filter_lsb_cat'), 'lsb_tax_lsb_cat'); ?>"
-          name="<?php echo TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat'); ?>"
+          value="<?= TaxonomyUtil::get_terms_string($term_objects) ?>"
+          name="<?= $tax_object->rewrite['slug'] ?>"
         />
       <?php endif; ?>
-      <?php if ( get_field('lsb_frontpage_filter_age') ): ?>
-        <input type="hidden"
-        value="<?php echo TaxonomyUtil::get_slugs(get_field('lsb_frontpage_filter_age'), 'lsb_tax_age'); ?>"
-        name="<?php echo TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_age'); ?>"
-        />
-      <?php endif; ?>
-      <?php if ( get_field('lsb_frontpage_filter_audience') ): ?>
-        <input type="hidden"
-        value="<?php echo TaxonomyUtil::get_slugs(get_field('lsb_frontpage_filter_audience'), 'lsb_tax_audience'); ?>"
-        name="<?php echo TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_audience'); ?>"
-        />
-      <?php endif; ?>
+      <?php endforeach; ?>
 
     <?php endif; ?>
 
