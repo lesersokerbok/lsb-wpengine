@@ -35,9 +35,10 @@ new LsbBoksokOptions();
 new LsbFrontpage();
 
 add_filter( 'query_vars', function ($query_vars) {
-  $query_vars[] = TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat');
-  $query_vars[] = TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_age');
-  $query_vars[] = TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_audience');
+  $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
+  foreach ($lsb_book_tax_objects as &$tax_object) {
+    $query_vars[] = $tax_object->rewrite['slug'];
+  }
   return $query_vars;
 });
 
