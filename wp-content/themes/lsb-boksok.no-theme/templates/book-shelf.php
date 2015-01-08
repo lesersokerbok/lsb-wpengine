@@ -1,4 +1,4 @@
-<?php $books = LsbBookPage::get_books(0) ?>
+<?php $books = LsbBookPage::get_books() ?>
 
 <?php if ( $books->have_posts() ) : ?>
 

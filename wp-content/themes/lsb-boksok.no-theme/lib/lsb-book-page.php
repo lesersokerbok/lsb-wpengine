@@ -131,7 +131,7 @@ class LsbBookPage {
     }
   }
   
-  public static function get_books($paged) {
+  public static function get_books($paged = -1) {
     
     $args = array(
       'post_type' => 'lsb_book',
@@ -140,8 +140,14 @@ class LsbBookPage {
 //      'no_found_rows' => true,
       'post_status'=>'publish',
       'tax_query' => LsbFilterQueryUtil::tax_query_for_book_page(),
-      'page' => $paged
     );
+    
+    if($paged >= 0) {
+      $args['paged'] = $paged;
+    } else {
+      $args['orderby'] = 'rand'; 
+      $args['posts_per_page'] = 20;
+    }
     
     if(!count($args['tax_query']))
       return new WP_Query();

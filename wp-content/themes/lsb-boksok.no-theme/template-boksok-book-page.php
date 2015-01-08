@@ -29,7 +29,7 @@ Template Name: Boksside Template
 
 <?php else : ?>
 
-  <?php $books = LsbBookPage::get_books(get_query_var('page')) ?>
+  <?php $books = LsbBookPage::get_books(get_query_var('paged')) ?>
 
   <section class="loop">
   <?php while ( $books->have_posts() ) : $books->the_post(); ?>
