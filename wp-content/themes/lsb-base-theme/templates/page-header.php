@@ -3,9 +3,11 @@
     <?php echo roots_title(); ?>
     <?php if ( is_tax() || is_category() || is_tag() ) : ?>
       <?php if ( category_description() !== '') : ?>
-        <button type="button" class="btn-link" aria-hidden="true">
-          <span class="glyphicon glyphicon-info-sign"></span>
-        </button>
+        <small class="smaller">|
+          <button type="button" class="btn-link">
+            <?php echo __('Mer info', 'lsb_boksok'); ?>
+          </button>
+        </small>
       <?php endif; ?>
     <?php endif; ?>
   </h1>

@@ -2,24 +2,15 @@
    LSB Book specific styling
    ========================================================================== */
 
-.book-section-header {
-  white-space: normal;
-  h1 {
-    a {
-      text-decoration: none;
-    }
-  }
-}
-
-.book-section {
+.book-shelf {
   white-space: nowrap;
 
-  .book-section-body {
+  .book-shelf-body {
     position: relative;
     transform-style: preserve-3d;
 
-    .book-section-left-scroll,
-    .book-section-right-scroll  {
+    .book-shelf-left-scroll,
+    .book-shelf-right-scroll  {
       color: @link-color;
       position: absolute;
       top: 30%;
@@ -34,17 +25,17 @@
       }
     }
 
-    .book-section-left-scroll {
+    .book-shelf-left-scroll {
       transform: translateX(-110%);
       left: 0;
     }
 
-    .book-section-right-scroll {
+    .book-shelf-right-scroll {
       transform: translateX(110%);
       right: 0;
     }
 
-    .book-section-scroll {
+    .book-shelf-scroll {
       overflow-x: scroll;
       overflow-y: hidden;
 

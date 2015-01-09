@@ -23,7 +23,21 @@ body {
 }
 
 .page-header {
-  margin-bottom: @line-height-computed*1.5
+  margin-bottom: @line-height-computed*1.5;
+}
+
+.book-shelf {
+  .page-header {
+    border: none;
+    margin-bottom: 0;
+  }
+  
+  &:first-child {
+    background: blue;
+    .page-header {
+      margin-top: @line-height-computed*3;
+    }
+  }
 }
 
 /* ==========================================================================
