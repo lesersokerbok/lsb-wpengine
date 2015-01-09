@@ -85,7 +85,7 @@ class LsbBookPage {
       foreach ($lsb_book_tax_objects as &$tax_object) {
         $tax_fields[] = array (
                   'key' => 'lsb_acf_book_page_filter_'.$tax_object->name,
-                  'label' => $tax_object->labels->name,
+                  'label' => $tax_object->label,
                   'name' => 'lsb_book_page_filter_'.$tax_object->name,
                   'prefix' => '',
                   'type' => 'taxonomy',

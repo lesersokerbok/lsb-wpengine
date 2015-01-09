@@ -3,9 +3,6 @@
 class LsbFilterQueryUtil {
   
   public static function tax_query_for_terms_string($terms_string, $taxonomy) {
-    if(!$terms_string)
-      return null;
-    
     return array(
       'taxonomy' => $taxonomy,
       'field'    => 'slug',
@@ -13,16 +10,17 @@ class LsbFilterQueryUtil {
     );
   }
   
-  public static function tax_query_for_term_objects($term_objects, $taxonomy) {
-    
-    if(!$term_objects)
-      return null;
-    
+  public static function tax_query_for_term_objects($term_objects, $taxonomy) {    
     return array(
       'taxonomy' => $taxonomy,
       'field' => 'id',
       'terms' => TaxonomyUtil::get_terms_id_array($term_objects)
     );
+  }
+  
+  public static function filter_string_for_term_objects($term_objects, $taxonomy) {
+    return TaxonomyUtil::get_tax_label($taxonomy).
+      ": ".implode(TaxonomyUtil::get_terms_name_array($term_objects), ', ');
   }
   
   public static function tax_query_for_query_vars() {
@@ -58,6 +56,14 @@ class LsbFilterQueryUtil {
     $tax_query = array_map(array('LsbFilterQueryUtil', 'tax_query_for_term_objects'), $filters, array_keys($filters));
     
     return $tax_query;
+  }
+  
+  public static function filters_string_for_book_page() {
+    $filters = self::filters_for_book_page();
+    $filters_string_array = array_map(array('LsbFilterQueryUtil', 'filter_string_for_term_objects'), $filters, array_keys($filters));
+    
+    return implode($filters_string_array, " | ");
+    
   }
   
 }

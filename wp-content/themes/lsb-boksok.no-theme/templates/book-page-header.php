@@ -33,9 +33,5 @@
       <?php endif; ?>
     </div>
   <?php endif; ?>
-  
-  <?php if(is_user_logged_in()) : ?>
-    
-  <?php endif; ?>
 
 </div>

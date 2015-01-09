@@ -10,7 +10,7 @@
         $queried_object = get_queried_object(); 
         $taxonomy = $queried_object->taxonomy;
         $term_slug = $queried_object->slug;
-        $taxonomy_rewrite_slug = TaxonomyUtil::get_rewrite_slug_for_taxonomy($taxonomy);
+        $taxonomy_rewrite_slug = TaxonomyUtil::get_tax_rewrite_slug($taxonomy);
       ?>
       <input type="hidden" value="<?= $term_slug; ?>" name="<?= $taxonomy_rewrite_slug ?>" />
     
@@ -23,7 +23,7 @@
         <?php $term_objects = get_field('lsb_book_page_filter_'.$tax_object->name) ?>
         <?php if ($term_objects) : ?>
         <input type="hidden"
-          value="<?= TaxonomyUtil::get_terms_string($term_objects) ?>"
+          value="<?= implode(TaxonomyUtil::get_terms_slug_array($term_objects), ',') ?>"
           name="<?= $tax_object->rewrite['slug'] ?>"
         />
       <?php endif; ?>
