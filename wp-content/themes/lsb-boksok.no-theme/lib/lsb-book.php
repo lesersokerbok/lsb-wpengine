@@ -357,7 +357,7 @@ class LsbBook {
         'label' => __('Målgruppe', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
-        'rewrite' => array( 'slug' => _x('leser', 'lsb_tax_lsb_audience slug', 'lsb_boksok') ),
+        'rewrite' => array( 'slug' => _x('malgruppe', 'lsb_tax_lsb_audience slug', 'lsb_boksok') ),
         'show_admin_column' => false,
         'labels' => array (
           'search_items' => __('Målgruppe', 'lsb_boksok'),

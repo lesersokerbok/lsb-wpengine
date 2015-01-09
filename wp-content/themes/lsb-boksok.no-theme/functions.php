@@ -11,12 +11,12 @@
  */
 $roots_includes = array(
   'lib/lsb-book.php',
-  'lib/lsb-book-section.php',
-  'lib/lsb-frontpage-filters.php',
+  'lib/lsb-book-page.php',
   'lib/lsb-feed-util.php',
   'lib/lsb-boksok-options.php',
   'lib/taxonomy-util.php',
-  'lib/lsb-query-util.php',
+  'lib/lsb-filter-query-util.php',
+  'lib/lsb-search-util.php'
 );
 
 foreach ($roots_includes as $file) {
@@ -29,13 +29,21 @@ foreach ($roots_includes as $file) {
 unset($file, $filepath);
 
 // Initialize custom functionality
-new LsbBook();
-new LsbBookSection();
+new LsbBook();  
 new LsbFeedUtil();
 new LsbBoksokOptions();
-new LsbFrontpageFilters();
+new LsbBookPage();
 
 add_filter( 'query_vars', function ($query_vars) {
-  $query_vars[] = 'lsb_tax_lsb_cat';
+  $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
+  foreach ($lsb_book_tax_objects as &$tax_object) {
+    $query_vars[] = $tax_object->rewrite['slug'];
+  }
   return $query_vars;
 });
+
+function searchwp_include_only_search_vars( $ids, $engine, $terms ) {
+  return LsbSearchUtil::filter_search();;
+}
+ 
+add_filter( 'searchwp_include', 'searchwp_include_only_search_vars', 10, 3 );
