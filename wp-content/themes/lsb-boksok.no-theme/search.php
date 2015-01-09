@@ -2,19 +2,19 @@
 
 <?php 
 
-$lsb_cat_query_var = get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_lsb_cat'));
+$lsb_cat_query_var = get_query_var(TaxonomyUtil::get_tax_rewrite_slug('lsb_tax_lsb_cat'));
 $lsb_cat_query_var_array = explode(',', $lsb_cat_query_var);
 if(!$lsb_cat_query_var)
    $lsb_cat_query_var_array = array();
 $lsb_cat_names = TaxonomyUtil::get_names_from_slugs($lsb_cat_query_var_array, 'lsb_tax_lsb_cat');
 
-$age_query_var = get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_age'));
+$age_query_var = get_query_var(TaxonomyUtil::get_tax_rewrite_slug('lsb_tax_age'));
 $age_query_var_array = explode(',', $age_query_var);
 if(!$age_query_var)
    $age_query_var_array = array();
 $age_names = TaxonomyUtil::get_names_from_slugs($age_query_var_array, 'lsb_tax_age');
 
-$audience_query_var = get_query_var(TaxonomyUtil::get_rewrite_slug_for_taxonomy('lsb_tax_audience'));
+$audience_query_var = get_query_var(TaxonomyUtil::get_tax_rewrite_slug('lsb_tax_audience'));
 $audience_query_var_array = explode(',', $audience_query_var);
 if(!$audience_query_var)
    $audience_query_var_array = array();

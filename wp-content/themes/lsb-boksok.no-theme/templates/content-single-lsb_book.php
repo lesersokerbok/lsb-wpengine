@@ -80,7 +80,7 @@
 
         <div class="panel panel-default">
           <div class="panel-body">
-            <?php the_terms($post->ID, 'lsb_tax_genre', __('Hovedkategori: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_lsb_cat', __('Hovedkategori: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'lsb_tax_age', __('Alder: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'lsb_tax_audience', __('Tilpasset: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'lsb_tax_genre', __('Sjanger: ', 'lsb_boksok'), ', ', '<br/>') ?>
