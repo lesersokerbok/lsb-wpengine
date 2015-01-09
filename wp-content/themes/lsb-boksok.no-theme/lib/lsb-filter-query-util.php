@@ -40,16 +40,22 @@ class LsbFilterQueryUtil {
     return $tax_query;
   }
   
-  public static function tax_query_for_book_page() {
-    
-    $tax_query = array();
+  public static function filters_for_book_page() {
+    $filters = array();
     
     $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
     foreach ($lsb_book_tax_objects as &$tax_object) {
       $term_objects = get_field('lsb_book_page_filter_'.$tax_object->name);
       if($term_objects)
-        $tax_query[] = self::tax_query_for_term_objects($term_objects, $tax_object->name);
+        $filters[$tax_object->name] = $term_objects;
     }
+    
+    return $filters;
+  }
+  
+  public static function tax_query_for_book_page() {
+    $filters = self::filters_for_book_page();
+    $tax_query = array_map(array('LsbFilterQueryUtil', 'tax_query_for_term_objects'), $filters, array_keys($filters));
     
     return $tax_query;
   }
