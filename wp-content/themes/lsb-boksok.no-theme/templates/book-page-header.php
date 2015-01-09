@@ -33,5 +33,9 @@
       <?php endif; ?>
     </div>
   <?php endif; ?>
+  
+  <?php if(is_user_logged_in()) : ?>
+    <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
+  <?php endif; ?>
 
 </div>
