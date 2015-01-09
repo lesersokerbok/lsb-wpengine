@@ -1,4 +1,4 @@
-<?php $books = LsbBookPage::get_books() ?>
+<?php $books = LsbFilterQueryUtil::get_books_for_book_shelf() ?>
 
 <?php if ( $books->have_posts() ) : ?>
 

@@ -63,7 +63,75 @@ class LsbFilterQueryUtil {
     $filters_string_array = array_map(array('LsbFilterQueryUtil', 'filter_string_for_term_objects'), $filters, array_keys($filters));
     
     return implode($filters_string_array, " | ");
+  }
+  
+  public static function add_order_to_args(&$args, $default = 'date') {
+    $args['order'] = get_field('lsb_book_page_filter_sort_order');
     
+    switch(get_field('lsb_book_page_filter_sort_orderby')) {
+      case 'added':
+        $args['orderby'] = 'date';
+      break;
+      case 'published':
+        $args['meta_key'] = 'lsb_published_year';
+        $args['orderby'] = 'meta_value_num';
+        $args['meta_query'] = array(
+          array(
+            'key' => 'lsb_published_year'
+          )
+        );
+      break;
+      default:
+        $args['orderby'] = $default;
+      break;
+    }
+  }
+  
+  public static function get_books_args() {
+    return array(
+      'post_type' => 'lsb_book',
+      'tax_query' => self::tax_query_for_book_page(),
+    );
+  }
+  
+  public static function get_books_for_book_page($paged = 0) {
+    
+    $args = self::get_books_args();
+    
+    $args['paged'] = $paged;
+    
+    self::add_order_to_args($args);
+    
+    if(!count($args['tax_query']))
+      return new WP_Query();
+
+    $books = new WP_Query($args);
+    return $books;
+  }
+  
+  public static function get_books_for_book_shelf() {
+    
+    $args = self::get_books_args();
+    
+    $args['posts_per_page'] = 20;
+    $args['update_post_term_cache'] = false;
+    $args['update_post_meta_cache'] = false;
+    $args['no_found_rows'] = true;
+    
+    self::add_order_to_args($args, 'rand');
+    
+    if(!count($args['tax_query']))
+      return new WP_Query();
+    
+    $hashed = get_the_permalink()."-".get_the_modified_time('G');
+    $hashed = hash('md5', $hashed);
+
+    if ( false == ( $books = get_transient( $hashed ) ) ) {
+      $books = new WP_Query($args);
+      set_transient($hashed, $books, 3600);
+    }
+
+    return $books;
   }
   
 }

@@ -80,6 +80,46 @@ class LsbBookPage {
     if( function_exists('register_field_group') )
     {
       $tax_fields = array();
+      $tax_fields[] = array (
+        'key' => 'lsb_acf_book_page_filter_sort_orderby',
+        'label' => __('Sorteringskriterium', 'lsb_boksok'),
+        'name' => 'lsb_book_page_filter_sort_orderby',
+        'prefix' => '',
+        'type' => 'radio',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'column_width' => '',
+        'choices' => array (
+          'none' => 'Tilfeldig når bokhylle, Lagt til når side',
+          'published' => 'Publisert',
+          'added' => 'Lagt til',
+        ),
+        'other_choice' => 0,
+        'save_other_choice' => 0,
+        'default_value' => 'none',
+        'layout' => 'horizontal',
+      );
+        
+      $tax_fields[] = array (
+        'key' => 'lsb_acf_book_page_filter_sort_order',
+        'label' => __('Sorteringsrekkefølge', 'lsb_boksok'),
+        'name' => 'lsb_book_page_filter_sort_order',
+        'prefix' => '',
+        'type' => 'radio',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'column_width' => '',
+        'choices' => array (
+            'DESC' => _x('Synkende', 'Section sort order descending', 'lsb_boksok'),
+            'ASC' => _x('Stigende', 'Section sort order ascending', 'lsb_boksok'),
+          ),
+        'other_choice' => 0,
+        'save_other_choice' => 0,
+        'default_value' => 'DESC',
+        'layout' => 'horizontal',
+      );
       
       $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
       foreach ($lsb_book_tax_objects as &$tax_object) {
@@ -129,38 +169,5 @@ class LsbBookPage {
           ),
       ));
     }
-  }
-  
-  public static function get_books($paged = -1) {
-    
-    $args = array(
-      'post_type' => 'lsb_book',
-      'update_post_term_cache' => false,
-      'update_post_meta_cache' => false,
-//      'no_found_rows' => true,
-      'post_status'=>'publish',
-      'tax_query' => LsbFilterQueryUtil::tax_query_for_book_page(),
-    );
-    
-    if($paged >= 0) {
-      $args['paged'] = $paged;
-    } else {
-      $args['orderby'] = 'rand'; 
-      $args['posts_per_page'] = 20;
-    }
-    
-    if(!count($args['tax_query']))
-      return new WP_Query();
-    
-    
-//    $hashed = $section . '_' . implode($terms);
-//    $hashed = hash('md5', $hashed);
-
-//    if ( false == ( $books = get_transient( $hashed ) ) ) {
-      $books = new WP_Query($args);
-//      set_transient($hashed, $books, 3600);
-//    }
-
-    return $books;
   }
 }
