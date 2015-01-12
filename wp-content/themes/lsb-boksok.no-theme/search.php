@@ -2,21 +2,27 @@
 
 <?php get_template_part('templates/page', 'header'); ?>
 
-<?php if($alert_text) : ?>
-  <p class="alert alert-info">
-    <?php echo $alert_text; ?>
+<?php if(!have_posts() && $alert_text) : ?>
+  <p class="alert alert-warning">
+    <?php _e('Beklager, ingen søkeresultater', 'lsb'); ?> <?php echo $alert_text; ?>
     Søk etter "<?php echo get_search_query()?>"
     <a href="/?s=<?php echo get_search_query()?>">
        i alle bøker.
     </a>
   </p>
-<?php endif; ?>
-
-<?php if (!have_posts()) : ?>
+<?php elseif (!have_posts()) : ?>
   <div class="alert alert-warning">
-    <?php _e('Beklager, ingen søkeresultater.', 'lsb'); ?>
+    <?php _e('Beklager, ingen søkeresultater', 'lsb'); ?>.
   </div>
   <?php get_search_form(); ?>
+<?php elseif($alert_text) : ?>
+  <p class="alert alert-info">
+    <?php _e('Viser kun søkeresultater', 'lsb'); ?> <?php echo $alert_text; ?>
+    Søk etter "<?php echo get_search_query()?>"
+    <a href="/?s=<?php echo get_search_query()?>">
+       i alle bøker.
+    </a>
+  </p>
 <?php endif; ?>
 
 <section class="loop">
