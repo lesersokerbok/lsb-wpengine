@@ -4,7 +4,14 @@
 node_modules
 .htaccess
 *.log
-wp-content/plugins
+
+.travis/deploy_key
+.travis/deploy_key.pub
+
+!wp-content/plugins/
+wp-content/plugins/*
+!wp-content/plugins/soil
+
 wp-content/languages/plugins
 wp-content/languages/*.*
 

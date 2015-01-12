@@ -1,0 +1,66 @@
+<?php $books = LsbFilterQueryUtil::get_books_for_book_shelf() ?>
+
+<?php if ( $books->have_posts() ) : ?>
+
+  <div class="book-shelf">
+
+    <div class="page-header">
+
+    <h2>
+      <a href="<?php the_permalink() ?>">
+        <?php the_title(); ?>
+      </a>
+
+      <?php if ( get_field('lsb_book_page_sub_title') ) : ?>
+        <small>| <?php the_field('lsb_book_page_sub_title'); ?></small>
+      <?php endif; ?>
+
+      <?php if ( get_field('lsb_book_page_description') ) : ?>
+        <small class="smaller">|
+          <button type="button" class="btn-link">
+            <?php echo __('Mer info', 'lsb_boksok'); ?>
+          </button>
+        </small>
+      <?php endif; ?>
+    </h2>
+
+    <?php if ( get_field('lsb_book_page_description') ) : ?>
+      <div class="alert alert-info description sr-only">
+        <button type="button" class="close">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
+        </button>
+        <?php the_field('lsb_book_page_description'); ?>
+        <p>
+          <a href="<?php the_permalink() ?>">
+            <?php echo __('Gå til alle bøker i denne bokhyllen ', 'lsb_boksok'); ?>
+          </a>
+        </p>
+      </div>
+    <?php endif; ?>
+      
+    <span class="filter-info hidden">
+      <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
+    </span>
+
+  </div>
+    
+    <?php if($books): ?>  
+      <div class="book-shelf-body">
+
+          <span aria-hidden="true" class="book-shelf-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
+          <span aria-hidden="true" class="book-shelf-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
+
+          <div class="book-shelf-scroll">
+            <?php while ( $books->have_posts() ) : $books->the_post(); ?>
+              <?php get_template_part('templates/content-summary', 'lsb_book'); ?>
+            <?php endwhile; ?>
+          </div>
+
+        </div>
+    <?php endif; ?>
+
+  </div>
+<?php endif; ?>
+
+<?php wp_reset_query(); ?>

@@ -72,7 +72,7 @@
 
         <?php if ( get_field('lsb_supported')): ?>
           <div class="panel panel-default">
-            <div class="panel-body lsb-supported <?php TaxonomyUtil::the_terms_slug($post->ID, 'lsb_tax_customization'); ?>">
+            <div class="panel-body lsb-supported <?php the_field('lsb_support_cat') ?>">
               <?php echo __('Boken er støttet av Leser søker bok', 'lsb_boksok'); ?>
             </div>
           </div>
@@ -80,11 +80,22 @@
 
         <div class="panel panel-default">
           <div class="panel-body">
+            <?php the_terms($post->ID, 'lsb_tax_lsb_cat', __('Hovedkategori: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_age', __('Alder: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_audience', __('Tilpasset: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'lsb_tax_genre', __('Sjanger: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'tax_lsb_language', __('Språk: ', 'lsb_boksok'), ', ', '<br/>') ?>
-            <?php the_terms($post->ID, 'lsb_tax_age', __('Passer for: ', 'lsb_boksok'), ', ', '<br/>') ?>
-            <?php the_terms($post->ID, 'lsb_tax_customization', __('Tilpasning: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'lsb_tax_topic', __('Tema: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            
+            <?php if(has_term('', 'lsb_tax_series') || has_term('', 'lsb_tax_list')): ?>
+              En del av: 
+              <?php if(has_term('', 'lsb_tax_series')): ?>
+                <?php the_terms($post->ID, 'lsb_tax_list', '', ', ', ',') ?>
+              <?php else: ?>
+                <?php the_terms($post->ID, 'lsb_tax_list', '', ', ', '<br/>') ?>
+              <?php endif; ?>
+              <?php the_terms($post->ID, 'lsb_tax_series', '', ', ', '<br/>') ?>
+            <?php endif; ?>
 
             <?php if( get_field( "lsb_pages" ) ): ?>
               <?php echo __('Antall sider: ', 'lsb_boksok'); ?>

@@ -38,37 +38,37 @@ var Roots = {
             width = $bookSectionScroll.width();
 
         if(scrollLeftPos > 0) {
-          $bookSectionScroll.siblings('.book-section-left-scroll').show();
+          $bookSectionScroll.siblings('.book-shelf-left-scroll').show();
         } else {
-          $bookSectionScroll.siblings('.book-section-left-scroll').hide();
+          $bookSectionScroll.siblings('.book-shelf-left-scroll').hide();
         }
 
         if(scrollWidth - scrollLeftPos > width) {
-          $bookSectionScroll.siblings('.book-section-right-scroll').show();
+          $bookSectionScroll.siblings('.book-shelf-right-scroll').show();
         } else {
-          $bookSectionScroll.siblings('.book-section-right-scroll').hide();
+          $bookSectionScroll.siblings('.book-shelf-right-scroll').hide();
         }
 
       };
 
-      $('.book-section-scroll').each(function() {
+      $('.book-shelf-scroll').each(function() {
         toggleScrollButtons($(this));
       });
 
-      $('.book-section-scroll').scroll(function() {
+      $('.book-shelf-scroll').scroll(function() {
         toggleScrollButtons($(this));
       });
 
       // Respond to left scroll button click
-      $('.book-section .book-section-left-scroll').click(function () {
-        $(this).siblings('.book-section-scroll').animate({
+      $('.book-shelf .book-shelf-left-scroll').click(function () {
+        $(this).siblings('.book-shelf-scroll').animate({
           scrollLeft: "-=500px"
         }, 500);
       });
 
       // Respond to right scroll button click
-      $('.book-section .book-section-right-scroll').click(function () {
-        $(this).siblings('.book-section-scroll').animate({
+      $('.book-shelf .book-shelf-right-scroll').click(function () {
+        $(this).siblings('.book-shelf-scroll').animate({
           scrollLeft: "+=500px"
         }, 500);
       });

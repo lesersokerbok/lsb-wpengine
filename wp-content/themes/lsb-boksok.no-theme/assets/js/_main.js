@@ -27,28 +27,28 @@ var Roots = {
       // Google Analytics Events
 
       // Book section header link click
-      $('.book-section-header a').click(function (event) {
-        ga('send', 'event', 'BookSectionHeader', 'click', event.target.href);
+      $('.book-shelf-header a').click(function (event) {
+        ga('send', 'event', 'BookShelfHeader', 'click', event.target.href);
       });
 
       // Book section book cover image click
-      $('.book-section-scroll article .entry-image a').click(function (event) {
-        ga('send', 'event', 'BookSectionBookImage', 'click', event.target.href);
+      $('.book-shelf-scroll article .entry-image a').click(function (event) {
+        ga('send', 'event', 'BookShelfBookImage', 'click', event.target.href);
       });
 
       // Book section book title click
-      $('.book-section-scroll article header .entry-title a').click(function (event) {
-        ga('send', 'event', 'BookSectionBookTitle', 'click', event.target.href);
+      $('.book-shelf-scroll article header .entry-title a').click(function (event) {
+        ga('send', 'event', 'BookShelfBookTitle', 'click', event.target.href);
       });
 
       // Book section book meta click
-      $('.book-section-scroll article header .meta a').click(function (event) {
-        ga('send', 'event', 'BookSectionBookMeta', 'click', event.target.href);
+      $('.book-shelf-scroll article header .meta a').click(function (event) {
+        ga('send', 'event', 'BookShelfBookMeta', 'click', event.target.href);
       });
 
       // Book section scroll
-      $('.book-section-scroll').one("scroll", function () {
-        ga('send', 'event', 'BookSection', 'scroll', $(this).parent().siblings().first().children("a").first().html());
+      $('.book-shelf-scroll').one("scroll", function () {
+        ga('send', 'event', 'BookShelf', 'scroll', $(this).parent().siblings().first().children("a").first().html());
       });
 
       // Single book meta click
@@ -64,6 +64,13 @@ var Roots = {
       // Pagination clicks on book search results pages
       $('.search-results .pagination a').click(function (event) {
         ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
+      });
+
+      // Facet interaction
+      $(document).on('facetwp-loaded', function() {
+        if (FWP.loaded) {
+          ga('send', 'pageview', window.location.pathname + window.location.hash);
+        }
       });
     }
   },

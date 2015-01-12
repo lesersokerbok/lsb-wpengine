@@ -24,14 +24,14 @@
       </div>
     <?php endif; ?>
 
-    <div class="book-section">
+    <div class="book-shelf">
 
-      <div class="book-section-body">
+      <div class="book-shelf-body">
 
-        <span aria-hidden="true" class="book-section-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
-        <span aria-hidden="true" class="book-section-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
+        <span aria-hidden="true" class="book-shelf-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
+        <span aria-hidden="true" class="book-shelf-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
 
-        <div class="book-section-scroll">
+        <div class="book-shelf-scroll">
           <?php
 
           foreach ( $rss->get_items() as $item ) :

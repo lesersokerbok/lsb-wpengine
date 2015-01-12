@@ -23,18 +23,35 @@ body {
 }
 
 .page-header {
-  margin-bottom: @line-height-computed*1.5
+  margin-bottom: @line-height-computed*1.5;
+}
+
+.book-shelf {
+  .page-header {
+    border: none;
+    margin-top: @line-height-computed;
+    margin-bottom: 0;
+  }
+  
+  &:first-child {
+    .page-header {
+      margin-top: @line-height-computed*3;
+    }
+  }
 }
 
 /* ==========================================================================
    Content
    ========================================================================== */
 
+.alert {
+  margin: @line-height-computed*1.5 0;
+}
+
 .book-search {
 
   form {
-    margin-bottom: @navbar-margin-bottom;
-    margin-top: @navbar-margin-bottom;
+    margin: @line-height-computed*1.5 0;
   }
 
   .filter {
@@ -76,7 +93,7 @@ footer.page-footer {
    Archive
    ========================================================================== */
 
-.archive, .search {
+
   .loop {
 
     .clearfix();
@@ -97,7 +114,7 @@ footer.page-footer {
       }
     }
   }
-}
+
 
 /* ==========================================================================
    Book thumbnail curled corner
