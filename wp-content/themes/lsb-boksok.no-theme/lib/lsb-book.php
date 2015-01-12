@@ -3,17 +3,17 @@
 class LsbBook {
   public function __construct() {
     add_action('init', array($this, 'register_post_type_lsb_book'));
+    add_action('init', array($this, 'register_tax_lsb_cat'));
+    add_action('init', array($this, 'register_tax_lsb_audience'));
+    add_action('init', array($this, 'register_tax_lsb_age'));
     add_action('init', array($this, 'register_tax_lsb_author'));
     add_action('init', array($this, 'register_tax_lsb_illustrator'));
     add_action('init', array($this, 'register_tax_lsb_translator'));
     add_action('init', array($this, 'register_tax_lsb_publisher'));
     add_action('init', array($this, 'register_tax_lsb_genre'));
-    add_action('init', array($this, 'register_tax_lsb_age'));
     add_action('init', array($this, 'register_tax_lsb_customization'));
     add_action('init', array($this, 'register_tax_lsb_topic'));
     add_action('init', array($this, 'register_tax_lsb_language'));
-    add_action('init', array($this, 'register_tax_lsb_cat'));
-    add_action('init', array($this, 'register_tax_lsb_audience'));
     add_action('init', array($this, 'register_lsb_tax_list'));
     add_action('init', array($this, 'register_lsb_tax_series'));
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
@@ -66,7 +66,7 @@ class LsbBook {
       	'show_ui' => true,
       	'query_var' => true,
       	'rewrite' => array( 'slug' => _x('forfatter', 'lsb_tax_author slug', 'lsb_boksok') ),
-      	'show_admin_column' => true,
+      	'show_admin_column' => false,
       	'labels' => array (
           'search_items' => __('Forfattere', 'lsb_boksok'),
           'popular_items' => __('Populære', 'lsb_boksok'),
@@ -328,7 +328,7 @@ class LsbBook {
         'show_ui' => true,
         'query_var' => true,
         'rewrite' => array( 'slug' => _x('hovedkategori', 'lsb_tax_lsb_cat slug', 'lsb_boksok') ),
-        'show_admin_column' => false,
+        'show_admin_column' => true,
         'labels' => array (
           'search_items' => __('Hovedkategori', 'lsb_boksok'),
           'popular_items' => __('Populære', 'lsb_boksok'),
