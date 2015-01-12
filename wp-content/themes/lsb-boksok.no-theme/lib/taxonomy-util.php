@@ -26,6 +26,11 @@ class TaxonomyUtil {
     }
   }
   
+  public static function get_term_name_from_slug($term_slug, $taxonomy) {
+    $term_object = get_term_by('slug', $term_slug, $taxonomy);
+    return self::get_term_name($term_object);
+  }
+  
   public static function get_terms_slug_array($term_objects) {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_slug'), $term_objects);
@@ -42,6 +47,14 @@ class TaxonomyUtil {
     }
   }
   
+  public static function get_terms_name_array_from_slugs_array($slugs_array, $taxonomy) {
+    if ($slugs_array && is_array($slugs_array)) {
+      return array_map(array('TaxonomyUtil', 'get_term_name_from_slug'), $slugs_array, array_fill(0,count($slugs_array),$taxonomy));
+    } else {
+      return null;
+    }
+  }
+  
   public static function get_terms_id_array($term_objects) {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_id'), $term_objects);
@@ -50,13 +63,16 @@ class TaxonomyUtil {
     }
   }
   
-  public static function get_tax_rewrite_slug($taxonomy) {
-    $tax_object = get_taxonomy( $taxonomy );
-    
-    if($tax_object)
+  public static function get_tax_object_rewrite_slug($tax_object) {
+     if($tax_object)
       return $tax_object->rewrite['slug'];
     else
       return null;
+  }
+  
+  public static function get_tax_rewrite_slug($taxonomy) {
+    $tax_object = get_taxonomy( $taxonomy );
+    return self::get_tax_object_rewrite_slug($tax_object);
   }
   
   public static function get_tax_label($taxonomy) {
