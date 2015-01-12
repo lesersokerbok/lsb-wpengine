@@ -37,11 +37,11 @@ class LsbSearchUtil {
       }
     }
     
-    $alert_text = "Viser kun bøker ";
+    $alert_text = "Viser kun resultater ";
 
     if($tax_names_array_dict['lsb_tax_lsb_cat']) {
       $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_lsb_cat'], ",", "og", true);
-      $alert_text = $alert_text."i ".$names_string;
+      $alert_text = $alert_text."fra ".$names_string;
     }
 
     if($tax_names_array_dict['lsb_tax_age'] || $tax_names_array_dict['lsb_tax_audience']) {
@@ -95,6 +95,9 @@ class LsbSearchUtil {
       $alert_text = $alert_text." ".self::format_string_array($more_filters_text_array, ";", "og", false);
       
     $alert_text = $alert_text.".";
+    
+    if($alert_text === "Viser kun resultater .")
+      return null;
     
     return $alert_text;
   }

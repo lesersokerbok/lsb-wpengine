@@ -2,12 +2,7 @@
 
 <?php get_template_part('templates/page', 'header'); ?>
 
-<?php if (!have_posts()) : ?>
-  <div class="alert alert-warning">
-    <?php _e('Beklager, ingen søkeresultater.', 'lsb'); ?>
-  </div>
-  <?php get_search_form(); ?>
-<?php elseif($alert_text) : ?>
+<?php if($alert_text) : ?>
   <p class="alert alert-info">
     <?php echo $alert_text; ?>
     Søk etter "<?php echo get_search_query()?>"
@@ -15,6 +10,13 @@
        i alle bøker.
     </a>
   </p>
+<?php endif; ?>
+
+<?php if (!have_posts()) : ?>
+  <div class="alert alert-warning">
+    <?php _e('Beklager, ingen søkeresultater.', 'lsb'); ?>
+  </div>
+  <?php get_search_form(); ?>
 <?php endif; ?>
 
 <section class="loop">
