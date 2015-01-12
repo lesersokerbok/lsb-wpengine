@@ -2,23 +2,23 @@
 
 class LsbSearchUtil {
   
-  public static function format_names($names, $binding_word, $capitalize) {
-    $formatted_names = "";
-    $count = count($names);
+  public static function format_string_array($string_array, $delimiter, $binding_word, $capitalize) {
+    $formatted_string = "";
+    $count = count($string_array);
     for ($i = 0; $i < $count; $i++) {
-      $name = $names[$i];
+      $string = $string_array[$i];
       if($capitalize)
-        $name = ucfirst($name);
+        $string = ucfirst($string);
       
       if($i == $count-1)
-        $formatted_names = $formatted_names.$name;
+        $formatted_string = $formatted_string.$string;
       elseif ($i == $count-2)
-        $formatted_names = $formatted_names.$name." ".$binding_word." ";
+        $formatted_string = $formatted_string.$string." ".$binding_word." ";
       else
-        $formatted_names = $formatted_names.$name.", ";
+        $formatted_string = $formatted_string.$string."".$delimiter." ";
     }
     
-    return $formatted_names;
+    return $formatted_string;
   }
   
   public static function alert_text() {
@@ -37,23 +37,64 @@ class LsbSearchUtil {
       }
     }
     
-    $alert_text = null;
-    
-    if($tax_names_array_dict['lsb_tax_lsb_cat'] || $tax_names_array_dict['lsb_tax_age'] || $tax_names_array_dict['lsb_tax_audience']) {
-      $alert_text = "Viser kun resultater ";
-    
-      if($tax_names_array_dict['lsb_tax_lsb_cat']) {
-        $names_string = self::format_names($tax_names_array_dict['lsb_tax_lsb_cat'], "og", true);
-        $alert_text = $alert_text."i ".$names_string;
-      }
+    $alert_text = "Viser kun bøker ";
 
-      if($tax_names_array_dict['lsb_tax_age'] || $tax_names_array_dict['lsb_tax_audience']) {
-        $names_string = self::format_names(array_merge($tax_names_array_dict['lsb_tax_age'], $tax_names_array_dict['lsb_tax_audience']), "eller", false);
-        $alert_text = $alert_text." som passer for ".$names_string;
-      }
-
-      $alert_text = $alert_text.".";
+    if($tax_names_array_dict['lsb_tax_lsb_cat']) {
+      $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_lsb_cat'], ",", "og", true);
+      $alert_text = $alert_text."i ".$names_string;
     }
+
+    if($tax_names_array_dict['lsb_tax_age'] || $tax_names_array_dict['lsb_tax_audience']) {
+      $names_string = self::format_string_array(array_merge($tax_names_array_dict['lsb_tax_age'], $tax_names_array_dict['lsb_tax_audience']), ",", "eller", false);
+      $alert_text = $alert_text." som passer for ".$names_string;
+    }
+    
+    $more_filters_text_array = array();
+
+    if($tax_names_array_dict['lsb_tax_author']) {
+      $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_author'], ",", "eller", false);
+      $more_filters_text_array[] = "skrevet av ".$names_string;
+    }
+
+    if($tax_names_array_dict['lsb_tax_illustrator']) {
+      $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_illustrator'], ",", "eller", false);
+      $more_filters_text_array[] = "illusterert av ".$names_string;
+    }
+    
+    if($tax_names_array_dict['lsb_tax_translator']) {
+      $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_translator'], ",", "eller", false);
+      $more_filters_text_array[] = "oversatt av ".$names_string;
+    }
+
+    if($tax_names_array_dict['lsb_tax_publisher']) {
+      $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_publisher'], ",", "eller", false);
+      $more_filters_text_array[] = "gitt ut av ".$names_string;
+    }
+    
+    if($tax_names_array_dict['lsb_tax_genre']) {
+      $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_genre'], ",", "eller", false);
+      $more_filters_text_array[] = "med sjanger ".$names_string;
+    }
+    
+    if($tax_names_array_dict['lsb_tax_customization'] || $tax_names_array_dict['lsb_tax_topic']) {
+      $names_string = self::format_string_array(array_merge($tax_names_array_dict['lsb_tax_customization'], $tax_names_array_dict['lsb_tax_topic']), ",", "eller", false);
+      $more_filters_text_array[] = "merket med ".$names_string;
+    }
+    
+    if($tax_names_array_dict['lsb_tax_language']) {
+      $names_string = self::format_string_array($tax_names_array_dict['lsb_tax_language'], ",", "eller", false);
+      $more_filters_text_array[] = "skrevet på ".$names_string;
+    }
+    
+    if($tax_names_array_dict['lsb_tax_list'] || $tax_names_array_dict['lsb_tax_series']) {
+      $names_string = self::format_string_array(array_merge($tax_names_array_dict['lsb_tax_list'], $tax_names_array_dict['lsb_tax_series']), ",", "eller", false);
+      $more_filters_text_array[] = "som er en del av ".$names_string;
+    }
+
+    if(count($more_filters_text_array) > 0)
+      $alert_text = $alert_text." ".self::format_string_array($more_filters_text_array, ";", "og", false);
+      
+    $alert_text = $alert_text.".";
     
     return $alert_text;
   }
