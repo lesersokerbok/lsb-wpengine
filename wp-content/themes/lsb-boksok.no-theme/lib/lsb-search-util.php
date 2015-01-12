@@ -128,6 +128,12 @@ class LsbSearchUtil {
 
     $ids = get_posts( $args );
     
+    if(count($ids) == 0) {
+      global $searchwp_filter_no_results;
+      $searchwp_filter_no_results = true;
+    }
+      
+    
     return $ids;
   }
 

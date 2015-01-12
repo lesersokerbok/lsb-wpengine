@@ -49,7 +49,7 @@ function searchwp_activate_menu( $classes, $item ) {
 add_filter('nav_menu_css_class', 'searchwp_activate_menu', 100, 2);
 
 function searchwp_include_only_search_vars( $ids, $engine, $terms ) {
-  return LsbSearchUtil::filter_search();;
+  return LsbSearchUtil::filter_search();
 }
  
 add_filter( 'searchwp_include', 'searchwp_include_only_search_vars', 10, 3 );
