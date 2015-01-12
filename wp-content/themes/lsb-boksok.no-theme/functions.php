@@ -42,6 +42,12 @@ add_filter( 'query_vars', function ($query_vars) {
   return $query_vars;
 });
 
+function searchwp_activate_menu( $classes, $item ) {
+  return LsbSearchUtil::activate_menu($classes, $item);
+}
+
+add_filter('nav_menu_css_class', 'searchwp_activate_menu', 100, 2);
+
 function searchwp_include_only_search_vars( $ids, $engine, $terms ) {
   return LsbSearchUtil::filter_search();;
 }
