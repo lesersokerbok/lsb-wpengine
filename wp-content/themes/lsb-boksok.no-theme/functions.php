@@ -37,13 +37,19 @@ new LsbBookPage();
 add_filter( 'query_vars', function ($query_vars) {
   $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
   foreach ($lsb_book_tax_objects as &$tax_object) {
-    $query_vars[] = $tax_object->rewrite['slug'];
+    $query_vars[] = TaxonomyUtil::get_tax_object_rewrite_slug($tax_object);
   }
   return $query_vars;
 });
 
+function searchwp_activate_menu( $classes, $item ) {
+  return LsbSearchUtil::activate_menu($classes, $item);
+}
+
+add_filter('nav_menu_css_class', 'searchwp_activate_menu', 100, 2);
+
 function searchwp_include_only_search_vars( $ids, $engine, $terms ) {
-  return LsbSearchUtil::filter_search();;
+  return LsbSearchUtil::filter_search();
 }
  
 add_filter( 'searchwp_include', 'searchwp_include_only_search_vars', 10, 3 );
