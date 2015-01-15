@@ -382,7 +382,7 @@ class LsbBook {
       array(
         0 => 'lsb_book'
       ),
-      array('hierarchical' => false,
+      array('hierarchical' => true,
         'label' => __('Liste', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
@@ -411,7 +411,7 @@ class LsbBook {
       array(
         0 => 'lsb_book'
       ),
-      array('hierarchical' => false,
+      array('hierarchical' => true,
         'label' => __('Serie', 'lsb_boksok'),
         'show_ui' => true,
         'query_var' => true,
