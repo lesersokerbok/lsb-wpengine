@@ -49,7 +49,7 @@
             <?php elseif (has_post_thumbnail()): ?>
               <div class="thumbnail"><?php the_post_thumbnail('large'); ?></div>
             <?php else: ?>
-              <div class="thumbnail"><div class="missing-cover"></div></div>
+              <div class="thumbnail"><img src="<?php echo get_bloginfo('template_url'); ?>/assets/img/book-cover.jpg"></img></div>
             <?php endif; ?>
             <?php if ( get_field('lsb_look_inside')): ?>
               <a href="<?php the_field('lsb_look_inside'); ?>" class="btn btn-primary btn-block" role="button">
