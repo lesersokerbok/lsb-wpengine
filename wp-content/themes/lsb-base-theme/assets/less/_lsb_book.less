@@ -3,9 +3,9 @@
    ========================================================================== */
 
 .book-shelf {
-  white-space: nowrap;
-
+  
   .book-shelf-body {
+    white-space: nowrap;
     position: relative;
     transform-style: preserve-3d;
 
@@ -47,6 +47,14 @@
         &:last-child {
           padding-right: 0;
         }
+        
+        @media (max-width: @screen-sm-max) {
+          max-width: 180px;
+          
+          a.thumbnail {
+            margin-bottom: 0;
+          }
+        }
       }
     }
 
@@ -63,11 +71,6 @@ article.lsb_book {
     font-size: @font-size-base;
     border-color: @brand-primary;
     border-width: 2px;
-  }
-
-  .thumbnail .missing-cover {
-    background: #f8f8f8;
-    height: 500px;
   }
 
   .lsb-supported {
@@ -114,11 +117,6 @@ article.summary.lsb_book {
     text-align: center;
     width: 100%;
     position: relative;
-
-    .missing-cover {
-      height: 250px;
-      min-width: 200px;
-    }
 
     .lsb-supported {
       background-color: white;

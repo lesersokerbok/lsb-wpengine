@@ -10,7 +10,7 @@
       <?php if ( has_post_thumbnail()) : ?>
         <?php the_post_thumbnail('medium'); ?></img></a>
       <?php else : ?>
-        <div class="missing-cover"></div>
+        <img class="attachment-medium wp-post-image" src="<?php echo get_bloginfo('template_url'); ?>/assets/img/book-cover.jpg"></img>
       <?php endif; ?>
     </a>
   </div>
