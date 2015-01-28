@@ -32,11 +32,42 @@ body {
     margin-top: @line-height-computed;
     margin-bottom: 0;
   }
-  
+
   &:first-child {
     .page-header {
       margin-top: @line-height-computed*3;
     }
+  }
+}
+
+#menu-hovedkategorier  {
+
+  li {
+    margin-bottom:-5px;
+  }
+
+  li.menu-litt-a-lese a {
+    border-bottom:#91127d 5px solid;
+  }
+
+  li.menu-enkelt-innhold a {
+    border-bottom:#7ab51d 5px solid;
+  }
+
+  li.menu-storskrift a {
+    border-bottom:#fed501 5px solid;
+  }
+
+  li.menu-punktskrift-folebilder a {
+    border-bottom:#f29400 5px solid;
+  }
+
+  li.menu-tegnsprak-nmt a {
+    border-bottom:#d30132 5px solid;
+  }
+
+  li.menu-bliss-piktogram a {
+    border-bottom:#51b4db 5px solid;
   }
 }
 
@@ -103,7 +134,7 @@ footer.page-footer {
     article.summary.lsb_book {
       float: left;
       padding-bottom: @line-height-computed*2;
-      
+
       @media (max-width: (@screen-xs - 1)) {
         padding-bottom: @line-height-computed;
         width: 50%;
@@ -115,7 +146,7 @@ footer.page-footer {
           clear: left;
         }
       }
-      
+
       @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
         width: 33.33%;
         &:nth-of-type(3n) {
@@ -126,7 +157,7 @@ footer.page-footer {
           clear: left;
         }
       }
-      
+
       @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
         width: 25%;
         &:nth-of-type(4n) {
@@ -137,7 +168,7 @@ footer.page-footer {
           clear: left;
         }
       }
-      
+
       @media (min-width: @screen-md-min) {
         width: 20%;
         &:nth-of-type(5n) {
