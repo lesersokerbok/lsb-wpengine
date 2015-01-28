@@ -4,14 +4,14 @@ Template Name: Boksside Template
 */
 ?>
 
-<?php 
+<?php
 
   $args = array(
     'order' => 'ASC',
     'orderby' => 'menu_order',
     'post_parent' => get_the_ID(),
     'post_type' => 'page'
-  ); 
+  );
   $child_pages_query = new WP_Query($args);
 ?>
 
@@ -22,22 +22,10 @@ Template Name: Boksside Template
     <?php if ( get_field('lsb_book_page_sub_title') ) : ?>
       <small>| <?php the_field('lsb_book_page_sub_title'); ?> </small>
     <?php endif; ?>
-
-    <?php if ( get_field('lsb_book_page_description') ) : ?>
-      <small class="smaller">|
-        <button type="button" class="btn-link">
-          <?php echo __('Mer info', 'lsb_boksok'); ?>
-        </button>
-      </small>
-    <?php endif; ?>
   </h1>
 
   <?php if ( get_field('lsb_book_page_description') ) : ?>
-    <div class="alert alert-info description sr-only">
-      <button type="button" class="close">
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
-      </button>
+    <div class="description">
       <?php the_field('lsb_book_page_description'); ?>
     </div>
   <?php endif; ?>

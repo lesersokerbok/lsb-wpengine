@@ -1,15 +1,6 @@
 <div class="page-header">
   <h1>
     <?php echo roots_title(); ?>
-    <?php if ( is_tax() || is_category() || is_tag() ) : ?>
-      <?php if ( category_description() !== '') : ?>
-        <small class="smaller">|
-          <button type="button" class="btn-link">
-            <?php echo __('Mer info', 'lsb_boksok'); ?>
-          </button>
-        </small>
-      <?php endif; ?>
-    <?php endif; ?>
   </h1>
 
   <?php if(is_singular('post')) : ?>
@@ -18,11 +9,13 @@
 
   <?php if ( is_tax() || is_category() || is_tag() ) : ?>
     <?php if ( category_description() !== '') : ?>
-      <div class="alert alert-info description sr-only">
-        <button type="button" class="close">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only"><?php _e('Lukk', 'lsb') ?></span>
-        </button>
+      <?php
+        $class = '';
+        if ( is_tax('lsb_tax_lsb_cat') ):
+          $class = get_query_var( 'lsb_tax_lsb_cat' );
+        endif;
+      ?>
+      <div class="description <?php echo $class; ?>">
         <?php echo category_description(); ?>
       </div>
     <?php endif; ?>
