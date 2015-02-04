@@ -7,9 +7,7 @@
     <div class="page-header">
 
     <h2>
-      <a href="<?php the_permalink() ?>">
-        <?php the_title(); ?>
-      </a>
+      <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
 
       <?php if ( get_field('lsb_book_page_sub_title') ) : ?>
         <small>| <?php the_field('lsb_book_page_sub_title'); ?></small>
