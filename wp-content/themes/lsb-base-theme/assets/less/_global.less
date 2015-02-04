@@ -26,6 +26,13 @@ a.btn {
   text-decoration: none;
 }
 
+.lsb-alert {
+  .alert;
+  margin: @line-height-computed/2 0;
+  border-color: @gray-lighter;
+  border-left-width: @alert-border-radius;
+}
+
 .lsb-vertical-align {
   position: relative;
   top: 50%;
@@ -50,19 +57,6 @@ a.btn {
   color:@link-color;
   font-weight:bold;
   font-size:1.3em;
-}
-
-.page-header {
-  border-bottom:none;
-  padding-bottom:0;
-}
-
-.page-header .description {
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid #eee;
-  border-left-width: 5px;
-  border-radius: 3px;
 }
 
 @media (min-width: @screen-sm) {
