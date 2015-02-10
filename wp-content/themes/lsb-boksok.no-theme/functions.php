@@ -42,14 +42,29 @@ add_filter( 'query_vars', function ($query_vars) {
   return $query_vars;
 });
 
-function searchwp_activate_menu( $classes, $item ) {
-  return LsbSearchUtil::activate_menu($classes, $item);
+function add_book_page_filter_css( $classes) {
+  if(is_page_template( 'template-boksok-book-page.php' )) {
+    $term_objects = get_field('lsb_book_page_filter_lsb_tax_lsb_cat');
+    $term_slugs = TaxonomyUtil::get_terms_slug_array($term_objects);
+    return array_merge($classes, $term_slugs);
+  }
+  
+  return $classes;
 }
 
-add_filter('nav_menu_css_class', 'searchwp_activate_menu', 100, 2);
+function searchwp_activate_cat_menu_item( $classes) {
+  if(is_search()) {
+    var_dump("SEARCH");
+    return LsbSearchUtil::activate_cat_menu_item($classes);
+  }
+  
+  return $classes;
+}
 
-function searchwp_include_only_search_vars( $ids, $engine, $terms ) {
+function searchwp_filter_search( $ids, $engine, $terms ) {
   return LsbSearchUtil::filter_search();
 }
- 
-add_filter( 'searchwp_include', 'searchwp_include_only_search_vars', 10, 3 );
+
+add_filter( 'body_class', 'add_book_page_filter_css', 100, 2);
+add_filter( 'nav_menu_css_class', 'searchwp_activate_cat_menu_item', 100, 2);
+add_filter( 'searchwp_include', 'searchwp_filter_search', 10, 3 );

@@ -15,7 +15,7 @@
     </h2>
 
     <?php if ( get_field('lsb_book_page_description') ) : ?>
-      <div class="description">
+      <div class="lsb-alert description">
         <?php the_field('lsb_book_page_description'); ?>
         <p>
           <a href="<?php the_permalink() ?>">

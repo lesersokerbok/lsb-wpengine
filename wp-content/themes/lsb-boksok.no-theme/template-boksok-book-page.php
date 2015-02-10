@@ -23,18 +23,21 @@ Template Name: Boksside Template
       <small>| <?php the_field('lsb_book_page_sub_title'); ?> </small>
     <?php endif; ?>
   </h1>
-
-  <?php if ( get_field('lsb_book_page_description') ) : ?>
-    <div class="description">
-      <?php the_field('lsb_book_page_description'); ?>
-    </div>
-  <?php endif; ?>
-  <?php if(is_user_logged_in()) : ?>
-    <span class="filter-info hidden">
-      <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
-    </span>
-  <?php endif; ?>
 </div>
+
+<?php if ( get_field('lsb_book_page_description') || is_user_logged_in() ) : ?>
+  <div class="lsb-alert description">
+    <?php the_field('lsb_book_page_description'); ?>
+    <?php if ( is_user_logged_in() ) : ?>
+      <small>
+        <br/>
+        <strong><?php echo __('Filterinstillinger:', 'lsb_boksok'); ?></strong> 
+        <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
+        <strong><?php echo __('- Vises kun for innloggede brukere', 'lsb_boksok'); ?></strong> 
+      </small>
+    <?php endif; ?>
+  </div>
+<?php endif; ?>
 
 <section class="book-search">
   <?php get_search_form(); ?>

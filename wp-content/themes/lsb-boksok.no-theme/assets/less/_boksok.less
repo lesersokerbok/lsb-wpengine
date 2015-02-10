@@ -26,6 +26,10 @@ body {
   margin-bottom: @line-height-computed*1.5;
 }
 
+.book-search {
+  margin: @line-height-computed*1.5 0;
+}
+
 .book-shelf {
   .page-header {
     border: none;
@@ -44,32 +48,46 @@ body {
 Books main categories
 ========================================================================== */
 
-.page-header {
-
-  .description.litt-a-lese {
+.term-litt-a-lese, 
+.page.litt-a-lese {
+  .lsb-alert.description {
     border-left-color: @litt-a-lese;
   }
+} 
 
-  .description.enkelt-innhold {
+.term-enkelt-innhold,
+.page.enkelt-innhold {
+  .lsb-alert.description {
     border-left-color: @enkelt-innhold;
   }
+}
 
-  .description.storskrift {
+.term-storskrift
+.page.storskrift {
+  .lsb-alert.description {
     border-left-color: @storskrift;
   }
+}
 
-  .description.punktskrift-folebilder {
+.term-punktskrift-folebilder
+.page.punktskrift-folebilder {
+  .lsb-alert.description {
     border-left-color: @punktskrift-folebilder;
   }
+}
 
-  .description.tegnsprak-nmt {
+.term-tegnsprak-nmt
+.page.tegnsprak-nmt {
+  .lsb-alert.description {
     border-left-color: @tegnsprak-nmt;
   }
+}
 
-  .description.bliss-piktogram {
+.term-bliss-piktogram,
+.page.bliss-piktogram {
+  .lsb-alert.description {
     border-left-color: @bliss-piktogram;
   }
-
 }
 
 #menu-hovedkategorier  {

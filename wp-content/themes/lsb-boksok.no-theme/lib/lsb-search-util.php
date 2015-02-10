@@ -100,7 +100,7 @@ class LsbSearchUtil {
     return $alert_text;
   }
   
-  public static function activate_menu($classes, $item) {
+  public static function activate_cat_menu_item($classes) {
     
     $classes_string = implode($classes);
     $lsb_cat_slugs_string = get_query_var(TaxonomyUtil::get_tax_rewrite_slug('lsb_tax_lsb_cat'));    
