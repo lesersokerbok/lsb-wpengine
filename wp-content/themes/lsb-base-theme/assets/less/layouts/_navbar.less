@@ -1,45 +1,42 @@
-.navbar {
-  a {
+.navbar-nav {
+  > li > a {
     text-decoration: none;
+    font-weight: bold;
   }
-
-  .navbar-nav {
-    margin-top: 1px;
+  
+  .external a:after {
+    .glyphicon;
+    content: "\e164";
+    font-size: 85%;
+    margin-left: 5px;
   }
+  
+  &.icon-nav {
+    
+    .icon-menu-item {
+      font-size: 140%;
+      color: lighten(@link-color, 46.7%);
+      float: left;
+      
+      &:hover {
+        background-color: transparent;
+      }
 
-  .external {
+      @media (min-width: @grid-float-breakpoint) {
+        padding-left: 5px;
+        padding-right: 5px;
+        float: none;
+      }
 
-    a:after {
-        .glyphicon;
-        content: "\e164";
-        font-size: 85%;
-        margin-left: 5px;
+      span {
+        .sr-only;
+      }
     }
 
-  }
-
-  .icon-menu-item {
-
-    font-size: 140%;
-    float: left;
-
-    @media (min-width: @grid-float-breakpoint) {
-      padding-left: 5px;
-      padding-right: 5px;
-      float: none;
+    .social-menu-item {
+      .icon-menu-item;
+      .social;
     }
-
-    span {
-      .sr-only;
-    }
-  }
-
-  .social-menu-item {
-    .icon-menu-item;
-    .social;
-  }
-
-  .icon-nav {
 
     a[href*="twitter"] {
       .social-menu-item;
@@ -77,5 +74,5 @@
       .glyphicon;
       .glyphicon-info-sign;
     }
-  }
+  } 
 }
