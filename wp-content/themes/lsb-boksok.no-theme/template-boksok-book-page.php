@@ -25,6 +25,10 @@ Template Name: Boksside Template
   </h1>
 </div>
 
+<section class="book-search">
+  <?php get_search_form(); ?>
+</section>
+
 <?php if ( get_field('lsb_book_page_description') || is_user_logged_in() ) : ?>
   <div class="lsb-alert description">
     <?php the_field('lsb_book_page_description'); ?>
@@ -38,10 +42,6 @@ Template Name: Boksside Template
     <?php endif; ?>
   </div>
 <?php endif; ?>
-
-<section class="book-search">
-  <?php get_search_form(); ?>
-</section>
 
 <?php if($child_pages_query->have_posts()) : ?>
 

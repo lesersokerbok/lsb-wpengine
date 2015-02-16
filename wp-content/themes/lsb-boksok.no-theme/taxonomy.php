@@ -4,6 +4,12 @@
   <?php get_search_form(); ?>
 </section>
 
+<?php if ( category_description() !== '') : ?>
+  <div class="lsb-alert description">
+    <?php echo category_description(); ?>
+  </div>
+<?php endif; ?>
+
 <?php if ( have_posts() ): ?>
   <section class="loop">
     <?php while (have_posts()) : the_post(); ?>
