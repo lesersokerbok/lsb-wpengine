@@ -4,6 +4,11 @@
 }
 
 .navbar-nav {
+  
+  @media (max-width: @grid-float-breakpoint) {
+    margin-top: 0;
+  }
+  
   > li > a {
     text-decoration: none;
     font-weight: bold;
@@ -33,6 +38,7 @@
       
       &:hover {
         background-color: transparent;
+        text-decoration: none;
       }
 
       @media (min-width: @grid-float-breakpoint) {
