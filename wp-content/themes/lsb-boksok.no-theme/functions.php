@@ -54,7 +54,6 @@ function add_book_page_filter_css( $classes) {
 
 function searchwp_activate_cat_menu_item( $classes) {
   if(is_search()) {
-    var_dump("SEARCH");
     return LsbSearchUtil::activate_cat_menu_item($classes);
   }
   
