@@ -1,25 +1,27 @@
 .banner {
+  padding-top: @navbar-padding-vertical * 0.5;
+  
+  .navbar-nav {
+    > li > a {
+      text-decoration: none;
+      font-weight: bold;
 
+      @media (min-width: @grid-float-breakpoint) {
+        margin-top: @navbar-padding-vertical * -0.5;
+        padding-top: @navbar-padding-vertical * 1.5;
+      }
+    }
+  }
+  
   @logo-size: 40px;
 
   .navbar-brand {
+    color: @brand-primary;
+    
     background-image: url('../img/logo.svg');
     background-size: @logo-size;
     background-position: @navbar-padding-horizontal center;
     background-repeat: no-repeat;
     padding-left: @logo-size+@navbar-padding-horizontal+10px;
-
-    color: @brand-primary;
-    font-weight: bold;
-
-    &:hover {
-      color: @link-hover-color
-    }
-  }
-
-  .icon-nav {
-    @media (min-width: @grid-float-breakpoint) {
-      .pull-right;
-    }
   }
 }

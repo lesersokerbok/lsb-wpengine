@@ -1,3 +1,9 @@
+.navbar-brand {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
 .navbar-nav {
   > li > a {
     text-decoration: none;
@@ -12,6 +18,10 @@
   }
   
   &.icon-nav {
+    
+    @media (min-width: @grid-float-breakpoint) {
+      .pull-right;
+    }
     
     .icon-menu-item {
       font-size: 140%;
