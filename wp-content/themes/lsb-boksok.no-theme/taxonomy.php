@@ -5,7 +5,7 @@
 </section>
 
 <?php if ( category_description() !== '') : ?>
-  <div class="lsb-alert description">
+  <div class="alert description">
     <?php echo category_description(); ?>
   </div>
 <?php endif; ?>

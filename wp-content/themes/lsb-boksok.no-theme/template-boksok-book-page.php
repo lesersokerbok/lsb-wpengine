@@ -30,7 +30,7 @@ Template Name: Boksside Template
 </section>
 
 <?php if ( get_field('lsb_book_page_description') || is_user_logged_in() ) : ?>
-  <div class="lsb-alert description">
+  <div class="alert description">
     <?php the_field('lsb_book_page_description'); ?>
     <?php if ( is_user_logged_in() ) : ?>
       <small>

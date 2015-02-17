@@ -26,10 +26,33 @@ a.btn {
   text-decoration: none;
 }
 
-.lsb-alert {
-  .alert;
-  border-color: @gray-lighter;
-  border-left-width: @alert-border-radius;
+.alert-variant(@color) {
+  color: @text-color;
+  border: 1px solid @gray-lighter;
+  border-left-width: 4px;
+  border-left-color: @color;
+  background: transparent;
+
+  hr {
+    border-top-color: lighten(@color, 5%);
+  }
+}
+
+.alert {
+  .alert-variant(@gray-lighter);
+}
+
+.alert-success {
+  .alert-variant(@brand-success);
+}
+.alert-info {
+  .alert-variant(@brand-info);
+}
+.alert-warning {
+  .alert-variant(@brand-warning);
+}
+.alert-danger {
+  .alert-variant(@brand-danger);
 }
 
 .lsb-vertical-align {
