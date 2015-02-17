@@ -10,18 +10,13 @@
       <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
 
       <?php if ( get_field('lsb_book_page_sub_title') ) : ?>
-        <small>| <?php the_field('lsb_book_page_sub_title'); ?></small>
+        <small>| <a href="<?php the_permalink() ?>"><?php the_field('lsb_book_page_sub_title'); ?></a></small>
       <?php endif; ?>
     </h2>
 
     <?php if ( get_field('lsb_book_page_description') ) : ?>
       <div class="alert description">
         <?php the_field('lsb_book_page_description'); ?>
-        <p>
-          <a href="<?php the_permalink() ?>">
-            <?php echo __('Gå til alle bøker i denne bokhyllen ', 'lsb_boksok'); ?>
-          </a>
-        </p>
       </div>
     <?php endif; ?>
 
