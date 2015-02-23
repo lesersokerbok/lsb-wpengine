@@ -8,9 +8,6 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </div>
-        <div class="text">
-          <?php _e('Meny', 'lsb'); ?>
-        </div>
       </button>
 
       <a class="navbar-brand" href="<?php echo home_url(); ?>/">
