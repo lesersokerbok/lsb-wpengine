@@ -3,9 +3,21 @@
   font-weight: bold;
 }
 
+.navbar-toggle {
+  .hamburder {
+    float: left;
+  }
+}
+
 .container > .navbar-collapse {
   @media (max-width: @grid-float-breakpoint) {
     margin-top: 10px;
+  }
+  
+  @media (min-width: @grid-float-breakpoint) {
+    .collapsed-only {
+      display: none;
+    }
   }
   
   @media (min-width: @container-sm) {
