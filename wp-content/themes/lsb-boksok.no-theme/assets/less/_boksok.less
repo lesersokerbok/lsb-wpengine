@@ -26,17 +26,114 @@ body {
   margin-bottom: @line-height-computed*1.5;
 }
 
+.book-search {
+  margin: @line-height-computed*1.5 0;
+}
+
 .book-shelf {
   .page-header {
     border: none;
     margin-top: @line-height-computed;
     margin-bottom: 0;
   }
-  
+
   &:first-child {
     .page-header {
       margin-top: @line-height-computed*3;
     }
+  }
+}
+
+/* ==========================================================================
+Books main categories
+========================================================================== */
+
+.term-litt-a-lese, 
+.page.litt-a-lese {
+  .alert.description {
+    .alert-variant(@litt-a-lese);
+  }
+} 
+
+.term-enkelt-innhold,
+.page.enkelt-innhold {
+  .alert.description {
+    .alert-variant(@enkelt-innhold);
+  }
+}
+
+.term-storskrift,
+.page.storskrift {
+  .alert.description {
+    .alert-variant(@storskrift);
+  }
+}
+
+.term-punktskrift-folebilder,
+.page.punktskrift-folebilder {
+  .alert.description {
+    .alert-variant(@punktskrift-folebilder);
+  }
+}
+
+.term-tegnsprak-nmt,
+.page.tegnsprak-nmt {
+  .alert.description {
+    .alert-variant(@tegnsprak-nmt);
+  }
+}
+
+.term-bliss-piktogram,
+.page.bliss-piktogram {
+  .alert.description {
+    .alert-variant(@bliss-piktogram);
+  }
+}
+
+.navbar-nav#menu-hovedkategorier {
+  
+  @media (min-width: @grid-float-breakpoint) {
+    > li {
+      margin-bottom: -5px;
+      > a {
+        border-bottom: 5px solid;
+      }
+    }
+  }
+  
+  @media (max-width: @grid-float-breakpoint) {
+    > li {
+      > a {
+        border-left: 5px solid;
+      }
+    }
+  }
+}
+
+.navbar-nav#menu-hovedkategorier  {
+  
+  li.menu-litt-a-lese a {
+    border-color: @litt-a-lese;
+  }
+
+  li.menu-enkelt-innhold a {
+    border-color: @enkelt-innhold;
+  }
+
+  li.menu-storskrift a {
+    border-color: @storskrift;
+  }
+
+  li.menu-punktskrift-folebilder a {
+    border-color: @punktskrift-folebilder;
+  }
+
+  li.menu-tegnsprak-nmt a {
+    border-color: @tegnsprak-nmt;
+  }
+
+  li.menu-bliss-piktogram a {
+    border-color: @bliss-piktogram;
   }
 }
 
@@ -103,7 +200,7 @@ footer.page-footer {
     article.summary.lsb_book {
       float: left;
       padding-bottom: @line-height-computed*2;
-      
+
       @media (max-width: (@screen-xs - 1)) {
         padding-bottom: @line-height-computed;
         width: 50%;
@@ -115,7 +212,7 @@ footer.page-footer {
           clear: left;
         }
       }
-      
+
       @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
         width: 33.33%;
         &:nth-of-type(3n) {
@@ -126,7 +223,7 @@ footer.page-footer {
           clear: left;
         }
       }
-      
+
       @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
         width: 25%;
         &:nth-of-type(4n) {
@@ -137,7 +234,7 @@ footer.page-footer {
           clear: left;
         }
       }
-      
+
       @media (min-width: @screen-md-min) {
         width: 20%;
         &:nth-of-type(5n) {

@@ -7,45 +7,26 @@
     <div class="page-header">
 
     <h2>
-      <a href="<?php the_permalink() ?>">
-        <?php the_title(); ?>
-      </a>
+      <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
 
       <?php if ( get_field('lsb_book_page_sub_title') ) : ?>
-        <small>| <?php the_field('lsb_book_page_sub_title'); ?></small>
-      <?php endif; ?>
-
-      <?php if ( get_field('lsb_book_page_description') ) : ?>
-        <small class="smaller">|
-          <button type="button" class="btn-link">
-            <?php echo __('Mer info', 'lsb_boksok'); ?>
-          </button>
-        </small>
+        <small>| <a href="<?php the_permalink() ?>"><?php the_field('lsb_book_page_sub_title'); ?></a></small>
       <?php endif; ?>
     </h2>
 
     <?php if ( get_field('lsb_book_page_description') ) : ?>
-      <div class="alert alert-info description sr-only">
-        <button type="button" class="close">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
-        </button>
+      <div class="alert description">
         <?php the_field('lsb_book_page_description'); ?>
-        <p>
-          <a href="<?php the_permalink() ?>">
-            <?php echo __('Gå til alle bøker i denne bokhyllen ', 'lsb_boksok'); ?>
-          </a>
-        </p>
       </div>
     <?php endif; ?>
-      
+
     <span class="filter-info hidden">
       <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
     </span>
 
   </div>
-    
-    <?php if($books): ?>  
+
+    <?php if($books): ?>
       <div class="book-shelf-body">
 
           <span aria-hidden="true" class="book-shelf-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>

@@ -4,14 +4,14 @@ Template Name: Boksside Template
 */
 ?>
 
-<?php 
+<?php
 
   $args = array(
     'order' => 'ASC',
     'orderby' => 'menu_order',
     'post_parent' => get_the_ID(),
     'post_type' => 'page'
-  ); 
+  );
   $child_pages_query = new WP_Query($args);
 ?>
 
@@ -22,35 +22,26 @@ Template Name: Boksside Template
     <?php if ( get_field('lsb_book_page_sub_title') ) : ?>
       <small>| <?php the_field('lsb_book_page_sub_title'); ?> </small>
     <?php endif; ?>
-
-    <?php if ( get_field('lsb_book_page_description') ) : ?>
-      <small class="smaller">|
-        <button type="button" class="btn-link">
-          <?php echo __('Mer info', 'lsb_boksok'); ?>
-        </button>
-      </small>
-    <?php endif; ?>
   </h1>
-
-  <?php if ( get_field('lsb_book_page_description') ) : ?>
-    <div class="alert alert-info description sr-only">
-      <button type="button" class="close">
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only"><?php echo __('Lukk', 'lsb_boksok'); ?></span>
-      </button>
-      <?php the_field('lsb_book_page_description'); ?>
-    </div>
-  <?php endif; ?>
-  <?php if(is_user_logged_in()) : ?>
-    <span class="filter-info hidden">
-      <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
-    </span>
-  <?php endif; ?>
 </div>
 
 <section class="book-search">
   <?php get_search_form(); ?>
 </section>
+
+<?php if ( get_field('lsb_book_page_description') || is_user_logged_in() ) : ?>
+  <div class="alert description">
+    <?php the_field('lsb_book_page_description'); ?>
+    <?php if ( is_user_logged_in() ) : ?>
+      <small>
+        <br/>
+        <strong><?php echo __('Filterinstillinger:', 'lsb_boksok'); ?></strong> 
+        <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
+        <strong><?php echo __('- Vises kun for innloggede brukere', 'lsb_boksok'); ?></strong> 
+      </small>
+    <?php endif; ?>
+  </div>
+<?php endif; ?>
 
 <?php if($child_pages_query->have_posts()) : ?>
 
