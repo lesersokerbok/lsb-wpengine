@@ -14,12 +14,6 @@
       <?php endif; ?>
     </h2>
 
-    <?php if ( get_field('lsb_book_page_description') ) : ?>
-      <div class="alert description">
-        <?php the_field('lsb_book_page_description'); ?>
-      </div>
-    <?php endif; ?>
-
     <span class="filter-info hidden">
       <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
     </span>
