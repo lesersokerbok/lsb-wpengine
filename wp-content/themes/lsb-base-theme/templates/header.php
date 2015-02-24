@@ -3,10 +3,11 @@
 
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only"><?php _e('Slå av eller på navigasjon', 'lsb'); ?></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <div class="hamburger">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </div>
       </button>
 
       <a class="navbar-brand" href="<?php echo home_url(); ?>/">

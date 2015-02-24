@@ -64,7 +64,7 @@ class TaxonomyUtil {
   }
   
   public static function get_tax_object_rewrite_slug($tax_object) {
-     if($tax_object)
+    if($tax_object)
       return $tax_object->rewrite['slug'];
     else
       return null;
