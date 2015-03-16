@@ -7,11 +7,7 @@ function roots_title() {
     if (get_option('page_for_posts', true)) {
       return get_the_title(get_option('page_for_posts', true));
     } else {
-      if(BLOG_ARCHIVE_TITLE) {
-        return __(BLOG_ARCHIVE_TITLE, 'lsb');
-      } else {
-        return __('Siste innlegg', 'lsb');
-      }
+      return __('Siste nyheter', 'lsb');
     }
   } elseif (is_archive()) {
 
