@@ -70,27 +70,9 @@ a.btn {
 
 .lsb-meta {
   font-size: smaller;
-  border-left: 1px solid @navbar-default-border;
-  padding-left: @line-height-computed/2;
 }
 
-@media (min-width: @screen-sm) {
-
-  @sidebar-padding: @line-height-computed;
-
-  .main.has-sidebar {
-    padding-right: @sidebar-padding;
-  }
-
-  .sidebar {
-    padding-left: @sidebar-padding;
-    border-left: 1px solid @page-header-border-color;
-  }
-
-}
-
-@media (max-width: @screen-sm-max) {
-
+.loop {
   h1 {
     font-size: @font-size-h2;
   }
@@ -110,4 +92,23 @@ a.btn {
   h5 {
     font-size: @font-size-h6;
   }
+}
+
+@media (max-width: @screen-sm-max) {
+  .loop;
+}
+
+@media (min-width: @screen-sm) {
+
+  @sidebar-padding: @line-height-computed;
+
+  .main.has-sidebar {
+    padding-right: @sidebar-padding;
+  }
+
+  .sidebar {
+    padding-left: @sidebar-padding;
+    border-left: 1px solid @page-header-border-color;
+  }
+
 }
