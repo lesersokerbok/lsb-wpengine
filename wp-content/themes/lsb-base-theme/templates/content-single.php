@@ -3,6 +3,7 @@
     <?php get_template_part('templates/page', 'header'); ?>
   </header>
   <div class="entry-content">
+    <?php the_post_thumbnail('featured-thumb'); ?>
     <?php the_content(); ?>
   </div>
   <footer>
