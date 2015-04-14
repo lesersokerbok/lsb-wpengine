@@ -11,9 +11,19 @@
    ========================================================================== */
 
 .page-template-template-frontpage-php .frontpage-section {
-
-  margin-top: @jumbotron-padding;
-  margin-bottom: @jumbotron-padding*3;
+  
+  &:first-child {
+    margin-top: @line-height-computed;
+  }
+  
+  &.margin-bottom-large {
+    margin-bottom: (@line-height-computed * 3);  
+  }
+  
+  &.margin-bottom-small {
+    margin-bottom: @line-height-computed;
+  }
+  
   &:last-child {
     margin-bottom: 0;
   }
@@ -22,14 +32,15 @@
 
     .page-header;
 
-    margin-bottom: @jumbotron-padding/2;
+    margin-top: 0;
+    margin-bottom: @line-height-computed/2;
 
     p {
       font-size: @jumbotron-font-size;
     }
   }
 
-  &.text {
+  &.frontpage-section-textarea {
     .jumbotron {
 
       text-align: center;
@@ -44,8 +55,20 @@
       }
     }
   }
+  
+  &.frontpage-section-alert {
+    
+    .alert {
+      margin: 0;
+    }
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    
+  }
 
-  &.boxes {
+  &.frontpage-section-boxes {
 
     .box {
       padding: 0 @panel-body-padding;
@@ -55,7 +78,8 @@
     }
   }
 
-  &.rss {
+  &.frontpage-section-lsb_book_feed,
+  &.frontpage-section-normal_feed {
 
     .rss-post {
 

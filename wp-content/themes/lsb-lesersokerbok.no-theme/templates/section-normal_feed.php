@@ -20,7 +20,6 @@
     return;
   }
 
-  echo '<div class="frontpage-section rss">';
   if(get_sub_field('section_text')) {
     echo '<div class="section-header">';
     echo get_sub_field('section_text');
@@ -117,8 +116,6 @@
     echo '</article>';
 
   }
-
-  echo '</div>';
 
   $rss->__destruct();
   unset($rss);
