@@ -24,6 +24,7 @@ $roots_includes = array(
   'lib/extras.php',         // Custom functions
   'lib/pagination.php',     // Boostrap pagination
   'lib/lsb-mime-types.php', // Custom upload mime types
+  'lib/rewrite.php',        // Custom rewrite rules
 );
 
 foreach ($roots_includes as $file) {
