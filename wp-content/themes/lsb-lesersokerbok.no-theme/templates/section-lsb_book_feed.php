@@ -17,7 +17,6 @@
 
   ?>
 
-  <div class="frontpage-section rss">
     <?php if(get_sub_field('section_text')): ?>
       <div class="section-header">
         <?php the_sub_field('section_text'); ?>
@@ -87,5 +86,3 @@
       </div>
 
     </div>
-
-  </div>
