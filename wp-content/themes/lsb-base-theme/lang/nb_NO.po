@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Roots WordPress theme translations 1.0\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Harald Ringvold <harald.ringvold@gmail.com>\n"
+"Last-Translator: \n"
 "Language-Team: Harald Ringvold <harald.ringvold@gmail.com>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.5.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: 404.php:4
@@ -182,8 +182,8 @@ msgstr "Kommentaren din venter på å bli godkjent."
 #: templates/comments.php:9
 msgid "One Response to &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s Responses to &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "En kommentar til &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s kommentarer til &ldquo;%2$s&rdquo;"
 
 #: templates/comments.php:19
 msgid "&larr; Older comments"
