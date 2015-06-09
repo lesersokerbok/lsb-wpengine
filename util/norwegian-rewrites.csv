@@ -1,0 +1,6 @@
+source,target,regex,type,code,match,hits,title
+"(.*)/page/(\d+.*)",$1/side/$2,1,url,301,url,0,"page to side"
+/author/(.*),/skribent/$1,1,url,301,url,0,"author to skribent"
+/search/(.*),/sok/$1,1,url,301,url,0,"search to sok"
+/category/(.*),/kategori/$1,1,url,301,url,0,"category to kategori"
+/tag/(.*),/stikkord/$1,1,url,301,url,0,"tag to stikkord"
