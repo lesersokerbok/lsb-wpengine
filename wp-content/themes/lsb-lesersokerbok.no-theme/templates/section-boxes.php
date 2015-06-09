@@ -17,7 +17,7 @@ $numberOfBoxes = count(get_sub_field('section_box'));
         <div class="<?php ColumnUtil::the_column_class($numberOfBoxes, $i); ?> box">
           
           <h3>
-            <a href="<?php the_sub_field('section_box_link_'.get_sub_field('section_box_link_type')); ?> ">
+            <a href="<?php the_sub_field('section_box_link_'.get_sub_field('section_box_link_type')); ?> " target="<?php echo get_sub_field('section_box_link_type') == 'external' ? '_blank' : '_self'; ?>">
               <?php the_sub_field('section_box_heading'); ?>
             </a>
           </h3>
