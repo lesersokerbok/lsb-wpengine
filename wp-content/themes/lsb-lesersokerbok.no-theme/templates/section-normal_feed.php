@@ -86,7 +86,7 @@
     if ( $link == '' ) {
       echo "<h3>$title</h3>";
     } else {
-      echo "<h3><a href='$link'>$title</a></h3>";
+      echo "<h3><a href='$link' target='_blank'>$title</a></h3>";
     }
 
     if ( $show_date ) {
@@ -107,7 +107,7 @@
       if ( $link == '' ) {
         echo "<img src='{$image}'/>";
       } else {
-        echo "<a href='$link'><img src='{$image}'/></a>";
+        echo "<a href='$link' target='_blank'><img src='{$image}'/></a>";
       }
       echo '</div>';
     }

@@ -59,7 +59,7 @@
 
             <article class="lsb_book type-lsb_book status-publish has-post-thumbnail hentry summary">
               <div class="entry-image">
-                <a class="thumbnail" href="<?php echo $link; ?>">
+                <a class="thumbnail" href="<?php echo $link; ?>" target="_blank">
                   <?php if ( $image != '' ) : ?>
                     <img class="attachment-medium wp-post-image" height="300" width="200" src='<?php echo $image; ?>'/>
                   <?php else : ?>
@@ -68,7 +68,7 @@
                 </a>
               </div>
               <header>
-                <h2 class="entry-title"><a href="<?php echo $link; ?>"><?php echo $title; ?></a></h2>
+                <h2 class="entry-title"><a href="<?php echo $link; ?>" target="_blank"><?php echo $title; ?></a></h2>
               </h2>
             </article>
 
