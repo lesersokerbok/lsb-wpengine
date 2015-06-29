@@ -116,8 +116,8 @@ class LsbSearchUtil {
     
     return $classes;
   }
-  
-  public static function filter_search() {
+
+  public static function books_matching_current_query_vars() {
    
     $args = array( 
       'post_type' => 'lsb_book',
@@ -132,8 +132,7 @@ class LsbSearchUtil {
       global $searchwp_filter_no_results;
       $searchwp_filter_no_results = true;
     }
-      
-    
+
     return $ids;
   }
 
