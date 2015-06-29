@@ -31,6 +31,19 @@
 
     <?php endif; ?>
 
+    <?php if ( is_search()): ?>
+
+      <?php foreach (LsbFilterQueryUtil::possible_query_vars_for_lsb_book() as $query_var) : ?>
+        <?php if(get_query_var($query_var)): ?>
+          <input type="hidden"
+            value="<?= get_query_var($query_var) ?>"
+            name="<?= $query_var ?>"
+          />
+        <?php endif; ?>
+      <?php endforeach; ?>
+
+    <?php endif; ?>
+
     <span class="input-group-btn">
       <button type="submit" class="search-submit btn btn-default"><?php echo __('Søk', 'lsb_boksok'); ?></button>
     </span>
