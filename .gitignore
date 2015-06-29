@@ -10,7 +10,6 @@ node_modules
 
 !wp-content/plugins/
 wp-content/plugins/*
-!wp-content/plugins/soil
 
 wp-content/languages/plugins
 wp-content/languages/*.*
