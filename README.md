@@ -6,6 +6,14 @@ Leser søker bok has three main websites:
 
 This repository contains the code for the two first sites, the third runs on wordpress.com.
 
+## Themes
+There are three themes: 
+* `lsb-base-theme`
+* `lsb-lesersokerbok.no-theme`
+* `lsb-boksok.no-theme`
+
+Both `lsb-lesersokerbok.no-theme` and `lsb-boksok.no-theme` are child themes of `lsb-base-theme`.
+
 ## Issues
 Issues are tracked with [GitHub Issues](https://github.com/lesersokerbok/lsb-wordpress-themes/issues), but can also be viewed as a kanban board through [Huboard](https://huboard.com/lesersokerbok/lsb-wordpress-themes#/).
 
@@ -30,8 +38,11 @@ Vincent Driessen's ["A successful Git branching model"](http://nvie.com/posts/a-
 ### Localization
 Norwegian is used as the base language and all strings shuld be ready for translations. This is also true for backend code.
 
-### Assets
-Build assets when developing using `grunt dev`.
+### Grunt
+* Build assets while developing using `grunt dev`.
+* Bulde assets for production with `grunt build`.
+
+The Grunt script creates assets for all three themes.
 
 ### Debugging
 
