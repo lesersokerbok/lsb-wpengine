@@ -14,6 +14,8 @@ There are three themes:
 
 Both `lsb-lesersokerbok.no-theme` and `lsb-boksok.no-theme` are child themes of `lsb-base-theme`.
 
+The plan going forward is to move much of the functionality differences into plugins.
+
 ## Issues
 Issues are tracked with [GitHub Issues](https://github.com/lesersokerbok/lsb-wordpress-themes/issues), but can also be viewed as a kanban board through [Huboard](https://huboard.com/lesersokerbok/lsb-wordpress-themes#/).
 
@@ -22,7 +24,8 @@ is a kanban webservice for GitHub issues.
 Sign in using your GitHub account.
 
 ### Issue process
-* When you start work on an issue pull it into the next appropriate lane.
+* When you start work on an issue add yourself as assignee. 
+* Then pull the issue into the next appropriate lane if needed.
 * When you are done with the work mark the issue as "ready for next stage".
 * If you are having problems and/or need help mark the issue as "blocked".
 
