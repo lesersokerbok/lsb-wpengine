@@ -121,7 +121,7 @@ class LsbSearchUtil {
    
     $args = array( 
       'post_type' => 'lsb_book',
-      'tax_query' => LsbFilterQueryUtil::tax_query_for_query_vars(),
+      'tax_query' => LsbFilterQueryUtil::tax_query_built_from_query_vars(),
       'fields' => 'ids',
       'nopaging' => true
     );

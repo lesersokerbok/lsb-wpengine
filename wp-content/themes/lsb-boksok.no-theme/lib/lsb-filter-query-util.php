@@ -32,7 +32,7 @@ class LsbFilterQueryUtil {
     return $query_vars;
   }
   
-  public static function tax_query_for_query_vars() {
+  public static function tax_query_built_from_query_vars() {
     
     $tax_query = array();
     $tax_query['relation'] = 'AND';
