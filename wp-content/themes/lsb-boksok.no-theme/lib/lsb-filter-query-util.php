@@ -23,11 +23,11 @@ class LsbFilterQueryUtil {
       ": ".implode(TaxonomyUtil::get_terms_name_array($term_objects), ', ');
   }
   
-  public static function query_vars_for_lsb_book() {
+  public static function possible_query_vars_for_lsb_book() {  
     $query_vars = array();
     $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
     foreach ($lsb_book_tax_objects as &$tax_object) {
-      $query_vars[] = $tax_object->rewrite['slug'];
+      $query_vars[] = TaxonomyUtil::get_tax_object_rewrite_slug($tax_object);
     }
     return $query_vars;
   }

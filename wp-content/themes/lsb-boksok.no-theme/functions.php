@@ -35,11 +35,7 @@ new LsbBoksokOptions();
 new LsbBookPage();
 
 add_filter( 'query_vars', function ($query_vars) {
-  $lsb_book_tax_objects = get_object_taxonomies('lsb_book', 'objects' );
-  foreach ($lsb_book_tax_objects as &$tax_object) {
-    $query_vars[] = TaxonomyUtil::get_tax_object_rewrite_slug($tax_object);
-  }
-  return $query_vars;
+  return array_merge($query_vars, LsbFilterQueryUtil::possible_query_vars_for_lsb_book());
 });
 
 function add_book_page_filter_css( $classes) {
