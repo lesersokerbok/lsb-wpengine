@@ -1,12 +1,15 @@
 # Websites for Leser søker bok
-
-[![Join the chat at https://gitter.im/lesersokerbok/lsb-wordpress-themes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lesersokerbok/lsb-wordpress-themes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Leser søker bok has three main websites:
 * Home page (lesersokerbok.no)
 * Boksøk (boksok.no) | A searchable directory of books reviewed by Leser søker bok.
 * Ut av Hylla (utavhylla.wordpress.com) | A blog and resource center for "Bok for alle"-bibliotek.
 
 This repository contains the code for the two first sites, the third runs on wordpress.com.
+
+## Gitter
+This repository has a chatroom on Gitter:  
+
+[![Join the chat at https://gitter.im/lesersokerbok/lsb-wordpress-themes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lesersokerbok/lsb-wordpress-themes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Themes
 There are three themes: 
