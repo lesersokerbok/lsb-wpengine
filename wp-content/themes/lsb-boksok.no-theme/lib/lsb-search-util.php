@@ -116,12 +116,12 @@ class LsbSearchUtil {
     
     return $classes;
   }
-  
-  public static function filter_search() {
+
+  public static function books_matching_current_query_vars() {
    
     $args = array( 
       'post_type' => 'lsb_book',
-      'tax_query' => LsbFilterQueryUtil::tax_query_for_query_vars(),
+      'tax_query' => LsbFilterQueryUtil::tax_query_built_from_query_vars(),
       'fields' => 'ids',
       'nopaging' => true
     );
@@ -132,8 +132,7 @@ class LsbSearchUtil {
       global $searchwp_filter_no_results;
       $searchwp_filter_no_results = true;
     }
-      
-    
+
     return $ids;
   }
 
