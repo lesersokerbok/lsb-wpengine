@@ -1,4 +1,6 @@
 # Websites for Leser søker bok
+
+[![Join the chat at https://gitter.im/lesersokerbok/lsb-wordpress-themes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lesersokerbok/lsb-wordpress-themes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Leser søker bok has three main websites:
 * Home page (lesersokerbok.no)
 * Boksøk (boksok.no) | A searchable directory of books reviewed by Leser søker bok.
