@@ -15,7 +15,7 @@
 <?php if(!$has_posts && $alert_text) : ?>
   <p class="alert alert-warning">
     <?php _e('Beklager, ingen søkeresultater', 'lsb'); ?> <?php echo $alert_text; ?>
-    Søk etter "<?php echo get_search_query()?>"
+    Søk etter <i><?php echo get_search_query()?></i>
     <a href="/?s=<?php echo get_search_query()?>">
        i alle bøker.
     </a>
@@ -27,7 +27,7 @@
 <?php elseif($alert_text) : ?>
   <p class="alert alert-info">
     <?php _e('Viser kun søkeresultater', 'lsb'); ?> <?php echo $alert_text; ?>
-    Søk etter "<?php echo get_search_query()?>"
+    Søk etter <i><?php echo get_search_query()?></i>
     <a href="/?s=<?php echo get_search_query()?>">
        i alle bøker.
     </a>
