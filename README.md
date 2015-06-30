@@ -109,6 +109,9 @@ pushed to the `lsb` install.
 `git flow hotfix finish <x.x.x>` or  
 `git flow release finish <x.x.x>`
 * Create snapshot of site on [my.wpengine.com](https://my.wpengine.com/installs/lsb/backup_points)
+* Push to origin  
+`git push -all`  
+`git push -tags`
 * Finally push to the `lsb` install:  
 `git push lsbprod`
 
