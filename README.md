@@ -87,7 +87,7 @@ the changes at the `lsbtest` install.
 * Build assets:  
 `grunt build`
 * Commit assets:  
-`git commit -a -m "Assets buildt for testing"`
+`git commit -a -m "Assets built for testing"`
 * Push to test:  
 `git push lsbtest`
 
@@ -102,12 +102,13 @@ pushed to the `lsb` install.
 * Build assets:  
 `grunt build`
 * Commit assets:  
-`git commit -a -m "Assets buildt for release/hotfix"`
+`git commit -a -m "Assets built for release/hotfix"`
 * Push to test  
 `git push lsbtest`
 * Test the sites and if no errors are found finish the release or hotfix:  
 `git flow hotfix finish <x.x.x>` or  
 `git flow release finish <x.x.x>`
+* Create snapshot of site on [my.wpengine.com](https://my.wpengine.com/installs/lsb/backup_points)
 * Finally push to the `lsb` install:  
 `git push lsbprod`
 
