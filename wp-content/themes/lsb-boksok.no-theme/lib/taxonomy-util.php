@@ -1,11 +1,6 @@
 <?php
 
 class TaxonomyUtil {
-
-  public static function simen_test($term) {
-    return $term;
-  }
-
   public static function get_term_id($term_object) {
     if ( is_object($term_object) && isset($term_object->term_id) ) {
       return $term_object->term_id;
