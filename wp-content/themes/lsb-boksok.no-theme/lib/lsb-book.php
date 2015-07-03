@@ -286,7 +286,57 @@ class LsbBook {
         )
       )
     );
+
+  
+    // Assign lsb_tax_topic_hide_term to the term lsb_tax_topic
+
+    if( function_exists('register_field_group') )
+    {
+      $info_fields = array(
+        array(
+          'key' => 'lsb_acf_tax_topic_hide_term',
+          'label' => 'Skjul for besøkende',
+          'name' => 'lsb_tax_topic_hide_term',
+          'type' => 'true_false',
+          'instructions' => __('Velg om dette emnet skal være usynelig for besøkende(forsatt tilgjengelig i søk)', 'lsb_boksok'),
+          'required' => 0,
+          'conditional_logic' => 0,
+          'wrapper' => array (
+            'width' => '',
+            'class' => '',
+            'id' => '',
+          ),
+          'message' => '',
+          'default_value' => 0,
+        ),
+      );
+
+      register_field_group(array (
+        'key' => 'lsb_acf_tax_topic_settings',
+        'title' => 'Forsideinfo',
+        'fields' => $info_fields,
+        'location' => array(
+            array(
+              array(
+                'param' => 'taxonomy',
+                'operator' => '==',
+                'value' => 'lsb_tax_topic',
+              ),
+            ),
+          ),
+          'menu_order' => 0,
+          'position' => 'normal',
+          'style' => 'default',
+          'label_placement' => 'top',
+          'instruction_placement' => 'label',
+          'hide_on_screen' => '',
+      ));
+
+    }
+
   }
+
+
 
   public function register_tax_lsb_language() {
     register_taxonomy( 'lsb_tax_language',
