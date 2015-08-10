@@ -24,7 +24,6 @@ class LsbBook {
     register_post_type('lsb_book',
       array(
         'label' => __('Bøker', 'lsb_boksok'),
-        'description' => _x('', 'Bøker custom post type description'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -265,7 +264,7 @@ class LsbBook {
         0 => 'lsb_book',
       ),
       array( 'hierarchical' => false,
-      	'label' => __('Emne', 'lsb_book'),
+      	'label' => __('Emne', 'lsb_boksok'),
       	'show_ui' => true,
       	'query_var' => true,
       	'rewrite' => array( 'slug' => _x('emne', 'lsb_tax_topic slug', 'lsb_boksok') ),
@@ -295,10 +294,10 @@ class LsbBook {
       $info_fields = array(
         array(
           'key' => 'lsb_acf_tax_topic_hide_term',
-          'label' => 'Skjul for besøkende',
+          'label' => __('Skjul for besøkende', 'lsb_boksok'),
           'name' => 'lsb_tax_topic_hide_term',
           'type' => 'true_false',
-          'instructions' => __('Velg om dette emnet skal være usynelig for besøkende(forsatt tilgjengelig i søk)', 'lsb_boksok'),
+          'instructions' => __('Velg om dette emnet skal være usynelig for besøkende (forsatt tilgjengelig i søk).', 'lsb_boksok'),
           'required' => 0,
           'conditional_logic' => 0,
           'wrapper' => array (
@@ -313,7 +312,7 @@ class LsbBook {
 
       register_field_group(array (
         'key' => 'lsb_acf_tax_topic_settings',
-        'title' => 'Forsideinfo',
+        'title' => __('Innstillinger', 'lsb_book'),
         'fields' => $info_fields,
         'location' => array(
             array(
