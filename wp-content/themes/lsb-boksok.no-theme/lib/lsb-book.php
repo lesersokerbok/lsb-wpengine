@@ -17,7 +17,7 @@ class LsbBook {
     add_action('init', array($this, 'register_lsb_tax_list'));
     add_action('init', array($this, 'register_lsb_tax_series'));
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
-    add_action('init', array($this, 'register_lsb_acf_content'));
+    add_action('init', array($this, 'register_lsb_acf_book_content'));
   }
 
   public function register_post_type_lsb_book() {
@@ -608,7 +608,7 @@ class LsbBook {
     }
   }
 
-  public function register_lsb_acf_content() {
+  public function register_lsb_acf_book_content() {
     if(function_exists("register_field_group"))
     {
       register_field_group(array (
