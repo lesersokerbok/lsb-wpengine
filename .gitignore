@@ -14,6 +14,7 @@ wp-content/plugins/*
 
 wp-content/languages/plugins
 wp-content/languages/*.*
+wp-content/languages/themes/*.*
 
 # wordpress specific
 wp-config.php
