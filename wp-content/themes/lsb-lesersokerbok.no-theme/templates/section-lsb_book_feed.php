@@ -48,7 +48,7 @@
 
             // Get image URL from description element
             $doc = new DOMDocument();
-            $doc->loadHTML($item->get_description());
+            $doc->loadHTML(mb_convert_encoding($item->get_description(), 'HTML-ENTITIES', 'UTF-8'));
             $xpath = new DOMXPath($doc);
             $image = $xpath->evaluate("string(//img/@src)");
             if ( is_a($image, 'DOMNodeList') ) {
