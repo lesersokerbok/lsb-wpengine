@@ -1,7 +1,6 @@
 <?php
 
 class TaxonomyUtil {
-
   public static function get_term_id($term_object) {
     if ( is_object($term_object) && isset($term_object->term_id) ) {
       return $term_object->term_id;
@@ -105,6 +104,38 @@ class TaxonomyUtil {
       return null;
     }
   }
+
+
+  // Edited version of get_the_term_list — Using the get_field to check if lsb_tax_topic_hide_term is true for the term.
+
+  public static  function get_the_tax_topics( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+    $terms = get_the_terms( $id, $taxonomy );
+    if ( is_wp_error( $terms ) )
+      return $terms;
+
+    if ( empty( $terms ) )
+      return false;
+
+    $links = array();
+     
+    foreach ( $terms as $term ) {
+      if (!get_field('lsb_tax_topic_hide_term', $term )) { // If the term's lsb_tax_topic_hide_term is TRUE 
+
+        $link = get_term_link( $term, $taxonomy );
+
+        if ( is_wp_error( $link ) ) {
+          return $link;
+        }
+
+        $links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>';
+      }
+
+    }
+     
+    $term_links = apply_filters( "term_links-$taxonomy", $links );
+    return $before . join( $sep, $term_links ) . $after;
+  }
+
 
 }
 

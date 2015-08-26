@@ -6,6 +6,11 @@ Leser søker bok has three main websites:
 
 This repository contains the code for the two first sites, the third runs on wordpress.com.
 
+## Gitter
+This repository has a chatroom on Gitter:  
+
+[![Join the chat at https://gitter.im/lesersokerbok/lsb-wordpress-themes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lesersokerbok/lsb-wordpress-themes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Themes
 There are three themes: 
 * `lsb-base-theme`
@@ -87,7 +92,7 @@ the changes at the `lsbtest` install.
 * Build assets:  
 `grunt build`
 * Commit assets:  
-`git commit -a -m "Assets buildt for testing"`
+`git commit -a -m "Assets built for testing"`
 * Push to test:  
 `git push lsbtest`
 
@@ -102,12 +107,16 @@ pushed to the `lsb` install.
 * Build assets:  
 `grunt build`
 * Commit assets:  
-`git commit -a -m "Assets buildt for release/hotfix"`
+`git commit -a -m "Assets built for release/hotfix"`
 * Push to test  
 `git push lsbtest`
 * Test the sites and if no errors are found finish the release or hotfix:  
 `git flow hotfix finish <x.x.x>` or  
 `git flow release finish <x.x.x>`
+* Create snapshot of site on [my.wpengine.com](https://my.wpengine.com/installs/lsb/backup_points)
+* Push to origin  
+`git push -all`  
+`git push -tags`
 * Finally push to the `lsb` install:  
 `git push lsbprod`
 

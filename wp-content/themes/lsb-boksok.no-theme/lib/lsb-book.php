@@ -17,14 +17,13 @@ class LsbBook {
     add_action('init', array($this, 'register_lsb_tax_list'));
     add_action('init', array($this, 'register_lsb_tax_series'));
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
-    add_action('init', array($this, 'register_lsb_acf_content'));
+    add_action('init', array($this, 'register_lsb_acf_book_content'));
   }
 
   public function register_post_type_lsb_book() {
     register_post_type('lsb_book',
       array(
         'label' => __('Bøker', 'lsb_boksok'),
-        'description' => _x('', 'Bøker custom post type description'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
@@ -265,7 +264,7 @@ class LsbBook {
         0 => 'lsb_book',
       ),
       array( 'hierarchical' => false,
-      	'label' => __('Emne', 'lsb_book'),
+      	'label' => __('Emne', 'lsb_boksok'),
       	'show_ui' => true,
       	'query_var' => true,
       	'rewrite' => array( 'slug' => _x('emne', 'lsb_tax_topic slug', 'lsb_boksok') ),
@@ -286,7 +285,57 @@ class LsbBook {
         )
       )
     );
+
+  
+    // Assign lsb_tax_topic_hide_term to the term lsb_tax_topic
+
+    if( function_exists('register_field_group') )
+    {
+      $info_fields = array(
+        array(
+          'key' => 'lsb_acf_tax_topic_hide_term',
+          'label' => __('Skjul for besøkende', 'lsb_boksok'),
+          'name' => 'lsb_tax_topic_hide_term',
+          'type' => 'true_false',
+          'instructions' => __('Velg om dette emnet skal være usynelig for besøkende (forsatt tilgjengelig i søk).', 'lsb_boksok'),
+          'required' => 0,
+          'conditional_logic' => 0,
+          'wrapper' => array (
+            'width' => '',
+            'class' => '',
+            'id' => '',
+          ),
+          'message' => '',
+          'default_value' => 0,
+        ),
+      );
+
+      register_field_group(array (
+        'key' => 'lsb_acf_tax_topic_settings',
+        'title' => __('Innstillinger', 'lsb_book'),
+        'fields' => $info_fields,
+        'location' => array(
+            array(
+              array(
+                'param' => 'taxonomy',
+                'operator' => '==',
+                'value' => 'lsb_tax_topic',
+              ),
+            ),
+          ),
+          'menu_order' => 0,
+          'position' => 'normal',
+          'style' => 'default',
+          'label_placement' => 'top',
+          'instruction_placement' => 'label',
+          'hide_on_screen' => '',
+      ));
+
+    }
+
   }
+
+
 
   public function register_tax_lsb_language() {
     register_taxonomy( 'lsb_tax_language',
@@ -559,7 +608,7 @@ class LsbBook {
     }
   }
 
-  public function register_lsb_acf_content() {
+  public function register_lsb_acf_book_content() {
     if(function_exists("register_field_group"))
     {
       register_field_group(array (
