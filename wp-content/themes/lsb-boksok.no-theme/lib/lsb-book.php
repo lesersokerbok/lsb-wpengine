@@ -623,7 +623,7 @@ class LsbBook {
         'name' => 'lsb_tax_topic_icon',
         'type' => 'image',
         'return_format' => 'array',
-		'preview_size' => 'full',
+		'preview_size' => 'thumbnail',
       );
       
       $hide_term = array(

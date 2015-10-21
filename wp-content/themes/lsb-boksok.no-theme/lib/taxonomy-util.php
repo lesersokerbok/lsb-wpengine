@@ -135,6 +135,36 @@ class TaxonomyUtil {
     $term_links = apply_filters( "term_links-$taxonomy", $links );
     echo $before . join( $sep, $term_links ) . $after;
   }
+
+  public static function the_term_icons( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+    $terms = get_the_terms( $id, $taxonomy );
+    if ( is_wp_error( $terms ) )
+      return;
+
+    if ( empty( $terms ) )
+      return;
+
+    $links = array();
+
+    foreach ( $terms as $term ) {
+
+      $icon = get_field('lsb_acf_tax_topic_icon', $term );
+
+      if ( !empty($icon) ) { // If there is an icon
+
+        $link = get_term_link( $term, $taxonomy );
+
+        if ( is_wp_error( $link ) ) {
+          return $link;
+        }
+
+        $links[] = '<a href="' . esc_url( $link ) . '" rel="tag"><img src="' . esc_url($icon['sizes']['thumbnail']) . '"></a>';
+      }
+    }
+
+    $term_links = apply_filters( "term_links-$taxonomy", $links );
+    echo $before . join( $sep, $term_links ) . $after;
+  }
 }
 
 ?>
