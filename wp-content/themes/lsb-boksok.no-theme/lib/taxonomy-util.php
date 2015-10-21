@@ -108,13 +108,13 @@ class TaxonomyUtil {
 
   // Edited version of get_the_term_list — Using the get_field to check if lsb_tax_topic_hide_term is true for the term.
 
-  public static  function get_the_tax_topics( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+  public static function the_unhidden_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
     $terms = get_the_terms( $id, $taxonomy );
     if ( is_wp_error( $terms ) )
-      return $terms;
+      return;
 
     if ( empty( $terms ) )
-      return false;
+      return;
 
     $links = array();
      
@@ -133,10 +133,8 @@ class TaxonomyUtil {
     }
      
     $term_links = apply_filters( "term_links-$taxonomy", $links );
-    return $before . join( $sep, $term_links ) . $after;
+    echo $before . join( $sep, $term_links ) . $after;
   }
-
-
 }
 
 ?>
