@@ -24,6 +24,20 @@ body {
 
 .page-header {
   margin-bottom: @line-height-computed*1.5;
+
+  &.has-term-icon {
+    position: relative;
+    padding-left: 150px + @padding-large-vertical*1.5;
+
+    h1 {
+      img {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 150px;
+      }
+    }
+  }
 }
 
 .book-search {

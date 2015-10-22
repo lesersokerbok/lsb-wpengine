@@ -626,6 +626,15 @@ class LsbBook {
 		'preview_size' => 'thumbnail',
       );
       
+      $icon_with_caption = array (
+        'key' => 'lsb_acf_tax_topic_icon_with_caption',
+        'label' => __('Emneikon/bilde med emnetittel', 'lsb_boksok'),
+        'name' => 'lsb_tax_topic_icon_with_caption',
+        'type' => 'image',
+        'return_format' => 'array',
+		'preview_size' => 'thumbnail',
+      );
+
       $hide_term = array(
         'key' => 'lsb_acf_tax_topic_hide_term',
         'label' => __('Skjul for besøkende', 'lsb_boksok'),
@@ -640,7 +649,7 @@ class LsbBook {
       register_field_group(array (
         'key' => 'lsb_acf_tax_topic_settings',
         'title' => __('Innstillinger', 'lsb_book'),
-        'fields' => array($icon, $hide_term),
+        'fields' => array($icon, $icon_with_caption, $hide_term),
         'location' => array(
             array(
               array(
@@ -657,7 +666,7 @@ class LsbBook {
       register_field_group(array (
         'key' => 'lsb_acf_tax_series_settings',
         'title' => __('Innstillinger', 'lsb_book'),
-        'fields' => array($icon),
+        'fields' => array($icon, $icon_with_caption),
         'location' => array(
             array(
               array(

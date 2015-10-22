@@ -136,6 +136,21 @@ class TaxonomyUtil {
     echo $before . join( $sep, $term_links ) . $after;
   }
 
+  public static function get_single_term_icon( $term, $caption = false ) {
+
+    $icon = get_field('lsb_acf_tax_topic_icon', $term );
+
+    if($caption) {
+      $icon = get_field('lsb_acf_tax_topic_icon_with_caption', $term );
+    }
+
+    if( !empty($icon) ) {
+      return '<img src="' . esc_url($icon['sizes']['thumbnail']) . '" />';
+    } else {
+      return '';
+    }
+  }
+
   public static function the_term_icons( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
     $terms = get_the_terms( $id, $taxonomy );
     if ( is_wp_error( $terms ) )
@@ -148,7 +163,7 @@ class TaxonomyUtil {
 
     foreach ( $terms as $term ) {
 
-      $icon = get_field('lsb_acf_tax_topic_icon', $term );
+      $icon = TaxonomyUtil::get_single_term_icon( $term , true);
 
       if ( !empty($icon) ) { // If there is an icon
 
@@ -158,13 +173,29 @@ class TaxonomyUtil {
           return $link;
         }
 
-        $links[] = '<a href="' . esc_url( $link ) . '" rel="tag"><img src="' . esc_url($icon['sizes']['thumbnail']) . '"></a>';
+        $links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $icon . '</a>';
       }
     }
 
     $term_links = apply_filters( "term_links-$taxonomy", $links );
     echo $before . join( $sep, $term_links ) . $after;
   }
+
+  public static function single_term_icon( $prefix='', $display = true ) {
+    $term = get_queried_object();
+    $icon = TaxonomyUtil::get_single_term_icon( $term , false);
+
+    if( empty( $icon ) ) {
+      return;
+    }
+
+    if( $display ) {
+      echo $icon;
+    } else {
+      return $icon;
+    }
+  }
+
 }
 
 ?>
