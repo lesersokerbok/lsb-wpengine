@@ -138,10 +138,10 @@ class TaxonomyUtil {
 
   public static function get_single_term_icon( $term, $caption = false ) {
 
-    $icon = get_field('lsb_acf_tax_topic_icon', $term );
+    $icon = get_field('lsb_acf_tax_term_icon', $term );
 
     if($caption) {
-      $icon = get_field('lsb_acf_tax_topic_icon_with_caption', $term );
+      $icon = get_field('lsb_acf_tax_term_icon_with_caption', $term );
     }
 
     if( !empty($icon) ) {

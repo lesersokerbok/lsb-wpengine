@@ -615,25 +615,7 @@ class LsbBook {
   public function register_lsb_acf_tax_meta() {
     if( function_exists('register_field_group') )
     {
-      // Fields
-      
-      $icon = array (
-        'key' => 'lsb_acf_tax_topic_icon',
-        'label' => __('Emneikon/bilde', 'lsb_boksok'),
-        'name' => 'lsb_tax_topic_icon',
-        'type' => 'image',
-        'return_format' => 'array',
-		'preview_size' => 'thumbnail',
-      );
-      
-      $icon_with_caption = array (
-        'key' => 'lsb_acf_tax_topic_icon_with_caption',
-        'label' => __('Emneikon/bilde med emnetittel', 'lsb_boksok'),
-        'name' => 'lsb_tax_topic_icon_with_caption',
-        'type' => 'image',
-        'return_format' => 'array',
-		'preview_size' => 'thumbnail',
-      );
+      // Hide topic
 
       $hide_term = array(
         'key' => 'lsb_acf_tax_topic_hide_term',
@@ -643,13 +625,11 @@ class LsbBook {
         'message' => __('Gjør usynelig for besøkende (forsatt tilgjengelig i søk).', 'lsb_boksok'),
         'default_value' => 0,
       );
-      
-      // Adding fields to topic taxonomy
 
       register_field_group(array (
         'key' => 'lsb_acf_tax_topic_settings',
         'title' => __('Innstillinger', 'lsb_book'),
-        'fields' => array($icon, $icon_with_caption, $hide_term),
+        'fields' => array($hide_term),
         'location' => array(
             array(
               array(
@@ -661,20 +641,52 @@ class LsbBook {
           )
       ));
       
-      // Adding fields to series taxonomy
+      // Icon
+
+      $icon = array (
+        'key' => 'lsb_acf_tax_term_icon',
+        'label' => __('Ikon/bilde', 'lsb_boksok'),
+        'name' => 'lsb_tax_topic_icon',
+        'type' => 'image',
+        'return_format' => 'array',
+		'preview_size' => 'thumbnail',
+      );
+
+      $icon_with_caption = array (
+        'key' => 'lsb_acf_tax_term_icon_with_caption',
+        'label' => __('Ikon/bilde med tittel', 'lsb_boksok'),
+        'name' => 'lsb_tax_topic_icon_with_caption',
+        'type' => 'image',
+        'return_format' => 'array',
+		'preview_size' => 'thumbnail',
+      );
 
       register_field_group(array (
-        'key' => 'lsb_acf_tax_series_settings',
-        'title' => __('Innstillinger', 'lsb_book'),
+        'key' => 'lsb_acf_tax_icon_group',
+        'title' => __('Ikon', 'lsb_book'),
         'fields' => array($icon, $icon_with_caption),
         'location' => array(
             array(
               array(
                 'param' => 'taxonomy',
                 'operator' => '==',
-                'value' => 'lsb_tax_series',
-              ),
+                'value' => 'lsb_tax_topic',
+              )
             ),
+            array(
+              array(
+                'param' => 'taxonomy',
+                'operator' => '==',
+                'value' => 'lsb_tax_genre',
+              )
+            ),
+            array(
+              array(
+                'param' => 'taxonomy',
+                'operator' => '==',
+                'value' => 'lsb_tax_series',
+              )
+            )
           )
       ));
       
