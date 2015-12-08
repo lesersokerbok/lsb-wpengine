@@ -23,7 +23,7 @@ function roots_title() {
       $author = get_queried_object();
       return sprintf(__('Forfatterarkiv: %s', 'lsb'), apply_filters('the_author', is_object($author) ? $author->display_name : null));
     } else {
-      return ucfirst(single_cat_title('', false));
+      return single_cat_title('', false);
     }
 
   } elseif (is_search()) {

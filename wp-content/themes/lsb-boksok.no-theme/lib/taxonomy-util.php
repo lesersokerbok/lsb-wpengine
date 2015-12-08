@@ -108,13 +108,13 @@ class TaxonomyUtil {
 
   // Edited version of get_the_term_list — Using the get_field to check if lsb_tax_topic_hide_term is true for the term.
 
-  public static  function get_the_tax_topics( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+  public static function the_unhidden_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
     $terms = get_the_terms( $id, $taxonomy );
     if ( is_wp_error( $terms ) )
-      return $terms;
+      return;
 
     if ( empty( $terms ) )
-      return false;
+      return;
 
     $links = array();
      
@@ -133,9 +133,69 @@ class TaxonomyUtil {
     }
      
     $term_links = apply_filters( "term_links-$taxonomy", $links );
-    return $before . join( $sep, $term_links ) . $after;
+    echo $before . join( $sep, $term_links ) . $after;
   }
 
+  public static function get_single_term_icon( $term, $caption = false ) {
+
+    $icon = get_field('lsb_acf_tax_term_icon', $term );
+    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
+
+    if($caption && $icon_caption) {
+      $icon = $icon_caption;
+    }
+
+    if( !empty($icon) ) {
+      return '<img src="' . esc_url($icon['sizes']['thumbnail']) . '" />';
+    } else {
+      return '';
+    }
+  }
+
+  public static function the_term_icons( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+    $terms = get_the_terms( $id, $taxonomy );
+    if ( is_wp_error( $terms ) )
+      return;
+
+    if ( empty( $terms ) )
+      return;
+
+    $links = array();
+
+    foreach ( $terms as $term ) {
+
+      $icon = TaxonomyUtil::get_single_term_icon( $term , true);
+
+      if ( !empty($icon) ) { // If there is an icon
+
+        $link = get_term_link( $term, $taxonomy );
+
+        if ( is_wp_error( $link ) ) {
+          return $link;
+        }
+
+        $links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $icon . '</a>';
+      }
+    }
+
+    $term_links = apply_filters( "term_links-$taxonomy", $links );
+    echo $before . join( $sep, $term_links ) . $after;
+  }
+
+  public static function single_term_icon( $prefix='', $display = true ) {
+    $term = get_queried_object();
+    $icon = TaxonomyUtil::get_single_term_icon( $term , false);
+
+    if( empty( $icon ) ) {
+      return;
+    }
+
+    if( $display ) {
+      echo $icon;
+    } else {
+      return $icon;
+    }
+  }
 
 }
 
