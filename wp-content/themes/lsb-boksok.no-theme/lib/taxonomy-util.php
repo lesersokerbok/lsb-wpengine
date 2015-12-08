@@ -34,7 +34,7 @@ class TaxonomyUtil {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_slug'), $term_objects);
     } else {
-      return null;
+      return [];
     }
   }
   
@@ -42,7 +42,7 @@ class TaxonomyUtil {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_name'), $term_objects);
     } else {
-      return null;
+      return [];
     }
   }
   
@@ -50,7 +50,7 @@ class TaxonomyUtil {
     if ($slugs_array && is_array($slugs_array)) {
       return array_map(array('TaxonomyUtil', 'get_term_name_from_slug'), $slugs_array, array_fill(0,count($slugs_array),$taxonomy));
     } else {
-      return null;
+      return [];
     }
   }
   
@@ -58,7 +58,7 @@ class TaxonomyUtil {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_id'), $term_objects);
     } else {
-      return null;
+      return [];
     }
   }
   
