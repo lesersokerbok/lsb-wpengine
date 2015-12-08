@@ -139,9 +139,10 @@ class TaxonomyUtil {
   public static function get_single_term_icon( $term, $caption = false ) {
 
     $icon = get_field('lsb_acf_tax_term_icon', $term );
+    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
 
-    if($caption) {
-      $icon = get_field('lsb_acf_tax_term_icon_with_caption', $term );
+    if($caption && $icon_caption) {
+      $icon = $icon_caption;
     }
 
     if( !empty($icon) ) {
