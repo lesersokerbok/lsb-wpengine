@@ -174,7 +174,7 @@ class TaxonomyUtil {
           return $link;
         }
 
-        $links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $icon . '</a>';
+        $links[] = '<a href="' . esc_url( $link ) . '" class="icon" rel="tag">' . $icon . '</a>';
       }
     }
 
