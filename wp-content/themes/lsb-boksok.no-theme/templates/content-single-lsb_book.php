@@ -93,7 +93,7 @@
             <?php the_terms($post->ID, 'lsb_tax_age', __('Alder: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'lsb_tax_audience', __('Tilpasset: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php the_terms($post->ID, 'lsb_tax_genre', __('Sjanger: ', 'lsb_boksok'), ', ', '<br/>') ?>
-            <?php the_terms($post->ID, 'tax_lsb_language', __('Språk: ', 'lsb_boksok'), ', ', '<br/>') ?>
+            <?php the_terms($post->ID, 'lsb_tax_language', __('Språk: ', 'lsb_boksok'), ', ', '<br/>') ?>
             <?php TaxonomyUtil::the_unhidden_term_list($post->ID, 'lsb_tax_topic', __('Tema: ', 'lsb_boksok'), ', ', '<br/>') ?>
 
             <?php if(has_term('', 'lsb_tax_series') || has_term('', 'lsb_tax_list')): ?>
