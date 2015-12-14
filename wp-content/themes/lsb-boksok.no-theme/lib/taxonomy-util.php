@@ -182,7 +182,7 @@ class TaxonomyUtil {
     echo $before . join( $sep, $term_links ) . $after;
   }
 
-  public static function single_term_icon( $prefix='', $display = true ) {
+  public static function single_term_icon( $display = true ) {
     $term = get_queried_object();
     $icon = TaxonomyUtil::get_single_term_icon( $term , false);
 
