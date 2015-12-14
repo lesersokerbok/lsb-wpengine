@@ -71,9 +71,9 @@
       </div>
       <div class="col-lg-4 col-sm-6">
         
-        <?php TaxonomyUtil::the_term_icons($post->ID, 'lsb_tax_topic') ?>
-        <?php TaxonomyUtil::the_term_icons($post->ID, 'lsb_tax_genre') ?>
-        <?php TaxonomyUtil::the_term_icons($post->ID, 'lsb_tax_series') ?>
+        <?php TaxonomyUtil::the_terms_as_icons($post->ID, 'lsb_tax_topic') ?>
+        <?php TaxonomyUtil::the_terms_as_icons($post->ID, 'lsb_tax_genre') ?>
+        <?php TaxonomyUtil::the_terms_as_icons($post->ID, 'lsb_tax_series') ?>
         
 
         <?php if( get_field( 'lsb_quote' ) ): ?>

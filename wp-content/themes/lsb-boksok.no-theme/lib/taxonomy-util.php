@@ -136,12 +136,23 @@ class TaxonomyUtil {
     echo $before . join( $sep, $term_links ) . $after;
   }
 
+  public static function term_has_icon($term) {
+    $icon = get_field('lsb_acf_tax_term_icon', $term );
+    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
+
+    if(!empty($icon) || !empty($icon_caption)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public static function get_single_term_icon( $term, $caption = false ) {
 
     $icon = get_field('lsb_acf_tax_term_icon', $term );
     $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
 
-    if($caption && $icon_caption) {
+    if($caption && !empty($icon_caption)) {
       $icon = $icon_caption;
     }
 
@@ -152,7 +163,7 @@ class TaxonomyUtil {
     }
   }
 
-  public static function the_term_icons( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+  public static function the_terms_as_icons( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
     $terms = get_the_terms( $id, $taxonomy );
     if ( is_wp_error( $terms ) )
       return;
@@ -174,7 +185,7 @@ class TaxonomyUtil {
           return $link;
         }
 
-        $links[] = '<a href="' . esc_url( $link ) . '" class="icon" rel="tag">' . $icon . '</a>';
+        $links[] = '<a href="' . esc_url( $link ) . '" class="term-icon" rel="tag">' . $icon . '</a>';
       }
     }
 
@@ -182,19 +193,17 @@ class TaxonomyUtil {
     echo $before . join( $sep, $term_links ) . $after;
   }
 
-  public static function single_term_icon( $display = true ) {
-    $term = get_queried_object();
-    $icon = TaxonomyUtil::get_single_term_icon( $term , false);
-
-    if( empty( $icon ) ) {
-      return;
+  public static function the_single_term_icon( $term, $caption = false ) {
+    if(!$term) {
+      $term = get_queried_object();
     }
 
-    if( $display ) {
-      echo $icon;
-    } else {
-      return $icon;
-    }
+    echo TaxonomyUtil::get_single_term_icon( $term , $caption);
+  }
+
+  public static function get_terms_with_icons($taxonomy) {
+    $terms = get_terms( $taxonomy );
+    return array_filter( $terms, array('TaxonomyUtil', 'term_has_icon') );
   }
 
 }

@@ -43,6 +43,14 @@ Template Name: Boksside Template
   </div>
 <?php endif; ?>
 
+<?php if( is_front_page() ) : ?>
+
+<nav class="term-icons-navigation">
+  <?php get_template_part('templates/book-shelf-terms'); ?>
+</nav>
+
+<?php endif; ?>
+
 <?php if($child_pages_query->have_posts()) : ?>
 
   <section class="book-shelf-loop">

@@ -1,6 +1,6 @@
-<div class="page-header <?php echo !empty( TaxonomyUtil::single_term_icon(false) ) ? 'has-term-icon': '';  ?>">
+<div class="page-header <?php echo TaxonomyUtil::term_has_icon(get_queried_object()) ? 'has-term-icon': '';  ?>">
   <h1>
-    <?php TaxonomyUtil::single_term_icon(true)?> <?php echo roots_title(); ?>
+    <?php TaxonomyUtil::the_single_term_icon(get_queried_object())?> <?php echo roots_title(); ?>
   </h1>
 </div>
 
