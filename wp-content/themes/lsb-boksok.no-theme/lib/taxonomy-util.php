@@ -34,7 +34,7 @@ class TaxonomyUtil {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_slug'), $term_objects);
     } else {
-      return null;
+      return [];
     }
   }
   
@@ -42,7 +42,7 @@ class TaxonomyUtil {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_name'), $term_objects);
     } else {
-      return null;
+      return [];
     }
   }
   
@@ -50,7 +50,7 @@ class TaxonomyUtil {
     if ($slugs_array && is_array($slugs_array)) {
       return array_map(array('TaxonomyUtil', 'get_term_name_from_slug'), $slugs_array, array_fill(0,count($slugs_array),$taxonomy));
     } else {
-      return null;
+      return [];
     }
   }
   
@@ -58,7 +58,7 @@ class TaxonomyUtil {
     if ($term_objects && is_array($term_objects)) {
       return array_map(array('TaxonomyUtil', 'get_term_id'), $term_objects);
     } else {
-      return null;
+      return [];
     }
   }
   
@@ -108,13 +108,13 @@ class TaxonomyUtil {
 
   // Edited version of get_the_term_list — Using the get_field to check if lsb_tax_topic_hide_term is true for the term.
 
-  public static  function get_the_tax_topics( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+  public static function the_unhidden_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
     $terms = get_the_terms( $id, $taxonomy );
     if ( is_wp_error( $terms ) )
-      return $terms;
+      return;
 
     if ( empty( $terms ) )
-      return false;
+      return;
 
     $links = array();
      
@@ -133,9 +133,78 @@ class TaxonomyUtil {
     }
      
     $term_links = apply_filters( "term_links-$taxonomy", $links );
-    return $before . join( $sep, $term_links ) . $after;
+    echo $before . join( $sep, $term_links ) . $after;
   }
 
+  public static function term_has_icon($term) {
+    $icon = get_field('lsb_acf_tax_term_icon', $term );
+    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
+
+    if(!empty($icon) || !empty($icon_caption)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public static function get_single_term_icon( $term, $caption = false ) {
+
+    $icon = get_field('lsb_acf_tax_term_icon', $term );
+    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
+
+    if(($caption && !empty($icon_caption)) || empty($icon)){
+      $icon = $icon_caption;
+    }
+
+    if( !empty($icon) ) {
+      return '<img src="' . esc_url($icon['sizes']['thumbnail']) . '" />';
+    } else {
+      return '';
+    }
+  }
+
+  public static function the_terms_as_icons( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+    $terms = get_the_terms( $id, $taxonomy );
+    if ( is_wp_error( $terms ) )
+      return;
+
+    if ( empty( $terms ) )
+      return;
+
+    $links = array();
+
+    foreach ( $terms as $term ) {
+
+      $icon = TaxonomyUtil::get_single_term_icon( $term , true);
+
+      if ( !empty($icon) ) { // If there is an icon
+
+        $link = get_term_link( $term, $taxonomy );
+
+        if ( is_wp_error( $link ) ) {
+          return $link;
+        }
+
+        $links[] = '<a href="' . esc_url( $link ) . '" class="term-icon" rel="tag">' . $icon . '</a>';
+      }
+    }
+
+    $term_links = apply_filters( "term_links-$taxonomy", $links );
+    echo $before . join( $sep, $term_links ) . $after;
+  }
+
+  public static function the_single_term_icon( $term, $caption = false ) {
+    if(!$term) {
+      $term = get_queried_object();
+    }
+
+    echo TaxonomyUtil::get_single_term_icon( $term , $caption);
+  }
+
+  public static function get_terms_with_icons($taxonomy) {
+    $terms = get_terms( $taxonomy );
+    return array_filter( $terms, array('TaxonomyUtil', 'term_has_icon') );
+  }
 
 }
 

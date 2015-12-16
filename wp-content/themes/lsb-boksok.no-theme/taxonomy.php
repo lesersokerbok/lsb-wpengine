@@ -1,4 +1,8 @@
-<?php get_template_part('templates/page', 'header'); ?>
+<div class="page-header <?php echo TaxonomyUtil::term_has_icon(get_queried_object()) ? 'has-term-icon': '';  ?>">
+  <h1>
+    <?php TaxonomyUtil::the_single_term_icon(get_queried_object())?> <?php echo roots_title(); ?>
+  </h1>
+</div>
 
 <section class="book-search">
   <?php get_search_form(); ?>

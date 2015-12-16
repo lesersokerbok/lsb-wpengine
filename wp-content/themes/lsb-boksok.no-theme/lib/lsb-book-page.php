@@ -3,6 +3,7 @@
 class LsbBookPage {
   public function __construct() {
     add_action('init', array($this, 'register_field_group_book_page_filters_group'));
+    add_action('init', array($this, 'register_field_group_book_page_visual_nav_group'));
     add_action('init', array($this, 'register_field_group_book_page_info_group'));
   }
   
@@ -75,6 +76,101 @@ class LsbBookPage {
     }
   }
   
+  public function register_field_group_book_page_visual_nav_group()
+  {
+    if( function_exists('register_field_group') )
+    {
+
+      $info_fields = array(
+        array (
+          'key' => 'lsb_acf_book_page_visual_nav_yes_no',
+          'label' => _x('Vis visuell navigasjon', 'lsb_boksok'),
+          'name' => 'lsb_book_page_visual_nav_yes_no',
+          'type' => 'true_false',
+          'instructions' => '',
+          'required' => 0,
+          'conditional_logic' => 0,
+          'default_value' => 0,
+        ),
+        array (
+          'key' => 'lsb_acf_book_page_visual_nav_title',
+          'label' => _x('Overskrift', 'boksok section header', 'lsb_boksok'),
+          'name' => 'lsb_book_page_visual_nav_title',
+          'prefix' => '',
+          'type' => 'text',
+          'instructions' => '',
+          'required' => 1,
+          'conditional_logic' => array (
+            array (
+              array (
+                'field' => 'lsb_acf_book_page_visual_nav_yes_no',
+                'operator' => '==',
+                'value' => '1',
+              ),
+            ),
+          ),
+          'column_width' => '',
+          'default_value' => '',
+          'placeholder' => '',
+          'prepend' => '',
+          'append' => '',
+          'maxlength' => '',
+          'readonly' => 0,
+          'disabled' => 0,
+        ),
+        array (
+          'key' => 'lsb_acf_book_page_visual_nav_sub_title',
+          'label' => _x('Underoverskrift', 'boksok section subheader', 'lsb_boksok'),
+          'name' => 'lsb_book_page_visual_nav_sub_title',
+          'prefix' => '',
+          'type' => 'text',
+          'instructions' => '',
+          'required' => 0,
+          'conditional_logic' => array (
+            array (
+              array (
+                'field' => 'lsb_acf_book_page_visual_nav_yes_no',
+                'operator' => '==',
+                'value' => '1',
+              ),
+            ),
+          ),
+          'column_width' => '',
+          'default_value' => '',
+          'placeholder' => '',
+          'prepend' => '',
+          'append' => '',
+          'maxlength' => '',
+          'readonly' => 0,
+          'disabled' => 0,
+        )
+      );
+
+      register_field_group(array (
+          'key' => 'lsb_acf_book_page_visual_nav',
+          'title' => _x('Visuell navigasjon', 'lsb_boksok'),
+          'fields' => $info_fields,
+          'location' => array (
+              array (
+                  array (
+                      'param' => 'page_template',
+                      'operator' => '==',
+                      'value' => 'template-boksok-book-page.php',
+                  ),
+              ),
+          ),
+          'menu_order' => 0,
+          'position' => 'normal',
+          'style' => 'default',
+          'label_placement' => 'top',
+          'instruction_placement' => 'label',
+          'hide_on_screen' => array (
+              0 => 'the_content',
+          ),
+      ));
+    }
+  }
+
   public function register_field_group_book_page_filters_group()
   {
     if( function_exists('register_field_group') )
