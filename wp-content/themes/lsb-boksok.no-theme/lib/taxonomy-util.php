@@ -152,7 +152,7 @@ class TaxonomyUtil {
     $icon = get_field('lsb_acf_tax_term_icon', $term );
     $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
 
-    if($caption && !empty($icon_caption)) {
+    if(($caption && !empty($icon_caption)) || empty($icon)){
       $icon = $icon_caption;
     }
 
