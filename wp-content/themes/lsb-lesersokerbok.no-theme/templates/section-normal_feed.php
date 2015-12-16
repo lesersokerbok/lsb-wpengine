@@ -80,7 +80,7 @@
     }
 
     echo '<article class="row rss-post ">';
-    echo '<div class="col-md-8">';
+    echo '<div class="col-sm-8">';
     echo '<header>';
 
     if ( $link == '' ) {
@@ -101,7 +101,7 @@
 
     echo '</div>';
 
-    echo '<div class="col-md-4">';
+    echo '<div class="col-sm-4">';
     if ( $show_image && $image) {
       echo '<div class="rss-image">';
       if ( $link == '' ) {
