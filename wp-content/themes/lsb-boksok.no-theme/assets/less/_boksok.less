@@ -19,7 +19,14 @@ body {
   p:last-child {
     margin-bottom: 0
   }
+}
 
+a.term-icon {
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .page-header {
@@ -55,6 +62,16 @@ body {
     .page-header {
       margin-top: @line-height-computed*3;
     }
+  }
+}
+
+/* ==========================================================================
+Front page
+========================================================================== */
+
+nav.term-icons-navigation {
+  .page-header {
+    padding-bottom: @line-height-computed;
   }
 }
 
@@ -297,13 +314,9 @@ footer.page-footer {
   z-index:1000;
 }
 
-.lsb_book a.icon {
+.lsb_book a.term-icon {
   display: inline-block;
   margin-bottom: @line-height-computed;
-  
-  &:hover {
-    opacity: 0.8;
-  }
 }
 
 /* ==========================================================================

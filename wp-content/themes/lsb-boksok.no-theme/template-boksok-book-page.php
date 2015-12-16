@@ -43,6 +43,14 @@ Template Name: Boksside Template
   </div>
 <?php endif; ?>
 
+<?php if(  get_field('lsb_book_page_visual_nav_yes_no') ) : ?>
+
+<nav class="term-icons-navigation">
+  <?php get_template_part('templates/book-shelf-terms'); ?>
+</nav>
+
+<?php endif; ?>
+
 <?php if($child_pages_query->have_posts()) : ?>
 
   <section class="book-shelf-loop">
