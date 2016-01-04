@@ -12,16 +12,10 @@
 
 .page-template-template-frontpage-php .frontpage-section {
   
+  margin-bottom: @line-height-computed * 3;
+  
   &:first-child {
     margin-top: @line-height-computed;
-  }
-  
-  &.margin-bottom-large {
-    margin-bottom: (@line-height-computed * 3);  
-  }
-  
-  &.margin-bottom-small {
-    margin-bottom: @line-height-computed;
   }
   
   &:last-child {
@@ -29,31 +23,20 @@
   }
 
   .section-header {
-
     .page-header;
-
-    margin-top: 0;
-    margin-bottom: @line-height-computed/2;
-
-    p {
-      font-size: @jumbotron-font-size;
-    }
+    padding-bottom: 0;
   }
 
-  &.frontpage-section-textarea {
-    .jumbotron {
-
-      text-align: center;
-
-      .entry-content-asset {
-        max-width: 750px;
-        margin: 2em auto 0 auto;
-      }
-
-      :last-child {
-        margin-bottom: 0;
-      }
+  &.frontpage-section-hero {
+    
+    h1, .h1 {
+      font-size: @font-size-h1;
     }
+    
+    .entry-content-asset p {
+      margin-bottom: 0;
+    }
+    
   }
   
   &.frontpage-section-alert {
@@ -68,9 +51,9 @@
     
   }
 
-  &.frontpage-section-boxes {
+  &.frontpage-section-grid {
 
-    .box {
+    .grid-element {
       padding: 0 @panel-body-padding;
       h3 {
         font-size: ceil((@font-size-base * 1.125));

@@ -1,3 +1,14 @@
+<?php if(get_sub_field('section_heading')): ?>
+  <div class="section-header">
+    <h2>
+      <a href="<?php the_sub_field('section_feed_link') ?>"><?php the_sub_field('section_heading'); ?></a>
+      <?php if(get_sub_field('section_subheading')): ?>
+      <small> | <a href="<?php the_sub_field('section_feed_link') ?>"><?php the_sub_field('section_subheading'); ?></a></small>
+      <?php endif; ?>
+    </h2>
+  </div>
+<?php endif; ?>
+
 <?php
 
   $rss = fetch_feed( get_sub_field('section_feed_url') );
@@ -18,12 +29,6 @@
     $rss->__destruct();
     unset($rss);
     return;
-  }
-
-  if(get_sub_field('section_text')) {
-    echo '<div class="section-header">';
-    echo get_sub_field('section_text');
-    echo '</div>';
   }
 
   foreach ( $rss->get_items(0, $items) as $item ) {
