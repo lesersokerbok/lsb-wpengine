@@ -335,7 +335,7 @@
         						array (
         							'key' => 'lsb_frontpage_section_grid_element_link_internal',
         							'label' => 'Lenke til innhold',
-        							'name' => 'section_grid_element_internal',
+        							'name' => 'section_grid_element_link_internal',
         							'prefix' => '',
         							'type' => 'page_link',
         							'instructions' => '',
