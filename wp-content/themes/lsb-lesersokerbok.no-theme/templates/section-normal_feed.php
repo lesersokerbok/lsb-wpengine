@@ -84,6 +84,17 @@
       }
     }
 
+    if( $show_image && empty($image) ) {
+      // Get image URL from description element
+      $doc = new DOMDocument();
+      $doc->loadHTML(mb_convert_encoding($item->get_description(), 'HTML-ENTITIES', 'UTF-8'));
+      $xpath = new DOMXPath($doc);
+      $image = $xpath->evaluate("string(//img/@src)");
+      if ( is_a($image, 'DOMNodeList') ) {
+        $image = $image->item(0);
+      }
+    }
+
     echo '<article class="row rss-post ">';
     echo '<div class="col-sm-8">';
     echo '<header>';
