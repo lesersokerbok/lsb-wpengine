@@ -14,7 +14,7 @@ class LsbFeedTransformer {
       if ( $post->post_type === 'lsb_book' && has_post_thumbnail( $post->ID ) ) {
         $content = '' . get_the_post_thumbnail( $post->ID, 'thumbnail' ) . '' . $content;
       } else {
-        $content = '' . get_the_post_thumbnail( $post->ID, 'medium' ) . '' . $content;
+        $content = '' . get_the_post_thumbnail( $post->ID, 'large' ) . '' . $content;
       }
 
     }
