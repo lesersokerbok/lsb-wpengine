@@ -25,6 +25,7 @@ $roots_includes = array(
   'lib/pagination.php',     // Boostrap pagination
   'lib/lsb-mime-types.php', // Custom upload mime types
   'lib/rewrite.php',        // Custom rewrite rules
+  'lib/rss.php',            // Custom rss rules
 );
 
 foreach ($roots_includes as $file) {
@@ -35,6 +36,9 @@ foreach ($roots_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
+// Initialize custom functionality
+new LsbFeedTransformer();
 
 if(!function_exists('_log')){
   function _log( $message ) {
