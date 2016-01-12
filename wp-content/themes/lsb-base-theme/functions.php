@@ -38,7 +38,7 @@ foreach ($roots_includes as $file) {
 unset($file, $filepath);
 
 // Initialize custom functionality
-new LsbFeedTransformer();
+new LsbFeedUtil();
 
 if(!function_exists('_log')){
   function _log( $message ) {
