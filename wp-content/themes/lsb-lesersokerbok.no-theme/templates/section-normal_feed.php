@@ -34,7 +34,7 @@ $rss = fetch_feed( $feed_url );
           <?php echo LsbFeedUtil::get_excerpt_from_feed_item($item); ?>
         </div>
       </div>
-      <div class="col-sm4">
+      <div class="col-sm-4">
         <div class="rss-image">
           <?php $image = LsbFeedUtil::get_image_from_feed_item($item); ?>
           <?php if( $image) : ?>
