@@ -39,9 +39,8 @@
                           'conditional_logic' => 0,
                           'column_width' => '',
                           'choices' => array (    
-                            'text' => 'Tekst',
-                            'grid' => 'Grid',
                             'hero' => 'Hero',
+                            'grid' => 'Grid',
                             'normal_feed' => 'Vanlig feed',
                             'lsb_book_feed' => 'Bok-feed',
                           ),
@@ -50,28 +49,6 @@
                           'default_value' => '',
                           'layout' => 'horizontal',
         				),
-                        array (
-                          'key' => 'lsb_frontpage_section_video',
-                          'label' => 'Video',
-                          'name' => 'section_video',
-                          'prefix' => '',
-                          'type' => 'wysiwyg',
-                          'instructions' => '',
-                          'required' => 0,
-                          'conditional_logic' => array (
-                            array (
-                              array (
-                                'field' => 'lsb_frontpage_section_type',
-                                'operator' => '==',
-                                'value' => 'hero',
-                              ),
-                            ),
-                          ),
-                          'column_width' => '50%',
-                          'default_value' => '',
-                          'toolbar' => 'full',
-                          'media_upload' => 0,
-                        ),
                         array (
                           'key' => 'lsb_frontpage_section_text',
                           'label' => 'Tekst',
@@ -82,14 +59,7 @@
                           'required' => 0,
                           'conditional_logic' => array (
                             array (
-                              'rule_0' => array (
-                                'field' => 'lsb_frontpage_section_type',
-                                'operator' => '==',
-                                'value' => 'text',
-                              ),
-                            ),
-                            array (
-                              'rule_0' => array (
+                              array (
                                 'field' => 'lsb_frontpage_section_type',
                                 'operator' => '==',
                                 'value' => 'hero',
@@ -116,11 +86,6 @@
                                 'operator' => '!=',
                                 'value' => 'hero',
                               ),
-                              array (
-                                'field' => 'lsb_frontpage_section_type',
-                                'operator' => '!=',
-                                'value' => 'text',
-                              ),
                             ),
                           ),
                           'column_width' => '',
@@ -146,11 +111,6 @@
                                 'field' => 'lsb_frontpage_section_type',
                                 'operator' => '!=',
                                 'value' => 'hero',
-                              ),
-                              array (
-                                'field' => 'lsb_frontpage_section_type',
-                                'operator' => '!=',
-                                'value' => 'text',
                               ),
                             ),
                           ),
