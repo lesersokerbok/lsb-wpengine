@@ -35,8 +35,33 @@ class LsbFeedUtil {
     return $image;
   }
 
+  public static function get_image_from_enclosure($item) {
+    $image = null;
+    foreach ($item->get_enclosures() as $enclosure) {
+      if ($enclosure->link != '' && strpos($enclosure->link, 'gravatar') === false) {
+        $image = $enclosure->link;
+        break;
+      }
+    }
+    return $image;
+  }
+
   public static function get_image_from_feed_item($item) {
-    return LsbFeedUtil::get_image_from_feed_item_description($item);
+    $image = LsbFeedUtil::get_image_from_enclosure($item);
+    if(!$image) {
+      return LsbFeedUtil::get_image_from_feed_item_description($item);
+    } else {
+      return $image;
+    }
+  }
+
+  public static function get_excerpt_from_feed_item($item) {
+    $excerpt = wp_html_excerpt( $item->get_description(), 360);
+
+    // Comes from the feed itself
+    $excerpt = preg_replace( "/Les videre .*/", '', $excerpt);
+
+    return $excerpt;
   }
 
   public static function print_error_message($feed_url, $rss) {
