@@ -12,7 +12,6 @@
 $roots_includes = array(
   'lib/lsb-book.php',
   'lib/lsb-book-page.php',
-  'lib/lsb-feed-util.php',
   'lib/lsb-boksok-options.php',
   'lib/taxonomy-util.php',
   'lib/lsb-filter-query-util.php',
@@ -29,8 +28,7 @@ foreach ($roots_includes as $file) {
 unset($file, $filepath);
 
 // Initialize custom functionality
-new LsbBook();  
-new LsbFeedUtil();
+new LsbBook();
 new LsbBoksokOptions();
 new LsbBookPage();
 

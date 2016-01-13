@@ -1,123 +1,60 @@
 <?php
 
-  $rss = fetch_feed( get_sub_field('section_feed_url') );
-
-  $show_summary = true;
-  $show_date = true;
-  $show_image = true;
-  $items = get_sub_field('section_feed_max_items');
-
-  if ( is_wp_error($rss) ) {
-    if ( is_admin() || current_user_can('manage_options') )
-      echo '<div class="alert alert-warning">' . sprintf( __('<strong>RSS Error</strong>: %s'), $rss->get_error_message() ) . '</div>';
-    return;
-  }
-
-  if ( !$rss->get_item_quantity() ) {
-    echo '<div class="alert alert-warning">' . __( 'An error has occurred, which probably means the feed is down. Try again later.' ) . '</div>';
-    $rss->__destruct();
-    unset($rss);
-    return;
-  }
-
-  if(get_sub_field('section_text')) {
-    echo '<div class="section-header">';
-    echo get_sub_field('section_text');
-    echo '</div>';
-  }
-
-  foreach ( $rss->get_items(0, $items) as $item ) {
-    $link = $item->get_link();
-    while ( stristr($link, 'http') != $link )
-      $link = substr($link, 1);
-    $link = esc_url(strip_tags($link));
-    $title = esc_attr(strip_tags($item->get_title()));
-    if ( empty($title) )
-      $title = __('Untitled');
-
-    $desc = @html_entity_decode( $item->get_description(), ENT_QUOTES, get_option( 'blog_charset' ) );
-    $desc = esc_attr( strip_tags( $desc ) );
-    $desc = trim( str_replace( array( "\n", "\r" ), ' ', $desc ) );
-
-    //Option?
-    $desc = wp_html_excerpt( $desc, 360 );
-
-    //Only on normal feed
-    $desc = trim( str_replace( "Les videre →", '', $desc) );
-
-    $summary = '';
-    if ( $show_summary && !empty($desc) ) {
-      $summary = $desc;
-
-      // Append ellipsis. Change existing [...] to [&hellip;].
-      if ( '[...]' == substr( $summary, -5 ) ) {
-        $summary = substr( $summary, 0, -5 ) . '[&hellip;]';
-      } elseif ( '[&hellip;]' != substr( $summary, -10 ) && $desc !== $summary ) {
-        $summary .= ' [&hellip;]';
-      }
-
-      $summary = '<div class="rss-summary">' . esc_html( $summary ) . '</div>';
-    } else {
-      $show_summary = false;
-    }
-
-    $date = '';
-    if ( $show_date ) {
-      $date = $item->get_date( 'U' );
-      if ( $date ) {
-        $date = ' <span class="rss-date">' . date_i18n( get_option( 'date_format' ), $date ) . '</span>';
-      }
-    }
-
-    $image = '';
-    if ( $show_image ) {
-      foreach ($item->get_enclosures() as $enclosure) {
-        if ($enclosure->link != '' && strpos($enclosure->link, 'gravatar') === false) {
-          $image = $enclosure->link;
-          break;
-        }
-      }
-    }
-
-    echo '<article class="row rss-post ">';
-    echo '<div class="col-sm-8">';
-    echo '<header>';
-
-    if ( $link == '' ) {
-      echo "<h3>$title</h3>";
-    } else {
-      echo "<h3><a href='$link' target='_blank'>$title</a></h3>";
-    }
-
-    if ( $show_date ) {
-      echo "<p class='rss-meta'>{$date}</p>";
-    }
-
-    echo '</header>';
-
-    if ( $show_summary ) {
-      echo "<p class='rss-summary'>{$summary}</p>";
-    }
-
-    echo '</div>';
-
-    echo '<div class="col-sm-4">';
-    if ( $show_image && $image) {
-      echo '<div class="rss-image">';
-      if ( $link == '' ) {
-        echo "<img src='{$image}'/>";
-      } else {
-        echo "<a href='$link' target='_blank'><img src='{$image}'/></a>";
-      }
-      echo '</div>';
-    }
-    echo '</div>';
-
-    echo '</article>';
-
-  }
-
-  $rss->__destruct();
-  unset($rss);
+$feed_url = get_sub_field('section_feed_url');
+$rss = fetch_feed( $feed_url );
 
 ?>
+
+<?php if ( ! is_wp_error( $rss ) && $rss->get_item_quantity()) : ?>
+
+
+  <?php if(get_sub_field('section_heading')): ?>
+    <div class="section-header">
+      <h2>
+        <a href="<?php the_sub_field('section_feed_link') ?>"><?php the_sub_field('section_heading'); ?></a>
+        <?php if(get_sub_field('section_subheading')): ?>
+        <small> | <a href="<?php the_sub_field('section_feed_link') ?>"><?php the_sub_field('section_subheading'); ?></a></small>
+        <?php endif; ?>
+      </h2>
+    </div>
+  <?php endif; ?>
+
+  <?php foreach ( $rss->get_items(0, get_sub_field('section_feed_max_items')) as $item ) : ?>
+    <article class="row rss-post">
+      <div class="col-sm-8">
+        <header>
+          <h3>
+            <a <?php echo !LsbFeedUtil::is_feed_item_permalink_same_domain_as_site_domain($item) ? 'target="_blank"' : '' ?>
+               href="<?php echo esc_url( $item->get_permalink() ); ?>"><?php echo esc_html( $item->get_title() ); ?></a>
+          </h3>
+          <p class="rss-meta">
+            <span class="rss-date"><?php echo date_i18n( get_option( 'date_format' ), $item->get_date( 'U' ) ); ?></span>
+          </p>
+        </header>
+        <div class="rss-summary">
+          <?php echo LsbFeedUtil::get_excerpt_from_feed_item($item); ?>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="rss-image">
+          <?php $image = LsbFeedUtil::get_image_from_feed_item($item); ?>
+          <?php if( $image) : ?>
+            <a <?php echo !LsbFeedUtil::is_feed_item_permalink_same_domain_as_site_domain($item) ? 'target="_blank"' : '' ?>
+               href="<?php echo esc_url( $item->get_permalink() ); ?>">
+              <img src="<?php echo esc_url( $image ); ?>" />
+            </a>
+          <?php endif; ?>
+        </div>
+      </div>
+    </article>
+  <?php endforeach; ?>
+
+<?php else : ?>
+
+  <?php if(current_user_can('manage_options')) : ?>
+    <div class="alert alert-warning">
+      <?php LsbFeedUtil::print_error_message($feed_url, $rss) ?>
+    </div>
+  <?php endif; ?>
+
+<?php endif; ?>
