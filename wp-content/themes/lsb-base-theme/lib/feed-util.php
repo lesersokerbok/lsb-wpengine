@@ -9,7 +9,7 @@ class LsbFeedUtil {
     }
   }
 
-  public function add_featured_image_to_feed_content($content) {
+  private function add_featured_image_to_feed_content($content) {
     if  ( is_feed() ) {
 
       global $post;
@@ -23,6 +23,11 @@ class LsbFeedUtil {
     }
 
     return $content;
+  }
+
+  private function set_reject_unsafe_urls_to_false( $args ) {
+    $args['reject_unsafe_urls'] = false;
+    return $args;
   }
 
   public static function get_image_from_feed_item_description($item) {
@@ -75,9 +80,11 @@ class LsbFeedUtil {
     }
   }
 
-  public function set_reject_unsafe_urls_to_false( $args ) {
-    $args['reject_unsafe_urls'] = false;
-    return $args;
+  public static function is_feed_item_permalink_same_domain_as_site_domain($item) {
+    $feed_item_url = parse_url($item->get_permalink());
+    $site_url = parse_url(get_option('siteurl'));
+
+    return $feed_item_url['host'] == $site_url['host'];
   }
 
 }

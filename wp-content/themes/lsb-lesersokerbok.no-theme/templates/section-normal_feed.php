@@ -24,7 +24,8 @@ $rss = fetch_feed( $feed_url );
       <div class="col-sm-8">
         <header>
           <h3>
-            <a href="<?php echo esc_url( $item->get_permalink() ); ?>"><?php echo esc_html( $item->get_title() ); ?></a>
+            <a <?php echo !LsbFeedUtil::is_feed_item_permalink_same_domain_as_site_domain($item) ? 'target="_blank"' : '' ?>
+               href="<?php echo esc_url( $item->get_permalink() ); ?>"><?php echo esc_html( $item->get_title() ); ?></a>
           </h3>
           <p class="rss-meta">
             <span class="rss-date"><?php echo date_i18n( get_option( 'date_format' ), $item->get_date( 'U' ) ); ?></span>
@@ -38,7 +39,8 @@ $rss = fetch_feed( $feed_url );
         <div class="rss-image">
           <?php $image = LsbFeedUtil::get_image_from_feed_item($item); ?>
           <?php if( $image) : ?>
-            <a href="<?php echo esc_url( $item->get_permalink() ); ?>">
+            <a <?php echo !LsbFeedUtil::is_feed_item_permalink_same_domain_as_site_domain($item) ? 'target="_blank"' : '' ?>
+               href="<?php echo esc_url( $item->get_permalink() ); ?>">
               <img src="<?php echo esc_url( $image ); ?>" />
             </a>
           <?php endif; ?>
