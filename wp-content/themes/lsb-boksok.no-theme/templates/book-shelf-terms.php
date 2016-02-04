@@ -16,18 +16,30 @@
 
     <div class="book-shelf-body">
 
-      <span aria-hidden="true" class="book-shelf-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
-      <span aria-hidden="true" class="book-shelf-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
-
-      <div class="book-shelf-scroll">
+      <ul>
         <?php foreach ( $terms as $term ) : ?>
-
+        <li>
           <a class="term-icon" href="<?php echo get_term_link( $term, $term->taxonomy ); ?>">
             <?php TaxonomyUtil::the_single_term_icon($term, true); ?>
           </a>
+        </li>
         <?php endforeach; ?>
-      </div>
+      </ul>
 
+      <ul class="menu">
+        <li><a href="bok-tema.html">Krim</a></li>
+        <li><a href="bok-tema.html">Spenning</a></li>
+        <li><a href="bok-tema.html">Sommerferie</a></li>
+        <li><a href="bok-tema.html">Ølbrygging</a></li>
+        <li><a href="bok-tema.html">Ipsum</a></li>
+        <li><a href="bok-tema.html">Sport og fritid</a></li>
+        <li><a href="bok-tema.html">Fantacy</a></li>
+        <li><a href="bok-tema.html">Lorem</a></li>
+        <li><a href="bok-tema.html">Ølbrygging</a></li>
+        <li><a href="bok-tema.html">Sport og fritid</a></li>
+        <li><a href="bok-tema.html">Fantacy</a></li>
+        <li><a href="bok-tema.html">Lorem</a></li>
+      </ul>
     </div>
 
   </div>

@@ -9,7 +9,7 @@ class LsbFeedUtil {
     }
   }
 
-  private function add_featured_image_to_feed_content($content) {
+  public static function add_featured_image_to_feed_content($content) {
     if  ( is_feed() ) {
 
       global $post;
@@ -25,7 +25,7 @@ class LsbFeedUtil {
     return $content;
   }
 
-  private function set_reject_unsafe_urls_to_false( $args ) {
+  public static function set_reject_unsafe_urls_to_false( $args ) {
     $args['reject_unsafe_urls'] = false;
     return $args;
   }
