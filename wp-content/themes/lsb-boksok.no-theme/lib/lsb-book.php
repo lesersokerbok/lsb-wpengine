@@ -628,9 +628,10 @@ class LsbBook {
       // Show term in terms navigation
       $nav_term = array(
         'key' => 'lsb_acf_tax_nav_term',
-        'label' => __('Vis som del av emnenavigasjon', 'lsb_boksok'),
+        'label' => __('Del av temanavigasjon', 'lsb_boksok'),
         'name' => 'lsb_tax_nav_term',
         'type' => 'true_false',
+        'message' => __('Vis som en del av emnenavigasjon (Populære tema på forsiden)', 'lsb_boksok'),
         'default_value' => 0,
       );
 
