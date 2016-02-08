@@ -45,7 +45,7 @@ Template Name: Boksside Template
 
 <?php if(  get_field('lsb_book_page_visual_nav_yes_no') ) : ?>
 
-<nav class="term-icons-navigation">
+<nav class="tax-navigation">
   <?php get_template_part('templates/book-shelf-terms'); ?>
 </nav>
 

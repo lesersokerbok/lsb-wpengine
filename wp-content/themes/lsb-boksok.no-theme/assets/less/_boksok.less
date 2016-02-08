@@ -33,15 +33,11 @@ a.term-icon {
   margin-bottom: @line-height-computed*1.5;
 
   &.has-term-icon {
-    position: relative;
-    padding-left: 150px + @padding-large-vertical*1.5;
-
     h1 {
       img {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 150px;
+        display: inline-block;
+        height: 1.2em;
+        margin-right: @padding-base-horizontal;
       }
     }
   }
@@ -66,12 +62,40 @@ a.term-icon {
 }
 
 /* ==========================================================================
-Front page
+Tax navigation
 ========================================================================== */
 
-nav.term-icons-navigation {
+nav.tax-navigation {
   .page-header {
     padding-bottom: @line-height-computed;
+  }
+
+  .book-shelf-body {
+    white-space: normal;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: -1em;
+
+    li {
+      display: inline-block;
+      margin: 1em;
+
+      a {
+        .btn;
+        .btn-default;
+        text-decoration: none;
+        font-size: 1.25em;
+        line-height: 2em;
+
+        img {
+          height: 2em;
+          margin-right: @padding-base-horizontal;
+        }
+      }
+    }
   }
 }
 

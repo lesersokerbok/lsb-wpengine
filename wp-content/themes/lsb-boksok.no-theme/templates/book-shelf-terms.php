@@ -1,6 +1,4 @@
-<?php $terms = TaxonomyUtil::get_terms_with_icons( ['lsb_tax_topic', 'lsb_tax_genre'] ) ?>
-
-<?php if ( !empty($terms) ) : ?>
+<?php //if ( !empty($terms) ) : ?>
 
   <div class="book-shelf">
 
@@ -16,33 +14,11 @@
 
     <div class="book-shelf-body">
 
-      <ul>
-        <?php foreach ( $terms as $term ) : ?>
-        <li>
-          <a class="term-icon" href="<?php echo get_term_link( $term, $term->taxonomy ); ?>">
-            <?php TaxonomyUtil::the_single_term_icon($term, true); ?>
-          </a>
-        </li>
-        <?php endforeach; ?>
-      </ul>
+      <?php TaxonomyUtil::the_taxonomy_navigation_menu( array('lsb_tax_topic', 'lsb_tax_genre') ) ?>
 
-      <ul class="menu">
-        <li><a href="bok-tema.html">Krim</a></li>
-        <li><a href="bok-tema.html">Spenning</a></li>
-        <li><a href="bok-tema.html">Sommerferie</a></li>
-        <li><a href="bok-tema.html">Ølbrygging</a></li>
-        <li><a href="bok-tema.html">Ipsum</a></li>
-        <li><a href="bok-tema.html">Sport og fritid</a></li>
-        <li><a href="bok-tema.html">Fantacy</a></li>
-        <li><a href="bok-tema.html">Lorem</a></li>
-        <li><a href="bok-tema.html">Ølbrygging</a></li>
-        <li><a href="bok-tema.html">Sport og fritid</a></li>
-        <li><a href="bok-tema.html">Fantacy</a></li>
-        <li><a href="bok-tema.html">Lorem</a></li>
-      </ul>
     </div>
 
   </div>
-<?php endif; ?>
+<?php //endif; ?>
 
 <?php wp_reset_query(); ?>
