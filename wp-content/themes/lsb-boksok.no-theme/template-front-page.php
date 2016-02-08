@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Boksside Template
+Template Name: Forside
 */
 ?>
 
@@ -35,9 +35,9 @@ Template Name: Boksside Template
     <?php if ( is_user_logged_in() ) : ?>
       <small>
         <br/>
-        <strong><?php echo __('Filterinstillinger:', 'lsb_boksok'); ?></strong> 
+        <strong><?php echo __('Filterinstillinger:', 'lsb_boksok'); ?></strong>
         <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
-        <strong><?php echo __('- Vises kun for innloggede brukere', 'lsb_boksok'); ?></strong> 
+        <strong><?php echo __('- Vises kun for innloggede brukere', 'lsb_boksok'); ?></strong>
       </small>
     <?php endif; ?>
   </div>
