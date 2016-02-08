@@ -29,16 +29,16 @@ class LsbPageSections {
 
     foreach ($this->taxonomies as $key => $value) {
       $section_navigation_layouts[] = array (
-        'key' => 'lsb_acf_section_'.$section_type.'_layout_'.$key,
+        'key' => 'lsb_acf_page_section_'.$section_type.'_taxonomy_'.$key,
         'label' => $value,
-        'name' => 'lsb_section_'.$section_type.'_layout_'.$key,
+        'name' => 'lsb_page_section_'.$section_type.'_taxonomy_'.$key,
         'display' => 'row',
         'max' => 1,
         'sub_fields' => array(
           array(
-            'key' => 'lsb_acf_section_'.$section_type.'_terms_'.$key.'_selected',
+            'key' => 'lsb_acf_page_section_'.$section_type.'_taxonomy_'.$key.'_terms',
             'label' => '',
-            'name' => 'lsb_section_'.$section_type.'_terms_'.$key.'_selected',
+            'name' => 'lsb_page_section_'.$section_type.'_taxonomy_'.$key.'_terms',
             'type' => 'taxonomy',
             'taxonomy' => $key,
             'field_type' => $field_type,
@@ -94,58 +94,82 @@ class LsbPageSections {
             'button_label' => 'Legg til seksjon',
             'sub_fields' => array(
               array (
-                'key' => 'lsb_acf_section_title',
+                'key' => 'lsb_acf_page_section_title',
                 'label' => 'Tittel',
-                'name' => 'lsb_section_title',
+                'name' => 'lsb_page_section_title',
                 'type' => 'text',
               ),
               array (
-                'key' => 'lsb_acf_section_sub_title',
+                'key' => 'lsb_acf_page_section_sub_title',
                 'label' => 'Undertittel',
-                'name' => 'lsb_section_sub_title',
+                'name' => 'lsb_page_section_sub_title',
                 'type' => 'text',
               ),
               array (
-                'key' => 'lsb_acf_section_rows',
-                'label' => 'Rader',
-                'name' => 'lsb_section_rows',
-                'type' => 'flexible_content',
-                'button_label' => 'Legg til seksjonsrad',
-                'layouts' => array(
-                  array(
-                    'key' => 'lsb_acf_page_section_navigation',
-                    'label' => 'Navigasjon',
-				    'name' => 'lsb_page_section_navigation',
-				    'display' => 'row',
-                    'button_label' => 'Legg til seksjon',
-				    'sub_fields' => array(
-                      array(
-                        'key' => 'lsb_acf_section_navigation_terms',
-                        'label' => 'Termer',
-                        'name' => 'lsb_section_navigation_terms',
-                        'type' => 'flexible_content',
-                        'min' => 1,
-                        'button_label' => 'Legg til elementer fra',
-                        'layouts' => $this->section_tax_layouts('navigation', true),
-                      ),
+                'key' => 'lsb_acf_page_section_type',
+                'label' => 'Seksjonstype',
+                'name' => 'lsb_page_section_type',
+                'type' => 'radio',
+                'choices' => array (
+                  'book_shelf' => 'Bokhylle',
+                  'navigation' => 'Navigasjon'
+                ),
+                'layout' => 'horizontal',
+              ),
+              array (
+                'key' => 'lsb_acf_page_section_book_shelf_orderby',
+                'label' => 'Sorteringskriterie',
+                'name' => 'lsb_page_section_book_shelf_orderby',
+                'type' => 'radio',
+                'choices' => array (
+                  'added' => 'Lagt til',
+                  'random' => 'Tilfeldig',
+                  'published' => 'Publisert',
+                ),
+                'layout' => 'horizontal',
+                'conditional_logic' => array (
+                  array (
+                    array (
+                      'field' => 'lsb_acf_page_section_type',
+                      'operator' => '==',
+                      'value' => 'book_shelf',
                     ),
                   ),
-                  array(
-                    'key' => 'lsb_acf_page_section_book_shelf',
-                    'label' => 'Bokhylle',
-				    'name' => 'lsb_page_section_book_shelf',
-				    'display' => 'row',
-                    'sub_fields' => array(
-                      array(
-                        'key' => 'lsb_acf_section_book_shelf_layouts',
-                        'label' => 'Plukk bøker fra',
-                        'name' => 'lsb_section_book_shelf_layouts',
-                        'type' => 'flexible_content',
-                        'min' => 1,
-                        'max' => 1,
-                        'button_label' => 'Legg til element',
-                        'layouts' => $this->section_tax_layouts('book_shelf', false)
-                      ),
+                ),
+              ),
+              array(
+                'key' => 'lsb_acf_page_section_navigation_taxonomy',
+                'label' => 'Navigasjonselementer',
+                'name' => 'lsb_page_section_navigation_taxonomy',
+                'type' => 'flexible_content',
+                'min' => 1,
+                'button_label' => 'Legg til elementer fra',
+                'layouts' => $this->section_tax_layouts('navigation', true),
+                'conditional_logic' => array (
+                  array (
+                    array (
+                      'field' => 'lsb_acf_page_section_type',
+                      'operator' => '==',
+                      'value' => 'navigation',
+                    ),
+                  ),
+                ),
+              ),
+              array(
+                'key' => 'lsb_acf_page_section_book_shelf_taxonomy',
+                'label' => 'Plukk bøker fra',
+                'name' => 'lsb_page_section_book_shelf_taxonomy',
+                'type' => 'flexible_content',
+                'min' => 1,
+                'max' => 1,
+                'button_label' => 'Velg kriterie',
+                'layouts' => $this->section_tax_layouts('book_shelf', false),
+                'conditional_logic' => array (
+                  array (
+                    array (
+                      'field' => 'lsb_acf_page_section_type',
+                      'operator' => '==',
+                      'value' => 'book_shelf',
                     ),
                   ),
                 ),

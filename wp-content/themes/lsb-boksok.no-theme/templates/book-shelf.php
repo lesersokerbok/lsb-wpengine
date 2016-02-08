@@ -18,7 +18,7 @@
       <?php echo LsbFilterQueryUtil::filters_string_for_book_page() ?>
     </span>
 
-  </div>
+    </div>
 
     <?php if($books): ?>
       <div class="book-shelf-body">

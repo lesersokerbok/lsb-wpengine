@@ -15,6 +15,7 @@ $roots_includes = array(
   'lib/lsb-boksok-options.php',
   'lib/taxonomy-util.php',
   'lib/lsb-filter-query-util.php',
+  'lib/lsb-page-sections-util.php',
   'lib/lsb-search-util.php'
 );
 
