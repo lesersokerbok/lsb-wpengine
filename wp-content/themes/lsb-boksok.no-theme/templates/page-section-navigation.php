@@ -18,8 +18,8 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
   </div>
 
   <div class="book-shelf-body">
+    <ul>
     <?php if($terms->with_icons) : ?>
-      <ul>
       <?php foreach ($terms->with_icons as $term ): ?>
         <li>
           <a href="<?php echo esc_url( get_term_link( $term ) ) ?>">
@@ -28,11 +28,9 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
           </a>
         </li>
       <?php endforeach; ?>
-      </ul>
     <?php endif; ?>
 
     <?php if($terms->without_icons) : ?>
-      <ul>
       <?php foreach ($terms->without_icons as $term ): ?>
         <li>
           <a href="<?php echo esc_url( get_term_link( $term ) ) ?>">
@@ -40,9 +38,8 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
           </a>
         </li>
       <?php endforeach; ?>
-      </ul>
     <?php endif; ?>
-
+    </ul>
   </div>
 </nav>
 
