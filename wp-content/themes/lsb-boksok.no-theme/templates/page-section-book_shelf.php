@@ -1,7 +1,6 @@
 <?php
 
 $books = LsbPageSectionsUtil::get_books_for_book_shelf();
-LsbPageSectionsUtil::get_link_for_book_shelf();
 
 ?>
 
