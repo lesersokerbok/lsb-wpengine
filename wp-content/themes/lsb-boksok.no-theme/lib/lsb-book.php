@@ -625,20 +625,10 @@ class LsbBook {
         'default_value' => 0,
       );
 
-      // Show term in terms navigation
-      $nav_term = array(
-        'key' => 'lsb_acf_tax_nav_term',
-        'label' => __('Del av temanavigasjon', 'lsb_boksok'),
-        'name' => 'lsb_tax_nav_term',
-        'type' => 'true_false',
-        'message' => __('Vis som en del av emnenavigasjon (Populære tema på forsiden)', 'lsb_boksok'),
-        'default_value' => 0,
-      );
-
       register_field_group(array (
         'key' => 'lsb_acf_tax_topic_settings',
         'title' => __('Innstillinger', 'lsb_book'),
-        'fields' => array($nav_term, $hide_term),
+        'fields' => array($hide_term),
         'location' => array(
             array(
               array(
