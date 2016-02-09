@@ -185,13 +185,13 @@ class LsbPageSections {
               'value' => 'template-front-page.php',
             ),
           ),
-          array (
-            array (
-              'param' => 'taxonomy',
-              'operator' => '==',
-              'value' => 'lsb_tax_lsb_cat',
-            ),
-          ),
+//          array (
+//            array (
+//              'param' => 'taxonomy',
+//              'operator' => '==',
+//              'value' => 'lsb_tax_lsb_cat',
+//            ),
+//          ),
         ),
         'menu_order' => 0,
         'position' => 'normal',
