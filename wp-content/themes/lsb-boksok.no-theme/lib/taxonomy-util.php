@@ -63,7 +63,9 @@ class TaxonomyUtil {
   }
   
   public static function sort_terms_by_name($a, $b) {
-    return strnatcmp( self::get_term_name($a), self::get_term_name($b) );
+    $term_name_a = strtolower(self::get_term_name($a));
+    $term_name_b = strtolower(self::get_term_name($b));
+    return strnatcmp( $term_name_a, $term_name_b );
 }
 
   public static function get_tax_object_rewrite_slug($tax_object) {

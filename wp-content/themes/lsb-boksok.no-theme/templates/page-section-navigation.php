@@ -24,7 +24,7 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
         <li>
           <a href="<?php echo esc_url( get_term_link( $term ) ) ?>">
             <?php echo TaxonomyUtil::get_term_icon( $term ) ?>
-            <?php echo TaxonomyUtil::get_term_name( $term ) ?>
+            <?php echo ucfirst( TaxonomyUtil::get_term_name( $term ) ) ?>
           </a>
         </li>
       <?php endforeach; ?>
@@ -34,7 +34,7 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
       <?php foreach ($terms->without_icons as $term ): ?>
         <li>
           <a href="<?php echo esc_url( get_term_link( $term ) ) ?>">
-            <?php echo TaxonomyUtil::get_term_name( $term ) ?>
+            <?php echo  ucfirst( TaxonomyUtil::get_term_name( $term ) ) ?>
           </a>
         </li>
       <?php endforeach; ?>
