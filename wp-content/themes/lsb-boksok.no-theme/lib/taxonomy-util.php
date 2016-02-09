@@ -122,7 +122,7 @@ class TaxonomyUtil {
     $links = array();
      
     foreach ( $terms as $term ) {
-      if (!get_field('lsb_tax_term_hide', $term )) { // If the term's lsb_tax_topic_hide_term is TRUE
+      if (!get_field('lsb_tax_topic_hide_term', $term )) { // If the term's lsb_tax_topic_hide_term is TRUE
 
         $link = get_term_link( $term, $taxonomy );
 

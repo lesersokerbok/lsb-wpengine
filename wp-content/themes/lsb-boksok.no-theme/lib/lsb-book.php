@@ -617,9 +617,9 @@ class LsbBook {
     {
       // Hide term from visitors
       $hide_term = array(
-        'key' => 'lsb_acf_tax_hide_term',
+        'key' => 'lsb_acf_tax_topic_hide_term',
         'label' => __('Skjul for besøkende', 'lsb_boksok'),
-        'name' => 'lsb_tax_term_hide',
+        'name' => 'lsb_tax_topic_hide_term',
         'type' => 'true_false',
         'message' => __('Gjør usynelig for besøkende (forsatt tilgjengelig i søk).', 'lsb_boksok'),
         'default_value' => 0,
@@ -630,21 +630,14 @@ class LsbBook {
         'title' => __('Innstillinger', 'lsb_book'),
         'fields' => array($hide_term),
         'location' => array(
+          array(
             array(
-              array(
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'lsb_tax_topic',
-              )
-            ),
-            array(
-              array(
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'lsb_tax_genre',
-              )
+              'param' => 'taxonomy',
+              'operator' => '==',
+              'value' => 'lsb_tax_topic',
             )
-          )
+          ),
+        ),
       ));
       
       // Icon
