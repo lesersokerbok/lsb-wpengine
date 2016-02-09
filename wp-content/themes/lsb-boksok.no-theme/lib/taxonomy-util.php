@@ -62,6 +62,10 @@ class TaxonomyUtil {
     }
   }
   
+  public static function sort_terms_by_name($a, $b) {
+    return strnatcmp( self::get_term_name($a), self::get_term_name($b) );
+}
+
   public static function get_tax_object_rewrite_slug($tax_object) {
     if($tax_object)
       return $tax_object->rewrite['slug'];
@@ -118,7 +122,7 @@ class TaxonomyUtil {
     $links = array();
      
     foreach ( $terms as $term ) {
-      if (!get_field('lsb_tax_term_hide', $term )) { // If the term's lsb_tax_topic_hide_term is TRUE
+      if (!get_field('lsb_tax_topic_hide_term', $term )) { // If the term's lsb_tax_topic_hide_term is TRUE
 
         $link = get_term_link( $term, $taxonomy );
 
@@ -187,13 +191,16 @@ class TaxonomyUtil {
 
   public static function term_has_icon($term) {
     $icon = get_field('lsb_acf_tax_term_icon', $term );
-    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
 
-    if(!empty($icon) || !empty($icon_caption)) {
+    if(!empty($icon)) {
       return true;
     } else {
       return false;
     }
+  }
+
+  public static function term_has_no_icon($term) {
+    return !self::term_has_icon($term);
   }
 
   public static function get_term_icon( $term ) {

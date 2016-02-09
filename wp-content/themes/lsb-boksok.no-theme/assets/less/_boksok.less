@@ -48,16 +48,22 @@ a.term-icon {
 }
 
 .book-shelf {
+
   .page-header {
     border: none;
-    margin-top: @line-height-computed;
-    margin-bottom: 0;
+    padding: 0;
+    margin-top: @line-height-computed*3;
+    margin-bottom: @line-height-computed;
   }
 
   &:first-child {
     .page-header {
       margin-top: @line-height-computed*3;
     }
+  }
+
+  .book-shelf-scroll {
+    margin-bottom: -@line-height-computed;
   }
 }
 
@@ -67,7 +73,7 @@ Tax navigation
 
 nav.tax-navigation {
   .page-header {
-    padding-bottom: @line-height-computed;
+//    padding-bottom: @line-height-computed;
   }
 
   .book-shelf-body {
@@ -77,11 +83,11 @@ nav.tax-navigation {
   ul {
     list-style: none;
     padding: 0;
-    margin: -1em;
+    margin: -0.5em;
 
     li {
       display: inline-block;
-      margin: 1em;
+      margin: 0.5em;
 
       a {
         .btn;

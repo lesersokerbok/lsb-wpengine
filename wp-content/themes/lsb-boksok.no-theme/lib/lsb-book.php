@@ -617,44 +617,27 @@ class LsbBook {
     {
       // Hide term from visitors
       $hide_term = array(
-        'key' => 'lsb_acf_tax_hide_term',
+        'key' => 'lsb_acf_tax_topic_hide_term',
         'label' => __('Skjul for besøkende', 'lsb_boksok'),
-        'name' => 'lsb_tax_term_hide',
+        'name' => 'lsb_tax_topic_hide_term',
         'type' => 'true_false',
         'message' => __('Gjør usynelig for besøkende (forsatt tilgjengelig i søk).', 'lsb_boksok'),
-        'default_value' => 0,
-      );
-
-      // Show term in terms navigation
-      $nav_term = array(
-        'key' => 'lsb_acf_tax_nav_term',
-        'label' => __('Del av temanavigasjon', 'lsb_boksok'),
-        'name' => 'lsb_tax_nav_term',
-        'type' => 'true_false',
-        'message' => __('Vis som en del av emnenavigasjon (Populære tema på forsiden)', 'lsb_boksok'),
         'default_value' => 0,
       );
 
       register_field_group(array (
         'key' => 'lsb_acf_tax_topic_settings',
         'title' => __('Innstillinger', 'lsb_book'),
-        'fields' => array($nav_term, $hide_term),
+        'fields' => array($hide_term),
         'location' => array(
+          array(
             array(
-              array(
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'lsb_tax_topic',
-              )
-            ),
-            array(
-              array(
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'lsb_tax_genre',
-              )
+              'param' => 'taxonomy',
+              'operator' => '==',
+              'value' => 'lsb_tax_topic',
             )
-          )
+          ),
+        ),
       ));
       
       // Icon
