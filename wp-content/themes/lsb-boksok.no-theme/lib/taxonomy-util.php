@@ -62,6 +62,10 @@ class TaxonomyUtil {
     }
   }
   
+  public static function sort_terms_by_name($a, $b) {
+    return strnatcmp( self::get_term_name($a), self::get_term_name($b) );
+}
+
   public static function get_tax_object_rewrite_slug($tax_object) {
     if($tax_object)
       return $tax_object->rewrite['slug'];
@@ -106,8 +110,7 @@ class TaxonomyUtil {
   }
 
 
-  // Edited version of get_the_term_list — Using the get_field to check if lsb_tax_topic_hide_term is true for the term.
-
+  // Edited version of get_the_term_list — Using the get_field to check if lsb_tax_term_hide is true for the term.
   public static function the_unhidden_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
     $terms = get_the_terms( $id, $taxonomy );
     if ( is_wp_error( $terms ) )
@@ -119,7 +122,7 @@ class TaxonomyUtil {
     $links = array();
      
     foreach ( $terms as $term ) {
-      if (!get_field('lsb_tax_topic_hide_term', $term )) { // If the term's lsb_tax_topic_hide_term is TRUE 
+      if (!get_field('lsb_tax_topic_hide_term', $term )) { // If the term's lsb_tax_topic_hide_term is TRUE
 
         $link = get_term_link( $term, $taxonomy );
 
@@ -133,28 +136,76 @@ class TaxonomyUtil {
     }
      
     $term_links = apply_filters( "term_links-$taxonomy", $links );
-    echo $before . join( $sep, $term_links ) . $after;
+    if(count($term_links) > 0) {
+      echo $before . join( $sep, $term_links ) . $after;
+    }
+  }
+
+  // Edited version of get_the_term_list — Using the get_field to check if lsb_tax_nav_term is true for the term.
+  public static function the_taxonomy_navigation_menu( $taxonomy, $args = array() ) {
+
+    $defaults = array( 'container' => 'ul', 'link_before' => '<li>', 'link_after' => '</li>', 'selected_only' => true, 'icons_only' => false );
+    $args = wp_parse_args( $args, $defaults );
+    $args = (object) $args;
+
+    $terms = array();
+
+    if( is_singular('lsb_book') ) {
+      global $post;
+      $terms = wp_get_post_terms( $post->ID, $taxonomy );
+    } else {
+      $terms = get_terms( $taxonomy );
+    }
+
+    if ( is_wp_error( $terms ) )
+      return;
+
+    if ( empty( $terms ) )
+      return;
+
+    $nav_items = array();
+
+    foreach ( $terms as $term ) {
+      if ( !($args->selected_only && !get_field('lsb_tax_nav_term', $term ))
+         && !($args->icons_only && !TaxonomyUtil::term_has_icon( $term )) ) { // If the term's lsb_tax_nav_term is TRUE
+
+        $link = get_term_link( $term, $taxonomy );
+
+        if ( is_wp_error( $link ) ) {
+          return $link;
+        }
+
+        $nav_items[] = $args->link_before
+          . '<a href="' . esc_url( $link ) . '" rel="tag">'
+          . TaxonomyUtil::get_term_icon( $term )
+          . $term->name
+          . '</a>'
+          . $args->link_after;
+      }
+    }
+
+    if(count($nav_items) > 0) {
+      echo '<' .$args->container .'>'. join( $nav_items ) . '</' .$args->container .'>';
+    }
   }
 
   public static function term_has_icon($term) {
     $icon = get_field('lsb_acf_tax_term_icon', $term );
-    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
 
-    if(!empty($icon) || !empty($icon_caption)) {
+    if(!empty($icon)) {
       return true;
     } else {
       return false;
     }
   }
 
-  public static function get_single_term_icon( $term, $caption = false ) {
+  public static function term_has_no_icon($term) {
+    return !self::term_has_icon($term);
+  }
+
+  public static function get_term_icon( $term ) {
 
     $icon = get_field('lsb_acf_tax_term_icon', $term );
-    $icon_caption = get_field('lsb_acf_tax_term_icon_with_caption', $term );
-
-    if(($caption && !empty($icon_caption)) || empty($icon)){
-      $icon = $icon_caption;
-    }
 
     if( !empty($icon) ) {
       return '<img src="' . esc_url($icon['sizes']['thumbnail']) . '" />';
@@ -175,7 +226,7 @@ class TaxonomyUtil {
 
     foreach ( $terms as $term ) {
 
-      $icon = TaxonomyUtil::get_single_term_icon( $term , true);
+      $icon = TaxonomyUtil::get_term_icon( $term , true);
 
       if ( !empty($icon) ) { // If there is an icon
 
@@ -193,12 +244,12 @@ class TaxonomyUtil {
     echo $before . join( $sep, $term_links ) . $after;
   }
 
-  public static function the_single_term_icon( $term, $caption = false ) {
+  public static function the_single_term_icon( $term ) {
     if(!$term) {
       $term = get_queried_object();
     }
 
-    echo TaxonomyUtil::get_single_term_icon( $term , $caption);
+    echo TaxonomyUtil::get_term_icon( $term );
   }
 
   public static function get_terms_with_icons($taxonomy) {

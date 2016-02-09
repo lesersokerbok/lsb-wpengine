@@ -1,6 +1,4 @@
-<?php $terms = TaxonomyUtil::get_terms_with_icons( ['lsb_tax_topic', 'lsb_tax_genre'] ) ?>
-
-<?php if ( !empty($terms) ) : ?>
+<?php //if ( !empty($terms) ) : ?>
 
   <div class="book-shelf">
 
@@ -16,21 +14,11 @@
 
     <div class="book-shelf-body">
 
-      <span aria-hidden="true" class="book-shelf-left-scroll hidden-xs glyphicon glyphicon-chevron-left"></span>
-      <span aria-hidden="true" class="book-shelf-right-scroll hidden-xs glyphicon glyphicon-chevron-right"></span>
-
-      <div class="book-shelf-scroll">
-        <?php foreach ( $terms as $term ) : ?>
-
-          <a class="term-icon" href="<?php echo get_term_link( $term, $term->taxonomy ); ?>">
-            <?php TaxonomyUtil::the_single_term_icon($term, true); ?>
-          </a>
-        <?php endforeach; ?>
-      </div>
+      <?php TaxonomyUtil::the_taxonomy_navigation_menu( array('lsb_tax_topic', 'lsb_tax_genre') ) ?>
 
     </div>
 
   </div>
-<?php endif; ?>
+<?php //endif; ?>
 
 <?php wp_reset_query(); ?>

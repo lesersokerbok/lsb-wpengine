@@ -11,11 +11,11 @@
  */
 $roots_includes = array(
   'lib/lsb-book.php',
-  'lib/lsb-book-page.php',
-  'lib/lsb-feed-util.php',
+  'lib/lsb-page-sections.php',
   'lib/lsb-boksok-options.php',
   'lib/taxonomy-util.php',
   'lib/lsb-filter-query-util.php',
+  'lib/lsb-page-sections-util.php',
   'lib/lsb-search-util.php'
 );
 
@@ -29,10 +29,9 @@ foreach ($roots_includes as $file) {
 unset($file, $filepath);
 
 // Initialize custom functionality
-new LsbBook();  
-new LsbFeedUtil();
+new LsbBook();
 new LsbBoksokOptions();
-new LsbBookPage();
+new LsbPageSections();
 
 add_filter( 'query_vars', function ($query_vars) {
   return array_merge($query_vars, LsbFilterQueryUtil::possible_query_vars_for_lsb_book());
