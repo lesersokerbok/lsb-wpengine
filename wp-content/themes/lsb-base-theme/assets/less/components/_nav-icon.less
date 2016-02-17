@@ -1,64 +1,19 @@
-.navbar-brand {
-  text-decoration: none;
-  font-weight: bold;
-}
+.nav {
 
-.navbar-toggle {
-  .hamburder {
-    float: left;
-  }
-}
-
-.container > .navbar-collapse {
-  @media (max-width: @grid-float-breakpoint) {
-    margin-top: 10px;
-  }
-  
-  @media (min-width: @grid-float-breakpoint) {
-    .collapsed-only {
-      display: none;
-    }
-  }
-  
-  @media (min-width: @container-sm) {
-    margin-left: @logo-size/4;
-    margin-right: @logo-size/4;
-  }
-}
-
-.navbar-nav {
-  
-  @media (max-width: @grid-float-breakpoint) {
-    margin-top: 0;
-  }
-  
-  > li > a {
-    text-decoration: none;
-    font-weight: bold;
-    
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  
-  .external a:after {
-    .glyphicon;
-    content: "\e164";
-    font-size: 85%;
-    margin-left: 5px;
-  }
-  
   &.icon-nav {
-    
-    @media (min-width: @grid-float-breakpoint) {
-      .pull-right;
+
+    a {
+      text-decoration: none;
     }
     
+    li {
+      display: inline-block;
+    }
+
     .icon-menu-item {
       font-size: 140%;
       color: lighten(@link-color, 46.7%);
-      float: left;
-      
+
       &:hover {
         background-color: transparent;
         text-decoration: none;
@@ -116,5 +71,5 @@
       .glyphicon;
       .glyphicon-info-sign;
     }
-  } 
+  }
 }
