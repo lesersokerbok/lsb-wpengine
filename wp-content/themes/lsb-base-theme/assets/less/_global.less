@@ -33,6 +33,14 @@ a.btn {
   text-decoration: none;
 }
 
+.external a:after,
+a.external:after {
+  .glyphicon;
+  content: "\e164";
+  font-size: 85%;
+  margin-left: 5px;
+}
+
 .alert-variant(@color) {
   color: @text-color;
   border: 1px solid @gray-lighter;

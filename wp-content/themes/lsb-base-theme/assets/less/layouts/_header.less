@@ -1,25 +1,45 @@
 .banner {
-  padding-top: @navbar-padding-vertical * 0.5;
   
   .navbar-nav {
     > li > a {
       text-decoration: none;
       font-weight: bold;
-
-      @media (min-width: @grid-float-breakpoint) {
-        margin-top: @navbar-padding-vertical * -0.5;
-        padding-top: @navbar-padding-vertical * 1.5;
+      
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
 
-  .navbar-brand {
-    color: @brand-primary;
+  .navbar-nav-brand {
+    color: @brand-primary !important;
     
     background-image: @logo-url;
     background-size: @logo-size;
-    background-position: @navbar-padding-horizontal center;
+    background-position: 0 center;
     background-repeat: no-repeat;
-    padding-left: @logo-size+@navbar-padding-horizontal+10px;
+    padding-left: @logo-size+@navbar-padding-horizontal/2;
+    margin-left: @navbar-padding-horizontal*2;
+    
+    @media (min-width: @grid-float-breakpoint) {
+      margin-left: 0;
+    }
+  }
+
+  .navbar-collapse {
+    .nav {
+      float: none !important;
+    }
+
+    @media (min-width: @grid-float-breakpoint) {
+      .nav:first-child {
+        float: left !important;
+        margin-top: 0;
+      }
+
+      .nav:last-child {
+        float: right !important;
+      }
+    }
   }
 }

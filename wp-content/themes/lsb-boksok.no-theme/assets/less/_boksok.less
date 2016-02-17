@@ -30,7 +30,6 @@ a.term-icon {
 }
 
 .page-header {
-  margin-bottom: @line-height-computed*1.5;
 
   &.has-term-icon {
     h1 {
@@ -52,14 +51,7 @@ a.term-icon {
   .page-header {
     border: none;
     padding: 0;
-    margin-top: @line-height-computed*3;
     margin-bottom: @line-height-computed;
-  }
-
-  &:first-child {
-    .page-header {
-      margin-top: @line-height-computed*3;
-    }
   }
 
   .book-shelf-scroll {
@@ -72,10 +64,7 @@ Tax navigation
 ========================================================================== */
 
 nav.tax-navigation {
-  .page-header {
-//    padding-bottom: @line-height-computed;
-  }
-
+  
   .book-shelf-body {
     white-space: normal;
   }
@@ -101,11 +90,10 @@ nav.tax-navigation {
         .btn;
         .btn-default;
         text-decoration: none;
-        font-size: 1.2em;
-        line-height: 2em;
 
         img {
           display: block;
+          height: 50px;
           padding: @padding-small-vertical @padding-small-horizontal;
         }
       }
