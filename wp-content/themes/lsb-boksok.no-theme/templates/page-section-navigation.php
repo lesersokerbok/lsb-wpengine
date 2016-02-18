@@ -6,7 +6,7 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
 
 <?php if($terms->with_icons || $terms->without_icons) : ?>
 
-<nav class="tax-navigation book-shelf">
+<nav class="tax-navigation">
   <div class="page-header">
     <h2>
       <?php the_sub_field('lsb_page_section_title') ?>
@@ -17,7 +17,7 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
     </h2>
   </div>
 
-  <div class="book-shelf-body">
+  
     <?php if($terms->with_icons) : ?>
       <ul>
       <?php foreach ($terms->with_icons as $term ): ?>
@@ -42,7 +42,7 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
       <?php endforeach; ?>
       </ul>
     <?php endif; ?>
-  </div>
+  
 </nav>
 
 <?php endif; ?>

@@ -2,10 +2,6 @@
 
 if( have_rows('lsb_page_sections') ) {
 
-//  echo '<pre>';
-//  var_dump(get_field('lsb_page_sections'));
-//  echo '</pre>';
-
   while( have_rows('lsb_page_sections') ) {
     the_row();
 

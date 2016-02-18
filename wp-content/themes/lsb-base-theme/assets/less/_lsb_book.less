@@ -38,6 +38,8 @@
     .book-shelf-scroll {
       overflow-x: scroll;
       overflow-y: hidden;
+      margin-left: -@line-height-computed/2;
+      margin-top: -@line-height-computed/2;
 
       article.summary.lsb_book {
         display: inline-block;
@@ -63,16 +65,6 @@
 }
 
 article.lsb_book {
-
-  p, blockquote {
-    // margin: 15px auto;
-  }
-
-  blockquote {
-    font-size: @font-size-base;
-    border-color: @brand-primary;
-    border-width: 2px;
-  }
 
   .lsb-supported {
     background: @panel-body-padding 50% no-repeat;
@@ -106,7 +98,7 @@ article.lsb_book {
 
 article.summary.lsb_book {
 
-  padding: 0 @line-height-computed @line-height-computed 0;
+  padding: @line-height-computed/2;
   text-align: center;
 
   h2 {
