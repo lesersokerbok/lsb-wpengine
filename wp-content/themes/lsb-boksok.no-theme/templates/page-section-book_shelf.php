@@ -7,7 +7,7 @@ $books = LsbPageSectionsUtil::get_books_for_book_shelf();
 <?php if($books->have_posts()) : ?>
 
 <section class="book-shelf">
-  <div class="main-section-header">
+  <div class="page-section-header">
     <h1>
       <a href="<?php echo LsbPageSectionsUtil::get_link_for_book_shelf(); ?>"><?php the_sub_field('lsb_page_section_title') ?></a>
 

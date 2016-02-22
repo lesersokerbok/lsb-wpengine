@@ -8,7 +8,7 @@ $terms = LsbPageSectionsUtil::get_terms_for_navigation();
 
 <nav class="tax-navigation">
   <?php if ( get_sub_field('lsb_page_section_title') ) : ?>
-    <div class="main-section-header">
+    <div class="page-section-header">
       <h1>
         <?php the_sub_field('lsb_page_section_title') ?>
 

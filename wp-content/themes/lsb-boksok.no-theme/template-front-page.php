@@ -4,7 +4,7 @@ Template Name: Forside
 */
 ?>
 
-<div class="main-header">
+<div class="page-header">
   <div>
     <header>
       <h1>
@@ -15,4 +15,4 @@ Template Name: Forside
   </div>
 </div>
 
-<?php get_template_part('templates/main-sections'); ?>
+<?php get_template_part('templates/page-sections'); ?>

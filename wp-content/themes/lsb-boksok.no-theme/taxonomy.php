@@ -1,4 +1,4 @@
-<div class="main-header">
+<div class="page-header">
   <div>
     <header>
       <h1 class="<?php echo TaxonomyUtil::term_has_icon(get_queried_object()) ? 'has-term-icon': '';  ?>">
