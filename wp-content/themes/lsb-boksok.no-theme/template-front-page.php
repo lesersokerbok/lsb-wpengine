@@ -15,4 +15,4 @@ Template Name: Forside
   </div>
 </div>
 
-<?php get_template_part('templates/page-sections'); ?>
+<?php get_template_part('templates/main-sections'); ?>
