@@ -1,7 +1,7 @@
 <div class="page-header">
   <div>
     <header>
-      <h1 class="<?php echo TaxonomyUtil::term_has_icon(get_queried_object()) ? 'has-term-icon': '';  ?>">
+      <h1>
         <?php TaxonomyUtil::the_single_term_icon(get_queried_object())?><?php echo roots_title(); ?>
       </h1>
       <?php echo category_description(); ?>
