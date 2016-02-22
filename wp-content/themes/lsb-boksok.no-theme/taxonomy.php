@@ -14,6 +14,10 @@
   </div>
 <?php endif; ?>
 
+<?php if(!is_paged()) : ?>
+  <?php get_template_part('templates/page-sections'); ?>
+<? endif; ?>
+
 <?php if ( have_posts() ): ?>
   <section class="loop">
     <?php while (have_posts()) : the_post(); ?>
