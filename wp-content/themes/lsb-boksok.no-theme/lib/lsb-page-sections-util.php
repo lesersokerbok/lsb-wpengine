@@ -77,6 +77,7 @@ class LsbPageSectionsUtil {
     return (object) array(
       'with_icons' => array_filter($navigation_terms, array('TaxonomyUtil', 'term_has_icon')),
       'without_icons' => array_filter($navigation_terms, array('TaxonomyUtil', 'term_has_no_icon')),
+      'all' => $navigation_terms
     );
   }
 

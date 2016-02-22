@@ -34,20 +34,12 @@ Tax navigation
 ========================================================================== */
 
 nav.tax-navigation {
-  
-  .book-shelf-body {
-    white-space: normal;
-  }
 
   ul {
     list-style: none;
     padding: 0;
 
-    margin: 0.5em -0.5em;
-
-    &:first-child {
-      margin-top: -0.5em
-    }
+    margin: -0.5em;
 
     li {
       display: inline-block;
@@ -56,12 +48,21 @@ nav.tax-navigation {
       a {
         .btn;
         .btn-default;
+
         text-decoration: none;
 
+        box-sizing: content-box;
+        padding: @line-height-computed/2 @line-height-computed;
+        height: 30px;
+
+        display: inline-flex;
+        align-items: center;
+
         img {
-          display: block;
-          height: 50px;
-          padding: @padding-small-vertical @padding-small-horizontal;
+          display: inline-block;
+          height: 30px;
+          margin-left: -@line-height-computed/2;
+          margin-right: @line-height-computed/2;
         }
       }
     }
