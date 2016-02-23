@@ -6,15 +6,15 @@ $books = LsbPageSectionsUtil::get_books_for_book_shelf();
 
 <?php if($books->have_posts()) : ?>
 
-<div class="book-shelf">
-  <div class="page-header">
-    <h2>
+<section class="book-shelf">
+  <div class="page-section-header">
+    <h1>
       <a href="<?php echo LsbPageSectionsUtil::get_link_for_book_shelf(); ?>"><?php the_sub_field('lsb_page_section_title') ?></a>
 
       <?php if ( get_sub_field('lsb_page_section_sub_title') ) : ?>
         <small>| <a href="<?php echo LsbPageSectionsUtil::get_link_for_book_shelf(); ?>"><?php the_sub_field('lsb_page_section_sub_title'); ?></a></small>
       <?php endif; ?>
-    </h2>
+    </h1>
   </div>
 
   <div class="book-shelf-body">
@@ -29,7 +29,7 @@ $books = LsbPageSectionsUtil::get_books_for_book_shelf();
     </div>
 
   </div>
-</div>
+</section>
 
 <?php endif; ?>
 

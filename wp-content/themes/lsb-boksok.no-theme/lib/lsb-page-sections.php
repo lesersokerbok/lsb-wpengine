@@ -90,6 +90,7 @@ class LsbPageSections {
             'label' => 'Seksjoner',
             'name' => 'lsb_page_sections',
             'type' => 'repeater',
+            'collapsed' => 'lsb_acf_page_section_title',
             'layout' => 'row',
             'button_label' => 'Legg til seksjon',
             'sub_fields' => array(
