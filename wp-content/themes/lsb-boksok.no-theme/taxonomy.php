@@ -1,18 +1,14 @@
-<div class="page-header <?php echo TaxonomyUtil::term_has_icon(get_queried_object()) ? 'has-term-icon': '';  ?>">
-  <h1>
-    <?php TaxonomyUtil::the_single_term_icon(get_queried_object())?><?php echo roots_title(); ?>
-  </h1>
-</div>
-
-<section class="book-search">
-  <?php get_search_form(); ?>
-</section>
-
-<?php if ( category_description() !== '') : ?>
-  <div class="alert description">
-    <?php echo category_description(); ?>
+<div class="page-header">
+  <div>
+    <header>
+      <h1>
+        <?php TaxonomyUtil::the_single_term_icon(get_queried_object())?><?php echo roots_title(); ?>
+      </h1>
+      <?php echo category_description(); ?>
+    </header>
+    <?php get_search_form(); ?>
   </div>
-<?php endif; ?>
+</div>
 
 <?php if ( have_posts() ): ?>
   <section class="loop">
