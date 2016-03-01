@@ -29,58 +29,17 @@ a.term-icon {
   }
 }
 
-.page-header {
-
-  &.has-term-icon {
-    h1 {
-      img {
-        display: inline-block;
-        height: 1.2em;
-        margin-right: @padding-base-horizontal;
-      }
-    }
-  }
-}
-
-.book-search {
-  margin: @line-height-computed*1.5 0;
-}
-
-.book-shelf {
-
-  .page-header {
-    border: none;
-    padding: 0;
-    margin-bottom: @line-height-computed;
-  }
-
-  .book-shelf-scroll {
-    margin-bottom: -@line-height-computed;
-  }
-}
-
 /* ==========================================================================
 Tax navigation
 ========================================================================== */
 
 nav.tax-navigation {
-  
-  .book-shelf-body {
-    white-space: normal;
-  }
 
   ul {
     list-style: none;
     padding: 0;
 
-    margin: 0.5em -0.5em;
-
-    &:first-child {
-      margin-top: -0.5em
-    }
-    &:last-child {
-      margin-bottom: -0.5em
-    }
+    margin: -0.5em;
 
     li {
       display: inline-block;
@@ -89,12 +48,21 @@ nav.tax-navigation {
       a {
         .btn;
         .btn-default;
+
         text-decoration: none;
 
+        box-sizing: content-box;
+        padding: @line-height-computed/2 @line-height-computed;
+        height: 30px;
+
+        display: inline-flex;
+        align-items: center;
+
         img {
-          display: block;
-          height: 50px;
-          padding: @padding-small-vertical @padding-small-horizontal;
+          display: inline-block;
+          height: 30px;
+          margin-left: -@line-height-computed/2;
+          margin-right: @line-height-computed/2;
         }
       }
     }
@@ -249,62 +217,69 @@ footer.page-footer {
    ========================================================================== */
 
 
-  .loop {
+.loop {
 
-    .clearfix();
+  .clearfix();
 
-    margin-right: -@line-height-computed;
+  margin: -@line-height-computed/2;
 
-    article.summary.lsb_book {
-      float: left;
-      padding-bottom: @line-height-computed*2;
+  .blog & {
+    margin: 0;
+  }
 
-      @media (max-width: (@screen-xs - 1)) {
-        padding-bottom: @line-height-computed;
-        width: 50%;
-        &:nth-of-type(2n) {
-          clear: right;
-        }
+  .page-section-header {
+    margin-left: @line-height-computed/2;
+    margin-right: @line-height-computed/2;
+  }
 
-        &:nth-of-type(2n+1) {
-          clear: left;
-        }
+  article.summary.lsb_book {
+    float: left;
+
+    @media (max-width: (@screen-xs - 1)) {
+      width: 50%;
+      &:nth-of-type(2n) {
+        clear: right;
       }
 
-      @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
-        width: 33.33%;
-        &:nth-of-type(3n) {
-          clear: right;
-        }
+      &:nth-of-type(2n+1) {
+        clear: left;
+      }
+    }
 
-        &:nth-of-type(3n+1) {
-          clear: left;
-        }
+    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+      width: 33.33%;
+      &:nth-of-type(3n) {
+        clear: right;
       }
 
-      @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-        width: 25%;
-        &:nth-of-type(4n) {
-          clear: right;
-        }
+      &:nth-of-type(3n+1) {
+        clear: left;
+      }
+    }
 
-        &:nth-of-type(4n+1) {
-          clear: left;
-        }
+    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+      width: 25%;
+      &:nth-of-type(4n) {
+        clear: right;
       }
 
-      @media (min-width: @screen-md-min) {
-        width: 20%;
-        &:nth-of-type(5n) {
-          clear: right;
-        }
+      &:nth-of-type(4n+1) {
+        clear: left;
+      }
+    }
 
-        &:nth-of-type(5n+1) {
-          clear: left;
-        }
+    @media (min-width: @screen-md-min) {
+      width: 20%;
+      &:nth-of-type(5n) {
+        clear: right;
+      }
+
+      &:nth-of-type(5n+1) {
+        clear: left;
       }
     }
   }
+}
 
 
 /* ==========================================================================

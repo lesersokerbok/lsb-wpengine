@@ -10,7 +10,7 @@ class LsbPageSectionsUtil {
     );
   }
 
-  private static function get_selected_terms($section_type) {
+  private static function get_selected_terms_dictonary($section_type) {
     // At the moment only one term in one taxonomy is allowed,
     // but this will allow for future multiple selectiong
 
@@ -28,6 +28,11 @@ class LsbPageSectionsUtil {
           $taxonomy_dictonary[$tax_object->name] = $terms;
         }
       }
+    }
+
+    if(is_tax()) {
+      $archive_term = get_queried_object();
+      $taxonomy_dictonary[$archive_term->taxonomy] = array($archive_term);
     }
 
     return $taxonomy_dictonary;
@@ -65,7 +70,7 @@ class LsbPageSectionsUtil {
   }
 
   public static function get_terms_for_navigation() {
-    $selected_terms = self::get_selected_terms('navigation');
+    $selected_terms = self::get_selected_terms_dictonary('navigation');
     $navigation_terms = array();
 
     foreach($selected_terms as $taxonomy_terms) {
@@ -77,6 +82,7 @@ class LsbPageSectionsUtil {
     return (object) array(
       'with_icons' => array_filter($navigation_terms, array('TaxonomyUtil', 'term_has_icon')),
       'without_icons' => array_filter($navigation_terms, array('TaxonomyUtil', 'term_has_no_icon')),
+      'all' => $navigation_terms
     );
   }
 
@@ -91,14 +97,14 @@ class LsbPageSectionsUtil {
       'no_found_rows' => true,
     );
 
-    self::add_tax_query_for_book_shelf($args, self::get_selected_terms('book_shelf'));
+    self::add_tax_query_for_book_shelf($args, self::get_selected_terms_dictonary('book_shelf'));
     self::add_order_to_args($args);
 
     $hashed = get_sub_field('lsb_page_section_title').'-'.get_the_modified_time('G');
     $hashed = hash('md5', $hashed);
     $books = get_transient( $hashed );
 
-    if ( !$books ) {
+    if ( !$books || WP_DEBUG ) {
       $books = new WP_Query($args);
       set_transient($hashed, $books, 3600);
     }
@@ -108,7 +114,7 @@ class LsbPageSectionsUtil {
 
 
   public static function get_link_for_book_shelf() {
-    $selected_terms = self::get_selected_terms('book_shelf');
+    $selected_terms = self::get_selected_terms_dictonary('book_shelf');
     $taxonomy_keys = array_keys($selected_terms);
     if( !$taxonomy_keys ) {
       return '';
