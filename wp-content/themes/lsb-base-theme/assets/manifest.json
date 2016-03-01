@@ -3,7 +3,7 @@
   "querystring": true,
   "wp-content/themes/lsb-base-theme/assets/css/main.min.css": {
     "path": "wp-content/themes/lsb-base-theme/assets/css/main.min.css",
-    "hash": "c7e66eb813c7925723288c1c59b5c392",
+    "hash": "eda7f4715ed063669d9e897fe1a16d27",
     "handle": "roots_css"
   },
   "wp-content/themes/lsb-base-theme/assets/js/scripts.min.js": {
@@ -13,7 +13,7 @@
   },
   "wp-content/themes/lsb-lesersokerbok.no-theme/assets/css/main.min.css": {
     "path": "wp-content/themes/lsb-lesersokerbok.no-theme/assets/css/main.min.css",
-    "hash": "94f14ae425f389ffd39ed9c5476cfadb",
+    "hash": "afcbb7299eb336bf63e2623dde036b88",
     "handle": "roots_child_css"
   },
   "wp-content/themes/lsb-lesersokerbok.no-theme/assets/js/scripts.min.js": {
@@ -23,7 +23,7 @@
   },
   "wp-content/themes/lsb-boksok.no-theme/assets/css/main.min.css": {
     "path": "wp-content/themes/lsb-boksok.no-theme/assets/css/main.min.css",
-    "hash": "4c4ef5613cf982d4e6c28ead50f27c94",
+    "hash": "a35fcaccd8dcc7bb0518c803c7d6d372",
     "handle": "roots_child_css"
   },
   "wp-content/themes/lsb-boksok.no-theme/assets/js/scripts.min.js": {
