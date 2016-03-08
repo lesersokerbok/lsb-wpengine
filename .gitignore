@@ -11,6 +11,7 @@ node_modules
 !wp-content/plugins/
 wp-content/plugins/*
 !wp-content/plugins/soil
+!wp-content/plugins/lsb-bibsyst-integration
 
 wp-content/languages/plugins
 wp-content/languages/*.*
