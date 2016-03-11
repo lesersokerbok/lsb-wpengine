@@ -1,10 +1,9 @@
 <?php
 /**
- * Plugin Name: LSB Boksok Search Widget
- * Description: This plugin creates a widget with a search forms that takes you to boksok.no.
- * Version: 1.0.0
- * Author: bGraphic
- * Author URI: http://bGraphic.no
+ * Plugin Name: Boksøk's Search Plugin
+ * Version: 1.0
+ * Author: Benedicte Raae (Lilly Labs)
+ * Author URI: http://lillylabs.no/raae
  */
 
 
