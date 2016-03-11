@@ -1,4 +1,4 @@
-=== Boksøk's Search Plugin ===
+=== Boksøk's Search Form Plugin ===
 Contributors: benedicteraae
 Tags: boksøk, webløft, bibliotek, 
 Requires at least: 4.0

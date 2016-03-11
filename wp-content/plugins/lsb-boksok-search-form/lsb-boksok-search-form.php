@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Boksøk's Search Plugin
+ * Plugin Name: Boksøk's Search Form Plugin
  * Version: 1.0
  * Author: Benedicte Raae (Lilly Labs)
  * Author URI: http://lillylabs.no/raae
