@@ -1,6 +1,6 @@
 === Boksøk's Search Form Plugin ===
 Contributors: benedicteraae
-Tags: boksøk, webløft, bibliotek, 
+Tags: boksøk, webløft, bibliotek, widget
 Requires at least: 4.0
 Tested up to: 4.4.2
 Stable tag: 1.0
@@ -13,6 +13,10 @@ A simple search form widget connected to Boksøk (boksøk.no).
 
 Let you add a search widget that will take your users to the search results page on boksøk.no. 
 
+Created for Norwegian libraries and institutions that are intereseted in books recommended by Leser søker bok.
+
+Developed for Leser søker bok by Benedicte Raae in Lilly Labs.
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/plugin-name` directory, or install the plugin through the WordPress plugins screen directly.
@@ -22,12 +26,13 @@ Let you add a search widget that will take your users to the search results page
 	* The placeholder text will be placed inside the search form.
 1. Select a filter if you wish to limit your visitors to a specific category. 
 
+There is no styling included for the widget, it uses standard html tags and hopefully will look good with your theme.
 
 == Frequently Asked Questions ==
 
 = No question so far =
 
-If you have any question please send an e-mail to support+lsb@lillylabs.no.
+If you have any question please e-mail support+boksok@lillylabs.no.
 
 == Screenshots ==
 
