@@ -33,7 +33,7 @@ a.term-icon {
 Tax navigation
 ========================================================================== */
 
-nav.tax-navigation {
+.tax-navigation {
 
   ul {
     list-style: none;
@@ -322,6 +322,28 @@ footer.page-footer {
 }
 
 /* ==========================================================================
+   Book single page
+   ========================================================================== */
+
+.single .lsb_book {
+  .entry-content {
+    
+    div {
+      margin-top: 20px;
+      
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+  }
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 
@@ -346,8 +368,54 @@ footer.page-footer {
     }
 
   }
+  
+  .single .lsb_book {
+    .entry-content {
+      max-width: 440px;
+    }
+  }
 }
 
-@media (min-width: @screen-md-min) { }
+@media (min-width: @screen-md-min) {
+  .single .lsb_book {
+    header {
+      h1 {
+        max-width: 45%;
+      }
+    }
+    
+    .entry-content {
+      max-width: 45%;
+        
+      .thumbnail {
+        position: absolute;
+        top: 20px;
+        right: 5%;
+        max-width: 45%;
+        text-align: center;
+      }
+    }
+  }
+}
 
-@media (min-width: @screen-lg-min) { }
+@media (min-width: @screen-lg-min) {
+  .single .lsb_book {
+    header {
+      h1 {
+        max-width: 40%;
+      }
+    }
+    
+    .entry-content {
+      max-width: 40%;
+        
+      .thumbnail {
+        position: absolute;
+        top: 20px;
+        right: 10%;
+        max-width: 40%;
+        text-align: center;
+      }
+    }
+  }
+}
