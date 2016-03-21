@@ -1,4 +1,4 @@
-<div class="meta panel panel-default">
+<div class="meta panel panel-default content-part">
   <div class="panel-body">
     <ul>
       <?php the_terms($post->ID, 'lsb_tax_author', '<li>'.__('Forfatter: ', 'lsb_boksok'), ',', '</li>') ?>
