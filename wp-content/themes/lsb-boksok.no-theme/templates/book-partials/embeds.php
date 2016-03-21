@@ -13,8 +13,10 @@
     }
   ?>
 
-  <div class="embed-container content-part <?php echo $oembed_type ?>">
-    <?php echo $iframe ?>
+  <div class="embed content-part">
+    <div class="embed-container <?php echo $oembed_type ?>">
+      <?php echo $iframe ?>
+    </div>
   </div>
   <?php endwhile; ?>
 <?php endif; ?>

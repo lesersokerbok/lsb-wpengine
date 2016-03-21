@@ -326,35 +326,63 @@ footer.page-footer {
    ========================================================================== */
 
 .single .lsb_book {
-  .entry-content {
+
+  .content-part {
+    margin-top: @line-height-computed;
     
-    .content-part {
-      margin-top: @line-height-computed;
+    .panel-body:after {
+      clear: none;
+    }
+
+    &.meta {
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+    }
+
+    &.lsb-supported {
+      background-position: @panel-body-padding/2 50%;
+      padding-left: @panel-body-padding*2;
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+
+    .page-header h1,
+    .entry-content {
+      max-width: 470px;
+      margin: 0 auto;
+    }
+
+  }
+
+  @media (min-width: @screen-md-min) {
+
+    header h1,
+    .entry-content {
+      max-width: 45%;
     }
 
     .aside {
-      text-align: center;
-    }
-
-    >div {
-      
-      &:first-child {
-        margin-top: 0;
-      }
-
-      &.meta {
-        ul {
-          padding: 0;
-          list-style: none;
-        }
-      }
-
-      &.lsb-supported {
-        background-position: @panel-body-padding/2 50%;
-        padding-left: @panel-body-padding*2;
-      }
+      float: right;
+      margin-top: -@line-height-computed*4.5;
+      width: 50%;
     }
   }
+
+  @media (min-width: @screen-lg-min) {
+
+    header h1,
+    .entry-content {
+      max-width: 40%;
+    }
+
+    .aside {
+      margin-right: 5%;
+    }
+  }
+
 }
 
 /* ==========================================================================
@@ -381,55 +409,5 @@ footer.page-footer {
       float: none;
     }
 
-  }
-
-  .single .lsb_book {
-    .page-header h1,
-    .entry-content {
-      max-width: 470px;
-      margin: 0 auto;
-    }
-  }
-}
-
-@media (min-width: @screen-md-min) {
-  .single .lsb_book {
-    header {
-      h1 {
-        max-width: 45%;
-      }
-    }
-
-    .entry-content {
-      max-width: 45%;
-
-      .aside {
-        position: absolute;
-        top: 20px;
-        right: 5%;
-        max-width: 45%;
-      }
-    }
-  }
-}
-
-@media (min-width: @screen-lg-min) {
-  .single .lsb_book {
-    header {
-      h1 {
-        max-width: 40%;
-      }
-    }
-
-    .entry-content {
-      max-width: 40%;
-
-      .aside {
-        position: absolute;
-        top: 20px;
-        right: 5%;
-        max-width: 50%;
-      }
-    }
   }
 }
