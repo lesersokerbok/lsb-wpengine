@@ -1,5 +1,5 @@
 <?php if( get_field( 'lsb_quote' ) ): ?>
-<div class="quote panel panel-default">
+<div class="quote panel panel-default content-part">
   <div class="panel-heading">
     <h2 class="panel-title"><?php _e('Utdrag fra boka', 'lsb_boksok'); ?></h2>
   </div>

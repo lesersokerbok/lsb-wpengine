@@ -1,4 +1,4 @@
-<div class="review panel panel-default">
+<div class="review panel panel-default content-part">
   <div class="panel-heading">
     <h2 class="panel-title"><?php _e('Om boka', 'lsb_boksok'); ?></h2>
   </div>

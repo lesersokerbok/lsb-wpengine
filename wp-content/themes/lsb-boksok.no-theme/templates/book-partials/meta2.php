@@ -1,4 +1,4 @@
-<div class="meta panel panel-default">
+<div class="meta panel panel-default content-part">
   <div class="panel-body">
     <ul>
       <?php TaxonomyUtil::the_unhidden_term_list($post->ID, 'lsb_tax_genre', '<li>'.__('Sjanger: ', 'lsb_boksok'), ', ', '</li>') ?>
