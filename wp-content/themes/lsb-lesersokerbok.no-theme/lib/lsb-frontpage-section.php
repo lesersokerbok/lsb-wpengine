@@ -125,12 +125,12 @@
                           'disabled' => 0,
         		        ),
                         array (
-                          'key' => 'lsb_frontpage_section_posts',
+                          'key' => 'lsb_frontpage_section_posts_category',
                           'label' => 'Poster fra kategori',
                           'name' => 'section_posts_category',
                           'type' => 'taxonomy',
                           'instructions' => '',
-					      'required' => 0,
+					      'required' => 1,
                           'conditional_logic' => array (
                             array (
                               'rule_0' => array (
@@ -161,7 +161,7 @@
                           'prefix' => '',
                           'type' => 'url',
                           'instructions' => '',
-                          'required' => 0,
+                          'required' => 1,
                           'conditional_logic' => array (
                             array (
                               'rule_0' => array (
@@ -194,7 +194,7 @@
                           'prefix' => '',
                           'type' => 'url',
                           'instructions' => '',
-                          'required' => 0,
+                          'required' => 1,
                           'conditional_logic' => array (
                             array (
                               'rule_0' => array (
