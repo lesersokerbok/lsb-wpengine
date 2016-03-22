@@ -40,6 +40,7 @@
                           'choices' => array (    
                             'hero' => 'Hero',
                             'grid' => 'Grid',
+                            'posts' => 'Posts',
                             'normal_feed' => 'Vanlig feed',
                             'lsb_book_feed' => 'Bok-feed',
                           ),
@@ -122,6 +123,32 @@
                           'readonly' => 0,
                           'disabled' => 0,
         		        ),
+                        array (
+                          'key' => 'lsb_frontpage_section_posts',
+                          'label' => 'Poster fra kategori',
+                          'name' => 'section_post_category',
+                          'prefix' => '',
+                          'type' => 'text',
+                          'instructions' => '',
+                          'required' => 0,
+                          'conditional_logic' => array (
+                            array (
+                              'rule_0' => array (
+                                'field' => 'lsb_frontpage_section_type',
+                                'operator' => '==',
+                                'value' => 'posts',
+                              ),
+                            ),
+                          ),
+                          'column_width' => '',
+                          'default_value' => '',
+                          'placeholder' => '',
+                          'prepend' => '',
+                          'append' => '',
+                          'maxlength' => '',
+                          'readonly' => 0,
+                          'disabled' => 0,
+                        ),
                         array (
                           'key' => 'lsb_frontpage_section_feed_link',
                           'label' => 'Lenke til feeden',
