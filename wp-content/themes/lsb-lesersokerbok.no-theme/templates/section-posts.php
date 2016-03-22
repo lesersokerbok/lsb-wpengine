@@ -1,6 +1,7 @@
 <?php
 
-$posts = new WP_Query('cat=1101');
+$category = get_sub_field('section_posts_category');
+$posts = new WP_Query('cat='.$category->term_id);
 
 ?>
 
@@ -9,7 +10,7 @@ $posts = new WP_Query('cat=1101');
   <?php if(get_sub_field('section_heading')): ?>
     <div class="section-header">
       <h2>
-        <a href="<?php  ?>"><?php the_sub_field('section_heading'); ?></a>
+        <a href="<?php echo get_term_link( $category ); ?>"><?php the_sub_field('section_heading'); ?></a>
         <?php if(get_sub_field('section_subheading')): ?>
         <small> | <a href="<?php the_sub_field('section_feed_link') ?>"><?php the_sub_field('section_subheading'); ?></a></small>
         <?php endif; ?>
@@ -41,7 +42,9 @@ $posts = new WP_Query('cat=1101');
 
   <?php if(current_user_can('manage_options')) : ?>
     <div class="alert alert-warning">
-      <?php LsbFeedUtil::print_error_message($feed_url, $rss) ?>
+      <?php printf( esc_html__( 'Ingen poster har kategori: %s.', 'lsb' ), $category->name ); ?>
+      <br/>
+      <?php _e('Kun innloggede brukere kan se denne beskjeden.', 'lsb'); ?>
     </div>
   <?php endif; ?>
 

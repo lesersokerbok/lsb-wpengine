@@ -126,11 +126,10 @@
                         array (
                           'key' => 'lsb_frontpage_section_posts',
                           'label' => 'Poster fra kategori',
-                          'name' => 'section_post_category',
-                          'prefix' => '',
-                          'type' => 'text',
+                          'name' => 'section_posts_category',
+                          'type' => 'taxonomy',
                           'instructions' => '',
-                          'required' => 0,
+					      'required' => 0,
                           'conditional_logic' => array (
                             array (
                               'rule_0' => array (
@@ -140,14 +139,19 @@
                               ),
                             ),
                           ),
-                          'column_width' => '',
-                          'default_value' => '',
-                          'placeholder' => '',
-                          'prepend' => '',
-                          'append' => '',
-                          'maxlength' => '',
-                          'readonly' => 0,
-                          'disabled' => 0,
+                          'wrapper' => array (
+                              'width' => '',
+                              'class' => '',
+                              'id' => '',
+                          ),
+                          'taxonomy' => 'category',
+                          'field_type' => 'select',
+                          'allow_null' => 0,
+                          'add_term' => 0,
+                          'save_terms' => 0,
+                          'load_terms' => 0,
+                          'return_format' => 'object',
+                          'multiple' => 0,
                         ),
                         array (
                           'key' => 'lsb_frontpage_section_feed_link',
