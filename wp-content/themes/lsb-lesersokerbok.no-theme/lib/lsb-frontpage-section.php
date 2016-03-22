@@ -19,6 +19,7 @@
         			'name' => 'section',
         			'prefix' => '',
         			'type' => 'repeater',
+                    'collapsed' => 'lsb_frontpage_section_heading',
         			'instructions' => '',
         			'required' => 0,
         			'conditional_logic' => 0,
@@ -254,6 +255,7 @@
         					'name' => 'section_grid',
         					'prefix' => '',
         					'type' => 'repeater',
+                            'collapsed' => 'lsb_frontpage_section_grid_element_heading',
         					'instructions' => '',
         					'required' => 0,
         					'conditional_logic' => array (
