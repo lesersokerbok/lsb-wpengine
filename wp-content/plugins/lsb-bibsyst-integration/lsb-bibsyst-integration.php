@@ -8,8 +8,9 @@
  */
 
 
-include('lsb-bibsyst-isbn-feed.php');
+include('class-isbn-feed.php');
 
-$isbnFeed = new isbn_feed();
 
-register_activation_hook( __FILE__, array( $isbnFeed, 'on_plugin_registration' ) );
+$isbn_feed = new Isbn_Feed();
+
+register_activation_hook( __FILE__, array( $isbn_feed, 'on_plugin_registration' ) );

@@ -1,5 +1,5 @@
 <?php
-class isbn_feed {
+class Isbn_Feed {
 
 	public $feedname = 'ftp/isbn.txt';
 
@@ -17,7 +17,7 @@ class isbn_feed {
 
 	public function on_plugin_registration() {
 
-		add_feed( $this->feedname, array( $this, 'feed' ) );
+		$this->init();
 
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules( false );
