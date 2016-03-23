@@ -4,6 +4,7 @@
 node_modules
 .htaccess
 *.log
+.brackets.json
 
 .travis/deploy_key
 .travis/deploy_key.pub
