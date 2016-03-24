@@ -3,8 +3,8 @@
  * Plugin Name: LSB Bibsyst Integration
  * Description: This plugin creates an endpoint for Bibsyst to acess all ISBNs as simple txt.
  * Version: 1.0.0
- * Author: bGraphic
- * Author URI: http://bGraphic.no
+ * Author: Lilly Labs
+ * Author URI: http://lillylabs.no
  */
 
 
