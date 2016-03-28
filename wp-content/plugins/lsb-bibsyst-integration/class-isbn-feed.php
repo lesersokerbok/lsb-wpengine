@@ -15,7 +15,7 @@ class LSB_Bibsyst_Isbn_Feed {
 		add_feed( $this->feedname, array( $this, 'feed' ) );
 	}
 
-	public function on_plugin_registration() {
+	public function on_plugin_activation() {
 
 		$this->init();
 
