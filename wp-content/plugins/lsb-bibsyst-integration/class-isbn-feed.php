@@ -1,5 +1,5 @@
 <?php
-class Isbn_Feed {
+class LSB_Bibsyst_Isbn_Feed {
 
 	public $feedname = 'ftp/isbn.txt';
 

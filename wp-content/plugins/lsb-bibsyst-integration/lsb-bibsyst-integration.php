@@ -12,8 +12,8 @@ include('class-isbn-feed.php');
 include('class-status-importer.php');
 
 
-$isbn_feed = new Isbn_Feed();
-$status_importer = new Status_Importer();
+$isbn_feed = new LSB_Bibsyst_Isbn_Feed();
+$status_importer = new LSB_Bibsyst_Status_Importer();
 
 register_activation_hook( __FILE__, array( $isbn_feed, 'on_plugin_registration' ) );
 register_activation_hook( __FILE__, array( $status_importer, 'on_plugin_activation' ) );

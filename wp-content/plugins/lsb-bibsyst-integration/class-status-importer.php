@@ -1,5 +1,5 @@
 <?php
-class Status_Importer {
+class LSB_Bibsyst_Status_Importer {
 
 	public $libraries_url = 'http://bibsyst.no/lesersokerbok_bib.txt';
 	public $status_url = 'http://bibsyst.no/lesersokerbok_svar.txt';
