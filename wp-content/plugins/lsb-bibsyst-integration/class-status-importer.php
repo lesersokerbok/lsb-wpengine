@@ -7,7 +7,6 @@ class Status_Importer {
 
 	public function __construct() {
 		add_action( 'daily_lsb_bibsyst_event', array( $this, 'weekly_import' ) );
-		add_action( 'hourly_lsb_bibsyst_event', array( $this, 'hourly_import' ) );
 		add_action( 'single_lsb_bibsyst_event', array( $this, 'import' ) );
 
 		add_action( 'init', array( $this, 'init' ) );
@@ -19,13 +18,11 @@ class Status_Importer {
 
 	public function on_plugin_activation() {
 		wp_schedule_event( strtotime('midnight'), 'daily', 'daily_lsb_bibsyst_event' );
-		wp_schedule_event( strtotime('+1 hour'), 'hourly', 'hourly_lsb_bibsyst_event' );
 		wp_schedule_single_event( time(), 'single_lsb_bibsyst_event' );
 	}
 
 	public function on_plugin_deactivation() {
 		wp_clear_scheduled_hook( 'daily_lsb_bibsyst_event' );
-		wp_clear_scheduled_hook( 'hourly_lsb_bibsyst_event' );
 	}
 
 	public function weekly_import() {
@@ -35,14 +32,6 @@ class Status_Importer {
 			$this->import();
 		} else {
 			error_log('Today is _not_ import day, do not run weekly import.');
-		}
-	}
-
-	public function hourly_import() {
-
-		if( LSB_BIBSYST_IMPORT_HOURLY ) {
-			error_log('LSB_BIBSYST_IMPORT_HOURLY = true, run hourly import.');
-			$this->import();
 		}
 	}
 
