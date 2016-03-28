@@ -17,7 +17,7 @@ class LSB_Bibsyst_Status_Importer {
 	}
 
 	public function on_plugin_activation() {
-		wp_schedule_event( strtotime('midnight'), 'daily', 'daily_lsb_bibsyst_event' );
+		wp_schedule_event( strtotime('tomorrow'), 'daily', 'daily_lsb_bibsyst_event' );
 		wp_schedule_single_event( time(), 'single_lsb_bibsyst_event' );
 	}
 
