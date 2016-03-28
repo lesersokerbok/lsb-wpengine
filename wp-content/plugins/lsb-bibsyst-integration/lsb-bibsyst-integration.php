@@ -1,8 +1,9 @@
 <?php
 /**
- * Plugin Name: LSB Bibsyst Integration
- * Description: This plugin creates an endpoint for Bibsyst to acess all ISBNs as simple txt.
+ * Plugin Name: LSB Bibsyst-integrasjon
+ * Description: Denne pluginen tar seg av Boksøks integrasjon med Bibsyst.
  * Version: 1.0.0
+ * Text Domain: lsb-bibsyst-integration
  * Author: Lilly Labs
  * Author URI: http://lillylabs.no
  */
@@ -14,8 +15,13 @@ include('class-status-importer.php');
 class LSB_Bibsyst_Integration {
 
 	function __construct() {
+		add_action( 'plugins_loaded', array( $this, 'load_text_domain' ) );
 		add_action( 'admin_init', array( $this, 'check_dependencies' ) );
     }
+
+	function load_text_domain() {
+		load_plugin_textdomain( 'lsb-bibsyst-integration', false, plugin_basename( dirname( __FILE__ ) ) );
+	}
 
 	function check_dependencies() {
 		if ( ! self::dependencies_fullfilled() ) {
@@ -25,8 +31,8 @@ class LSB_Bibsyst_Integration {
 
     function dependencies_notice() {
 		echo '<div class="notice notice-warning">';
-		echo '<p>' . esc_html__( 'The LSB Bibsyst Integration plugin requires the post type "lsb_book".', 'lsb-bibsyst-integration' ) . '</p>';
-		echo '<p>' . esc_html__( 'Deactivate and activate again after "lsb_book" is in place.', 'lsb-bibsyst-integration' ) . '</p>';
+		echo '<p>' . esc_html__( 'LSB Bibsyst er avhengig av post-typen "lsb_book".', 'lsb-bibsyst-integration' ) . '</p>';
+		echo '<p>' . esc_html__( 'Deaktiver og aktiver på ny når "lsb_book" er på plass.', 'lsb-bibsyst-integration' ) . '</p>';
 		echo '</div>';
     }
 
