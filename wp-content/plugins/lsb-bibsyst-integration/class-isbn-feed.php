@@ -1,7 +1,7 @@
 <?php
 class LSB_Bibsyst_Isbn_Feed {
 
-	public $feedname = 'ftp/isbn.txt';
+	const FEED_NAME = 'ftp/isbn.txt';
 
 	public function __construct() {
 
@@ -12,7 +12,7 @@ class LSB_Bibsyst_Isbn_Feed {
 
 	public function init() {
 
-		add_feed( $this->feedname, array( $this, 'feed' ) );
+		add_feed( self::FEED_NAME, array( $this, 'feed' ) );
 	}
 
 	public function on_plugin_activation() {
@@ -25,7 +25,7 @@ class LSB_Bibsyst_Isbn_Feed {
 
 	public function pre_get_posts( $query ) {
 
-		if ( $query->is_main_query() && $query->is_feed( $this->feedname ) ) {
+		if ( $query->is_main_query() && $query->is_feed( self::FEED_NAME ) ) {
 
 			// modify query here eg. show all posts
 			$query->set( 'post_type', 'lsb_book' );
@@ -38,7 +38,7 @@ class LSB_Bibsyst_Isbn_Feed {
 
 	public function post_limits( $limit ) {
 
-		if ( is_feed( $this->feedname ) ) {
+		if ( is_feed( self::FEED_NAME ) ) {
 			$limit = '';
 		}
 

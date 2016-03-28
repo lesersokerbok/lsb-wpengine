@@ -1,24 +1,18 @@
 <?php
 class LSB_Bibsyst_Status_Importer {
 
-	public $libraries_url = 'http://bibsyst.no/lesersokerbok_bib.txt';
-	public $status_url = 'http://bibsyst.no/lesersokerbok_svar.txt';
-	public $import_day = 'Monday';
+	const LIBRARY_URL = 'http://bibsyst.no/lesersokerbok_bib.txt';
+	const STATUS_URL = 'http://bibsyst.no/lesersokerbok_svar.txt';
+	const IMPORT_DAY = 'Monday';
 
 	public function __construct() {
 		add_action( 'daily_lsb_bibsyst_event', array( $this, 'weekly_import' ) );
-		add_action( 'single_lsb_bibsyst_event', array( $this, 'import' ) );
-
-		add_action( 'init', array( $this, 'init' ) );
-	}
-
-	public function init() {
-
+		add_action( 'activation_lsb_bibsyst_event', array( $this, 'activation_import' ) );
 	}
 
 	public function on_plugin_activation() {
 		wp_schedule_event( strtotime('tomorrow'), 'daily', 'daily_lsb_bibsyst_event' );
-		wp_schedule_single_event( time(), 'single_lsb_bibsyst_event' );
+		wp_schedule_single_event( time(), 'activation_lsb_bibsyst_event' );
 	}
 
 	public function on_plugin_deactivation() {
@@ -27,7 +21,7 @@ class LSB_Bibsyst_Status_Importer {
 
 	public function weekly_import() {
 
-		if( date('l') == $this->import_day ) {
+		if( date('l') == self::IMPORT_DAY ) {
 			error_log('Today is import day, run weekly import.');
 			$this->import();
 		} else {
@@ -35,14 +29,19 @@ class LSB_Bibsyst_Status_Importer {
 		}
 	}
 
-	public function import() {
+	public function activation_import() {
+		error_log('Import as part of plugin activation.');
+		$this->import();
+	}
+
+	private function import() {
 		$this->import_libraries();
 		$this->import_status();
 		$this->add_status_to_books();
 	}
 
 	private function import_libraries() {
-		$handle = fopen( $this->libraries_url, 'r' );
+		$handle = fopen( self::LIBRARY_URL, 'r' );
 		if ( $handle ) {
 
 			$libraries_temp = array();
@@ -75,7 +74,7 @@ class LSB_Bibsyst_Status_Importer {
 
 	private function import_status() {
 
-		$handle = fopen( $this->status_url, 'r' );
+		$handle = fopen( self::STATUS_URL, 'r' );
 		if ( $handle ) {
 
 			$isbn_temp = null;
