@@ -334,6 +334,12 @@ footer.page-footer {
       clear: none;
     }
 
+    &.cover {
+      .thumbnail {
+        margin-bottom: 0;
+      }
+    }
+
     &.meta {
       ul {
         padding: 0;
@@ -347,6 +353,22 @@ footer.page-footer {
     }
 
     &.library-status {
+      form {
+        text-align: center;
+      }
+
+      label {
+        padding-right: 1em;
+      }
+
+      .table > thead > tr > th {
+        border-bottom: none;
+      }
+
+      tbody.show {
+        display: table-row-group !important;
+      }
+
       td {
         vertical-align: middle;
       }
