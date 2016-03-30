@@ -330,7 +330,7 @@ footer.page-footer {
   .entry-embeds {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 
     .content-part {
@@ -415,8 +415,12 @@ footer.page-footer {
       width: 50%;
     }
 
-    .entry-embeds .content-part {
-      width: 32%;
+    .entry-embeds {
+      margin: 0 -@line-height-computed/2;
+      .content-part {
+        width: 50%;
+        padding: 0 @line-height-computed/2;
+      }
     }
   }
 
