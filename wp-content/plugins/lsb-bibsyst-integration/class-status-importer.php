@@ -182,6 +182,12 @@ class LSB_Bibsyst_Status_Importer {
 
 	private function sort_status_into_counties( $status ) {
 
+		// Sort libraries alphabetically
+		usort($status, function($a, $b) {
+			return strcmp( $a['name'], $b['name'] );
+		});
+
+		// Split into counties
 		$counties = array();
 
 		foreach( $status as $library ) {
@@ -192,15 +198,8 @@ class LSB_Bibsyst_Status_Importer {
 			}
 		}
 
+		// Sort counties alphabetically
 		ksort($counties);
-
-//		foreach( $counties as $key => $county_libraries ) {
-//			usort($county_libraries, function($a, $b) {
-//				strcmp( $a['name'], $b['name'] );
-//			});
-//
-//			$counties[ $key ] = $county_libraries;
-//		}
 
 		return $counties;
 	}
