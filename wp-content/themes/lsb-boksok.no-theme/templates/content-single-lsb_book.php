@@ -9,6 +9,7 @@
 
   <div class="aside hidden-sm hidden-xs">
     <?php get_template_part('templates/book-partials/cover'); ?>
+    <?php get_template_part('templates/book-partials/library-status'); ?>
     <?php get_template_part('templates/book-partials/embeds'); ?>
   </div>
 
@@ -21,6 +22,7 @@
     <?php get_template_part('templates/book-partials/quote'); ?>
     <?php get_template_part('templates/book-partials/more'); ?>
     <div class="visible-sm visible-xs">
+      <?php get_template_part('templates/book-partials/library-status'); ?>
       <?php get_template_part('templates/book-partials/embeds'); ?>
     </div>
     <?php get_template_part('templates/book-partials/icon-nav'); ?>

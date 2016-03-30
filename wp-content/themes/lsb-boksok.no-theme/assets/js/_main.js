@@ -81,6 +81,25 @@ var Roots = {
     }
   },
 
+  // Books
+  single_lsb_book: {
+
+    init: function() {
+      // JavaScript to be fired on the home page
+
+      $('.library-status select').change(function() {
+        var selectedCounty = $(this).val();
+        $('.library-status .county').addClass('hidden');
+        $('.library-status .county').removeClass('show');
+
+        if( selectedCounty ) {
+          $('.library-status .county.' + selectedCounty).removeClass('hidden');
+          $('.library-status .county.' + selectedCounty).addClass('show');
+        }
+      });
+    }
+  },
+
   // About us page, note the change from about-us to about_us.
   about_us: {
     init: function() {
