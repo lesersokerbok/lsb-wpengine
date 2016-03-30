@@ -327,6 +327,17 @@ footer.page-footer {
 
 .single .lsb_book {
 
+  .entry-embeds {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    .content-part {
+      width: 100%;
+    }
+  }
+
   .content-part {
     margin-top: @line-height-computed;
     
@@ -383,7 +394,8 @@ footer.page-footer {
   @media (max-width: @screen-sm-max) {
 
     .page-header h1,
-    .entry-content {
+    .entry-content,
+    .entry-embeds {
       max-width: 470px;
       margin: 0 auto;
     }
@@ -401,6 +413,10 @@ footer.page-footer {
       float: right;
       margin-top: -@line-height-computed*4.5;
       width: 50%;
+    }
+
+    .entry-embeds .content-part {
+      width: 32%;
     }
   }
 

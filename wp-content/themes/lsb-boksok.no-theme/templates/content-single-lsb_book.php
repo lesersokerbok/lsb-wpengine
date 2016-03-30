@@ -12,7 +12,7 @@
     <?php get_template_part('templates/book-partials/library-status'); ?>
   </div>
 
-  <div class="entry-content">
+  <div class="entry-content clearfix">
     <?php get_template_part('templates/book-partials/meta1'); ?>
     <div class="visible-sm visible-xs">
       <?php get_template_part('templates/book-partials/cover'); ?>
@@ -25,4 +25,9 @@
     <?php get_template_part('templates/book-partials/meta2'); ?>
     <?php get_template_part('templates/book-partials/lsb-supported'); ?>
   </div>
+
+  <div class="entry-embeds">
+    <?php get_template_part('templates/book-partials/embeds'); ?>
+  </div>
+
 </article>
