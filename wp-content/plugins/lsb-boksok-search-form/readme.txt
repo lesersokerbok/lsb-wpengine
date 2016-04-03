@@ -1,4 +1,4 @@
-=== Boksøk's Search Form Plugin ===
+=== Søkeskjema-widget fra Boksøk ===
 Contributors: benedicteraae
 Tags: boksøk, webløft, bibliotek, widget
 Requires at least: 4.0
@@ -7,15 +7,13 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple search form widget connected to Boksøk (boksøk.no).
+Widget som lar besøkende søke direkte i Boksøk (boksok.no).
 
 == Description ==
 
-Let you add a search widget that will take your users to the search results page on boksøk.no. 
+Laget for norske bibliotek og interesseorganisasjoner som ønsker å gi besøkende mulighet til å søke direkte i bøker anbefalt av Leser søker bok.
 
-Created for Norwegian libraries and institutions that are intereseted in books recommended by Leser søker bok.
-
-Developed for Leser søker bok by Benedicte Raae in Lilly Labs.
+Utviklet for Leser søker bok av Benedicte Raae i Lilly Labs.
 
 == Installation ==
 
@@ -26,7 +24,7 @@ Developed for Leser søker bok by Benedicte Raae in Lilly Labs.
 	* The placeholder text will be placed inside the search form.
 1. Select a filter if you wish to limit your visitors to a specific category. 
 
-There is no styling included for the widget, it uses standard html tags and hopefully will look good with your theme.
+The form comes with Bootstrap class names.
 
 == Frequently Asked Questions ==
 
