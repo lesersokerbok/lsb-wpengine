@@ -1,4 +1,4 @@
-=== Søkeskjema-widget fra Boksøk ===
+=== Boksøk: Søkeskjema-widget ===
 Contributors: benedicteraae
 Tags: boksøk, webløft, bibliotek, widget
 Requires at least: 4.0

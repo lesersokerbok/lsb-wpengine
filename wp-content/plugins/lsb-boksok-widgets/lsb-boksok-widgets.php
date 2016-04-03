@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Søkeskjema-widget fra Boksøk
+ * Plugin Name: Boksøk: Søkeskjema-widget
  * Description: Widget som lar besøkende søke direkte i Boksøk (boksok.no).
  * Version: 1.0
  * Text Domain: lsb-boksok-widgets
