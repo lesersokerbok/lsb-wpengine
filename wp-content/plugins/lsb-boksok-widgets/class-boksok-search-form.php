@@ -10,7 +10,7 @@ class LSB_Boksok_Search_Widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'LSB_Boksok_Search_Widget', // Base ID
-			__('Boksøk Widget', 'lsb-boksok-widgets'), // Name
+			__('Boksøk: Søkeskjema-widget', 'lsb-boksok-widgets'), // Name
 			array( 'description' => __( 'Lar besøkende søke direkte i boksøk.no.', 'lsb-boksok-widgets' ), ) // Args
 		);
 	}

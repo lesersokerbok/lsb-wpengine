@@ -4,6 +4,7 @@
  * Description: Widget som lar besøkende søke direkte i Boksøk (boksok.no).
  * Version: 1.0
  * Text Domain: lsb-boksok-widgets
+ * Domain Path: /language
  * Author: Benedicte Raae (Lilly Labs)
  * Author URI: http://lillylabs.no/raae
  */
