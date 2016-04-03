@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: LSB Bibsyst-integrasjon
+ * Plugin Name: Boksøk: Bibsyst-integrasjon
  * Description: Denne pluginen tar seg av Boksøks integrasjon med Bibsyst.
  * Version: 1.0.0
  * Text Domain: lsb-bibsyst-integration
