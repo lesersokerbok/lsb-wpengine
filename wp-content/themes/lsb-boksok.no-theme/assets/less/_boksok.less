@@ -21,14 +21,6 @@ body {
   }
 }
 
-a.term-icon {
-  text-decoration: none;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
 /* ==========================================================================
 Tax navigation
 ========================================================================== */
@@ -53,14 +45,10 @@ Tax navigation
 
         box-sizing: content-box;
         padding: @line-height-computed/2 @line-height-computed;
-        height: 30px;
-
-        display: inline-flex;
-        align-items: center;
+        line-height: 30px;
 
         img {
-          display: inline-block;
-          height: 30px;
+          height: 28px;
           margin-left: -@line-height-computed/2;
           margin-right: @line-height-computed/2;
         }
@@ -216,7 +204,6 @@ footer.page-footer {
    Archive
    ========================================================================== */
 
-
 .loop {
 
   .clearfix();
@@ -279,46 +266,6 @@ footer.page-footer {
       }
     }
   }
-}
-
-
-/* ==========================================================================
-   Book thumbnail curled corner
-   ========================================================================== */
-
-.lsb_book .thumbnail.look-inside {
-  color: @navbar-default-link-color;
-  position: relative;
-  .glyphicon;
-  .glyphicon-eye-open;
-
-  &:hover {
-    color: @brand-primary;
-  }
-}
-
-.lsb_book .thumbnail.look-inside:after {
-  content: "";
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  border-width: 0 44px 44px 0;
-  border-style: solid;
-  border-color: #f5f5f5 #fff;
-  box-shadow: -2px 2px 1px rgba(0,0,0,0.3), -2px 1px 1px rgba(0,0,0,0.2);
-}
-
-.lsb_book .thumbnail.look-inside:before {
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  font-size:larger;
-  z-index:1000;
-}
-
-.lsb_book a.term-icon {
-  display: inline-block;
-  margin-bottom: @line-height-computed;
 }
 
 /* ==========================================================================
