@@ -47,7 +47,7 @@ class LSB_Boksok_Search_Widget extends WP_Widget {
 
 		<div class="textwidget"><?php echo wpautop( $instance['description'] ); ?></div>
 		<form action="http://boksok.no/" method="get">
-			<?php if( ! empty ( $instance['main_cat_filter'] )) : ?>
+			<?php if( ! empty ( $instance['main_cat_filter'] ) && $instance['main_cat_filter'] !== 'no-filter' ) : ?>
 				<input name="hovedkategori" value="<?php echo $instance['main_cat_filter']; ?>" type="hidden">
 			<? endif; ?>
         <div class="input-group">
