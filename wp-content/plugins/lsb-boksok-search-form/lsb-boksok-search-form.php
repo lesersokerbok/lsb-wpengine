@@ -50,8 +50,12 @@ class LSB_Boksok_Search_Widget extends WP_Widget {
 			<?php if( ! empty ( $instance['main_cat_filter'] )) : ?>
 				<input name="hovedkategori" value="<?php echo $instance['main_cat_filter']; ?>" type="hidden">
 			<? endif; ?>
-      		<input name="s" placeholder="<?php echo !empty( $instance['placeholder'] ) ? $instance['placeholder'] : ''; ?>" type="search">
-      		<input value="Søk" type="submit">
+        <div class="input-group">
+          <input class="form-control" name="s" placeholder="<?php echo !empty( $instance['placeholder'] ) ? $instance['placeholder'] : ''; ?>" type="search">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Søk</button>
+          </span>
+        </div>
     	</form>
 
 		<?php
