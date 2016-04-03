@@ -41,7 +41,7 @@
                           'choices' => array (    
                             'hero' => 'Hero',
                             'grid' => 'Grid',
-                            'posts' => 'Posts',
+                            'posts' => 'Innlegg',
                             'normal_feed' => 'Vanlig feed',
                             'lsb_book_feed' => 'Bok-feed',
                           ),
@@ -126,7 +126,7 @@
         		        ),
                         array (
                           'key' => 'lsb_frontpage_section_posts_category',
-                          'label' => 'Poster fra kategori',
+                          'label' => 'Innlegg fra kategori',
                           'name' => 'section_posts_category',
                           'type' => 'taxonomy',
                           'instructions' => '',
