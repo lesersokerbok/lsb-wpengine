@@ -1,7 +1,7 @@
 <?php
-class isbn_feed {
+class LSB_Bibsyst_Isbn_Feed {
 
-	public $feed = 'ftp/isbn.txt';
+	const FEED_NAME = 'ftp/isbn.txt';
 
 	public function __construct() {
 
@@ -12,20 +12,20 @@ class isbn_feed {
 
 	public function init() {
 
-		add_feed( $this->feed, array( $this, 'feed' ) );
-
+		add_feed( self::FEED_NAME, array( $this, 'feed' ) );
 	}
 
-	public function on_plugin_registration() {
-		add_feed( $this->feed, array( $this, 'feed' ) );
+	public function on_plugin_activation() {
+
+		$this->init();
 
 		global $wp_rewrite;
-  		$wp_rewrite->flush_rules( false );
+		$wp_rewrite->flush_rules( false );
 	}
 
 	public function pre_get_posts( $query ) {
 
-		if ( $query->is_main_query() && $query->is_feed( $this->feed ) ) {
+		if ( $query->is_main_query() && $query->is_feed( self::FEED_NAME ) ) {
 
 			// modify query here eg. show all posts
 			$query->set( 'post_type', 'lsb_book' );
@@ -34,12 +34,11 @@ class isbn_feed {
 		}
 
 		return $query;
-
 	}
 
 	public function post_limits( $limit ) {
 
-		if ( is_feed( $this->feed ) ) {
+		if ( is_feed( self::FEED_NAME ) ) {
 			$limit = '';
 		}
 
@@ -48,14 +47,12 @@ class isbn_feed {
 
 	public function feed() {
 
-		// either output template & loop here or include a template
-
-		if ( have_posts() ) : while( have_posts() ) : the_post();
-
-			echo the_field('lsb_isbn')."\n";
-
-		endwhile; endif;
-
+		if ( have_posts() ) {
+			while ( have_posts() ) {
+				the_post();
+				echo get_field('lsb_isbn')."\n";
+			}
+		}
 	}
 
 }

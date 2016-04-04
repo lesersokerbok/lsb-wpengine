@@ -19,6 +19,7 @@
         			'name' => 'section',
         			'prefix' => '',
         			'type' => 'repeater',
+                    'collapsed' => 'lsb_frontpage_section_heading',
         			'instructions' => '',
         			'required' => 0,
         			'conditional_logic' => 0,
@@ -40,6 +41,7 @@
                           'choices' => array (    
                             'hero' => 'Hero',
                             'grid' => 'Grid',
+                            'posts' => 'Innlegg',
                             'normal_feed' => 'Vanlig feed',
                             'lsb_book_feed' => 'Bok-feed',
                           ),
@@ -123,13 +125,43 @@
                           'disabled' => 0,
         		        ),
                         array (
+                          'key' => 'lsb_frontpage_section_posts_category',
+                          'label' => 'Innlegg fra kategori',
+                          'name' => 'section_posts_category',
+                          'type' => 'taxonomy',
+                          'instructions' => '',
+					      'required' => 1,
+                          'conditional_logic' => array (
+                            array (
+                              'rule_0' => array (
+                                'field' => 'lsb_frontpage_section_type',
+                                'operator' => '==',
+                                'value' => 'posts',
+                              ),
+                            ),
+                          ),
+                          'wrapper' => array (
+                              'width' => '',
+                              'class' => '',
+                              'id' => '',
+                          ),
+                          'taxonomy' => 'category',
+                          'field_type' => 'select',
+                          'allow_null' => 0,
+                          'add_term' => 0,
+                          'save_terms' => 0,
+                          'load_terms' => 0,
+                          'return_format' => 'object',
+                          'multiple' => 0,
+                        ),
+                        array (
                           'key' => 'lsb_frontpage_section_feed_link',
                           'label' => 'Lenke til feeden',
                           'name' => 'section_feed_link',
                           'prefix' => '',
                           'type' => 'url',
                           'instructions' => '',
-                          'required' => 0,
+                          'required' => 1,
                           'conditional_logic' => array (
                             array (
                               'rule_0' => array (
@@ -162,7 +194,7 @@
                           'prefix' => '',
                           'type' => 'url',
                           'instructions' => '',
-                          'required' => 0,
+                          'required' => 1,
                           'conditional_logic' => array (
                             array (
                               'rule_0' => array (
@@ -223,6 +255,7 @@
         					'name' => 'section_grid',
         					'prefix' => '',
         					'type' => 'repeater',
+                            'collapsed' => 'lsb_frontpage_section_grid_element_heading',
         					'instructions' => '',
         					'required' => 0,
         					'conditional_logic' => array (

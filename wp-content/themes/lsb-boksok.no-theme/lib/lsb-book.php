@@ -23,6 +23,7 @@ class LsbBook {
     // Added fields with acf
     add_action('init', array($this, 'register_lsb_acf_book_meta'));
     add_action('init', array($this, 'register_lsb_acf_book_content'));
+    add_action('init', array($this, 'register_lsb_acf_book_oembeds'));
     add_action('init', array($this, 'register_lsb_acf_tax_meta'));
   }
 
@@ -569,7 +570,7 @@ class LsbBook {
     {
       register_field_group(array (
         'id' => 'lsb_acf_content',
-        'title' => __('Om boka', 'lsb_boksok'),
+        'title' => __('Anmeldelse', 'lsb_boksok'),
         'fields' => array (
           array (
             'key' => 'lsb_acf_review',
@@ -604,6 +605,53 @@ class LsbBook {
         'options' => array (
           'position' => 'normal',
           'layout' => 'no_box',
+          'hide_on_screen' => array (
+          ),
+        ),
+        'menu_order' => 0,
+      ));
+    }
+  }
+
+  public function register_lsb_acf_book_oembeds() {
+    if(function_exists("register_field_group"))
+    {
+      register_field_group(array (
+        'id' => 'lsb_acf_multimedia',
+        'title' => __('Multimedia', 'lsb_boksok'),
+        'fields' => array (
+          array (
+            'key' => 'lsb_acf_oembeds',
+            'label' => __('Oembeds', 'lsb_boksok'),
+            'instructions' => __('YouTube, SoundCloud, Issuu etc. ', 'lsb_boksok'),
+            'name' => 'lsb_oembeds',
+            'type' => 'repeater',
+            'button_label' => __('Legg til oembed', 'lsb_boksok'),
+            'sub_fields' => array (
+              array(
+                'key' => 'lsb_acf_oembed',
+                'label' => __('Oembed', 'lsb_boksok'),
+                'instructions' => __('Url direkte til video, lyd, bok etc.', 'lsb_boksok'),
+                'name' => 'lsb_oembed',
+                'type' => 'oembed',
+              ),
+            ),
+          ),
+        ),
+        'location' => array (
+          array (
+            array (
+              'param' => 'post_type',
+              'operator' => '==',
+              'value' => 'lsb_book',
+              'order_no' => 0,
+              'group_no' => 0,
+            ),
+          ),
+        ),
+        'options' => array (
+          'position' => 'normal',
+          'layout' => 'normal',
           'hide_on_screen' => array (
           ),
         ),
