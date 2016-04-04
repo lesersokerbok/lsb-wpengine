@@ -65,6 +65,12 @@ var Roots = {
       $('.search-results .pagination a').click(function (event) {
         ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
       });
+
+      // Library county selection
+      $('.library-status select').change(function (event) {
+        ga('send', 'event', 'LibraryCountySelected', 'select', event.target.href);
+      });
+
     }
   },
   // Home page
