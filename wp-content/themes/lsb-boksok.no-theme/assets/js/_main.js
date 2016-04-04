@@ -27,7 +27,7 @@ var Roots = {
       // Google Analytics Events
 
       // Book section header link click
-      $('.book-shelf-header a').click(function (event) {
+      $('.book-shelf .page-section-header a').click(function (event) {
         ga('send', 'event', 'BookShelfHeader', 'click', event.target.href);
       });
 
@@ -66,12 +66,11 @@ var Roots = {
         ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
       });
 
-      // Facet interaction
-      $(document).on('facetwp-loaded', function() {
-        if (FWP.loaded) {
-          ga('send', 'pageview', window.location.pathname + window.location.hash);
-        }
+      // Library county selection
+      $('.library-status select').change(function (event) {
+        ga('send', 'event', 'LibraryCountySelected', 'select', event.target.href);
       });
+
     }
   },
   // Home page
