@@ -5,8 +5,8 @@
  * Version: 1.0
  * Text Domain: lsb-boksok-widgets
  * Domain Path: /language
- * Author: Benedicte Raae (Lilly Labs)
- * Author URI: http://lillylabs.no/raae
+ * Author: Lilly Labs
+ * Author URI: http://lillylabs.no
  */
 
 include('class-boksok-search-form.php');
