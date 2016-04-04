@@ -1,20 +1,5 @@
 <?php
-/**
- * Plugin Name: Boksøk's Search Form Plugin
- * Version: 1.0
- * Author: Benedicte Raae (Lilly Labs)
- * Author URI: http://lillylabs.no/raae
- */
 
-
-// Block direct requests
-if ( !defined('ABSPATH') )
-	die('-1');
-
-
-add_action( 'widgets_init', function(){
-	register_widget( 'LSB_Boksok_Search_Widget' );
-});
 /**
  * Adds My_Widget widget.
  */
@@ -25,8 +10,8 @@ class LSB_Boksok_Search_Widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'LSB_Boksok_Search_Widget', // Base ID
-			__('Boksøk Widget', 'lsb_boksok_search_widget'), // Name
-			array( 'description' => __( 'Lar besøkende søke direkte i boksøk.no.', 'lsb_boksok_search_widget' ), ) // Args
+			__('Boksøk: Søkeskjema-widget', 'lsb-boksok-widgets'), // Name
+			array( 'description' => __( 'Lar besøkende søke direkte i boksøk.no.', 'lsb-boksok-widgets' ), ) // Args
 		);
 	}
 	/**
@@ -47,11 +32,15 @@ class LSB_Boksok_Search_Widget extends WP_Widget {
 
 		<div class="textwidget"><?php echo wpautop( $instance['description'] ); ?></div>
 		<form action="http://boksok.no/" method="get">
-			<?php if( ! empty ( $instance['main_cat_filter'] )) : ?>
+			<?php if( ! empty ( $instance['main_cat_filter'] ) && $instance['main_cat_filter'] !== 'no-filter' ) : ?>
 				<input name="hovedkategori" value="<?php echo $instance['main_cat_filter']; ?>" type="hidden">
 			<? endif; ?>
-      		<input name="s" placeholder="<?php echo !empty( $instance['placeholder'] ) ? $instance['placeholder'] : ''; ?>" type="search">
-      		<input value="Søk" type="submit">
+        <div class="input-group">
+          <input class="form-control" name="s" placeholder="<?php echo !empty( $instance['placeholder'] ) ? $instance['placeholder'] : ''; ?>" type="search">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><?php _e('Søk', 'lsb_bokso_widgets') ?></button>
+          </span>
+        </div>
     	</form>
 
 		<?php
@@ -65,39 +54,49 @@ class LSB_Boksok_Search_Widget extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
-		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Boksøk', 'lsb_boksok_search_widget' );
-		$description = isset( $instance['description'] ) ? $instance['description'] : __( 'Søk etter bøker på boksøk.no.', 'lsb_boksok_search_widget' );
-		$placeholder = isset( $instance['placeholder'] ) ? $instance['placeholder'] : __( 'Søk etter en forfatter, en tittel eller et tema!', 'lsb_boksok_search_widget' );
+		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Boksøk', 'lsb-boksok-widgets' );
+		$description = isset( $instance['description'] ) ? $instance['description'] : __( 'Søk etter bøker på boksøk.no.', 'lsb-boksok-widgets' );
+		$placeholder = isset( $instance['placeholder'] ) ? $instance['placeholder'] : __( 'Søk etter en forfatter, en tittel eller et tema!', 'lsb-boksok-widgets' );
 		$main_cat_filter = isset( $instance['main_cat_filter'] ) ? $instance['main_cat_filter'] : 'no-filter';
 
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>">
-				<?php _e( 'Tittel:', 'lsb_boksok_search_widget' ); ?>
+				<?php _e( 'Tittel:', 'lsb-boksok-widgets' ); ?>
 			</label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'description' ); ?>">
-				<?php _e( 'Beskrivelse:', 'lsb_boksok_search_widget' ); ?>
+				<?php _e( 'Beskrivelse:', 'lsb-boksok-widgets' ); ?>
 			</label>
 			<textarea class="widefat" id="<?php echo $this->get_field_id( 'description' ); ?>" name="<?php echo $this->get_field_name( 'description' ); ?>" ><?php echo esc_attr( $description ); ?></textarea>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'placeholder' ); ?>">
-				<?php _e( 'Søkefelt placeholder:', 'lsb_boksok_search_widget' ); ?>
+				<?php _e( 'Søkefelt placeholder:', 'lsb-boksok-widgets' ); ?>
 			</label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'placeholder' ); ?>" name="<?php echo $this->get_field_name( 'placeholder' ); ?>" type="text" value="<?php echo esc_attr( $placeholder ); ?>">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'main_cat_filter' ); ?>"><?php _e( 'Filtrer på kategori:', 'lsb_boksok_search_widget' ); ?></label><br/>
+			<label for="<?php echo $this->get_field_id( 'main_cat_filter' ); ?>"><?php _e( 'Filtrer på kategori:', 'lsb-boksok-widgets' ); ?></label><br/>
 			<select id="<?php echo $this->get_field_id( 'main_cat_filter' ); ?>" name="<?php echo $this->get_field_name( 'main_cat_filter' ); ?>">
-				<option value="no-filter" <?php echo ('no-filter' == $main_cat_filter) ? 'selected' : ''; ?>><?php _e( 'Inget filter', 'lsb_boksok_search_widget' ); ?></option>
-				<option value="litt-a-lese" <?php echo ('litt-a-lese' == $main_cat_filter) ? 'selected' : ''; ?>><?php _e( 'Litt å lese', 'lsb_boksok_search_widget' ); ?></option>
-				<option value="enkelt-innhold" <?php echo ('enkelt-innhold' == $main_cat_filter) ? 'selected' : ''; ?>><?php _e( 'Enkelt innhold', 'lsb_boksok_search_widget' ); ?></option>
-				<option value="punktskrift-folebilder" <?php echo ('punktskrift-folebilder' == $main_cat_filter) ? 'selected' : ''; ?>><?php _e( 'Punkskrift & følebilder', 'lsb_boksok_search_widget' ); ?></option>
-				<option value="tegnsprak-nmt" <?php echo ('tegnsprak-nmt' == $main_cat_filter) ? 'selected' : ''; ?>><?php _e( 'Tegnspråk & NMT', 'lsb_boksok_search_widget' ); ?></option>
-				<option value="bliss-piktogram" <?php echo ('bliss-piktogram' == $main_cat_filter) ? 'selected' : ''; ?>><?php _e( 'Bliss & piktogram', 'lsb_boksok_search_widget' ); ?></option>
+				<option value="no-filter" <?php echo ('no-filter' == $main_cat_filter) ? 'selected' : ''; ?>><?php _e( 'Inget filter', 'lsb-boksok-widgets' ); ?></option>
+				<option value="litt-a-lese" <?php echo ('litt-a-lese' == $main_cat_filter) ? 'selected' : ''; ?>>
+          Litt å lese
+        </option>
+				<option value="enkelt-innhold" <?php echo ('enkelt-innhold' == $main_cat_filter) ? 'selected' : ''; ?>>
+          Enkelt innhold
+        </option>
+				<option value="punktskrift-folebilder" <?php echo ('punktskrift-folebilder' == $main_cat_filter) ? 'selected' : ''; ?>>
+          Punkskrift & følebilder
+        </option>
+				<option value="tegnsprak-nmt" <?php echo ('tegnsprak-nmt' == $main_cat_filter) ? 'selected' : ''; ?>>
+          Tegnspråk & NMT
+        </option>
+				<option value="bliss-piktogram" <?php echo ('bliss-piktogram' == $main_cat_filter) ? 'selected' : ''; ?>>
+          Bliss & piktogram
+        </option>
 			</select>
 	<?php
 	}
