@@ -65,13 +65,6 @@ var Roots = {
       $('.search-results .pagination a').click(function (event) {
         ga('send', 'event', 'BookSearchResultsPagination', 'click', event.target.href);
       });
-
-      // Facet interaction
-      $(document).on('facetwp-loaded', function() {
-        if (FWP.loaded) {
-          ga('send', 'pageview', window.location.pathname + window.location.hash);
-        }
-      });
     }
   },
   // Home page
