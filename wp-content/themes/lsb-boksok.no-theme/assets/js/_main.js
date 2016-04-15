@@ -26,8 +26,7 @@ var Roots = {
 
       // Google Analytics Events
 
-      if(typeof ga != 'function') {
-        console.log('no google');
+      if(typeof ga !== 'function') {
         return;
       }
       // Book section header link click
