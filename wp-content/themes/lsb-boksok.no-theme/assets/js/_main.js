@@ -26,6 +26,9 @@ var Roots = {
 
       // Google Analytics Events
 
+      if(typeof ga !== 'function') {
+        return;
+      }
       // Book section header link click
       $('.book-shelf .page-section-header a').click(function (event) {
         ga('send', 'event', 'BookShelfHeader', 'click', event.target.href);
