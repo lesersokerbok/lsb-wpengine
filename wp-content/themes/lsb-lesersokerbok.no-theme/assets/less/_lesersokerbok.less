@@ -3,136 +3,153 @@
  */
 
 /* ==========================================================================
-   Layout
-   ========================================================================== */
+	 Layout
+	 ========================================================================== */
 
 /* ==========================================================================
-   Frontpage Section
-   ========================================================================== */
+	 Frontpage Section
+	 ========================================================================== */
 
 .frontpage-section-intro {
-	display: flex;
-	align-content: center;
-
 	.intro-text {
-		display: flex;
-		align-items: center;
+		margin-bottom: @line-height-computed * 3;
 	}
 }
 
 
+@media (min-width: @screen-md-min) {
+
+	.frontpage-section-intro {
+		display: flex;
+		align-content: center;
+
+		.intro-text {
+			display: flex;
+			align-items: center;
+			order: 2;
+			margin: 0;
+		}
+
+		.embed {
+			width: 100%;
+			margin-right: @padding-large-horizontal*2;
+			order: 1;
+		}
+	}
+}
+
 .page-template-template-frontpage-php .frontpage-section {
-  
-  margin-bottom: @line-height-computed * 3;
-  
-  &:first-child {
-    margin-top: @line-height-computed;
-  }
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
 
-  .section-header {
-    .page-header;
-    padding-bottom: 0;
-  }
+	margin-bottom: @line-height-computed * 3;
 
-  &.frontpage-section-hero {
-    
-    h1, .h1 {
-      font-size: @font-size-h1;
-    }
-    
-    .entry-content-asset p {
-      margin-bottom: 0;
-    }
-    
-  }
-  
-  &.frontpage-section-alert {
-    
-    .alert {
-      margin: 0;
-    }
-    
-    &:first-child {
-      margin-top: 0;
-    }
-    
-  }
+	&:first-child {
+		margin-top: @line-height-computed;
+	}
 
-  &.frontpage-section-grid {
+	&:last-child {
+		margin-bottom: 0;
+	}
 
-    .grid-element {
-      padding: 0 @panel-body-padding;
-      h3 {
-        font-size: ceil((@font-size-base * 1.125));
-      }
-    }
-  }
+	.section-header {
+		.page-header;
+		padding-bottom: 0;
+	}
 
-  &.frontpage-section-lsb_book_feed,
-  &.frontpage-section-normal_feed,
-  &.frontpage-section-posts {
+	&.frontpage-section-hero {
 
-    .rss-post {
+		h1, .h1 {
+			font-size: @font-size-h1;
+		}
 
-      margin-bottom: @jumbotron-padding;
-      &:last-child {
-        margin-bottom: 0;
-      }
+		.entry-content-asset p {
+			margin-bottom: 0;
+		}
 
-      h3 {
-        font-size: ceil((@font-size-base * 1.125));
-      }
+	}
 
-      .rss-meta {
-        .lsb-meta;
-      }
+	&.frontpage-section-alert {
 
-      .rss-summary {
-        overflow-x: hidden;
-      }
+		.alert {
+			margin: 0;
+		}
 
-      .rss-image {
-        overflow: hidden;
+		&:first-child {
+			margin-top: 0;
+		}
 
-        img {
-          display: inline-block;
-          width:100%;
-          max-height: 100%;
-        }
-        
-        @media (min-width: @screen-md-min) { 
-          text-align: center;
-          height: 200px;
-          
-          img {
-            width: auto;
-          }
-        }
-        
-      }
-    }
-  }
+	}
+
+	&.frontpage-section-grid {
+
+		.grid-element {
+			padding: 0 @panel-body-padding;
+			h3 {
+				font-size: ceil((@font-size-base * 1.125));
+			}
+		}
+	}
+
+	&.frontpage-section-lsb_book_feed,
+	&.frontpage-section-normal_feed,
+	&.frontpage-section-posts {
+
+		.rss-post {
+
+			margin-bottom: @jumbotron-padding;
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			h3 {
+				font-size: ceil((@font-size-base * 1.125));
+			}
+
+			.rss-meta {
+				.lsb-meta;
+			}
+
+			.rss-summary {
+				overflow-x: hidden;
+			}
+
+			.rss-image {
+				overflow: hidden;
+
+				img {
+					display: inline-block;
+					width:100%;
+					max-height: 100%;
+				}
+
+				@media (min-width: @screen-md-min) {
+					text-align: center;
+					height: 200px;
+
+					img {
+						width: auto;
+					}
+				}
+
+			}
+		}
+	}
 }
 
 /* ==========================================================================
-   Base
-   ========================================================================== */
+	 Base
+	 ========================================================================== */
 
 /* ==========================================================================
-   Content
-   ========================================================================== */
+	 Content
+	 ========================================================================== */
 
 /* ==========================================================================
-   Footer
-   ========================================================================== */
+	 Footer
+	 ========================================================================== */
 
 /* ==========================================================================
-   Posts
-   ========================================================================== */
+	 Posts
+	 ========================================================================== */
 
 .hentry header { }
 .hentry time { }
@@ -142,67 +159,67 @@
 
 
 /* ==========================================================================
-   Person
-   ========================================================================== */
+	 Person
+	 ========================================================================== */
 
 .person {
 
-    img {
-      display: none;
-    }
+		img {
+			display: none;
+		}
 
-    h2 {
-      margin-top: @line-height-computed/2;
-      font-size: @font-size-h3
-    }
+		h2 {
+			margin-top: @line-height-computed/2;
+			font-size: @font-size-h3
+		}
 
-    h3 {
-      margin-top: 0;
-      font-size: @font-size-h4
-    }
+		h3 {
+			margin-top: 0;
+			font-size: @font-size-h4
+		}
 
-    .contact-info {
-      font-weight: @headings-font-weight;
-    }
+		.contact-info {
+			font-weight: @headings-font-weight;
+		}
 
-    @media (min-width: @screen-md-min) {
+		@media (min-width: @screen-md-min) {
 
-      img.above {
-        display: block;
-        width: 35%;
-        float:left;
-      }
+			img.above {
+				display: block;
+				width: 35%;
+				float:left;
+			}
 
-      h2, h3, p, ul {
-          margin-left: 35%;
-          padding-left: @panel-body-padding*1.5;
-      }
+			h2, h3, p, ul {
+					margin-left: 35%;
+					padding-left: @panel-body-padding*1.5;
+			}
 
-      ul {
-        padding-left: @panel-body-padding*2.5;
-      }
-    }
+			ul {
+				padding-left: @panel-body-padding*2.5;
+			}
+		}
 
-    @media (max-width: @screen-sm-max) {
+		@media (max-width: @screen-sm-max) {
 
-      img.below {
-        display: block;
-        margin-top: @line-height-computed;
-      }
+			img.below {
+				display: block;
+				margin-top: @line-height-computed;
+			}
 
-    }
+		}
 }
 
 /* ==========================================================================
-   Footer
-   ========================================================================== */
+	 Footer
+	 ========================================================================== */
 
 .content-info { }
 
 
 /* ==========================================================================
-   Media Queries
-   ========================================================================== */
+	 Media Queries
+	 ========================================================================== */
 
 @media (max-width: @screen-sm-max) { }
 
