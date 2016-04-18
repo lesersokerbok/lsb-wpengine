@@ -1,37 +1,57 @@
-<?php
+<div class="block-wrapper">
+<?php if ( have_rows('blocks') ): ?>
+	<?php while ( have_rows('blocks') ) : the_row(); ?>
 
-$numberOfBoxes = count(get_sub_field('section_grid'));
+		<div class="block">
+		<?php if( get_row_layout() == 'grid_block_text' ): ?>
 
-?>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2 class="panel-title">
+						<?php if ('external' == get_sub_field('grid_block_text_url_type') && get_sub_field('grid_block_text_external_url')) : ?>
+							<a href="<?php the_sub_field('grid_block_text_external_url') ?>">
+								<?php the_sub_field('grid_block_text_title'); ?>
+							</a>
+						<?php elseif ('internal' == get_sub_field('grid_block_text_url_type') && get_sub_field('grid_block_text_internal_url')) : ?>
+							<a href="<?php the_sub_field('grid_block_text_internal_url') ?>">
+								<?php the_sub_field('grid_block_text_title'); ?>
+							</a>
+						<?php else : ?>
+							<?php the_sub_field('grid_block_text_title'); ?>
+						<?php endif; ?>
+					</h2>
+				</div>
+  				<div class="panel-body">
+    				<?php the_sub_field('grid_block_text_content'); ?>
+  				</div>
+			</div>
 
-<?php if(get_sub_field('section_heading')): ?>
-  <div class="section-header">
-    <h2>
-      <?php the_sub_field('section_heading'); ?>
-      <?php if(get_sub_field('section_subheading')): ?>
-        <small> | <?php the_sub_field('section_subheading'); ?></small>
-      <?php endif; ?>
-    </h2>
-  </div>
+
+		<?php elseif( get_row_layout() == 'grid_block_oembed' ): ?>
+
+			<?php
+				$iframe = get_sub_field('grid_block_oembed');
+				preg_match('/src="(.+?)"/', $iframe, $matches);
+				if( $matches ) {
+					$src = $matches[1];
+					$oembed_type = '';
+					if(preg_match('/youtube/', $src)) {
+						$oembed_type = 'youtube';
+					} else if (preg_match('/issuu/', $src)) {
+						$oembed_type = 'issuu';
+					}
+				}
+			?>
+
+			<div class="embed">
+				<div class="embed-container <?php echo $oembed_type ?>">
+					<?php the_sub_field('grid_block_oembed'); ?>
+				</div>
+			</div>
+
+		<?php endif; ?>
+		</div>
+
+	<?php endwhile; ?>
 <?php endif; ?>
-
-<div class="row">
-  <?php if ( have_rows('section_grid') ): ?>
-    <?php $i = 0; ?>
-    <?php while ( have_rows('section_grid') ) : the_row(); ?>
-
-        <div class="<?php ColumnUtil::the_column_class($numberOfBoxes, $i); ?> grid-element">
-          
-          <h3>
-            <a href="<?php the_sub_field('section_grid_element_link_'.get_sub_field('section_grid_element_link_type')); ?> " target="<?php echo get_sub_field('section_grid_element_link_type') == 'external' ? '_blank' : '_self'; ?>">
-              <?php the_sub_field('section_grid_element_heading'); ?>
-            </a>
-          </h3>
-          
-          <?php the_sub_field('section_grid_element_text'); ?>
-        </div>
-
-    <?php $i++; ?>
-    <?php endwhile; ?>
-  <?php endif; ?>
 </div>

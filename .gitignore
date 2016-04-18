@@ -9,6 +9,12 @@ node_modules
 .travis/deploy_key
 .travis/deploy_key.pub
 
+!wp-content/themes/
+wp-content/themes/*
+!wp-content/themes/lsb-base-theme
+!wp-content/themes/lsb-boksok.no-theme
+!wp-content/themes/lsb-lesersokerbok.no-theme
+
 !wp-content/plugins/
 wp-content/plugins/*
 !wp-content/plugins/soil

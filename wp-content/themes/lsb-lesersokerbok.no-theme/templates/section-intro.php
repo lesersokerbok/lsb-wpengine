@@ -14,16 +14,16 @@
 		}
   	?>
 
+	<div class="intro-text">
+    	<?php the_sub_field('intro_text'); ?>
+	</div>
+
 	<?php if ( $iframe ) : ?>
-		<div class="embed col-md-5">
+		<div class="embed">
     		<div class="embed-container <?php echo $oembed_type ?>">
       			<?php echo $iframe ?>
     		</div>
   		</div>
 	<?php endif; ?>
-
-	<div class="intro-text col-md-7">
-    	<?php the_sub_field('intro_text'); ?>
-	</div>
 
 <?php endif; ?>

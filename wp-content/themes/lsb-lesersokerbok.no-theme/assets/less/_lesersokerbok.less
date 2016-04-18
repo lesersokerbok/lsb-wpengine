@@ -2,52 +2,21 @@
  * Roots 6.5.2
  */
 
-/* ==========================================================================
-	 Layout
-	 ========================================================================== */
 
 /* ==========================================================================
 	 Frontpage Section
 	 ========================================================================== */
 
-.frontpage-section-intro {
-	.intro-text {
-		margin-bottom: @line-height-computed * 3;
-	}
-}
+.frontpage-section {
 
-
-@media (min-width: @screen-md-min) {
-
-	.frontpage-section-intro {
-		display: flex;
-		align-content: center;
-
-		.intro-text {
-			display: flex;
-			align-items: center;
-			order: 2;
-			margin: 0;
-		}
-
-		.embed {
-			width: 100%;
-			margin-right: @padding-large-horizontal*2;
-			order: 1;
-		}
-	}
-}
-
-.page-template-template-frontpage-php .frontpage-section {
-
-	margin-bottom: @line-height-computed * 3;
+	margin-top: @line-height-computed*3;
 
 	&:first-child {
-		margin-top: @line-height-computed;
+		margin-top: @line-height-computed*2;
 	}
 
-	&:last-child {
-		margin-bottom: 0;
+	&.frontpage-section-grid + .frontpage-section-grid {
+		margin-top: @line-height-computed*2;
 	}
 
 	.section-header {
@@ -55,36 +24,80 @@
 		padding-bottom: 0;
 	}
 
-	&.frontpage-section-hero {
+	&.frontpage-section-intro {
 
-		h1, .h1 {
-			font-size: @font-size-h1;
+		.intro-text {
+			margin-bottom: @line-height-computed * 2;
 		}
 
-		.entry-content-asset p {
-			margin-bottom: 0;
+		@media (min-width: @screen-md-min) {
+			display: flex;
+			align-content: center;
+
+			.intro-text {
+				display: flex;
+				align-items: center;
+				order: 2;
+				margin: 0;
+			}
+
+			.embed {
+				width: 100%;
+				margin-right: @padding-large-horizontal*2;
+				order: 1;
+			}
 		}
-
-	}
-
-	&.frontpage-section-alert {
-
-		.alert {
-			margin: 0;
-		}
-
-		&:first-child {
-			margin-top: 0;
-		}
-
 	}
 
 	&.frontpage-section-grid {
 
-		.grid-element {
-			padding: 0 @panel-body-padding;
-			h3 {
-				font-size: ceil((@font-size-base * 1.125));
+		.panel-heading {
+			font-weight: bold;
+		}
+
+		.embed {
+			width: 100%;
+		}
+
+		@media (min-width: @screen-sm-min) {
+			.block-wrapper {
+				display: flex;
+				flex-wrap: wrap;
+				align-content: flex-start;
+				margin: -@padding-large-horizontal;
+				justify-content: center;
+
+				>.block {
+					padding: @padding-large-horizontal;
+					width: 50%;
+					display: flex;
+
+					.panel {
+						margin: 0;
+						flex-grow: 1;
+					}
+				}
+			}
+		}
+
+		@media (min-width: @screen-md-min) {
+			.block-wrapper {
+				>.block {
+					width: 33.33%;
+
+					// If only four blocks
+					&:nth-child(1):nth-last-child(4),
+					&:nth-child(2):nth-last-child(3),
+					&:nth-child(3):nth-last-child(2),
+					&:nth-child(4):nth-last-child(1),{
+						width: 25%;
+					}
+
+					// If only one block
+					&:nth-child(1):nth-last-child(1) {
+						width: 50%;
+					}
+				}
 			}
 		}
 	}
