@@ -8,11 +8,15 @@ $rss = fetch_feed( $feed_url );
 <?php if ( ! is_wp_error( $rss ) && $rss->get_item_quantity()) : ?>
 
   <?php if(get_sub_field('books_heading')): ?>
-    <div class="section-header">
-      <h2>
-        <a href="<?php the_sub_field('books_heading_link') ?>"><?php the_sub_field('books_heading'); ?></a>
-      </h2>
-    </div>
+		<h1>
+		<?php if(get_sub_field('books_heading_link')): ?>
+			<a href="<?php the_sub_field('books_heading_link') ?>">
+				<?php the_sub_field('books_heading'); ?>
+			</a>
+		<?php else : ?>
+			<?php the_sub_field('books_heading'); ?>
+		<?php endif; ?>
+		</h1>
   <?php endif; ?>
 
   <div class="book-shelf col-xs-12">

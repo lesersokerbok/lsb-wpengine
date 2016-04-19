@@ -11,20 +11,11 @@ p + ul {
 }
 
 a {
-  color: inherit;
+  text-decoration: underline;
+
+	color: inherit;
   &:hover {
     text-decoration: none;
-  }
-}
-
-a {
-  text-decoration: underline;
-  
-  h1, h2, h3, h4, h5, h6 {
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 
@@ -34,6 +25,13 @@ h1, h2, h3, h4, h5, h6 {
     &:hover {
       text-decoration: underline;
     }
+
+		span {
+			text-decoration: underline;
+			  &:hover {
+					text-decoration: none;
+  		}
+		}
   }
 }
 
