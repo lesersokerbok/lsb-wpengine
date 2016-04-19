@@ -6,9 +6,14 @@
 
 		<div class="block">
 				<a href="<?php Page\the_text_block_url(); ?>">
-					<img src="<?php Page\the_text_block_icon_url(); ?>" alt="<?php the_sub_field('grid_block_title'); ?>" />
-					<h1><?php the_sub_field('grid_block_text_title'); ?></h1>
-					<?php the_sub_field('grid_block_text'); ?>
+
+					<?php if ( !empty( Page\get_text_block_icon_url() ) ) : ?>
+						<img src="<?php Page\the_text_block_icon_url(); ?>" alt="<?php the_sub_field('text_block_title'); ?>" />
+					<?php endif; ?>
+
+					<h1><?php the_sub_field('text_block_title'); ?></h1>
+					<?php the_sub_field('text_block_content'); ?>
+
 				</a>
 		</div>
 
