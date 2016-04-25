@@ -15,7 +15,7 @@
   	?>
 
 	<div class="intro-text">
-    	<?php the_sub_field('intro_text'); ?>
+    	<h1><?php the_sub_field('intro_text'); ?></h1>
 	</div>
 
 	<?php if ( $iframe ) : ?>
