@@ -11,29 +11,35 @@ p + ul {
 }
 
 a {
-  color: inherit;
+  text-decoration: underline;
+
+	color: inherit;
   &:hover {
     text-decoration: none;
-  }
-}
-
-a {
-  text-decoration: underline;
-  
-  h1, h2, h3, h4, h5, h6 {
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 
 h1, h2, h3, h4, h5, h6 {
   a {
     text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
+		border-bottom: 2px solid transparent;
+
+		span {
+			display: inline-block;
+			border-bottom: 2px solid transparent;
+			color: @brand-primary;
+			border-color: @brand-primary;
+		}
+
+		&:hover {
+      color: @brand-primary;
+			transition: all .25s ease-in-out;
+
+			span {
+				transition: all .10s ease-in-out;
+				border-color: transparent;
+			}
+		}
   }
 }
 
