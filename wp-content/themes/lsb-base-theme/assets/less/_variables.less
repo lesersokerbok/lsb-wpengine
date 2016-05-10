@@ -7,6 +7,7 @@
 // -------------------------
 
 @brand-primary: #356584;
+@brand-darker: 	#264960;
 @lsb-purple:    #91127d;
 @lsb-green:     #7ab51d;
 @lsb-yellow:    #fed501;
@@ -29,13 +30,12 @@
 // Fonts
 // -------------------------
 
-@link-color: black;
-@text-color: black;
+@link-color: @brand-darker;
 
 // Navbar
 // -------------------------
 
-@navbar-default-link-color: lighten(@link-color, 20%);
+@navbar-default-link-color: @text-color;
 @navbar-default-link-active-color: @link-color;
 @navbar-default-link-hover-color: @link-color;
 @navbar-default-link-active-bg: darken(@navbar-default-bg, 6.5%);

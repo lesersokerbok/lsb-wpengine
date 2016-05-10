@@ -10,7 +10,6 @@
  * @link https://github.com/roots/roots/pull/1042
  */
 $roots_includes = array(
-  'lib/lsb-frontpage-section.php',
   'lib/lsb-column-util.php',
   'lib/lsb-persons.php'
 );
@@ -26,7 +25,6 @@ unset($file, $filepath);
 
 // Initialize custom functionality
 function lsb_init() {
-  new LsbFrontpageSection();
   new LsbPersons();
 }
 add_action('init', 'lsb_init', 0);
