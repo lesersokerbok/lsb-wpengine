@@ -15,7 +15,7 @@ new Section();
 
 function the_text_block_url() {
 	if ('external' == get_sub_field('text_block_url_type') && get_sub_field('text_block_external_url')) {
-		echo get_sub_field('grid_block_text_external_url');
+		echo get_sub_field('text_block_external_url');
 	} elseif ('internal' == get_sub_field('text_block_url_type') && get_sub_field('text_block_internal_url')) {
 		echo get_sub_field('text_block_internal_url');
 	} else {
