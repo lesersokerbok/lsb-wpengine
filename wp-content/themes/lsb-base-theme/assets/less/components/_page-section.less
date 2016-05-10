@@ -44,23 +44,62 @@
 			margin-top: 0;
 		}
 
-		a {
-			color: @text-color;
-			text-decoration: none !important;
-			display: block;
-			margin: 0 auto;
-
-			span {
-				color: @link-color;
-			}
-		}
-
 		.block {
 			padding: @padding-large-horizontal;
+
+			a {
+				color: @text-color;
+				text-decoration: none !important;
+				display: block;
+				margin: 0 auto;
+				width: 100%;
+				padding: @padding-large-horizontal;
+				border: 2px solid @brand-primary;
+
+				span {
+					color: @link-color;
+				}
+			}
 
 			&:hover {
 				background: #f8f8f8;
 				transition: all .25s ease-in-out
+			}
+
+			&:nth-child(6n+1) {
+				a {
+					border-color: @lsb-purple;
+				}
+			}
+
+			&:nth-child(6n+2) {
+				a {
+					border-color: @lsb-green;
+				}
+			}
+
+			&:nth-child(6n+3) {
+				a {
+					border-color: @lsb-yellow
+				}
+			}
+
+			&:nth-child(6n+4) {
+				a {
+					border-color: @lsb-orange;
+				}
+			}
+
+			&:nth-child(6n+5) {
+				a {
+					border-color: @lsb-red;
+				}
+			}
+
+			&:nth-child(6n+0) {
+				a {
+					border-color: @lsb-blue;
+				}
 			}
 		}
 
