@@ -1,11 +1,15 @@
 .page-section {
 	.clearfix;
 
-	margin: @line-height-computed*3 auto;
+	margin: @line-height-computed*4 auto;
+	&:first-child {
+		margin-top: @line-height-computed*3;
+	}
 
 	>h1 {
 		.h2;
 		text-align: center;
+		margin-top: 0;
 		margin-bottom: @line-height-computed * 2;
 	}
 
@@ -159,6 +163,10 @@
 				span {
 					color: @link-color;
 				}
+			}
+
+			.thumbnail {
+				margin-bottom: 0;
 			}
 		}
 
