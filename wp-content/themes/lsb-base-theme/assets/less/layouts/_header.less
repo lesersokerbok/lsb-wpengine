@@ -1,16 +1,86 @@
-.banner {
-  
+.banner.navbar {
+	
+  margin-top: @navbar-margin-bottom;
+	
   .navbar-nav {
     text-align: center;
+		margin: -@padding-small-vertical;
+		margin-right: -(@navbar-padding-horizontal+@padding-small-vertical+2px);
 
-    > li > a {
-      text-decoration: none;
-      font-weight: bold;
+		> li {
+			padding: @padding-small-vertical;
+			
+			> a {
+      	text-decoration: none;
+      	font-weight: bold;
+				border: 2px solid transparent;
       
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+      	&:hover {
+					border-color: @brand-primary;
+					transition: background .25s ease-in-out
+      	}
+    	}
+		}
+		
+		li.menu-litt-a-lese {
+			&.active a {
+				border-color: @litt-a-lese;
+			}
+			
+			a:hover {
+				border-color: @litt-a-lese;	
+			}
+  	}
+		
+		li.menu-enkelt-innhold {
+			&.active a {
+				border-color: @enkelt-innhold;
+			}
+			
+			a:hover {
+				border-color: @enkelt-innhold;	
+			}
+  	}
+		
+		li.menu-storskrift {
+			&.active a {
+				border-color: @storskrift;
+			}
+			
+			a:hover {
+				border-color: @storskrift;
+			}
+  	}
+		
+		li.menu-punktskrift-folebilder {
+			&.active a {
+				border-color: @punktskrift-folebilder;
+			}
+			
+			a:hover {
+				border-color: @punktskrift-folebilder;
+			}
+  	}
+		
+		li.menu-tegnsprak-nmt {
+			&.active a {
+				border-color: @tegnsprak-nmt;
+			}
+			
+			a:hover {
+				border-color: @tegnsprak-nmt;
+			}
+  	}
+		
+		li.menu-bliss-piktogram {
+			&.active a {
+				border-color: @bliss-piktogram;
+			}
+			
+			a:hover {
+				border-color: @bliss-piktogram;
+			}
+  	}
   }
 
   .navbar-nav-brand {
@@ -21,39 +91,11 @@
     background-position: 0 center;
     background-repeat: no-repeat;
     padding-left: @logo-size+@navbar-padding-horizontal/2;
-    margin-left: @navbar-padding-horizontal*2;
     
     &:hover {
       background-color: transparent !important;
-    }
-
-    @media (min-width: @grid-float-breakpoint) {
-      margin: 0;
-    }
-  }
-
-  .navbar-collapse {
-
-    .nav {
-      float: none !important;
-      
-      li {
-        display: inline-block;
-      }
-    }
-
-    @media (min-width: @grid-float-breakpoint) {
-      .nav {
-        margin: 0;
-      }
-
-      .nav:last-child {
-        float: right !important;
-      }
-
-      .nav:first-child {
-        float: left !important;
-      }
+			border-color: transparent !important;
+			text-decoration: underline;
     }
   }
 }

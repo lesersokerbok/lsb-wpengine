@@ -1,4 +1,4 @@
-<header class="banner navbar navbar-default navbar-static-top" role="banner">
+<header class="banner navbar navbar-static-top" role="banner">
   <div class="container">
 
     <div class="navbar-header">
@@ -18,13 +18,7 @@
     <nav class="collapse navbar-collapse" role="navigation">
       <?php
         if (has_nav_menu('primary_navigation')) :
-          wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'pull-left nav navbar-nav'));
-        endif;
-      ?>
-
-      <?php
-        if (has_nav_menu('secondary_navigation')) :
-          wp_nav_menu(array('theme_location' => 'secondary_navigation', 'menu_class' => 'pull-right icon-nav nav navbar-nav', 'link_before' => '<span>', 'link_after' => '</span>'));
+          wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'pull-right nav navbar-nav'));
         endif;
       ?>
     </nav>
