@@ -14,12 +14,16 @@
       	text-decoration: none;
       	font-weight: bold;
 				border: 2px solid transparent;
-      
-      	&:hover {
-					border-color: @brand-primary;
-					transition: background .25s ease-in-out
-      	}
     	}
+
+			&.active a {
+				border-color: @brand-primary;
+			}
+
+			a:hover {
+				border-color: @brand-primary;
+				transition: background .25s ease-in-out
+      }
 		}
 		
 		li.menu-litt-a-lese {
