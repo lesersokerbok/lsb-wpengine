@@ -10,10 +10,14 @@
           </a>
         </li>
       </ul>
-      
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <?php esc_html_e( 'Meny', 'lsb' ); ?>
-      </button>
+
+			<ul class="nav navbar-nav pull-right">
+				<li class="toggle">
+					<a href="#" class="collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+						<?php esc_html_e( 'Meny', 'lsb' ); ?>
+					</a>
+				</li>
+			</ul>
     </div>
 
     <nav class="collapse navbar-collapse" role="navigation">

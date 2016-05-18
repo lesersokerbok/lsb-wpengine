@@ -1,14 +1,25 @@
 .banner.navbar {
 	
-  margin-top: @navbar-margin-bottom;
+  margin-top: @navbar-margin-bottom*2;
+
+	.navbar-collapse {
+		&.in,
+		&.collapsing {
+			margin-top: @navbar-margin-bottom;
+		}
+	}
+
+	.navbar-header {
+		margin: 0;
+	}
 	
   .navbar-nav {
     text-align: center;
 		margin: -@padding-small-vertical;
-		margin-right: -(@navbar-padding-horizontal+@padding-small-vertical+2px);
 
 		> li {
 			padding: @padding-small-vertical;
+			display: inline-block;
 			
 			> a {
       	text-decoration: none;
@@ -26,6 +37,12 @@
       }
 		}
 		
+		li.toggle {
+			a {
+				border-color: @brand-primary;
+			}
+		}
+
 		li.external {
 			a:hover, a:focus {
 				color: @brand-primary;
@@ -128,4 +145,14 @@
 			}
     }
   }
+
+	@media (min-width: @grid-float-breakpoint) {
+		.navbar-nav {
+			margin-right: -(@navbar-padding-horizontal+@padding-small-vertical+2px);
+
+			li.toggle {
+				display: none;
+			}
+		}
+	}
 }
