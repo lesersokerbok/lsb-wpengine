@@ -1,59 +1,131 @@
-.banner {
-  
+.banner.navbar {
+	
+  margin-top: @navbar-margin-bottom;
+	
   .navbar-nav {
     text-align: center;
+		margin: -@padding-small-vertical;
+		margin-right: -(@navbar-padding-horizontal+@padding-small-vertical+2px);
 
-    > li > a {
-      text-decoration: none;
-      font-weight: bold;
-      
-      &:hover {
-        text-decoration: underline;
+		> li {
+			padding: @padding-small-vertical;
+			
+			> a {
+      	text-decoration: none;
+      	font-weight: bold;
+				border: 2px solid transparent;
+    	}
+
+			&.active a {
+				border-color: @brand-primary;
+			}
+
+			a:hover {
+				border-color: @brand-primary;
+				transition: background .25s ease-in-out
       }
-    }
+		}
+		
+		li.external {
+			a:hover, a:focus {
+				color: @brand-primary;
+				text-decoration: underline;
+				border-color: transparent !important;
+				background-color: transparent !important;
+			}
+		}
+
+		li.menu-litt-a-lese {
+			&.active a {
+				border-color: @litt-a-lese;
+			}
+			
+			a:hover, a:focus {
+				border-color: @litt-a-lese;	
+			}
+  	}
+		
+		li.menu-enkelt-innhold {
+			&.active a {
+				border-color: @enkelt-innhold;
+			}
+			
+			a:hover, a:focus {
+				border-color: @enkelt-innhold;	
+			}
+  	}
+		
+		li.menu-storskrift {
+			&.active a {
+				border-color: @storskrift;
+			}
+			
+			a:hover, a:focus {
+				border-color: @storskrift;
+			}
+  	}
+		
+		li.menu-punktskrift-folebilder {
+			&.active a {
+				border-color: @punktskrift-folebilder;
+			}
+			
+			a:hover, a:focus {
+				border-color: @punktskrift-folebilder;
+			}
+  	}
+		
+		li.menu-tegnsprak-nmt {
+			&.active a {
+				border-color: @tegnsprak-nmt;
+			}
+			
+			a:hover, a:focus {
+				border-color: @tegnsprak-nmt;
+			}
+  	}
+		
+		li.menu-bliss-piktogram {
+			&.active a {
+				border-color: @bliss-piktogram;
+			}
+			
+			a:hover, a:focus {
+				border-color: @bliss-piktogram;
+			}
+  	}
   }
 
   .navbar-nav-brand {
     color: @brand-primary !important;
-    
-    background-image: @logo-url;
-    background-size: @logo-size;
-    background-position: 0 center;
-    background-repeat: no-repeat;
     padding-left: @logo-size+@navbar-padding-horizontal/2;
-    margin-left: @navbar-padding-horizontal*2;
+
+		.logo {
+			position: absolute;
+			left: -4px;
+			top: 0;
+			height: 100%;
+			width: auto;
+
+			.fill {
+				fill: @brand-primary;
+			}
+		}
     
-    &:hover {
+    &:hover, &:focus {
       background-color: transparent !important;
-    }
+			border-color: transparent !important;
+			text-decoration: underline;
+			color: @text-color !important;
 
-    @media (min-width: @grid-float-breakpoint) {
-      margin: 0;
-    }
-  }
+			.logo .fill {
+				fill: @text-color;
+			}
 
-  .navbar-collapse {
-
-    .nav {
-      float: none !important;
-      
-      li {
-        display: inline-block;
-      }
-    }
-
-    @media (min-width: @grid-float-breakpoint) {
-      .nav {
-        margin: 0;
-      }
-
-      .nav:last-child {
-        float: right !important;
-      }
-
-      .nav:first-child {
-        float: left !important;
-      }
+			&:before {
+				opacity: 0.7;
+				transition: all .25s ease-in-out
+			}
     }
   }
 }
