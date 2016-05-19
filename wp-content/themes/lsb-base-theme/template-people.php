@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: People Template
+Template Name: Ansatte/Styre sidemal
 */
 ?>
 

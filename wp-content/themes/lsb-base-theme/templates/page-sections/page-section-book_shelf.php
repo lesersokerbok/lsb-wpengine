@@ -1,8 +1,4 @@
-<?php
-
-$books = LsbPageSectionsUtil::get_books_for_book_shelf();
-
-?>
+<?php $books = LsbPageSectionsUtil::get_books_for_book_shelf(); ?>
 
 <?php if($books->have_posts()) : ?>
 

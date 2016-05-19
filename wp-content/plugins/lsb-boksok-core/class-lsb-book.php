@@ -1,10 +1,12 @@
 <?php
 
+namespace LSB\Boksok\Core;
+
 class LsbBook {
   public function __construct() {
     // Custom post types
     add_action('init', array($this, 'register_post_type_lsb_book'));
-    
+
     // Custom tax types
     add_action('init', array($this, 'register_tax_lsb_cat'));
     add_action('init', array($this, 'register_tax_lsb_audience'));
@@ -19,12 +21,12 @@ class LsbBook {
     add_action('init', array($this, 'register_tax_lsb_language'));
     add_action('init', array($this, 'register_lsb_tax_list'));
     add_action('init', array($this, 'register_lsb_tax_series'));
-    
+
     // Added fields with acf
-    add_action('init', array($this, 'register_lsb_acf_book_meta'));
-    add_action('init', array($this, 'register_lsb_acf_book_content'));
-    add_action('init', array($this, 'register_lsb_acf_book_oembeds'));
-    add_action('init', array($this, 'register_lsb_acf_tax_meta'));
+    add_action('acf/init', array($this, 'register_lsb_acf_book_meta'));
+    add_action('acf/init', array($this, 'register_lsb_acf_book_content'));
+    add_action('acf/init', array($this, 'register_lsb_acf_book_oembeds'));
+    add_action('acf/init', array($this, 'register_lsb_acf_tax_meta'));
   }
 
   public function register_post_type_lsb_book() {
@@ -352,7 +354,7 @@ class LsbBook {
       )
     );
   }
-  
+
   public function register_tax_lsb_audience() {
     register_taxonomy( 'lsb_tax_audience',
       array(
@@ -442,294 +444,281 @@ class LsbBook {
   }
 
   public function register_lsb_acf_book_meta() {
-    if(function_exists("register_field_group"))
-    {
-      register_field_group(array (
-        'id' => 'lsb_acf_book_meta',
-        'title' => __('Bokmeta', 'lsb_boksok'),
-        'fields' => array (
-          array (
-            'key' => 'lsb_acf_isbn',
-            'label' => __('ISBN', 'lsb_boksok'),
-            'name' => 'lsb_isbn',
-            'type' => 'text',
-            'required' => 1,
-            'default_value' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'formatting' => 'none',
-            'maxlength' => '',
-          ),
-          array (
-            'key' => 'lsb_acf_published_year',
-            'label' => __('Publisert', 'lsb_boksok'),
-            'name' => 'lsb_published_year',
-            'type' => 'text',
-            'instructions' => __('Året boken ble publisert', 'lsb_boksok'),
-            'required' => 1,
-            'default_value' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'formatting' => 'none',
-            'maxlength' => '',
-          ),
-          array (
-            'key' => 'lsb_acf_pages',
-            'label' => __('Sider', 'lsb_boksok'),
-            'name' => 'lsb_pages',
-            'type' => 'text',
-            'instructions' => __('Antall sider', 'lsb_boksok'),
-            'required' => 0,
-            'default_value' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'formatting' => 'none',
-            'maxlength' => '',
-          ),
-          array (
-            'key' => 'lsb_acf_look_inside',
-            'label' => __('Bla i boka', 'lsb_boksok'),
-            'name' => 'lsb_look_inside',
-            'type' => 'url',
-            'instructions' => __('Bla i boka url', 'lsb_boksok'),
-            'required' => 0,
-            'default_value' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'formatting' => 'none',
-            'maxlength' => '',
-          ),
-          array (
-            'key' => 'lsb_acf_supported',
-            'label' => __('Støttet av Leser søker bok?', 'lsb_boksok'),
-            'name' => 'lsb_supported',
-            'type' => 'true_false',
-            'required' => 0,
-            'message' => '',
-            'default_value' => 0,
-          ),
-          array (
-            'key' => 'lsb_acf_support_cat',
-            'label' => __('Støttekategori', 'lsb_boksok'),
-            'name' => 'lsb_support_cat',
-            'type' => 'radio',
-            'required' => 1,
-            'conditional_logic' => array (
-              'status' => 1,
-              'rules' => array (
-                array (
-                  'field' => 'lsb_acf_supported',
-                  'operator' => '==',
-                  'value' => '1',
-                ),
-              ),
-              'allorany' => 'all',
-            ),
-            'choices' => array (
-              'purple' => __('Litt å lese', 'lsb_boksok'),
-              'yellow' => __('Storskrift', 'lsb_boksok'),
-              'orange' => __('Punktskrift & Følebilder', 'lsb_boksok'),
-              'green' => __('Enkelt innhold', 'lsb_boksok'),
-              'red' => __('Tegnspråk & NMT', 'lsb_boksok'),
-              'blue' => __('Bliss & Piktogram', 'lsb_boksok'),
-            ),
-            'other_choice' => 0,
-            'save_other_choice' => 0,
-            'default_value' => '',
-            'layout' => 'vertical',
-          ),
-        ),
-        'location' => array (
-          array (
-            array (
-              'param' => 'post_type',
-              'operator' => '==',
-              'value' => 'lsb_book',
-              'order_no' => 0,
-              'group_no' => 0,
-            ),
-          ),
-        ),
-        'options' => array (
-          'position' => 'acf_after_title',
-          'layout' => 'default',
-          'hide_on_screen' => array (
-          ),
-        ),
-        'menu_order' => 0,
-      ));
-    }
+		acf_add_local_field_group(array (
+			'id' => 'lsb_acf_book_meta',
+			'title' => __('Bokmeta', 'lsb_boksok'),
+			'fields' => array (
+				array (
+					'key' => 'lsb_acf_isbn',
+					'label' => __('ISBN', 'lsb_boksok'),
+					'name' => 'lsb_isbn',
+					'type' => 'text',
+					'required' => 1,
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'formatting' => 'none',
+					'maxlength' => '',
+				),
+				array (
+					'key' => 'lsb_acf_published_year',
+					'label' => __('Publisert', 'lsb_boksok'),
+					'name' => 'lsb_published_year',
+					'type' => 'text',
+					'instructions' => __('Året boken ble publisert', 'lsb_boksok'),
+					'required' => 1,
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'formatting' => 'none',
+					'maxlength' => '',
+				),
+				array (
+					'key' => 'lsb_acf_pages',
+					'label' => __('Sider', 'lsb_boksok'),
+					'name' => 'lsb_pages',
+					'type' => 'text',
+					'instructions' => __('Antall sider', 'lsb_boksok'),
+					'required' => 0,
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'formatting' => 'none',
+					'maxlength' => '',
+				),
+				array (
+					'key' => 'lsb_acf_look_inside',
+					'label' => __('Bla i boka', 'lsb_boksok'),
+					'name' => 'lsb_look_inside',
+					'type' => 'url',
+					'instructions' => __('Bla i boka url', 'lsb_boksok'),
+					'required' => 0,
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'formatting' => 'none',
+					'maxlength' => '',
+				),
+				array (
+					'key' => 'lsb_acf_supported',
+					'label' => __('Støttet av Leser søker bok?', 'lsb_boksok'),
+					'name' => 'lsb_supported',
+					'type' => 'true_false',
+					'required' => 0,
+					'message' => '',
+					'default_value' => 0,
+				),
+				array (
+					'key' => 'lsb_acf_support_cat',
+					'label' => __('Støttekategori', 'lsb_boksok'),
+					'name' => 'lsb_support_cat',
+					'type' => 'radio',
+					'required' => 1,
+					'conditional_logic' => array (
+						'status' => 1,
+						'rules' => array (
+							array (
+								'field' => 'lsb_acf_supported',
+								'operator' => '==',
+								'value' => '1',
+							),
+						),
+						'allorany' => 'all',
+					),
+					'choices' => array (
+						'purple' => __('Litt å lese', 'lsb_boksok'),
+						'yellow' => __('Storskrift', 'lsb_boksok'),
+						'orange' => __('Punktskrift & Følebilder', 'lsb_boksok'),
+						'green' => __('Enkelt innhold', 'lsb_boksok'),
+						'red' => __('Tegnspråk & NMT', 'lsb_boksok'),
+						'blue' => __('Bliss & Piktogram', 'lsb_boksok'),
+					),
+					'other_choice' => 0,
+					'save_other_choice' => 0,
+					'default_value' => '',
+					'layout' => 'vertical',
+				),
+			),
+			'location' => array (
+				array (
+					array (
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'lsb_book',
+						'order_no' => 0,
+						'group_no' => 0,
+					),
+				),
+			),
+			'options' => array (
+				'position' => 'acf_after_title',
+				'layout' => 'default',
+				'hide_on_screen' => array (
+				),
+			),
+			'menu_order' => 0,
+		));
   }
 
   public function register_lsb_acf_book_content() {
-    if(function_exists("register_field_group"))
-    {
-      register_field_group(array (
-        'id' => 'lsb_acf_content',
-        'title' => __('Anmeldelse', 'lsb_boksok'),
-        'fields' => array (
-          array (
-            'key' => 'lsb_acf_review',
-            'label' => __('Om boka', 'lsb_boksok'),
-            'name' => 'lsb_review',
-            'type' => 'wysiwyg',
-            'default_value' => '',
-            'toolbar' => 'full',
-            'media_upload' => 'no',
-          ),
-          array (
-            'key' => 'lsb_acf_quote',
-            'label' => __('Utdrag fra boken', 'lsb_boksok'),
-            'name' => 'lsb_quote',
-            'type' => 'wysiwyg',
-            'default_value' => '',
-            'toolbar' => 'basic',
-            'media_upload' => 'no',
-          ),
-        ),
-        'location' => array (
-          array (
-            array (
-              'param' => 'post_type',
-              'operator' => '==',
-              'value' => 'lsb_book',
-              'order_no' => 0,
-              'group_no' => 0,
-            ),
-          ),
-        ),
-        'options' => array (
-          'position' => 'normal',
-          'layout' => 'no_box',
-          'hide_on_screen' => array (
-          ),
-        ),
-        'menu_order' => 0,
-      ));
-    }
+		acf_add_local_field_group(array (
+			'id' => 'lsb_acf_content',
+			'title' => __('Anmeldelse', 'lsb_boksok'),
+			'fields' => array (
+				array (
+					'key' => 'lsb_acf_review',
+					'label' => __('Om boka', 'lsb_boksok'),
+					'name' => 'lsb_review',
+					'type' => 'wysiwyg',
+					'default_value' => '',
+					'toolbar' => 'full',
+					'media_upload' => 'no',
+				),
+				array (
+					'key' => 'lsb_acf_quote',
+					'label' => __('Utdrag fra boken', 'lsb_boksok'),
+					'name' => 'lsb_quote',
+					'type' => 'wysiwyg',
+					'default_value' => '',
+					'toolbar' => 'basic',
+					'media_upload' => 'no',
+				),
+			),
+			'location' => array (
+				array (
+					array (
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'lsb_book',
+						'order_no' => 0,
+						'group_no' => 0,
+					),
+				),
+			),
+			'options' => array (
+				'position' => 'normal',
+				'layout' => 'no_box',
+				'hide_on_screen' => array (
+				),
+			),
+			'menu_order' => 0,
+		));
   }
 
   public function register_lsb_acf_book_oembeds() {
-    if(function_exists("register_field_group"))
-    {
-      register_field_group(array (
-        'id' => 'lsb_acf_multimedia',
-        'title' => __('Multimedia', 'lsb_boksok'),
-        'fields' => array (
-          array (
-            'key' => 'lsb_acf_oembeds',
-            'label' => __('Oembeds', 'lsb_boksok'),
-            'instructions' => __('YouTube, SoundCloud, Issuu etc. ', 'lsb_boksok'),
-            'name' => 'lsb_oembeds',
-            'type' => 'repeater',
-            'button_label' => __('Legg til oembed', 'lsb_boksok'),
-            'sub_fields' => array (
-              array(
-                'key' => 'lsb_acf_oembed',
-                'label' => __('Oembed', 'lsb_boksok'),
-                'instructions' => __('Url direkte til video, lyd, bok etc.', 'lsb_boksok'),
-                'name' => 'lsb_oembed',
-                'type' => 'oembed',
-              ),
-            ),
-          ),
-        ),
-        'location' => array (
-          array (
-            array (
-              'param' => 'post_type',
-              'operator' => '==',
-              'value' => 'lsb_book',
-              'order_no' => 0,
-              'group_no' => 0,
-            ),
-          ),
-        ),
-        'options' => array (
-          'position' => 'normal',
-          'layout' => 'normal',
-          'hide_on_screen' => array (
-          ),
-        ),
-        'menu_order' => 0,
-      ));
-    }
+		acf_add_local_field_group(array (
+			'id' => 'lsb_acf_multimedia',
+			'title' => __('Multimedia', 'lsb_boksok'),
+			'fields' => array (
+				array (
+					'key' => 'lsb_acf_oembeds',
+					'label' => __('Oembeds', 'lsb_boksok'),
+					'instructions' => __('YouTube, SoundCloud, Issuu etc. ', 'lsb_boksok'),
+					'name' => 'lsb_oembeds',
+					'type' => 'repeater',
+					'button_label' => __('Legg til oembed', 'lsb_boksok'),
+					'sub_fields' => array (
+						array(
+							'key' => 'lsb_acf_oembed',
+							'label' => __('Oembed', 'lsb_boksok'),
+							'instructions' => __('Url direkte til video, lyd, bok etc.', 'lsb_boksok'),
+							'name' => 'lsb_oembed',
+							'type' => 'oembed',
+						),
+					),
+				),
+			),
+			'location' => array (
+				array (
+					array (
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'lsb_book',
+						'order_no' => 0,
+						'group_no' => 0,
+					),
+				),
+			),
+			'options' => array (
+				'position' => 'normal',
+				'layout' => 'normal',
+				'hide_on_screen' => array (
+				),
+			),
+			'menu_order' => 0,
+		));
   }
-  
+
   public function register_lsb_acf_tax_meta() {
-    if( function_exists('register_field_group') )
-    {
-      // Hide term from visitors
-      $hide_term = array(
-        'key' => 'lsb_acf_tax_topic_hide_term',
-        'label' => __('Skjul for besøkende', 'lsb_boksok'),
-        'name' => 'lsb_tax_topic_hide_term',
-        'type' => 'true_false',
-        'message' => __('Gjør usynelig for besøkende (forsatt tilgjengelig i søk).', 'lsb_boksok'),
-        'default_value' => 0,
-      );
+		// Hide term from visitors
+		$hide_term = array(
+			'key' => 'lsb_acf_tax_topic_hide_term',
+			'label' => __('Skjul for besøkende', 'lsb_boksok'),
+			'name' => 'lsb_tax_topic_hide_term',
+			'type' => 'true_false',
+			'message' => __('Gjør usynelig for besøkende (forsatt tilgjengelig i søk).', 'lsb_boksok'),
+			'default_value' => 0,
+		);
 
-      register_field_group(array (
-        'key' => 'lsb_acf_tax_topic_settings',
-        'title' => __('Innstillinger', 'lsb_book'),
-        'fields' => array($hide_term),
-        'location' => array(
-          array(
-            array(
-              'param' => 'taxonomy',
-              'operator' => '==',
-              'value' => 'lsb_tax_topic',
-            )
-          ),
-        ),
-      ));
-      
-      // Icon
+		acf_add_local_field_group(array (
+			'key' => 'lsb_acf_tax_topic_settings',
+			'title' => __('Innstillinger', 'lsb_book'),
+			'fields' => array($hide_term),
+			'location' => array(
+				array(
+					array(
+						'param' => 'taxonomy',
+						'operator' => '==',
+						'value' => 'lsb_tax_topic',
+					)
+				),
+			),
+		));
 
-      $icon = array (
-        'key' => 'lsb_acf_tax_term_icon',
-        'label' => __('Ikon/bilde', 'lsb_boksok'),
-        'name' => 'lsb_tax_topic_icon',
-        'type' => 'image',
-        'return_format' => 'array',
-		'preview_size' => 'thumbnail',
-      );
+		// Icon
 
-      register_field_group(array (
-        'key' => 'lsb_acf_tax_icon_group',
-        'title' => __('Ikon', 'lsb_book'),
-        'fields' => array($icon),
-        'location' => array(
-            array(
-              array(
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'lsb_tax_topic',
-              )
-            ),
-            array(
-              array(
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'lsb_tax_genre',
-              )
-            ),
-            array(
-              array(
-                'param' => 'taxonomy',
-                'operator' => '==',
-                'value' => 'lsb_tax_series',
-              )
-            )
-          )
-      ));
-      
-    }
-  } 
+		$icon = array (
+			'key' => 'lsb_acf_tax_term_icon',
+			'label' => __('Ikon/bilde', 'lsb_boksok'),
+			'name' => 'lsb_tax_topic_icon',
+			'type' => 'image',
+			'return_format' => 'array',
+	'preview_size' => 'thumbnail',
+		);
+
+		acf_add_local_field_group(array (
+			'key' => 'lsb_acf_tax_icon_group',
+			'title' => __('Ikon', 'lsb_book'),
+			'fields' => array($icon),
+			'location' => array(
+					array(
+						array(
+							'param' => 'taxonomy',
+							'operator' => '==',
+							'value' => 'lsb_tax_topic',
+						)
+					),
+					array(
+						array(
+							'param' => 'taxonomy',
+							'operator' => '==',
+							'value' => 'lsb_tax_genre',
+						)
+					),
+					array(
+						array(
+							'param' => 'taxonomy',
+							'operator' => '==',
+							'value' => 'lsb_tax_series',
+						)
+					)
+				)
+		));
+  }
 }
 
 ?>

@@ -1,8 +1,4 @@
-<?php
-
-$terms = LsbPageSectionsUtil::get_terms_for_navigation();
-
-?>
+<?php $terms = LsbPageSectionsUtil::get_terms_for_navigation(); ?>
 
 <?php if($terms->all) : ?>
 
