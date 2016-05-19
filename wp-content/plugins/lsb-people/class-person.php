@@ -1,14 +1,16 @@
 <?php
 
-class LsbPersons {
-  public function __construct() {
-    $this->register_post_type_lsb_person();
-    $this->register_lsb_person_custom_fields();
-    $this->register_lsb_person_relationship();
-    $this->register_lsb_person_image_size();
-  }
+	namespace LSB\People;
 
-  public function register_post_type_lsb_person() {
+	class PersonContentType {
+  	public function __construct() {
+			add_action( 'init', array( &$this, 'register_post_type_lsb_person' ) );
+			add_action( 'init', array( &$this, 'register_lsb_person_image_size' ) );
+			add_action( 'acf/init', array( &$this, 'register_lsb_person_custom_fields' ) );
+			add_action( 'acf/init', array( &$this, 'register_lsb_person_relationship' ) );
+  	}
+
+  	public function register_post_type_lsb_person() {
       $labels = array(
     		'name'                => _x( 'Personer', 'Post Type General Name', 'lsb_main' ),
     		'singular_name'       => _x( 'Person', 'Post Type Singular Name', 'lsb_main' ),
@@ -44,11 +46,9 @@ class LsbPersons {
         'rewrite'             => array('slug' => 'person'),
     	);
     	register_post_type( 'lsb-person', $args );
-  }
+  	}
 
-  public function register_lsb_person_custom_fields() {
-    if ( function_exists('register_field_group') )
-    {
+  	public function register_lsb_person_custom_fields() {
       register_field_group(array (
         'key' => 'lsb_custom_field_group_person',
         'title' => __('Person', 'lsb_main'),
@@ -303,12 +303,9 @@ class LsbPersons {
       		14 => 'send-trackbacks',
       	),
       ));
-    }
-  }
+  	}
 
-  public function register_lsb_person_relationship() {
-
-    if( function_exists('register_field_group') ):
+  	public function register_lsb_person_relationship() {
 
     register_field_group(array (
     	'key' => 'lsb_custom_field_group_people',
@@ -351,8 +348,6 @@ class LsbPersons {
     	'instruction_placement' => 'label',
       'hide_on_screen' => '',
     ));
-
-    endif;
   }
 
   public function register_lsb_person_image_size() {

@@ -18,9 +18,7 @@ wp-content/themes/*
 !wp-content/plugins/
 wp-content/plugins/*
 !wp-content/plugins/soil
-!wp-content/plugins/lsb-bibsyst-integration
-!wp-content/plugins/lsb-boksok-widgets
-!wp-content/plugins/lsb-page-sections
+!wp-content/plugins/lsb-*
 
 wp-content/languages/plugins
 wp-content/languages/*.*
