@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Frontpage Template
+Template Name: Forsidemal
 */
 ?>
 
