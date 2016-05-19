@@ -7,14 +7,14 @@
     </h1>
   </header>
 
-  <div class="aside hidden-sm hidden-xs">
+  <div class="aside hidden-xs">
     <?php get_template_part('templates/book-partials/cover'); ?>
     <?php get_template_part('templates/book-partials/library-status'); ?>
   </div>
 
   <div class="entry-content clearfix">
     <?php get_template_part('templates/book-partials/meta1'); ?>
-    <div class="visible-sm visible-xs">
+    <div class="visible-xs">
       <?php get_template_part('templates/book-partials/cover'); ?>
       <?php get_template_part('templates/book-partials/library-status'); ?>
     </div>
