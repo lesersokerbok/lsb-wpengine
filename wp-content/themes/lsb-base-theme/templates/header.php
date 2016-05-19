@@ -1,5 +1,5 @@
 <header class="banner navbar navbar-static-top" role="banner">
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="navbar-header">
       <ul class="nav navbar-nav pull-left">
