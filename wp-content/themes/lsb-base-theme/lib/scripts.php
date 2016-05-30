@@ -3,7 +3,7 @@
  * Scripts and stylesheets
  *
  * Enqueue stylesheets in the following order:
- * 1. /theme/assets/css/main.css
+ * 1. /theme/assets/css/main.css?5c998229dee9462e
  *
  * Enqueue scripts in the following order:
  * 1. jquery-1.11.1.min.js via Google CDN
@@ -16,40 +16,31 @@
  * - You're not logged in as an administrator
  */
 function roots_scripts() {
+
   /**
    * The build task in Grunt renames production assets with a hash
    * Read the asset names from assets-manifest.json
    */
-  if (WP_ENV === 'development') {
-    $assets = array(
+
+	$assets = array(
       'css'       => '/assets/css/main.css',
       'js'        => '/assets/js/scripts.js',
       'modernizr' => '/assets/vendor/modernizr/modernizr.js',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js'
     );
-  } else {
-    $get_assets = file_get_contents(get_template_directory() . '/assets/manifest.json');
-    $assets     = json_decode($get_assets, true);
-    $assetsPrefix = wp_make_link_relative(get_template_directory_uri());
-    if (is_child_theme()) {
-        $assetsPrefix = wp_make_link_relative(get_stylesheet_directory_uri());
-    }
-    $assets     = array(
-      'css'       => '/assets/css/main.min.css?' . $assets[ltrim($assetsPrefix,'/') . '/assets/css/main.min.css']['hash'],
-      'js'        => '/assets/js/scripts.min.js?' . $assets[ltrim($assetsPrefix,'/') . '/assets/js/scripts.min.js']['hash'],
-      'modernizr' => '/assets/js/vendor/modernizr.min.js',
-      'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
-    );
+
+  if (WP_ENV !== 'development') {
+
+		$manifest_json = file_get_contents(get_template_directory() . '/assets/manifest.json');
+    $manifest     = json_decode($manifest_json, true);
+
+		$assets['css'] = '/'.$manifest['assets/css/main.min.css'];
+		$assets['js'] = '/'.$manifest['assets/js/scripts.min.js'];
+
   }
 
+	wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
 
-
-  // Load style.css from child theme
-  if (is_child_theme()) {
-      wp_enqueue_style('roots_child_css', get_stylesheet_directory_uri() . $assets['css'], false, null);
-  } else {
-      wp_enqueue_style('roots_css', get_template_directory_uri() . $assets['css'], false, null);
-  }
 
   /**
    * jQuery is loaded using the same method from HTML5 Boilerplate:
@@ -66,20 +57,9 @@ function roots_scripts() {
     wp_enqueue_script('comment-reply');
   }
 
-  if (is_child_theme() && WP_ENV !== 'development') {
-    wp_enqueue_script('modernizr', get_stylesheet_directory_uri() . $assets['modernizr'], array(), null, false);
-  } else {
-    wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
-  }
-
+	wp_enqueue_script('modernizr', get_template_directory_uri() . $assets['modernizr'], array(), null, false);
   wp_enqueue_script('jquery');
-
-  if (is_child_theme()) {
-    wp_enqueue_script('roots_child_js', get_stylesheet_directory_uri() . $assets['js'], array(), null, true);
-  } else {
-    wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
-  }
-
+	wp_enqueue_script('roots_js', get_template_directory_uri() . $assets['js'], array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
 

@@ -39,8 +39,8 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'assets/js/*.js',
-        '!' + 'assets/js/scripts.js',
-        '!' + 'assets/**/*.min.*'
+        '!assets/js/scripts.js',
+        '!assets/**/*.min.*'
       ]
     },
     less: {
@@ -106,22 +106,18 @@ module.exports = function(grunt) {
         parseFiles: true
       }
     },
-    version: {
-      base: {
-        options: {
-          format: true,
-          length: 32,
-          manifest: 'assets/manifest.json',
-          querystring: {
-            style: 'roots_css',
-            script: 'roots_js'
-          }
-        },
-        files: {
-         'wp-content/themes/lsb-base-theme/lib/scripts.php': 'assets/{css,js}/{main,scripts}.min.{css,js}'
-        }
-      }
-    },
+		cacheBust: {
+			assets: {
+				options: {
+					assets: ['assets/css/*.min.css', 'assets/js/*.min.js'],
+					createCopies: true,
+					queryString: true,
+					jsonOutput: true,
+					jsonOutputFilename: 'assets/manifest.json'
+				},
+				src: []
+			}
+		},
     watch: {
       less: {
         files: [
@@ -175,6 +171,6 @@ module.exports = function(grunt) {
     'autoprefixer:buildBase',
     'uglify',
     'modernizr:base',
-    'version'
+    'cacheBust:assets'
   ]);
 };
