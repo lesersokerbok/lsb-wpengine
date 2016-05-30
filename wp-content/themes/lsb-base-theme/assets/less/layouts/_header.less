@@ -1,11 +1,13 @@
 .banner.navbar {
 	
   margin-top: @navbar-margin-bottom*2;
+	margin-bottom: @navbar-margin-bottom*2;
 
 	.navbar-collapse {
 		&.in,
 		&.collapsing {
 			margin-top: @navbar-margin-bottom;
+			overflow-y: hidden;
 		}
 	}
 
@@ -37,7 +39,7 @@
 				border-color: @brand-primary;
 			}
 
-			a:hover {
+			a:hover, a:focus {
 				border-color: @brand-primary;
 				transition: background .25s ease-in-out
       }
