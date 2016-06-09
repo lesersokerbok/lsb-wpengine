@@ -13,23 +13,20 @@
 
 	.navbar-header {
 		margin: 0;
-	}
-	
-	nav {
-		ul:first-child {
-			margin-left: 1rem;
+
+		.navbar-nav {
+			float: left;
+			margin: 0;
+		}
+
+		.toggle {
+			float: right;
 		}
 	}
 
   .navbar-nav {
     text-align: center;
-		margin: -2px;
-
-		&.toggle {
-			li a {
-				border: 2px solid @brand-primary;
-			}
-		}
+		float: none;
 
 		> li {
 			padding: 2px;
@@ -38,7 +35,7 @@
 			> a {
       	text-decoration: none;
       	font-weight: bold;
-				border-bottom: 2px solid transparent;
+				border: 2px solid transparent;
     	}
 
 			&.active a {
@@ -111,38 +108,68 @@
 				border-color: @bliss-piktogram;
 			}
   	}
-  }
 
-  .navbar-nav-brand {
-    color: @brand-primary !important;
-		margin-right: 1rem;
-
-		.logo {
-			position: absolute;
-			top: 50%;
-			left: -4px;
-			transform: translateY(-50%);
-			height: @logo-size;
-			width: auto;
-
-			.fill {
-				fill: @brand-primary;
+		&.toggle {
+			li > a {
+				border: 2px solid @brand-primary;
 			}
 		}
-    
-    &:hover, &:focus {
-      background-color: transparent !important;
-			border-color: transparent !important;
-			color: @text-color !important;
 
-			.logo .fill {
-				fill: @text-color;
+		&.brand {
+			color: @brand-primary !important;
+
+			li > a {
+
+				.logo {
+					position: absolute;
+					top: 50%;
+					left: -4px;
+					transform: translateY(-50%);
+					height: @logo-size;
+					width: auto;
+
+					.fill {
+						fill: @brand-primary;
+					}
+				}
+
+				&:hover, &:focus {
+					border-color: transparent !important;
+					color: @text-color !important;
+
+					.logo .fill {
+						fill: @text-color;
+					}
+    		}
 			}
-    }
+		}
   }
 
 	@media (min-width: @grid-float-breakpoint) {
+		.navbar-header {
+			position: absolute;
+		}
+
+		nav .navbar-nav {
+			li:first-child {
+				margin-left: @logo-size+1em;
+			}
+		}
+
 		.navbar-nav {
+
+			li {
+
+				&.right {
+					.pull-right;
+				}
+
+				> a {
+					border: none;
+					border-bottom: 2px solid transparent;
+				}
+			}
+
 
 			&.toggle {
 				display: none;
