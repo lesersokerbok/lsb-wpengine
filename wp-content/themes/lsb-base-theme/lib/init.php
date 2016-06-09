@@ -14,10 +14,6 @@ function roots_setup() {
   ));
 
   register_nav_menus(array(
-    'secondary_navigation' => __('Secondary Navigation', 'roots')
-  ));
-
-  register_nav_menus(array(
     'social_links_menu' => 'Social Links Menu'
   ));
 
