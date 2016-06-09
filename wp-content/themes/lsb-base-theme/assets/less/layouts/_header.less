@@ -27,6 +27,8 @@
   .navbar-nav {
     text-align: center;
 		float: none;
+		margin: 0 auto;
+		max-width: @screen-sm;
 
 		> li {
 			padding: 2px;
@@ -43,8 +45,12 @@
 			}
 
 			a:hover, a:focus {
-				border-color: @brand-primary;
 				background: none;
+			}
+
+			&.open a,
+			a:hover, {
+				border-color: @brand-primary;
 				transition: all .25s ease-in-out
       }
 		}
@@ -54,7 +60,7 @@
 				border-color: @litt-a-lese;
 			}
 			
-			a:hover, a:focus {
+			a:hover {
 				border-color: @litt-a-lese;	
 			}
   	}
@@ -64,7 +70,7 @@
 				border-color: @enkelt-innhold;
 			}
 			
-			a:hover, a:focus {
+			a:hover {
 				border-color: @enkelt-innhold;	
 			}
   	}
@@ -74,7 +80,7 @@
 				border-color: @storskrift;
 			}
 			
-			a:hover, a:focus {
+			a:hover {
 				border-color: @storskrift;
 			}
   	}
@@ -84,7 +90,7 @@
 				border-color: @punktskrift-folebilder;
 			}
 			
-			a:hover, a:focus {
+			a:hover {
 				border-color: @punktskrift-folebilder;
 			}
   	}
@@ -94,7 +100,7 @@
 				border-color: @tegnsprak-nmt;
 			}
 			
-			a:hover, a:focus {
+			a:hover {
 				border-color: @tegnsprak-nmt;
 			}
   	}
@@ -104,7 +110,7 @@
 				border-color: @bliss-piktogram;
 			}
 			
-			a:hover, a:focus {
+			a:hover {
 				border-color: @bliss-piktogram;
 			}
   	}
@@ -133,7 +139,7 @@
 					}
 				}
 
-				&:hover, &:focus {
+				&:hover {
 					border-color: transparent !important;
 					color: @text-color !important;
 
@@ -151,14 +157,16 @@
 		}
 
 		nav .navbar-nav {
-			li:first-child {
+			> li:first-child {
 				margin-left: @logo-size+1em;
 			}
 		}
 
 		.navbar-nav {
 
-			li {
+			max-width: 100%;
+
+			> li {
 
 				&.right {
 					.pull-right;
@@ -175,5 +183,19 @@
 				display: none;
 			}
 		}
+	}
+}
+
+@media (max-width: @grid-float-breakpoint-max) {
+	.navbar-nav .open .dropdown-menu {
+    position: absolute;
+    float: left;
+//    width: auto;
+    margin-top: 2px 0 0;
+    background-color: @dropdown-bg;
+  	border: 1px solid @dropdown-fallback-border; // IE8 fallback
+  	border: 1px solid @dropdown-border;
+    .box-shadow(0 6px 12px rgba(0,0,0,.175));
+  	background-clip: padding-box;
 	}
 }
