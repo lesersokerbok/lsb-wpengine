@@ -15,13 +15,4 @@ Template Name: Boksøk Forsidemal
   </div>
 </div>
 
-<?php
-if( have_rows('lsb_page_sections', get_queried_object()) ) {
-
-  while( have_rows('lsb_page_sections', get_queried_object()) ) {
-    the_row();
-    get_template_part('templates/page-sections/page-section-'.get_sub_field('lsb_page_section_type' ) );
-  }
-
-}
-?>
+<?php get_template_part('templates/page-sections'); ?>
