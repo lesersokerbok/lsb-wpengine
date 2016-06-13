@@ -1,59 +1,201 @@
-.banner {
-  
+.banner.navbar {
+	
+  margin-top: @navbar-margin-bottom*1.5;
+	margin-bottom: @navbar-margin-bottom*1.5;
+
+	.navbar-collapse {
+		&.in,
+		&.collapsing {
+			margin-top: @navbar-margin-bottom;
+			overflow-y: hidden;
+		}
+	}
+
+	.navbar-header {
+		margin: 0;
+
+		.navbar-nav {
+			float: left;
+			margin: 0;
+		}
+
+		.toggle {
+			float: right;
+		}
+	}
+
   .navbar-nav {
     text-align: center;
+		float: none;
+		margin: 0 auto;
+		max-width: @screen-sm;
 
-    > li > a {
-      text-decoration: none;
-      font-weight: bold;
-      
-      &:hover {
-        text-decoration: underline;
+		> li {
+			padding: 2px;
+			display: inline-block;
+			
+			> a {
+      	text-decoration: none;
+      	font-weight: bold;
+				border: 2px solid transparent;
+    	}
+
+			&.active a {
+				border-color: @brand-primary;
+			}
+
+			a:hover, a:focus {
+				background: none;
+			}
+
+			&.open a,
+			a:hover, {
+				border-color: @brand-primary;
+				transition: all .25s ease-in-out
       }
-    }
+		}
+
+		li.menu-litt-a-lese {
+			&.active a {
+				border-color: @litt-a-lese;
+			}
+			
+			a:hover {
+				border-color: @litt-a-lese;	
+			}
+  	}
+		
+		li.menu-enkelt-innhold {
+			&.active a {
+				border-color: @enkelt-innhold;
+			}
+			
+			a:hover {
+				border-color: @enkelt-innhold;	
+			}
+  	}
+		
+		li.menu-storskrift {
+			&.active a {
+				border-color: @storskrift;
+			}
+			
+			a:hover {
+				border-color: @storskrift;
+			}
+  	}
+		
+		li.menu-punktskrift-folebilder {
+			&.active a {
+				border-color: @punktskrift-folebilder;
+			}
+			
+			a:hover {
+				border-color: @punktskrift-folebilder;
+			}
+  	}
+		
+		li.menu-tegnsprak-nmt {
+			&.active a {
+				border-color: @tegnsprak-nmt;
+			}
+			
+			a:hover {
+				border-color: @tegnsprak-nmt;
+			}
+  	}
+		
+		li.menu-bliss-piktogram {
+			&.active a {
+				border-color: @bliss-piktogram;
+			}
+			
+			a:hover {
+				border-color: @bliss-piktogram;
+			}
+  	}
+
+		&.toggle {
+			li > a {
+				border: 2px solid @brand-primary;
+			}
+		}
+
+		&.brand {
+			color: @brand-primary !important;
+
+			li > a {
+
+				.logo {
+					position: absolute;
+					top: 50%;
+					left: -4px;
+					transform: translateY(-50%);
+					height: @logo-size;
+					width: auto;
+
+					.fill {
+						fill: @brand-primary;
+					}
+				}
+
+				&:hover {
+					border-color: transparent !important;
+					color: @text-color !important;
+
+					.logo .fill {
+						fill: @text-color;
+					}
+    		}
+			}
+		}
   }
 
-  .navbar-nav-brand {
-    color: @brand-primary !important;
-    
-    background-image: @logo-url;
-    background-size: @logo-size;
-    background-position: 0 center;
-    background-repeat: no-repeat;
-    padding-left: @logo-size+@navbar-padding-horizontal/2;
-    margin-left: @navbar-padding-horizontal*2;
-    
-    &:hover {
-      background-color: transparent !important;
-    }
+	@media (min-width: @grid-float-breakpoint) {
+		.navbar-header {
+			position: absolute;
+		}
 
-    @media (min-width: @grid-float-breakpoint) {
-      margin: 0;
-    }
-  }
+		nav .navbar-nav {
+			> li:first-child {
+				margin-left: @logo-size+1em;
+			}
+		}
 
-  .navbar-collapse {
+		.navbar-nav {
 
-    .nav {
-      float: none !important;
-      
-      li {
-        display: inline-block;
-      }
-    }
+			max-width: 100%;
 
-    @media (min-width: @grid-float-breakpoint) {
-      .nav {
-        margin: 0;
-      }
+			> li {
 
-      .nav:last-child {
-        float: right !important;
-      }
+				&.right {
+					.pull-right;
+				}
 
-      .nav:first-child {
-        float: left !important;
-      }
-    }
-  }
+				> a {
+					border: none;
+					border-bottom: 2px solid transparent;
+				}
+			}
+
+
+			&.toggle {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (max-width: @grid-float-breakpoint-max) {
+	.navbar-nav .open .dropdown-menu {
+    position: absolute;
+    float: left;
+//    width: auto;
+    margin-top: 2px 0 0;
+    background-color: @dropdown-bg;
+  	border: 1px solid @dropdown-fallback-border; // IE8 fallback
+  	border: 1px solid @dropdown-border;
+    .box-shadow(0 6px 12px rgba(0,0,0,.175));
+  	background-clip: padding-box;
+	}
 }

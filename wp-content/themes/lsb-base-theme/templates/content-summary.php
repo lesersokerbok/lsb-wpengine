@@ -1,4 +1,4 @@
-<article <?php post_class(); ?>>
+<article <?php post_class('summary'); ?>>
   <header>
     <h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
     <?php get_template_part('templates/entry-meta'); ?>

@@ -1,6 +1,6 @@
 <footer>
   <div class="widget-area">
-    <div class="wrap container">
+    <div class="wrap container-fluid">
       <div class="row">
         <div class="col-sm-6">
           <div class="row">
