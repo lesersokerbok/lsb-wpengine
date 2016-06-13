@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: LSB Personer
+ * Plugin Name: LSB: Personer
  * Description: Legger til innholdstype Person. Brukes for ansatte og styremedlemmer.
  * Version: 1.0.0
  * Author: Lilly Labs

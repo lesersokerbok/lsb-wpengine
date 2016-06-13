@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: LSB Seksjoner
+ * Plugin Name: LSB: Seksjoner
  * Description: Legger til seksjoner på forside template.
  * Version: 1.0.0
  * Author: Lilly Labs
