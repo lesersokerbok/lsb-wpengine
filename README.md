@@ -11,15 +11,20 @@ This repository has a chatroom on Gitter:
 
 [![Join the chat at https://gitter.im/lesersokerbok/lsb-wordpress-themes](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lesersokerbok/lsb-wordpress-themes?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Themes
-There are three themes: 
-* `lsb-base-theme`
-* `lsb-lesersokerbok.no-theme`
-* `lsb-boksok.no-theme`
+## Themes & Plugins
+There are two themes with multiple plugins: 
+* [`lsb-theme-home`](https://github.com/lesersokerbok/lsb-theme-home)
+  * [`lsb-people`](https://github.com/lesersokerbok/lsb-people)
+  * [`lsb-frontpage-sections`](https://github.com/lesersokerbok/lsb-frontpage-sections)
+* [`lsb-theme-boksok`](https://github.com/lesersokerbok/lsb-theme-boksok)
+  * [`lsb-boksok-bibsyst`](https://github.com/lesersokerbok/lsb-boksok-bibsyst)
+  * [`lsb-boksok-core`](https://github.com/lesersokerbok/lsb-boksok-core)
 
-Both `lsb-lesersokerbok.no-theme` and `lsb-boksok.no-theme` are child themes of `lsb-base-theme`.
+Both themes are based on roots.io.
 
-The plan going forward is to move much of the functionality differences into plugins.
+In addition there is a public plugin to be used by libraries 
+and organizations to add a Boksøk search widget in their sidebar.
+* [`lsb-boksok-public`](https://github.com/lesersokerbok/lsb-boksok-public) 
 
 ## Issues
 Issues are tracked with [GitHub Issues](https://github.com/lesersokerbok/lsb-wordpress-themes/issues), but can also be viewed as a kanban board through [Huboard](https://huboard.com/lesersokerbok/lsb-wordpress-themes#/).
@@ -39,18 +44,13 @@ Never push an issue into the next lane when you are done.
 ## Dev
 
 ### Branching strategy
-Vincent Driessen's ["A successful Git branching model"](http://nvie.com/posts/a-successful-git-branching-model/). Also explained by Atlassian in an [article about different branching models](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
-
-[Git Flow](https://github.com/nvie/gitflow) is used to simplify this process. However for larger feature branches **do not** finish by using git flow's `git flow feature finish <name>`. Instead push the feature branch to Git Hub and create a pull request for a teammate to review.
+The projects uses [GitHub Flow](https://guides.github.com/introduction/flow/).
 
 ### Localization
 Norwegian is used as the base language and all strings shuld be ready for translations. This is also true for backend code.
 
 ### Grunt
-* Build assets while developing using `grunt dev`.
-* Bulde assets for production with `grunt build`.
-
-The Grunt script creates assets for all three themes.
+* [TODO] Update
 
 ### Debugging
 
@@ -96,29 +96,11 @@ the changes at the `lsbtest` install.
 * Push to test:  
 `git push lsbtest`
 
-#### Realease
+#### Release
 Releases and hotfixes should be tested at the `lsbtest` install before being
 pushed to the `lsb` install.
-* Create a release or hotfix branch:  
-`git flow hotfix start <x.x.x>` or  
-`git flow release start <x.x.x>`
-* Update version number in `package.json` and check in:  
-`git commit package.json -m "Bumped version number"`  
-* Build assets:  
-`grunt build`
-* Commit assets:  
-`git commit -a -m "Assets built for release/hotfix"`
-* Push to test  
-`git push lsbtest`
-* Test the sites and if no errors are found finish the release or hotfix:  
-`git flow hotfix finish <x.x.x>` or  
-`git flow release finish <x.x.x>`
-* Create snapshot of site on [my.wpengine.com](https://my.wpengine.com/installs/lsb/backup_points)
-* Push to origin  
-`git push -all`  
-`git push -tags`
-* Finally push to the `lsb` install:  
-`git push lsbprod`
+
+* [TODO] Update
 
 #### Initial Setup  
 * Get push access e-mail Benedicte (raae@bgraphic.no) your SSH Public Key.
