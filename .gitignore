@@ -15,7 +15,6 @@ wp-content/themes/*
 
 !wp-content/plugins/
 wp-content/plugins/*
-!wp-content/plugins/soil
 !wp-content/plugins/lsb-*
 
 wp-content/languages/plugins

@@ -21,3 +21,4 @@
 [submodule "wp-content/themes/lsb-theme-home"]
 	path = wp-content/themes/lsb-theme-home
 	url = git@github.com:lesersokerbok/lsb-theme-home.git
+	branch = master
