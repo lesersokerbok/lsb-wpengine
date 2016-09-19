@@ -1,7 +1,3 @@
-[submodule "wp-content/plugins/soil"]
-	path = wp-content/plugins/soil
-	url = https://github.com/roots/soil.git
-	branch = master
 [submodule "wp-content/plugins/lsb-boksok-core"]
 	path = wp-content/plugins/lsb-boksok-core
 	url = git@github.com:lesersokerbok/lsb-boksok-core.git
