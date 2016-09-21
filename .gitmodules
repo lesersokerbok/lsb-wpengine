@@ -1,18 +1,18 @@
 [submodule "wp-content/plugins/lsb-boksok-core"]
 	path = wp-content/plugins/lsb-boksok-core
-	url = git@github.com:lesersokerbok/lsb-boksok-core.git
+	url = https://github.com/lesersokerbok/lsb-boksok-core.git
 	branch = master
 [submodule "wp-content/plugins/lsb-frontpage-sections"]
 	path = wp-content/plugins/lsb-frontpage-sections
-	url = git@github.com:lesersokerbok/lsb-frontpage-sections.git
+	url = https://github.com/lesersokerbok/lsb-frontpage-sections.git
 	branch = master
 [submodule "wp-content/plugins/lsb-people"]
 	path = wp-content/plugins/lsb-people
-	url = git@github.com:lesersokerbok/lsb-people.git
+	url = https://github.com/lesersokerbok/lsb-people.git
 	branch = master
 [submodule "wp-content/plugins/lsb-boksok-bibsyst"]
 	path = wp-content/plugins/lsb-boksok-bibsyst
-	url = git@github.com:lesersokerbok/lsb-boksok-bibsyst.git
+	url = https://github.com/lesersokerbok/lsb-boksok-bibsyst.git
 	branch = master
 [submodule "wp-content/themes/lsb-theme-boksok"]
 	path = wp-content/themes/lsb-theme-boksok
@@ -20,5 +20,6 @@
 	branch = master
 [submodule "wp-content/themes/lsb-theme-home"]
 	path = wp-content/themes/lsb-theme-home
-	url = git@github.com:lesersokerbok/lsb-theme-home.git
+	url = https://github.com/lesersokerbok/lsb-theme-home.git
 	branch = master
+
