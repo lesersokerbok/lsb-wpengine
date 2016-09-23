@@ -1,7 +1,7 @@
 [submodule "wp-content/plugins/lsb-boksok-core"]
 	path = wp-content/plugins/lsb-boksok-core
 	url = https://github.com/lesersokerbok/lsb-boksok-core.git
-	branch = master
+	branch = algolia-search
 [submodule "wp-content/plugins/lsb-frontpage-sections"]
 	path = wp-content/plugins/lsb-frontpage-sections
 	url = https://github.com/lesersokerbok/lsb-frontpage-sections.git
