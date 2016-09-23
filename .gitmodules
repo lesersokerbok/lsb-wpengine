@@ -17,7 +17,7 @@
 [submodule "wp-content/themes/lsb-theme-boksok"]
 	path = wp-content/themes/lsb-theme-boksok
 	url = https://github.com/lesersokerbok/lsb-theme-boksok
-	branch = master
+	branch = algolia-search
 [submodule "wp-content/themes/lsb-theme-home"]
 	path = wp-content/themes/lsb-theme-home
 	url = https://github.com/lesersokerbok/lsb-theme-home.git
