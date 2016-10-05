@@ -1,7 +1,7 @@
 [submodule "wp-content/plugins/lsb-boksok-core"]
 	path = wp-content/plugins/lsb-boksok-core
 	url = https://github.com/lesersokerbok/lsb-boksok-core.git
-	branch = algolia-search
+	branch = redesign
 [submodule "wp-content/plugins/lsb-frontpage-sections"]
 	path = wp-content/plugins/lsb-frontpage-sections
 	url = https://github.com/lesersokerbok/lsb-frontpage-sections.git
@@ -17,7 +17,7 @@
 [submodule "wp-content/themes/lsb-theme-boksok"]
 	path = wp-content/themes/lsb-theme-boksok
 	url = https://github.com/lesersokerbok/lsb-theme-boksok
-	branch = algolia-search
+	branch = redesign
 [submodule "wp-content/themes/lsb-theme-home"]
 	path = wp-content/themes/lsb-theme-home
 	url = https://github.com/lesersokerbok/lsb-theme-home.git
