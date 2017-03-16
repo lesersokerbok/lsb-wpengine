@@ -21,7 +21,7 @@ Template Name: Ansatte/Styre sidemal
 			<hr />
 		<?php endif; ?>
 
-		<section class="loop">
+		<section>
 			<?php $posts = get_field('lsb_custom_field_person_relationship'); ?>
 			<?php if( $posts ): ?>
 				<?php foreach( $posts as $post): ?>
