@@ -1,0 +1,25 @@
+.dropdown-toggle:focus:not(:hover) {
+	background: transparent !important;
+	text-decoration: none !important;
+}
+
+.dropdown-menu > li {
+	>a {
+		&:focus,
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&.active a {
+		color: inherit;
+		background-color: inherit;
+
+		&:focus,
+		&:hover {
+			color: inherit;
+			background-color: inherit;
+			text-decoration: underline;
+		}
+	}
+}

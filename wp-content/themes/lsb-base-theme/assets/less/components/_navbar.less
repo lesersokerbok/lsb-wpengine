@@ -1,0 +1,194 @@
+.navbar {
+	font-size: 16px; // TODO: Fix with @base-font-size
+}
+
+.navbar.navbar-static-top + .navbar.navbar-static-top {
+	margin-top: -@navbar-margin-bottom;
+	z-index: auto;
+}
+
+.navbar .lsb-search-form {
+	padding-top: 23px; // TODO: Make dynamic
+	max-width: @screen-sm-min;
+
+	input {
+		font-size: 0.9em;
+	}
+}
+
+.navbar-header .navbar-right {
+	float: right;
+	margin-right: 15px;
+
+	@media (min-width: @grid-float-breakpoint) {
+		display: none;
+	}
+}
+
+.lsb-navbar-btn-action {
+	&:focus:active {
+		outline: 0 !important;
+	}
+}
+
+.lsb-navbar-btn-action {
+	&:not(.collapsed) {
+		.btn.active;
+		background-color: @navbar-default-link-active-bg;
+	}
+}
+
+.navbar-nav {
+
+	@media (max-width: @grid-float-breakpoint-max) {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	a:focus {
+		background: transparent;
+	}
+
+	span.nav-item-description {
+		display: none;
+	}
+}
+
+.lsb-navbar-site {
+
+	// Colored top border
+	border-top: 3px solid @brand-primary;
+	background-color: @navbar-site-bg;
+
+	.navbar-brand {
+		display: flex;
+		align-items: center;
+		color: @brand-primary !important;
+		text-transform: uppercase;
+		font-weight: 600;
+
+		.logo {
+			height: @navbar-height*0.5;
+			width: @navbar-height*0.5;
+			fill: @brand-primary;
+			margin-right: @navbar-height*0.1;
+		}
+	}
+
+	.lsb-search-form .input-group {
+		padding-left: 15px;
+	}
+
+
+	@media (max-width: @grid-float-breakpoint-max) {
+
+		.lsb-search-form {
+			display: none !important;
+		}
+	}
+}
+
+.lsb-navbar-search {
+
+	.lsb-search-form {
+		margin: 0 auto;
+	}
+
+	@media (min-width: @grid-float-breakpoint) {
+		display: none !important;
+	}
+}
+
+.lsb-navbar-breadcrumbs {
+
+	min-height: 0;
+	background: @navbar-page-bg;
+
+
+	* {
+		margin-top: @line-height-computed/2;
+		margin-bottom: @line-height-computed/2;
+	}
+}
+
+.lsb-navbar-page {
+
+	background: @navbar-page-bg;
+
+	.nav {
+		width: 100%;
+		padding: 20px 0;
+		margin: 0;
+
+		> li {
+			width: 100%;
+			font-weight: 500;
+			display: inline-block;
+			vertical-align: top;
+
+			@media (min-width: @screen-xs-min) {
+				width: 49.5%;
+			}
+
+			@media (min-width: @screen-sm-min) {
+				width: 32.9%;
+			}
+
+			.nav-item-description {
+				padding-top: @padding-small-vertical;
+				width: 100%;
+				font-size: 0.9em;
+				font-weight: normal;
+				display: inline-block;
+				text-decoration: none;
+			}
+
+			.glyphicon {
+				font-size: 0.8em;
+				margin-left: 1em;
+				color: @lsb-brand;
+				transition: margin 0.2s ease-in-out;
+			}
+
+			&.lsb-purple .glyphicon{
+				color: @lsb-purple;
+			}
+
+			&.lsb-green .glyphicon{
+				color: @lsb-green;
+			}
+
+			&.lsb-yellow .glyphicon{
+				color: @lsb-yellow;
+			}
+
+			&.lsb-orange .glyphicon{
+				color: @lsb-orange;
+			}
+
+			&.lsb-red .glyphicon{
+				color: @lsb-red;
+			}
+
+			&.lsb-blue .glyphicon{
+				color: @lsb-blue;
+			}
+
+			a {
+				padding: @nav-link-padding;
+				text-decoration: underline;
+				border-radius: @border-radius-base;
+
+				&:hover,
+				&:focus {
+					text-decoration: none;
+					background-color: @navbar-page-link-hover-bg;
+
+					.glyphicon {
+						margin-left: 1.5em;
+					}
+				}
+			}
+		}
+	}
+}
