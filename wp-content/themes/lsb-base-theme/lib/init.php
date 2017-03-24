@@ -21,10 +21,6 @@ function roots_setup() {
 		'main_navigation' => __('Hovedmeny', 'roots')
 	));
 
-	register_nav_menus(array(
-		'social_links_menu' => 'Social Links Menu'
-	));
-
 	// Add post thumbnails
 	// http://codex.wordpress.org/Post_Thumbnails
 	// http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
