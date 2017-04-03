@@ -1,0 +1,9 @@
+{% extends "entry.twig" %}
+
+{% block entry_footer %}
+	{{ parent() }}
+	<hr/>
+	<p>
+		{{ __('Skrevet av %s den %s.', 'lsb') | format(post.author, post.date) }}
+	</p>
+{% endblock %}
