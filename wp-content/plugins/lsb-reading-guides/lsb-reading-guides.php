@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: LSB: Leseopplegg
+ * Plugin Name: LSB Boksøk: Leseopplegg
  * Description: Legger til innholdstypen Leseopplegg.
  * Version: 1.0.0
  * Author: Lilly Labs
