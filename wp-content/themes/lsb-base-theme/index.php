@@ -18,8 +18,8 @@ $templates = array( 'archive.twig', 'base.twig' );
 
 $context = Timber::get_context();
 
-$context['title'] = 'Archive';
-$context['posts'] = Timber::get_posts();
+$context['title'] = __('Arkiv', 'lsb');
+$context['posts'] = Timber::get_posts(false, LSB_Post::class);
 $context['pagination'] = Timber::get_pagination();
 
 if ( is_home() ) {
