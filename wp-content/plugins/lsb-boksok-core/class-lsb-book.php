@@ -39,9 +39,9 @@ class LsbBook {
         'capability_type' => 'post',
         'map_meta_cap' => true,
         'hierarchical' => false,
-        'rewrite' => array('slug' => _x('bok', 'lsb_book slug', 'lsb_boksok'), 'with_front' => 1),
+        'rewrite' => array('slug' => _x('bok', 'lsb_book slug', 'lsb_boksok')),
         'query_var' => true,
-        'has_archive' => false,
+        'has_archive' => true,
         'menu_position' => '5',
         'supports' => array('title','excerpt','comments','revisions','author','thumbnail'),
         'labels' => array (
