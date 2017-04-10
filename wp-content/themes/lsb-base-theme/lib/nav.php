@@ -90,10 +90,6 @@ function roots_nav_menu_args($args = '') {
 		$roots_nav_menu_args['walker'] = new Roots_Nav_Walker();
 	}
 
-	if (!$args['description']) {
-		$roots_nav_menu_args['description'] = false;
-	}
-
 	return array_merge($args, $roots_nav_menu_args);
 }
 add_filter('wp_nav_menu_args', 'roots_nav_menu_args');
