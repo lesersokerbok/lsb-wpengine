@@ -38,7 +38,8 @@
 	}
 }
 
-.lsb_section.is-lsb_reading_guide {
+.lsb_section.is-lsb_reading_guide,
+.lsb_section.is-lsb_book {
 	margin-top: @line-height-computed*3;
 
 	.lsb_section__body {
@@ -52,10 +53,13 @@
 			vertical-align: top;
 			width: 200px;
 
-			flex-grow: 0;
+			flex-grow: 1;
 			flex-shrink: 1;
-			flex-basis: 200px;
 			padding: 1rem;
+
+			@media (max-width: 424px ) {
+				width: 150px;
+			}
 		}
 	}
 }
