@@ -39,24 +39,27 @@ function save_lsb_reading_guide_action($post_id) {
 		$post_content .= sprintf("<h2>%s</h2>%s", $lsb_post_reading['label'], $lsb_post_reading['value']);
 	}
 
+	$post_excerpt = get_the_term_list( $lsb_book->ID, 'lsb_tax_author', '<ul><li>', ', </li><li>', '</li></ul>' );
+
 	$updated_reading_guide = array(
 		'ID' => $post_id,
 		'post_title' => $lsb_book->post_title,
 		'post_content' => $post_content,
-		'post_name' => $lsb_book->post_name
+		'post_name' => $lsb_book->post_name,
+		'post_excerpt' => $post_excerpt
 	);
 
 	set_post_thumbnail( $post_id, get_post_thumbnail_id( $lsb_book ) );
 	wp_update_post( $updated_reading_guide );
 
 	$book_guides = get_post_meta($lsb_book->ID, 'lsb_reading_guides', true);
-	if(!in_array($post_id, $book_guides)) {
-		if(is_array($book_guides)) {
-			array_push($book_guides, $post_id);
-		} else {
-			$book_guides = array($post_id);
-		}
+
+	if(is_array($book_guides) && !in_array($post_id, $book_guides)) {
+		array_push($book_guides, $post_id);
+	} else {
+		$book_guides = array($post_id);
 	}
+
 	update_post_meta( $lsb_book->ID, 'lsb_reading_guides', $book_guides );
 }
 
@@ -90,6 +93,6 @@ add_action( 'acf/save_post', __NAMESPACE__ .'\save_lsb_reading_guide_action', 20
 add_action( 'acf/save_post', __NAMESPACE__ .'\save_lsb_book_action', 20 );
 add_action( 'before_delete_post', __NAMESPACE__ .'\before_delete_lsb_reading_guide_action' );
 
-add_action( 'init', __NAMESPACE__ . '\\CPT_Reading_Guide::register_post_type' );
+add_action( 'init', __NAMESPACE__ . '\\CPT_Reading_Guide::register_post_type', 0 );
 add_action( 'acf/init', __NAMESPACE__ . '\\CPT_Reading_Guide::add_custom_fields' );
 register_activation_hook( __FILE__, __NAMESPACE__ .'\\CPT_Reading_Guide::rewrite_flush' );
