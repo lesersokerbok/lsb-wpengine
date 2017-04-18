@@ -40,6 +40,12 @@ if ( is_home() ) {
 } else if ( is_post_type_archive() ) {
 	$context['title'] = post_type_archive_title( '', false );
 	$context['post_type'] = get_post_type();
+	if($context['pagination']['prev']) {
+		$context['pagination']['prev']['title'] = __('Forrige side', 'lsb');
+	}
+	if($context['pagination']['next']) {
+		$context['pagination']['next']['title'] = __('Neste side', 'lsb');
+	}
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
