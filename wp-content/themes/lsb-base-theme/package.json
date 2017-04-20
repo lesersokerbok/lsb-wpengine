@@ -25,7 +25,7 @@
     "dev:js": "uglifyjs $npm_package_config_boostrapJs ./assets/js/_*.js --output ./assets/js/bundle.temp.js",
     "dev:less": "lessc ./assets/less/_main.less ./assets/css/bundle.temp.css --source-map",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:js": "nodemon -e less -x \"npm run dev:js\"",
+    "watch:js": "nodemon -e js -x \"npm run dev:js\"",
     "watch:less": "nodemon -e less -x \"npm run dev:less\""
   },
   "engines": {
