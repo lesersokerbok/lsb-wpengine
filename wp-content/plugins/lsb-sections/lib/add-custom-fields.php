@@ -86,14 +86,13 @@ function create_taxonomy_field($key, $name, $label, $is_multi_select) {
 		'type' => 'taxonomy',
 		'taxonomy' => $name,
 		'field_type' => $is_multi_select ? 'multi_select' : 'select',
-		'return_format' => 'id',
+		'return_format' => 'object',
 		'multiple' => 0,
 		'add_term' => 0
 	);
 }
 
-function add_custom_fields() {
-
+function create_custom_post_type_layouts() {
 	$layouts = array ();
 
 	foreach (get_post_types(array( '_builtin' => false ), 'objects') as $key => $post_type) {
@@ -119,6 +118,14 @@ function add_custom_fields() {
 
 		$layouts[] = $layout_field;
 	}
+	return $layouts;
+}
+
+function add_custom_fields() {
+
+	$custom_post_type_layouts = create_custom_post_type_layouts();
+
+	$layouts = array_merge($custom_post_type_layouts);
 
 	if( function_exists('acf_add_local_field_group') && count($layouts) > 0) {
 

@@ -51,20 +51,24 @@ class LSB_Post extends TimberPost {
 						'posts_per_page' => 12
 					);
 
-					if($section['lsb_filter']) {
-						$filter = $section['lsb_filter'];
-						$term_id = $section[$filter];
+					$filter = $section['lsb_filter'];
+
+					if($filter && $section[$filter]) {
+						$term = $section[$filter];
 						$query['tax_query'][] = array ( 
 							array ( 
 								'taxonomy' => $section['lsb_filter'],
-								'field' => 'id', 
-								'terms' => $term_id
+								'field' => 'object', 
+								'terms' => $term
 							)
 						);
 
-						$slug .= $term_id;
-						$section['link'] = get_term_link($term_id);
+						$slug .= $term->slug;
+						$section['title'] = $section['title'] ? $section['title'] : $term->name;
+						$section['link'] = get_term_link($term);
 					}
+
+					$section['title'] = $section['title'] ? $section['title'] : get_post_type_object($post_type)->labels->name;
 
 					$section['posts'] = TimberHelper::transient($slug, function()  use ($query) {
 						return Timber::get_posts($query, LSB_Post::class);
