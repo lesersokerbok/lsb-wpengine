@@ -41,7 +41,7 @@ class LSB_Post extends TimberPost {
 				$post_type = $section['acf_fc_layout'];
 				if(post_type_exists($post_type)) {
 					$section['post_type'] = $post_type;
-					$section['title'] = $section['lsb_title'];
+					$section['title'] = $section['lsb_title'] ? $section['lsb_title'] : get_post_type_object($post_type)->labels->name;
 					$section['link'] = get_post_type_archive_link($post_type);
 					$section['subtitle'] = $section['lsb_subtitle'];
 
