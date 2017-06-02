@@ -2,6 +2,7 @@
 
 class LSB_Post extends TimberPost {
 
+	var $_authors;
 	var $_read_more;
 	var $_sections;
 
@@ -18,12 +19,21 @@ class LSB_Post extends TimberPost {
 		return $this->_read_more;
 	}
 
+	public function authors() {
+		if( !$this->_authors ) {
+			if($this->post_type == 'lsb_book') {
+				$this->_authors = get_the_term_list( $this->ID, 'lsb_tax_author', '<ul><li>', ', </li><li>', '</li></ul>' );
+			} elseif($this->post_type == 'lsb_reading_guide') {
+				$this->_authors = $this->post_excerpt;
+			}
+		}
+
+		return $this->_authors;
+	}
+
 	public function sections() {
 		if( !$this->_sections ) {
-			$this->_sections = get_field('lsb_sections');
-			if( !$this->_sections) {
-				$this->_sections = array();
-			}
+			$this->_sections = get_field('lsb_sections') ? get_field('lsb_sections') : array ();
 
 			$modified = get_the_modified_date( 'U', $this );
 
@@ -34,8 +44,30 @@ class LSB_Post extends TimberPost {
 					$section['title'] = $section['lsb_title'];
 					$section['link'] = get_post_type_archive_link($post_type);
 					$section['subtitle'] = $section['lsb_subtitle'];
-					$section['posts'] = TimberHelper::transient($post_type.$modified, function()  use ($post_type, $modified) {
-						return Timber::get_posts(array('post_type' => $post_type), LSB_Post::class);
+
+					$slug = $post_type.$modified;
+					$query = array(
+						'post_type' => $post_type,
+						'posts_per_page' => 12
+					);
+
+					if($section['lsb_filter']) {
+						$filter = $section['lsb_filter'];
+						$term_id = $section[$filter];
+						$query['tax_query'][] = array ( 
+							array ( 
+								'taxonomy' => $section['lsb_filter'],
+								'field' => 'id', 
+								'terms' => $term_id
+							)
+						);
+
+						$slug .= $term_id;
+						$section['link'] = get_term_link($term_id);
+					}
+
+					$section['posts'] = TimberHelper::transient($slug, function()  use ($query) {
+						return Timber::get_posts($query, LSB_Post::class);
 					}, 600);
 				}
 			}
