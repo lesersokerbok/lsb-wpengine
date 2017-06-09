@@ -1,0 +1,9 @@
+<nav class="lsb_breadcrumbs">
+	{% for item in items %}
+		{% if item.active %}
+			<span class="lsb_breadcrumbs__item is-active"><span>{{ item.title | capitalize }}</span></span>
+		{% else %}
+			<a href="{{ item.url }}" class="lsb_breadcrumbs__item"><span>{{ item.title | capitalize }}</span></a>
+		{% endif %}
+	{% endfor %}
+</nav>

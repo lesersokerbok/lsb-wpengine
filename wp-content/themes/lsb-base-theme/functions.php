@@ -27,6 +27,7 @@ $roots_includes = array(
 	'lib/lsb-mime-types.php', // Custom upload mime types
 	'lib/rewrite.php',        // Custom rewrite rules
 	'lib/feed-util.php',      // Custom rss rules
+	'lib/lsb-breadcrumbs.php',// Breadcrumbs logic
 	'lib/lsb-post.php',       // Extends Timber post
 	'lib/lsb_pagination.php', // Changes to offsets and pagination
 	'lib/lsb_sections.php',   // Transform acf sections
@@ -126,3 +127,9 @@ function ssl_srcset( $sources ) {
 	return $sources;
 }
 add_filter( 'wp_calculate_image_srcset', 'ssl_srcset' );
+
+function lsb_add_to_context( $data ){
+		$data['breadcrumbs'] = new LSBBreadcrumbs('site_map');
+		return $data;
+}
+add_filter('timber/context', 'lsb_add_to_context');

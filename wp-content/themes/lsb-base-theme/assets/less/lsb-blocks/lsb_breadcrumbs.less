@@ -5,9 +5,38 @@
 }
 
 .lsb_breadcrumbs__item {
-	text-transform: uppercase;
+	text-decoration: none;
+
+	&:focus {
+		text-decoration: none;
+	}
+
+	&:before {
+		color: @text-muted;
+		content: "/ ";
+	}
+
+	&:not(.is-active) {
+		span {
+			transition: border .2s ease-in-out;
+			border-bottom: 2px solid transparent;
+
+			&:hover {
+				border-color: currentColor;
+			}
+		}
+	}
 
 	&.is-active {
+		.text-muted;
+	}
+
+	&:first-child {
+		text-transform: uppercase;
 		font-weight: @headings-font-weight;
+
+		&:before {
+			content: "";
+		}
 	}
 }

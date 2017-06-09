@@ -1,11 +1,5 @@
 {% block subheader %}
-	<nav class="lsb_breadcrumbs">
-		{% if title.link %}
-			<a href="{{ title.link }}" class="lsb_breadcrumbs__item">{{ title.text }}</a>
-		{% else %}
-			<span class="lsb_breadcrumbs__item is-active">{{ title }}</span>
-		{% endif %}
-	</nav>
+	{% include 'breadcrumbs.twig' with {'items': breadcrumbs.items } %}
 {% endblock %}
 
 {% block content %}
