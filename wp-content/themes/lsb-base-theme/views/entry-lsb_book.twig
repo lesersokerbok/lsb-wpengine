@@ -1,0 +1,97 @@
+<article class="lsb_entry is-{{ post.post_type }}" id="post-{{post.ID}}">
+	<div class="lsb_entry__header">
+		{% if post.thumbnail.src %}
+			<img src="{{ post.thumbnail.src | resize(384) }}" class="lsb_entry__thumbail" aria-hidden="true" alt="Image for {{ post.title }}" />
+		{% endif %}
+		<h1 class="lsb_entry__title">{{ post.title }}</h1>
+	</div>
+	<div class="lsb_entry__meta">
+		{% set taxonomies = [ 
+				{ key: 'lsb_tax_author', label: 'Forfatter' }, 
+				{ key: 'lsb_tax_illustrator', label: 'Illustratør' },
+				{ key: 'lsb_tax_topic', label: 'Tema' },
+				{ key: 'lsb_tax_audience', label: 'Tilpasset' },
+				{ key: 'lsb_tax_age', label: 'Alder' }
+			]
+		%}
+		<ul>
+			{% for tax in taxonomies %}
+				{% if post.terms(tax.key) | visible_terms  %}
+        <li>{{ __(tax.label, 'lsb') }}: {{ post.terms(tax.key) | visible_terms | terms_list(', ', ', ') }}</li>
+				{% endif %}
+      {% endfor %}
+		</ul>
+	</div>
+	<div class="lsb_entry__body is-content">
+		{{ post.content }}
+	</div>
+
+	{% if post.terms(['lsb_tax_list', 'lsb_tax_series']) or post.lsb_support_cat %}
+		<div class="lsb_entry__meta">
+			<ul>
+				{% if post.terms(['lsb_tax_list', 'lsb_tax_series']) %}
+					<li>{{ __('Boka er en del av ', 'lsb') }}  {{ post.terms(['lsb_tax_list', 'lsb_tax_series']) | terms_list(', ', __(' og ', 'lsb')) }}.</li>
+				{% endif %}
+				{% if post.lsb_support_cat %}
+					<li>{{ __('Boken er støttet av Leser søker bok.', 'lsb') }}</li>
+				{% endif %}
+			</ul>
+		</div>
+	{% endif %}
+
+	{% set terms = post.terms(['lsb_tax_genre', 'lsb_tax_topic']) | icon_terms %}
+	{% if  terms %}
+		<div class="lsb_entry__meta">
+			{% include ['menu.twig'] with { 'items': terms, 'style': 'pills' } %}
+		</div>
+	{% endif %}
+
+	<div class="lsb_entry__meta">
+		{% set taxonomies = [ 
+				{ key: 'lsb_tax_genre', label: 'Sjanger' }, 
+				{ key: 'lsb_tax_publisher', label: 'Forlag' },
+				{ key: 'lsb_tax_translator', label: 'Oversetter' },
+				{ key: 'lsb_tax_audience', label: 'Målgruppe' },
+				{ key: 'lsb_tax_lsb_cat', label: 'Hovedkategori' }
+			]
+		%}
+		<ul>
+			{% for tax in taxonomies %}
+				{% if post.terms(tax.key) | visible_terms %}
+        <li>{{ __(tax.label, 'lsb') }}: {{ post.terms(tax.key) | visible_terms | terms_list(', ', ', ') }}</li>
+				{% endif %}
+      {% endfor %}
+		</ul>
+	</div>
+
+	{% if post.lsb_library_status %}
+		<div class="lsb_entry__meta" >
+			{% include ['library.twig'] with { 'counties': post.lsb_library_status } %}
+		</div>
+	{% endif %}
+
+	{% if post.get_field('lsb_oembeds') %}
+		<section class="lsb_section is-embed is-scroll">
+			<div class="lsb_section__body">
+				{% for oembed in post.get_field('lsb_oembeds') %}
+					<article>
+						<div class="lsb_embed">
+							{{ oembed.lsb_oembed }}
+						</div>
+					</article>
+				{% endfor %}
+			</div>
+			<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</button>
+			<button aria-hidden="true" tabindex="-1" data-scroll="right" class="lsb_section__scroll is-right">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</button>
+		</section>
+	{% endif %}
+
+	{% for section in post.sections %}
+		{% include ['section-'~section.layout~'.twig', 'section.twig'] %}
+	{% endfor %}
+
+</article>

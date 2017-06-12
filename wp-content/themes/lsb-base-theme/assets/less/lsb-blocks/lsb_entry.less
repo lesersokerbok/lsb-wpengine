@@ -4,7 +4,8 @@
 
 .lsb_entry__header,
 .lsb_entry__body,
-.lsb_entry__footer {
+.lsb_entry__footer,
+.lsb_entry__meta {
 	max-width: 768px;
 	margin-left: auto !important;
 	margin-right: auto !important;
@@ -20,6 +21,26 @@
 	&:first-letter {
     text-transform: uppercase;
   }
+}
+
+.lsb_entry__meta {
+	margin: 2em 0;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		a:first-child {
+			display: inline-block;
+			&:first-letter {
+    		text-transform: uppercase;
+  		}
+		}
+	}
+}
+
+.lsb_entry__body + .lsb_entry__meta {
+	margin-top: 3em;
 }
 
 .lsb_entry__footer {
@@ -44,15 +65,18 @@
 	max-width: 40%;
 }
 
-.lsb_entry.is-lsb_reading_guide {
-	h2 {
-		text-transform: uppercase;
-		font-size: 100%;
-	}
+.lsb_entry {
+	&.is-lsb_reading_guide,
+	&.is-lsb_book {
+		h2 {
+			text-transform: uppercase;
+			font-size: 100%;
+		}
 
-	p a:first-child:last-child {
-		.has-right-arrow;
-		margin: 0.5em 0;
-		display: inline-block;
+		.lsb_entry__body a:first-child:last-child {
+			.has-right-arrow;
+			margin: 0.5em 0;
+			display: inline-block;
+		}
 	}
 }
