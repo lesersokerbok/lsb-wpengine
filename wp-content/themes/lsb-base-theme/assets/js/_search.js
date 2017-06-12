@@ -1,6 +1,10 @@
 
 (function ($) {
 
+	if (!algolia || !algolia.posts_lsb_book) {
+		return;
+	}
+
 	function addRelevantMetaAndContent(book) {
 		var useRelevantContent = true;
 		var relevant_meta = {};
