@@ -5,6 +5,13 @@
 		alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
 	}
 
+	if (!algolia.indices.searchable_posts.name.includes('wp_lsb_')) {
+		console.log('Do not instasearch');
+		return;
+	}
+
+	console.log('Set up instasearch');
+
 	function addRelevantMetaAndContent(book) {
 		var useRelevantContent = true;
 		var relevant_meta = {};
@@ -72,7 +79,7 @@
 			],
 		},
 		searchFunction: function (helper) {
-			console.log("Søk", search.helper.state.query)
+			console.log("Search", search.helper.state.query)
 			var savedPage = helper.state.page;
 			var isSearchPage = $('body').hasClass('search');
 			var mainSections = $('main');
