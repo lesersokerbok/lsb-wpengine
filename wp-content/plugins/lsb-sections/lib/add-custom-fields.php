@@ -133,15 +133,15 @@ function create_menu_layout() {
 }
 
 function get_network_post_types() {
+	$custom_post_types = \get_post_types(array( '_builtin' => false ), 'objects');
 	if(!is_multisite()) {
-		return \get_post_types(array( '_builtin' => false ), 'objects');
+		return $custom_post_types;
 	}
 
-
-	$custom_post_types = [];
 	foreach(\get_sites() as $site) {
 		\switch_to_blog($site->blog_id);
-		$costum_post_types = array_merge($costum_post_types, \get_post_types(array( '_builtin' => false ), 'objects'));
+		$site_post_types = \get_post_types(array( '_builtin' => false ), 'objects');
+		$custom_post_types = array_merge($site_post_types);
 		\restore_current_blog();
 	}
 	$custom_post_types = array_unique($custom_post_types);
