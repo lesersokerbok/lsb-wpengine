@@ -92,10 +92,10 @@ function create_taxonomy_field($key, $name, $label, $is_multi_select) {
 	);
 }
 
-function create_custom_post_type_layouts() {
+function create_custom_post_type_layouts($custom_post_types) {
 	$layouts = array ();
 
-	foreach (get_post_types(array( '_builtin' => false ), 'objects') as $key => $post_type) {
+	foreach ( $custom_post_types as $key => $post_type) {
 		$filters = array_map( function($taxonomy) { return $taxonomy->label; }, get_object_taxonomies( $post_type->name, 'objects' ));
 		$layout_key = "lsb_acf_section_layout_{$post_type->name}";
 
@@ -132,9 +132,25 @@ function create_menu_layout() {
 	return $layout_field;
 }
 
+function get_network_post_types() {
+	if(!is_multisite()) {
+		return \get_post_types(array( '_builtin' => false ), 'objects');
+	}
+
+
+	$custom_post_types = [];
+	foreach(\get_sites() as $site) {
+		\switch_to_blog($site->blog_id);
+		$costum_post_types = array_merge($costum_post_types, \get_post_types(array( '_builtin' => false ), 'objects'));
+		\restore_current_blog();
+	}
+	$custom_post_types = array_unique($custom_post_types);
+	return $custom_post_types;
+}
+
 function add_custom_fields() {
 
-	$custom_post_type_layouts = create_custom_post_type_layouts();
+	$custom_post_type_layouts = create_custom_post_type_layouts(get_network_post_types());
 	$menu_layouts = [create_menu_layout()];
 
 	$layouts = array_merge($custom_post_type_layouts, $menu_layouts);
