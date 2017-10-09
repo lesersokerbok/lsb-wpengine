@@ -134,9 +134,6 @@ function create_menu_layout() {
 
 function get_network_post_types() {
 	$custom_post_types = \get_post_types(array( '_builtin' => false ), 'objects');
-	var_dump(array_map(function($post_type) {
-		return $post_type->name;
-	}, $custom_post_types));
 
 	if(!is_multisite()) {
 		return $custom_post_types;
@@ -146,13 +143,18 @@ function get_network_post_types() {
 		\switch_to_blog($site->blog_id);
 		$site_post_types = \get_post_types(array( '_builtin' => false ), 'objects');
 		$custom_post_types = array_merge($site_post_types);
+
+		echo "<br/>Site " . $site->blog_id . "<br/>";
+		echo "<pre>";
+		var_dump($site);
+		echo "</pre><pre>";
+		var_dump(array_map(function($post_type) {
+			return $post_type->name;
+		}, $site_post_types));
+		echo "</pre>";
+
 		\restore_current_blog();
 	}
-	var_dump(array_map(function($post_type) {
-		return $post_type->name;
-	}, $custom_post_types));
-	$custom_post_types = array_unique($custom_post_types);
-	echo "unique";
 	var_dump(array_map(function($post_type) {
 		return $post_type->name;
 	}, $custom_post_types));
