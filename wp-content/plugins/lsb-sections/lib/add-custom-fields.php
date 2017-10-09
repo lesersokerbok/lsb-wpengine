@@ -142,22 +142,21 @@ function get_network_post_types() {
 	foreach(\get_sites() as $site) {
 		\switch_to_blog($site->blog_id);
 		$site_post_types = \get_post_types(array( '_builtin' => false ), 'objects');
-		$custom_post_types = array_merge($site_post_types);
 
 		echo "<br/>Site " . $site->blog_id . "<br/>";
 		echo "<pre>";
 		var_dump($site);
-		echo "</pre><pre>";
+		echo "</pre>";
+		echo "<br/>Site " . $site->blog_id . " post types <br/>";
+		echo "<pre>";
 		var_dump(array_map(function($post_type) {
 			return $post_type->name;
 		}, $site_post_types));
 		echo "</pre>";
+		$custom_post_types = array_merge($site_post_types);
 
 		\restore_current_blog();
 	}
-	var_dump(array_map(function($post_type) {
-		return $post_type->name;
-	}, $custom_post_types));
 
 	return $custom_post_types;
 }
