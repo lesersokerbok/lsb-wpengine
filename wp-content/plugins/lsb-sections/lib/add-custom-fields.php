@@ -125,7 +125,7 @@ function create_menu_layout() {
 	$layout_key = 'lsb_acf_section_layout_menu_navigation';
 	$name = 'nav_menu';
 	$label = __('Meny(er)', 'lsb_sections');
-	
+
 	$layout_field = create_layout_field($layout_key, 'lsb_menu_nav', __('Navigasjon', 'lsb_sections'));
 	$layout_field['sub_fields'][] = create_taxonomy_field($layout_key.'_'.$name, $name, $label, false );
 
@@ -134,6 +134,10 @@ function create_menu_layout() {
 
 function get_network_post_types() {
 	$custom_post_types = \get_post_types(array( '_builtin' => false ), 'objects');
+	var_dump(array_map(function($post_type) {
+		return $post_type->name;
+	}, $custom_post_types));
+
 	if(!is_multisite()) {
 		return $custom_post_types;
 	}
@@ -144,7 +148,15 @@ function get_network_post_types() {
 		$custom_post_types = array_merge($site_post_types);
 		\restore_current_blog();
 	}
+	var_dump(array_map(function($post_type) {
+		return $post_type->name;
+	}, $custom_post_types));
 	$custom_post_types = array_unique($custom_post_types);
+	echo "unique";
+	var_dump(array_map(function($post_type) {
+		return $post_type->name;
+	}, $custom_post_types));
+
 	return $custom_post_types;
 }
 
