@@ -1,4 +1,5 @@
-<section class="lsb_section is-{{ section.post_type }} is-scroll">
+{% if section.posts | length > 0 %}
+<section class="lsb_section is-lsb_{{ section.layout }} is-scroll">
 	<div class="lsb_section__header">
 		<h2 class="lsb_section__title">
 			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
@@ -6,7 +7,7 @@
 	</div>
 	<div class="lsb_section__body">
 		{% for post in section.posts %}
-			{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] with {'h_size': 'h3'} %}
+			{% include [''~section.layout~'-'~section.post_type~'.twig', ''~section.layout~'.twig'] with {'h_size': 'h3'} %}
 		{% endfor %}
 	</div>
 	<button aria-hidden="true" tabindex="-1" data-scroll="left" class="lsb_section__scroll is-left">
@@ -16,3 +17,25 @@
 		<span class="glyphicon glyphicon-chevron-right"></span>
 	</button>
 </section>
+{% elseif user %}
+<section class="lsb_section is-post">
+	<div class="lsb_section__header">
+		<h2 class="lsb_section__title">
+			<a href="{{ section.link }}"><span>{{ section.title }}</span> <span>{{ section.subtitle }}</span></a>
+		</h2>
+	</div>
+	<article class="lsb_teaser is-post">
+		<div class="lsb_teaser__body">
+			<p>
+				<strong>{{ __('Ingen poster å vise, sjekk seksjonsinnstillingene', 'lsb') }}</strong>
+				<br/>
+				{{ __('Denne beskjeden vises kun til deg som er innlogget, ikke vanlige besøkende.', 'lsb') }}
+			</p>
+			{% if section.error %}
+			<pre>{{ section.error | print_r }}</pre>
+			{% endif %}
+		</div>
+	</article>
+</section>
+{% endif %}
+

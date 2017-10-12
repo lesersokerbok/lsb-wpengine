@@ -1,0 +1,23 @@
+<article class="lsb_card is-{{ post.post_type }}">
+	<a href="{{ post.link }}" class="lsb_card__thumbnail" aria-hidden="true" tabindex="-1">
+		{% if post.thumbnail.src %}
+			<img src="{{ post.thumbnail.src | resize(250) }}" alt="{{ post.title }}" />
+		{% else %}
+			<img src="{{theme.link}}/assets/img/book-cover.jpg" alt="{{ post.title }}" />
+		{% endif %}
+		{% if post.lsb_support_cat %}
+			<div class="lsb_logo is-{{ post.lsb_support_cat }}">
+				{{ source('assets/img/logo.svg') }}
+			</div>
+		{% endif %}
+	</a>
+	<{{ h_size | default('h2') }} class="lsb_card__title">
+		<a href="{{ post.link }}">{{ post.title }}</a>
+	</{{ h_size | default('h2') }}>
+
+	{% if post.terms('lsb_tax_author') %}
+	<div class="lsb_card__body">
+		{{ post.terms('lsb_tax_author') | terms_list(', ', ', ') }}
+	</div>
+	{% endif %}
+</article>
