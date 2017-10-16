@@ -13,7 +13,7 @@ function init() {
 
 		\acf_add_local_field_group(array (
 			'key' => 'lsb_acf_group_sections',
-			'title' => __('Nye Seksjoner', 'lsb_sections'),
+			'title' => __('Seksjoner', 'lsb_sections'),
 			'fields' => array (
 				array (
 					'key' => 'lsb_acf_sections',
@@ -47,6 +47,11 @@ function init() {
 						'param' => 'post_type',
 						'operator' => '==',
 						'value' => 'page',
+					),
+					array (
+						'param' => 'post_template',
+						'operator' => '!=',
+						'value' => 'template-frontpage.php',
 					),
 				),
 				array (

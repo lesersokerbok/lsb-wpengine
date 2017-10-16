@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: LSB: Nye seksjoner
- * Description: Legg til seksjoner på sider og innlegg
+ * Plugin Name: LSB: Seksjoner
+ * Description: Seksjoner som kan legges på sider, innlegg og Boksøks hovedkategorier.
  * Version: 1.0.0
  * Author: Lilly Labs
  * Author URI: http://lillylabs.no

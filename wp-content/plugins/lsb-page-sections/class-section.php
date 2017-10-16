@@ -16,7 +16,7 @@ class Section {
 			'fields' => array (
 				array (
 					'key' => 'lsb_field_page_sections',
-					'label' => 'Seksjoner',
+					'label' => 'Gamle seksjoner',
 					'name' => 'sections',
 					'type' => 'flexible_content',
 					'instructions' => '',
