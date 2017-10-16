@@ -88,8 +88,14 @@
   .lsb_menu__link {
     border: 1px solid @btn-default-border;
     border-radius: @btn-border-radius-base;
+    background: @btn-default-bg;
     line-height: 3em;
     padding: 0.25em 1em !important;
+
+    &:hover,
+    &:focus {
+      background: darken(@btn-default-bg, 10%);
+    }
   }
 }
 
