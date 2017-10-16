@@ -1,162 +1,186 @@
+(function($) {
+  if (
+    algolia.indices.searchable_posts === undefined &&
+    jQuery(".admin-bar").length > 0
+  ) {
+    alert(
+      "It looks like you haven't indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it."
+    );
+  }
 
-(function ($) {
+  if (algolia.indices.searchable_posts.name.includes("wp_lsb_")) {
+    console.log("Do not instasearch");
+    return;
+  }
 
-	if (algolia.indices.searchable_posts === undefined && jQuery('.admin-bar').length > 0) {
-		alert('It looks like you haven\'t indexed the searchable posts index. Please head to the Indexing page of the Algolia Search plugin and index it.');
-	}
+  console.log("Set up instasearch");
 
-	if (!algolia.indices.searchable_posts.name.includes('wp_lsb_')) {
-		console.log('Do not instasearch');
-		return;
-	}
+  function addRelevantMetaAndContent(book) {
+    var useRelevantContent = true;
+    var relevant_meta = {};
 
-	console.log('Set up instasearch');
+    relevant_meta.creators = [];
+    relevant_meta.topics = [];
+    relevant_meta.partof = [];
+    relevant_meta.audience = [];
 
-	function addRelevantMetaAndContent(book) {
-		var useRelevantContent = true;
-		var relevant_meta = {};
+    for (var tax_key in book._highlightResult.taxonomies) {
+      var tax_terms = book._highlightResult.taxonomies[tax_key];
+      for (var term_index in tax_terms) {
+        var tax_term = tax_terms[term_index];
+        if (tax_term.matchLevel !== "none" || tax_key === "lsb_tax_author") {
+          if (
+            tax_key === "lsb_tax_author" ||
+            tax_key === "lsb_tax_illustrator" ||
+            tax_key === "lsb_tax_translator"
+          ) {
+            relevant_meta.creators.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          } else if (tax_key === "lsb_tax_topic") {
+            relevant_meta.topics.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          } else if (
+            tax_key === "lsb_tax_series" ||
+            tax_key === "lsb_tax_list"
+          ) {
+            relevant_meta.partof.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          } else if (
+            tax_key === "lsb_tax_age" ||
+            tax_key === "lsb_tax_audience"
+          ) {
+            relevant_meta.audience.push({
+              value: tax_term.value,
+              permalink: book.taxonomies_permalinks[tax_key][term_index]
+            });
+          }
+        }
 
-		relevant_meta.creators = [];
-		relevant_meta.topics = [];
-		relevant_meta.partof = [];
-		relevant_meta.audience = [];
+        if (tax_term.matchLevel !== "none") {
+          useRelevantContent = false;
+        }
+      }
+    }
 
-		for (var tax_key in book._highlightResult.taxonomies) {
-			var tax_terms = book._highlightResult.taxonomies[tax_key];
-			for (var term_index in tax_terms) {
-				var tax_term = tax_terms[term_index];
-				if (tax_term.matchLevel !== 'none' || tax_key === 'lsb_tax_author') {
-					if (tax_key === 'lsb_tax_author' || tax_key === 'lsb_tax_illustrator' || tax_key === 'lsb_tax_translator') {
-						relevant_meta.creators.push({ value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index] });
-					} else if (tax_key === 'lsb_tax_topic') {
-						relevant_meta.topics.push({ value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index] });
-					} else if (tax_key === 'lsb_tax_series' || tax_key === 'lsb_tax_list') {
-						relevant_meta.partof.push({ value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index] });
-					} else if (tax_key === 'lsb_tax_age' || tax_key === 'lsb_tax_audience') {
-						relevant_meta.audience.push({ value: tax_term.value, permalink: book.taxonomies_permalinks[tax_key][term_index] });
-					}
-				}
+    if (book._highlightResult.post_title.matchLevel !== "none") {
+      useRelevantContent = false;
+    }
 
-				if (tax_term.matchLevel !== 'none') {
-					useRelevantContent = false;
-				}
-			}
-		}
+    if (useRelevantContent) {
+      for (var snippet_index in book._snippetResult) {
+        var snippet = book._snippetResult[snippet_index];
+        if (snippet.matchLevel !== "none") {
+          book.relevant_content = snippet.value;
+          break;
+        }
+      }
+    }
 
-		if (book._highlightResult.post_title.matchLevel !== 'none') {
-			useRelevantContent = false;
-		}
+    book.relevant_meta = relevant_meta;
+  }
 
-		if (useRelevantContent) {
-			for (var snippet_index in book._snippetResult) {
-				var snippet = book._snippetResult[snippet_index];
-				if (snippet.matchLevel !== 'none') {
-					book.relevant_content = snippet.value;
-					break;
-				}
-			}
-		}
+  var search = instantsearch({
+    appId: algolia.application_id,
+    apiKey: algolia.search_api_key,
+    indexName: algolia.indices.searchable_posts.name,
+    urlSync: {
+      mapping: {
+        q: "s"
+      },
+      trackedParameters: ["query"]
+    },
+    searchParameters: {
+      facetingAfterDistinct: true,
+      attributesToSnippet: ["lsb_review:20", "lsb_quote:20"]
+    },
+    searchFunction: function(helper) {
+      console.log("Search", search.helper.state.query);
+      var savedPage = helper.state.page;
+      var isSearchPage = $("body").hasClass("search");
+      var mainSections = $("main");
+      var searchResults = $("#search-page");
+      var pageNav = $(".lsb-navbar-page");
 
-		book.relevant_meta = relevant_meta;
+      if (search.helper.state.query === "" && !isSearchPage) {
+        mainSections.show();
+        pageNav.show();
+        searchResults.hide();
+        return;
+      }
 
-	}
+      search.helper.setQueryParameter("distinct", true);
+      search.helper.setQueryParameter("filters", "");
+      search.helper.setPage(savedPage);
+      helper.search();
 
-	var search = instantsearch({
-		appId: algolia.application_id,
-		apiKey: algolia.search_api_key,
-		indexName: algolia.indices.searchable_posts.name,
-		urlSync: {
-			mapping: {
-				'q': 's'
-			},
-			trackedParameters: ['query']
-		},
-		searchParameters: {
-			facetingAfterDistinct: true,
-			attributesToSnippet: [
-				'lsb_review:20',
-				'lsb_quote:20'
-			],
-		},
-		searchFunction: function (helper) {
-			console.log("Search", search.helper.state.query)
-			var savedPage = helper.state.page;
-			var isSearchPage = $('body').hasClass('search');
-			var mainSections = $('main');
-			var searchResults = $('#search-page');
-			var pageNav = $('.lsb-navbar-page');
+      mainSections.hide();
+      pageNav.hide();
+      searchResults.show();
+    }
+  });
 
-			if (search.helper.state.query === '' && !isSearchPage) {
-				mainSections.show();
-				pageNav.show();
-				searchResults.hide();
-				return;
-			}
+  // Search box widget
+  $("#algolia-form input").each(function() {
+    search.addWidget(
+      instantsearch.widgets.searchBox({
+        container: this,
+        placeholder: "wefkweflk",
+        wrapInput: false,
+        autofocus: false
+      })
+    );
+  });
 
-			search.helper.setQueryParameter('distinct', true);
-			search.helper.setQueryParameter('filters', '');
-			search.helper.setPage(savedPage);
-			helper.search();
+  // Hits widget
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: "#algolia-hits",
+      hitsPerPage: 30,
+      transformData: {
+        item: function(book) {
+          addRelevantMetaAndContent(book);
+          return book;
+        }
+      },
+      templates: {
+        empty: wp.template("instantsearch-empty"),
+        item: wp.template("instantsearch-hit")
+      },
+      cssClasses: {
+        root: ["loop"],
+        item: ["lsb_book", "summary"]
+      }
+    })
+  );
 
-			mainSections.hide();
-			pageNav.hide();
-			searchResults.show();
-		}
-	});
+  // Pagination widget
+  search.addWidget(
+    instantsearch.widgets.pagination({
+      container: "#algolia-pagination",
+      cssClasses: {
+        root: "pagination"
+      }
+    })
+  );
 
-	// Search box widget
-	$('#algolia-form input').each(function () {
-		search.addWidget(
-			instantsearch.widgets.searchBox({
-				container: this,
-				placeholder: "wefkweflk",
-				wrapInput: false,
-				autofocus: false
-			})
-		);
-	});
+  // Start
+  search.start();
 
-	// Hits widget
-	search.addWidget(
-		instantsearch.widgets.hits({
-			container: '#algolia-hits',
-			hitsPerPage: 30,
-			transformData: {
-				item: function (book) {
-					addRelevantMetaAndContent(book);
-					return book;
-				},
-			},
-			templates: {
-				empty: wp.template("instantsearch-empty"),
-				item: wp.template('instantsearch-hit')
-			},
-			cssClasses: {
-				root: ['loop'],
-				item: ['lsb_book', 'summary']
-			}
-		})
-	);
-
-	// Pagination widget
-	search.addWidget(
-		instantsearch.widgets.pagination({
-			container: '#algolia-pagination',
-			cssClasses: {
-				root: 'pagination'
-			}
-		})
-	);
-
-	// Start
-	search.start();
-
-	$searchInput = $('#algolia-form').each(function () {
-		$(this).bind('submit', function (e) {
-			e.preventDefault();
-			$(this).find('input').blur();
-			$(this).find('button').blur();
-		});
-	});
-
+  $searchInput = $("#algolia-form").each(function() {
+    $(this).bind("submit", function(e) {
+      e.preventDefault();
+      $(this)
+        .find("input")
+        .blur();
+      $(this)
+        .find("button")
+        .blur();
+    });
+  });
 })(jQuery); // Fully reference jQuery after this point.
