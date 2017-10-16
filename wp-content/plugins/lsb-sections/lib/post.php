@@ -2,6 +2,17 @@
 
 namespace LSB\Section;
 
+function create_post_layouts() {
+	$post_types = [ \get_post_type_object( 'post' ) ];
+	if(post_type_exists( 'lsb_book' )) {
+		$post_types[] = \get_post_type_object( 'lsb_book' );
+	}
+
+	return array_map(function($post_type) {
+		return create_post_layout($post_type);
+	}, $post_types);
+}
+
 function create_post_layout($post_type) {
 	$layout_key = "lsb_acf_section_layout_{$post_type->name}";
 	$layout_name = $post_type->name;
@@ -10,6 +21,9 @@ function create_post_layout($post_type) {
 	$filters = array_map( function($taxonomy) { return $taxonomy->label; }, get_object_taxonomies( $post_type->name, 'objects' ));
 
 	$layout_field = create_layout_field($layout_key, $layout_name, $layout_label);
+	$layout_field['sub_fields'][] = create_title_field($layout_key);
+	$layout_field['sub_fields'][] = create_subtitle_field($layout_key);
+	$layout_field['sub_fields'][] = create_select_field($layout_key.'_layout', 'lsb_section_layout', __('Layout', 'lsb_sections'), [ 'card'=> __('Cards', 'lsb_sections'), 'teaser' => __('Teasers', 'lsb_sections') ], $post_type->name == 'lsb_book' ? 'card' : 'teaser' );
 	$layout_field['sub_fields'][] = create_select_field($layout_key.'filter', 'lsb_filter', __('Filtrer', 'lsb_sections'), $filters);
 
 	foreach ($filters as $name => $label) {
@@ -27,13 +41,4 @@ function create_post_layout($post_type) {
 	}
 
 	return $layout_field;
-}
-
-function create_post_layouts() {
-	$layouts = array ();
-
-	foreach (get_post_types(array( '_builtin' => false ), 'objects') as $key => $post_type) {
-		$layouts[] = create_post_layout($post_type);
-	}
-	return $layouts;
 }

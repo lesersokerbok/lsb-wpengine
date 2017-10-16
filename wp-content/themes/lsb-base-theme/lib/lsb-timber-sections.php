@@ -8,11 +8,19 @@ class LSB_Section {
 	}
 
 	public function title() {
-		return $this->_acf_section['lsb_title'];
+		if( array_key_exists('lsb_title', $this->_acf_section)) {
+			return $this->_acf_section['lsb_title'];
+		}
 	}
 
 	public function subtitle() {
-		return $this->_acf_section['lsb_subtitle'];
+		if(array_key_exists('lsb_subtitle', $this->_acf_section)) {
+			return $this->_acf_section['lsb_subtitle'];
+		}
+	}
+
+	public function layout() {
+		return str_replace('lsb_', '', $this->_acf_section['acf_fc_layout']);
 	}
 }
 
@@ -21,11 +29,7 @@ class LSB_PostsSection extends LSB_Section {
 	protected $_posts;
 
 	public function layout() {
-		if('lsb_book' == $this->_post_type()) {
-			return 'card';
-		} else {
-			return 'teaser';
-		}
+		return $this->_acf_section['lsb_section_layout'];
 	}
 
 	public function title() {
@@ -38,10 +42,6 @@ class LSB_PostsSection extends LSB_Section {
 		}
 	}
 
-	public function subtitle() {
-		return parent::subtitle();
-	}
-
 	public function link() {
 		return $this->_filter_term() ? get_term_link($this->_filter_term()) : get_post_type_archive_link($this->_post_type());
 	}
@@ -50,7 +50,7 @@ class LSB_PostsSection extends LSB_Section {
 		if(!$this->_posts) {
 			$args = array(
 				'post_type' => $this->_post_type(),
-				'posts_per_page' => 12
+				'posts_per_page' => $this->layout() == 'card' ? 12 : 5
 			);
 
 			if($this->_filter_term()) {
@@ -73,6 +73,12 @@ class LSB_PostsSection extends LSB_Section {
 		return $this->_posts;
 	}
 
+	public function error() {
+		if(!$this->posts()) {
+			return __('Ingen innlegg/bøker å vise for instillingene.', 'lsb');
+		}
+	}
+
 	protected function _post_type() {
 		return $post_type = $this->_acf_section['acf_fc_layout'];
 	}
@@ -93,15 +99,15 @@ class LSB_MenuSection extends LSB_Section {
 		return 'menu';
 	}
 
+	public function style() {
+		return $this->_acf_section['lsb_section_layout'];
+	}
+
 	public function menu() {
 		if(!$this->_menu) {
 			$this->_menu = new TimberMenu($this->_acf_section['nav_menu']->slug);
 		}
 		return $this->_menu;
-	}
-
-	public function title() {
-		return parent::title() ?: $this->menu()->title;
 	}
 }
 
@@ -112,7 +118,7 @@ class LSB_FeedSection extends LSB_Section {
 	protected $_error;
 
 	public function layout() {
-		return $this->_acf_section['lsb_feed_layout'];
+		return $this->_acf_section['lsb_section_layout'];
 	}
 
 	public function posts() {
@@ -143,7 +149,9 @@ class LSB_FeedSection extends LSB_Section {
 	}
 
 	public function error() {
-		return $this->_error;
+		if(!$this->posts()) {
+			return $this->_error ?: __('Mest sannsynligvis er det ingen poster i feeden', 'lsb');
+		}
 	}
 
 	protected function _feed() {
@@ -167,6 +175,32 @@ class LSB_FeedSection extends LSB_Section {
 	}
 }
 
+class LSB_HeroSection extends LSB_Section {
+
+	protected $_text;
+
+	public function text() {
+		if(!$this->_text) {
+			$this->_text = $this->_acf_section['lsb_text'];
+		}
+		return $this->_text;
+	}
+}
+
+class LSB_OembedsSection extends LSB_Section {
+
+	protected $_oembeds;
+
+	public function oembeds() {
+		if(!$this->_oembeds) {
+			$this->_oembeds = array_map(function($item) {
+				return $item['lsb_oembed'];
+			}, $this->_acf_section['lsb_items']);
+		}
+		return $this->_oembeds;
+	}
+}
+
 class LSB_SectionsFactory {
 	public static function create_sections($object) {
 		$acf_sections = get_field('lsb_sections', $object) ? get_field('lsb_sections', $object) : array ();
@@ -180,6 +214,10 @@ class LSB_SectionsFactory {
 				return new LSB_MenuSection($acf_section);
 			} elseif($layout == 'lsb_feed') {
 				return new LSB_FeedSection($acf_section);
+			} elseif($layout == 'lsb_hero') {
+				return new LSB_HeroSection($acf_section);
+			} elseif($layout == 'lsb_oembeds') {
+				return new LSB_OembedsSection($acf_section);
 			} else {
 				return new LSB_Section($acf_section);
 			}
