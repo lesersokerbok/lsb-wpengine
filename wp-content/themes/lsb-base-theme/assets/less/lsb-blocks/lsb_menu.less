@@ -33,6 +33,7 @@
 .lsb_menu__arrow {
   .glyphicon;
   .glyphicon-chevron-right;
+
   font-size: 0.8em;
   margin-left: 0.5em;
   color: @lsb-brand;
@@ -41,6 +42,10 @@
   .lsb_menu__link:hover &,
   .lsb_menu__link:focus & {
     margin-left: 1em;
+  }
+
+  .external & {
+    .glyphicon-new-window;
   }
 
   .lsb-purple & {
@@ -69,7 +74,6 @@
 }
 
 .lsb_menu.is-pills {
-
   margin: -0.5em -0.3em;
 
   .lsb_menu__item {
@@ -90,7 +94,6 @@
 }
 
 .lsb_menu.is-blurb {
-
   .lsb_menu__item {
     width: 100%;
     font-weight: 500;
