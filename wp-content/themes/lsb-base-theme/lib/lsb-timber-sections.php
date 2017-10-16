@@ -138,7 +138,11 @@ class LSB_FeedSection extends LSB_Section {
 		if(!$this->_feed()) {
 			return;
 		}
-		return $this->_feed()->get_permalink();
+		if($this->_acf_section['lsb_feed_url'] === 'https://boksok.no/bok/') {
+			return 'https://boksok.no';
+		} else {
+			return $this->_acf_section['lsb_feed_url'];
+		}
 	}
 
 	public function title() {
