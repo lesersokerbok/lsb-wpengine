@@ -66,6 +66,13 @@
 }
 
 .lsb_entry {
+  &.is-archive {
+    .is-content {
+      //Somehow first paragraph does not have p tag.
+      max-width: 512px;
+    }
+  }
+
   &.is-lsb_book {
     h2 {
       text-transform: uppercase;
