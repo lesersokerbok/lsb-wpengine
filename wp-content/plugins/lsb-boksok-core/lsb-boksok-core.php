@@ -10,13 +10,11 @@
 namespace LSB\Boksok\Core;
 
 include('class-lsb-book.php');
-include('class-page-sections.php');
 include('lsb-filter-query-util.php');
 include('lsb-page-sections-util.php');
 include('taxonomy-util.php');
 
 new LsbBook();
-new PageSections();
 
 function boksok_get_search_form($form) {
 	ob_start();
