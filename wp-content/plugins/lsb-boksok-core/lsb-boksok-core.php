@@ -13,7 +13,6 @@ include('class-lsb-book.php');
 include('class-page-sections.php');
 include('lsb-filter-query-util.php');
 include('lsb-page-sections-util.php');
-include('lsb-search-util.php');
 include('taxonomy-util.php');
 
 new LsbBook();
@@ -41,31 +40,3 @@ function add_book_page_filter_css( $classes) {
   return $classes;
 }
 add_filter( 'body_class', __NAMESPACE__ .'\\add_book_page_filter_css', 100, 2);
-
-function searchwp_activate_cat_menu_item( $classes) {
-  if(is_search()) {
-    return \LsbSearchUtil::activate_cat_menu_item($classes);
-  }
-
-  return $classes;
-}
-add_filter( 'nav_menu_css_class', __NAMESPACE__ .'\\searchwp_activate_cat_menu_item', 100, 2);
-
-function searchwp_filter_search( $ids, $engine, $terms ) {
-  /* Use this filter to define the pool of potential results SearchWP can use when running searches. */
-  /* https://searchwp.com/docs/hooks/searchwp_include/ */
-  return \LsbSearchUtil::books_matching_current_query_vars();
-}
-add_filter( 'searchwp_include', __NAMESPACE__ .'\\searchwp_filter_search', 10, 3 );
-
-function add_search_alert() {
-	$alert_text = \LsbSearchUtil::alert_text();
-	if($alert_text) {
-		echo '<p>';
-		printf(__('Viser kun treff i %s', 'lsb'), $alert_text);
-		echo '<br/>';
-		printf(__('Det er mulig å søke etter <strong>%1$s</strong> <a href="/?s=%1$s">i alle bøker</a>', 'lsb'), get_search_query());
-		echo '</p>';
-	}
-}
-add_action( 'search_alert', __NAMESPACE__ .'\\add_search_alert' );
