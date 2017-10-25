@@ -86,15 +86,18 @@
   }
 
   .lsb_menu__link {
-    border: 1px solid @btn-default-border;
-    border-radius: @btn-border-radius-base;
-    background: @btn-default-bg;
-    line-height: 3em;
-    padding: 0.25em 1em !important;
+    .is-button;
+    line-height: 4rem;
+    padding: 0.5em 1.5em;
 
-    &:hover,
-    &:focus {
-      background: darken(@btn-default-bg, 10%);
+    .is-lsb_icon {
+      max-height: 4rem;
+      &:first-child {
+        margin-left: -0.5em;
+      }
+      &:last-child {
+        margin-right: -0.5em;
+      }
     }
   }
 }
