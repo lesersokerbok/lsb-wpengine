@@ -26,7 +26,7 @@ class LSB_Term extends TimberTerm {
 	}
 
 	public function translations() {
-		if( !isset( $this->_translations ) ) {
+		if( !isset( $this->_translations) && get_fields($this)) {
 			$field_keys = array_keys(get_fields($this));
 			$field_keys = array_filter($field_keys, function($key) {
 				return strpos($key, 'lsb_translation') !== false;
