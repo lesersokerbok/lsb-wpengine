@@ -5,6 +5,7 @@ namespace LSB\Translations;
 function init() {
 
 	$languages = [
+		'ar' => 'العربية / Arabisk',
 		'so' => 'سۆرانی / Sorani',
 		'ur' => 'اردو / Urdu',
 		'sr' => 'Soomaali / Somali',
