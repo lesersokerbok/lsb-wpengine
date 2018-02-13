@@ -9,7 +9,7 @@
     return;
   }
 
-  if (algolia.indices.searchable_posts.name.includes("wp_lsb_")) {
+  if (algolia.indices.searchable_posts.name.indexOf("wp_lsb_") > -1) {
     console.log("Do not instasearch");
     return;
   }
@@ -101,7 +101,6 @@
       attributesToSnippet: ["lsb_review:20", "lsb_quote:20"]
     },
     searchFunction: function (helper) {
-      console.log("Search", search.helper.state.query);
       var savedPage = helper.state.page;
       var isSearchPage = $("body").hasClass("search");
       var mainSections = $("main");
