@@ -21,10 +21,12 @@ class LSB_Section {
 
 	public function link() {
 		if(array_key_exists('lsb_title_link', $this->_acf_section)) {
-			$link = [];
-			$link["target"] = $this->_acf_section['lsb_title_link']["target"] ? $this->_acf_section['lsb_title_link']["target"] :  "_self";
-			$link["url"] = $this->_acf_section['lsb_title_link']["url"];
-			return $link;
+			if(is_array($this->_acf_section['lsb_title_link'])) {
+				$link = [];
+				$link["target"] = $this->_acf_section['lsb_title_link']["target"] ? $this->_acf_section['lsb_title_link']["target"] :  "_self";
+				$link["url"] = $this->_acf_section['lsb_title_link']["url"];
+				return $link;
+			}
 		}
 	}
 
