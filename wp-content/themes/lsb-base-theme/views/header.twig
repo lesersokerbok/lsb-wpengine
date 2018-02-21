@@ -27,21 +27,17 @@
 				</a>
 
 				<div class="navbar-right">
-					{% if primary_menu %}
-						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
-							<span class="sr-only">{{ __( 'Meny', 'lsb' ) }}</span>
-							<span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-						</button>
-					{% else %}
+					{% if 'Boksøk' in site.title %}
 						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#search-collapse" aria-expanded="false">
 							<span class="sr-only">{{ __( 'Søk', 'lsb' ) }}</span>
 							<span class="glyphicon glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
-						<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
-							<span class="sr-only">{{ __( 'Meny', 'lsb' ) }}</span>
-							<span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-						</button>
 					{% endif %}
+					<button type="button" class="btn btn-default navbar-btn lsb-navbar-btn-action collapsed" data-toggle="collapse" data-target="#primary-collapse" aria-expanded="false">
+						<span class="sr-only">{{ __( 'Meny', 'lsb' ) }}</span>
+						<span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+					</button>
+
 				</div>
 			</div>
 
@@ -59,7 +55,7 @@
 					</div>
 				{% endif %}
 
-				{% if not primary_menu %}
+				{% if 'Boksøk' in site.title %}
 					{{ function('get_search_form') }}
 				{% endif %}
 
@@ -68,7 +64,7 @@
 		</div><!-- /.container-fluid -->
 	</div>
 
-	{% if not primary_menu %}
+	{% if 'Boksøk' in site.title %}
 		<div class="navbar navbar-default navbar-static-top lsb-navbar-search collapse" id="search-collapse">
 			<div class="container-fluid">
 				{{ function('get_search_form') }}
