@@ -60,7 +60,6 @@ class LSB_PostsSection extends LSB_Section {
 	public function link() {
 		$link = [];
 		$link["url"] = $this->_filter_term() ? get_term_link($this->_filter_term()) : get_post_type_archive_link($this->_post_type());
-		$link["target"] = "_self";
 		return $link;
 	}
 
@@ -162,7 +161,7 @@ class LSB_FeedSection extends LSB_Section {
 
 		$link = [];
 		$link["url"] = $this->_feed()->get_link();
-		$link["tagert"] = "_blank";
+		$link["target"] = "_blank";
 
 		return parent::link() ?: $link;
 	}
