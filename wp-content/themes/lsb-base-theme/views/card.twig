@@ -1,5 +1,5 @@
 <article class="lsb_card is-{{ post.post_type }}">
-	<a href="{{ post.link }}" class="lsb_card__thumbnail" aria-hidden="true" tabindex="-1">
+	<a href="{{ post.link }}" target="{{ section.link.target }}" class="lsb_card__thumbnail" aria-hidden="true" tabindex="-1">
 		{% if post.thumbnail.src %}
 			<img src="{{ post.thumbnail.src | resize(250) }}" alt="{{ post.title }}" />
 		{% else %}
@@ -14,7 +14,7 @@
 
 	{% if not (post.title == post.preview) %}
 	<{{ h_size | default('h2') }} class="lsb_card__title">
-		<a href="{{ post.link }}">{{ post.title }}</a>
+		<a href="{{ post.link }}" target="{{ section.link.target }}">{{ post.title }}</a>
 	</{{ h_size | default('h2') }}>
 	{% endif %}
 
