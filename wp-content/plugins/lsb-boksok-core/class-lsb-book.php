@@ -21,12 +21,34 @@ class LsbBook {
     add_action('init', array($this, 'register_tax_lsb_language'), 4);
     add_action('init', array($this, 'register_lsb_tax_list'), 4);
     add_action('init', array($this, 'register_lsb_tax_series'), 4);
+    add_action('init', array($this, 'register_lsb_tax_supported_by'), 4);
 
     // Added fields with acf
     add_action('acf/init', array($this, 'register_lsb_acf_book_meta'));
     add_action('acf/init', array($this, 'register_lsb_acf_book_content'));
     add_action('acf/init', array($this, 'register_lsb_acf_book_oembeds'));
     add_action('acf/init', array($this, 'register_lsb_acf_tax_meta'));
+
+    add_action('acf/save_post', array($this, 'update_supported_bys'), 20);
+    add_filter('single_cat_title', array($this, 'supported_by_title'));
+  }
+
+  public function supported_by_title($term) {
+    return "test ".$term;
+  }
+
+  public function update_supported_bys($post_id) {
+
+    if( empty($_POST['acf']) ) {
+      return;
+    }
+
+    if(get_field('lsb_acf_supported')) {
+      wp_set_post_terms( $post_id, ['lsb'], 'lsb_tax_supported_by', false);
+    } else {
+      wp_set_post_terms( $post_id, [], 'lsb_tax_supported_by', false);
+    }
+
   }
 
   public function register_post_type_lsb_book() {
@@ -441,6 +463,40 @@ class LsbBook {
         )
       )
     );
+  }
+
+  public function register_lsb_tax_supported_by() {
+    register_taxonomy( 'lsb_tax_supported_by',
+      array(
+        0 => 'lsb_book'
+      ),
+      array(
+        'hierarchical' => false,
+        'label' => __('Støttet av', 'lsb_boksok'),
+        'show_ui' => false,
+        'query_var' => true,
+        'rewrite' => array( 'slug' => _x('stottetav', 'lsb_tax_supported_by slug', 'lsb_boksok') ),
+        'show_admin_column' => true,
+        'labels' => array (
+          'search_items' => __('Støttet av', 'lsb_boksok'),
+          'popular_items' => __('Populære', 'lsb_boksok'),
+          'all_items' => __('Alle', 'lsb_boksok'),
+          'parent_item' => __('Forelder', 'lsb_boksok'),
+          'parent_item_colon' => __('Forelder: ', 'lsb_boksok'),
+          'edit_item' => __('Rediger', 'lsb_boksok'),
+          'update_item' => __('Oppdater', 'lsb_boksok'),
+          'add_new_item' => __('Legg til', 'lsb_boksok'),
+          'new_item_name' => __('Navn', 'lsb_boksok'),
+          'separate_items_with_commas' => __('Skill med komma'),
+          'add_or_remove_items' => __('Legg til eller ta vekk', 'lsb_boksok'),
+          'choose_from_most_used' => __('Velg fra mest brukte', 'lsb_boksok'),
+        )
+      )
+    );
+
+    wp_insert_term( 'Leser søker bok', 'lsb_tax_supported_by', array(
+      'slug' => 'lsb'
+    ));
   }
 
   public function register_lsb_acf_book_meta() {

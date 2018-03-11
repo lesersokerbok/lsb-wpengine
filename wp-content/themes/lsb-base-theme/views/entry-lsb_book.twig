@@ -32,14 +32,14 @@
 		</div>
 	</div>
 
-	{% if post.terms(['lsb_tax_list', 'lsb_tax_series']) or post.lsb_support_cat %}
+	{% if post.terms(['lsb_tax_list', 'lsb_tax_series', 'lsb_tax_supported_by']) %}
 		<div class="lsb_entry__meta">
 			<ul>
 				{% if post.terms(['lsb_tax_list', 'lsb_tax_series']) %}
 					<li>{{ __('Boka er en del av ', 'lsb') }}  {{ post.terms(['lsb_tax_list', 'lsb_tax_series']) | terms_list(', ', __(' og ', 'lsb')) }}.</li>
 				{% endif %}
-				{% if post.lsb_support_cat %}
-					<li>{{ __('Boken er støttet av Leser søker bok.', 'lsb') }}</li>
+				{% if post.terms(['lsb_tax_supported_by']) %}
+					<li>{{ __('Boka er støttet av ', 'lsb') }} {{ post.terms(['lsb_tax_supported_by']) | terms_list(', ', __(' og ', 'lsb')) }}.</li>
 				{% endif %}
 			</ul>
 		</div>

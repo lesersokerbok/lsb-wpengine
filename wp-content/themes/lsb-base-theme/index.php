@@ -34,6 +34,9 @@ if ( is_home() ) {
 } else if ( is_tag() || is_category() || is_tax() ) {
 		$term = new LSB_Term();
 		$context['title'] = $term->name;
+		if(is_tax('lsb_tax_supported_by')) {
+			$context['title'] = sprintf(__('Støttet av %s', 'lsb'), $term->name);
+		}
 		$context['post_type'] = get_post_type();
 		if(!is_paged()) {
 			$context['description'] = $term->description;
