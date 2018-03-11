@@ -44,7 +44,7 @@ class LSB_PostsSection extends LSB_Section {
 	}
 
 	public function post_type() {
-		return get_post_type_object($this->_post_type())->labels->name;
+		return $this->_post_type();
 	}
 
 	public function title() {
