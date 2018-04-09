@@ -13,6 +13,10 @@ class LSB_FeedItem {
 		return strpos($this->link()["url"], 'boksok') !== false ? "lsb_book" : "feed-item";
 	}
 
+	public function image_only_card() {
+			return strpos($this->link(), 'instagram.com') !== false;
+	}
+
 	public function title() {
 		return $this->_item->get_title();
 	}
