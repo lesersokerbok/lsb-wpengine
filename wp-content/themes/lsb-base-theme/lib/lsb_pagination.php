@@ -3,19 +3,14 @@
 add_action('pre_get_posts', 'lsb_sections_query_offset', 1 );
 function lsb_sections_query_offset(&$query) {
 
-    if ( count(get_field('lsb_sections', get_queried_object())) == 0 ) {
-        return;
-    }
-    
-    /* 
-     * If the first page in the archive has lsb_sections it will not 
+    /*
+     * If the first page in the archive has lsb_sections it will not
      * show the actual posts so we need to let WP know changing the offsetting.
      */
 
-
     $ppp = get_option('posts_per_page');
 
-    if ( $query->is_paged ) {
+    if ( $query->is_paged && count(get_field('lsb_sections', get_queried_object())) > 0 ) {
         // Paged start at 1, not 0.
         // On page 2 offset should be 0
         // On page 3 offset should be a full page of posts (ppp)
